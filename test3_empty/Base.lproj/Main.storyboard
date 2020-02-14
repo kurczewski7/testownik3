@@ -22,8 +22,8 @@
                                     <segment title="Next"/>
                                 </segments>
                             </segmentedControl>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="xuO-fW-0nf">
-                                <rect key="frame" x="10" y="188" width="394" height="520"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="xuO-fW-0nf">
+                                <rect key="frame" x="10" y="223" width="394" height="450"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8lw-GS-xyB">
                                         <rect key="frame" x="0.0" y="0.0" width="394" height="30"/>
@@ -34,7 +34,7 @@
                                         <state key="normal" title="Pytanie 1"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J2d-P7-3n7">
-                                        <rect key="frame" x="0.0" y="70" width="394" height="30"/>
+                                        <rect key="frame" x="0.0" y="60" width="394" height="30"/>
                                         <color key="backgroundColor" red="0.0" green="0.99143940210000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="xWU-I0-R7A"/>
@@ -42,7 +42,7 @@
                                         <state key="normal" title="Pytanie 2 co to jest aaa bbb"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zAH-uf-Asq">
-                                        <rect key="frame" x="0.0" y="140" width="394" height="30"/>
+                                        <rect key="frame" x="0.0" y="120" width="394" height="30"/>
                                         <color key="backgroundColor" red="0.0" green="0.99143940210000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="Vnh-DB-DLe"/>
@@ -50,7 +50,7 @@
                                         <state key="normal" title="Pytanie 3"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Lf-Ox-pmN">
-                                        <rect key="frame" x="0.0" y="210" width="394" height="30"/>
+                                        <rect key="frame" x="0.0" y="180" width="394" height="30"/>
                                         <color key="backgroundColor" red="0.0" green="0.99143940210000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="ers-QY-lPS"/>
@@ -58,7 +58,7 @@
                                         <state key="normal" title="Pytanie 4"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VZi-8t-eM6">
-                                        <rect key="frame" x="0.0" y="280" width="394" height="30"/>
+                                        <rect key="frame" x="0.0" y="240" width="394" height="30"/>
                                         <color key="backgroundColor" red="0.0" green="0.99143940210000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="LVE-72-AY9"/>
@@ -66,7 +66,7 @@
                                         <state key="normal" title="Pytanie 5"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Npv-Sv-AUR">
-                                        <rect key="frame" x="0.0" y="350" width="394" height="30"/>
+                                        <rect key="frame" x="0.0" y="300" width="394" height="30"/>
                                         <color key="backgroundColor" red="0.0" green="0.99143940210000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="Mhg-gn-89Z"/>
@@ -74,7 +74,7 @@
                                         <state key="normal" title="Pytanie 6"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hiL-wI-wRa">
-                                        <rect key="frame" x="0.0" y="420" width="394" height="30"/>
+                                        <rect key="frame" x="0.0" y="360" width="394" height="30"/>
                                         <color key="backgroundColor" red="0.0" green="0.99143940210000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="d58-cv-xCi"/>
@@ -82,7 +82,7 @@
                                         <state key="normal" title="Pytanie 7"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BCV-aq-hgv">
-                                        <rect key="frame" x="0.0" y="490" width="394" height="30"/>
+                                        <rect key="frame" x="0.0" y="420" width="394" height="30"/>
                                         <color key="backgroundColor" red="0.0" green="0.99143940210000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="lwd-KG-EW0"/>
