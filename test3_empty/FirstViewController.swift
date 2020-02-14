@@ -22,6 +22,18 @@ class FirstViewController: UIViewController {
     @IBOutlet weak var butt7: UIButton!
     @IBOutlet weak var butt8: UIButton!
     
+    @IBOutlet weak var highButton1: NSLayoutConstraint!
+    @IBOutlet weak var highButton2: NSLayoutConstraint!
+    @IBOutlet weak var highButton3: NSLayoutConstraint!
+    @IBOutlet weak var highButton4: NSLayoutConstraint!
+    @IBOutlet weak var highButton5: NSLayoutConstraint!
+    @IBOutlet weak var highButton6: NSLayoutConstraint!
+    @IBOutlet weak var highButton7: NSLayoutConstraint!
+    @IBOutlet weak var highButton8: NSLayoutConstraint!
+    
+    
+    
+    @IBOutlet weak var labelLeading: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
         askLabel.layer.cornerRadius = 10
@@ -39,8 +51,12 @@ class FirstViewController: UIViewController {
         stackView.spacing -= 5
     }
     @IBAction func ResizeButtonPlusPress(_ sender: UIBarButtonItem) {
+        labelLeading.constant += 50
+        highButton1.constant += 5
+        highButton2.constant += 5 
        
-         butt1.titleLabel?.text = "Jaka jest odległość ziemi od księżyca"
+         //butt1.titleLabel?.text = "Jaka jest odległość ziemi od księżyca"
+        
     }
     @IBAction func ResizeButtonMinusPress(_ sender: UIBarButtonItem) {
         //butt4.contentRect(forBounds: CGRect(x: 0, y: 0, width: 150, height: 50))
