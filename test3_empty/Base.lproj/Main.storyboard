@@ -21,6 +21,9 @@
                                     <segment title="Previous"/>
                                     <segment title="Next"/>
                                 </segments>
+                                <connections>
+                                    <action selector="buttonPress:" destination="BYZ-38-t0r" eventType="valueChanged" id="oIk-S6-Ue6"/>
+                                </connections>
                             </segmentedControl>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="xuO-fW-0nf">
                                 <rect key="frame" x="10" y="223" width="394" height="450"/>
@@ -39,7 +42,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="xWU-I0-R7A"/>
                                         </constraints>
-                                        <state key="normal" title="Pytanie 2 co to jest aaa bbb"/>
+                                        <state key="normal" title="Pytanie 2"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zAH-uf-Asq">
                                         <rect key="frame" x="0.0" y="120" width="394" height="30"/>
@@ -49,7 +52,7 @@
                                         </constraints>
                                         <state key="normal" title="Pytanie 3"/>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Lf-Ox-pmN">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Lf-Ox-pmN">
                                         <rect key="frame" x="0.0" y="180" width="394" height="30"/>
                                         <color key="backgroundColor" red="0.0" green="0.99143940210000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -94,7 +97,7 @@
                                     <constraint firstItem="8lw-GS-xyB" firstAttribute="centerX" secondItem="xuO-fW-0nf" secondAttribute="centerX" id="nZz-bP-YPd"/>
                                 </constraints>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pytanie numer 77 aaaa bbbb cccc ddd eee ffff gggg" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tFz-9g-NIy">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pytanie numer 77 aaaa bbbb cccc ddd eee ffff gggg" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tFz-9g-NIy">
                                 <rect key="frame" x="10" y="88" width="394" height="48"/>
                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
