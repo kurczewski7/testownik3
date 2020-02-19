@@ -14,7 +14,7 @@ class FirstViewController: UIViewController {
         let ask: String?
         let pict: UIImage?
         let answerList: [String]?
-        let okAnswer: Int
+        let okAnswer: [Bool]?
     }
     var testList: [Test] = [Test]()
     var currentTest: Int = 0 {
@@ -120,6 +120,18 @@ class FirstViewController: UIViewController {
     }
     
     @IBAction func checkButtonPress(_ sender: UIButton) {
+
+        if let button = stackView.arrangedSubviews[0] as? UIButton {
+            button.layer.borderWidth = 3
+            button.layer.borderColor = UIColor.systemGreen.cgColor
+        }
+        if let button = stackView.arrangedSubviews[2] as? UIButton {
+             button.layer.borderWidth = 3
+             button.layer.borderColor = UIColor.systemGreen.cgColor
+         }
+
+//        butt1.layer.borderWidth = 3
+//        butt1.layer.borderColor = UIColor.systemGreen.cgColor //UIColor.green.cgColor
     }
     
     @IBAction func nextButtonPress(_ sender: UIButton) {
@@ -155,8 +167,8 @@ class FirstViewController: UIViewController {
                     answerList.append(textLines[i])
                 }
             }
-            let answerList=answerList
-            let test=Test(code: textLines[0], ask: textLines[1], pict: nil, answerList: answerList, okAnswer: 1)
+            let okAnswer = [true, false, true]
+            let test=Test(code: textLines[0], ask: textLines[1], pict: nil, answerList: answerList, okAnswer: okAnswer)
             testList.append(test)
             print(test)
             print("\r\n")
