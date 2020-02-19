@@ -30,15 +30,7 @@ class FirstViewController: UIViewController {
     @IBOutlet weak var askLabel: UILabel!
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var actionsButtonStackView: UIStackView!
-    
-    @IBOutlet weak var butt1: UIButton!
-    @IBOutlet weak var butt2: UIButton!
-    @IBOutlet weak var butt3: UIButton!
-    @IBOutlet weak var butt4: UIButton!
-    @IBOutlet weak var butt5: UIButton!
-    @IBOutlet weak var butt6: UIButton!
-    @IBOutlet weak var butt7: UIButton!
-    @IBOutlet weak var butt8: UIButton!
+    @IBOutlet weak var labelLeading: NSLayoutConstraint!
     
     @IBOutlet weak var highButton1: NSLayoutConstraint!
     @IBOutlet weak var highButton2: NSLayoutConstraint!
@@ -49,21 +41,11 @@ class FirstViewController: UIViewController {
     @IBOutlet weak var highButton7: NSLayoutConstraint!
     @IBOutlet weak var highButton8: NSLayoutConstraint!
     
-
-    @IBOutlet weak var labelLeading: NSLayoutConstraint!
     override func viewDidLoad() {
+        var i = 0
         super.viewDidLoad()
         
         print("Stack count: \(actionsButtonStackView.arrangedSubviews.count)")
-       
-//        butt1.layer.cornerRadius = 10
-//        butt1.layer.borderWidth = 3
-//        butt1.layer.borderColor = UIColor.systemGreen.cgColor //UIColor.green.cgColor
-//        butt2.layer.cornerRadius = 5
-//        butt2.layer.borderWidth = 3
-//        butt2.layer.borderColor = UIColor.green.cgColor
-        
-        //for
         stackView.arrangedSubviews.forEach { (button) in
             if let butt = button as? UIButton {
                 butt.backgroundColor = .yellow
@@ -71,6 +53,8 @@ class FirstViewController: UIViewController {
                 butt.layer.cornerRadius = self.cornerRadius
                 butt.layer.borderWidth = 1
                 butt.layer.borderColor = UIColor.brown.cgColor
+                butt.tag = i
+                i += 1
             }
         }
         
@@ -84,19 +68,8 @@ class FirstViewController: UIViewController {
         tabHigh.append(highButton8)
         
         askLabel.layer.cornerRadius = self.cornerRadius
-        butt1.layer.cornerRadius = self.cornerRadius
-        butt2.layer.cornerRadius = self.cornerRadius
-        butt2.clipsToBounds = true
-        
-        
         fillData(totallQuestionsCount: 117)
         refreshView()
-        butt4.titleLabel?.text = "AAAAAABBBBB"
-        
-//        let x = getText(fileName: "045")  //"059"
-//        for tx in x {
-//            print("\(tx)")
-//        }
         // Do any additional setup after loading the view.
     }
 
@@ -131,24 +104,15 @@ class FirstViewController: UIViewController {
     
     @IBAction func checkButtonPress(_ sender: UIButton) {
         let currTest = testList[currentTest]
-        let countTest = currTest.okAnswer.count ?? 0
+        let countTest = currTest.okAnswer.count
         for i in 0..<countTest {
             if let button = stackView.arrangedSubviews[i] as? UIButton {
                 button.layer.borderWidth =  currTest.okAnswer[i] ? 3 : 1
                 button.layer.borderColor = currTest.okAnswer[i] ? UIColor.systemGreen.cgColor : UIColor.brown.cgColor
             }
         }
-        
-        
-//        if let button = stackView.arrangedSubviews[2] as? UIButton {
-//             button.layer.borderWidth = 3
-//             button.layer.borderColor = UIColor.systemGreen.cgColor
-//         }
-
-//        butt1.layer.borderWidth = 3
-//        butt1.layer.borderColor = UIColor.systemGreen.cgColor //UIColor.green.cgColor
     }
-    
+
     @IBAction func nextButtonPress(_ sender: UIButton) {
         if currentTest<101 {
             currentTest += 1
@@ -213,11 +177,6 @@ class FirstViewController: UIViewController {
         //    button.setTitle("Test Button", forState: .Normal)
         //    button.addTarget(self, action: #selector(buttonAction), forControlEvents: .TouchUpInside)
         //
-
-        
     }
-        
-        
-
 }
 

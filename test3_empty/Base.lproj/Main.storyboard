@@ -219,14 +219,6 @@
                     <connections>
                         <outlet property="actionsButtonStackView" destination="sUd-SH-WPt" id="FTP-n3-1rv"/>
                         <outlet property="askLabel" destination="tFz-9g-NIy" id="EzE-iT-6mZ"/>
-                        <outlet property="butt1" destination="8lw-GS-xyB" id="Fiv-Nd-Yhm"/>
-                        <outlet property="butt2" destination="J2d-P7-3n7" id="ZIZ-lI-hb5"/>
-                        <outlet property="butt3" destination="zAH-uf-Asq" id="hHt-zL-Idk"/>
-                        <outlet property="butt4" destination="4Lf-Ox-pmN" id="2rw-uV-YXI"/>
-                        <outlet property="butt5" destination="VZi-8t-eM6" id="PSC-NG-3a8"/>
-                        <outlet property="butt6" destination="Npv-Sv-AUR" id="kMq-Qd-MYb"/>
-                        <outlet property="butt7" destination="hiL-wI-wRa" id="xUB-EA-NOl"/>
-                        <outlet property="butt8" destination="BCV-aq-hgv" id="TP7-uf-hd5"/>
                         <outlet property="highButton1" destination="tII-1g-dSj" id="zDY-WD-ufV"/>
                         <outlet property="highButton2" destination="xWU-I0-R7A" id="X6F-nt-wnL"/>
                         <outlet property="highButton3" destination="Vnh-DB-DLe" id="IWt-vv-oGW"/>
