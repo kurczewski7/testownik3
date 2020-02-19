@@ -14,7 +14,7 @@ class FirstViewController: UIViewController {
         let ask: String?
         let pict: UIImage?
         let answerList: [String]?
-        let okAnswer: [Bool]?
+        let okAnswer: [Bool]
     }
     var testList: [Test] = [Test]()
     var currentTest: Int = 0 {
@@ -56,13 +56,23 @@ class FirstViewController: UIViewController {
         
         print("Stack count: \(actionsButtonStackView.arrangedSubviews.count)")
        
-        butt1.layer.cornerRadius = 10
-        butt1.layer.borderWidth = 3
-        butt1.layer.borderColor = UIColor.systemGreen.cgColor //UIColor.green.cgColor
-        butt2.layer.cornerRadius = 5
-        butt2.layer.borderWidth = 3
-        butt2.layer.borderColor = UIColor.green.cgColor
+//        butt1.layer.cornerRadius = 10
+//        butt1.layer.borderWidth = 3
+//        butt1.layer.borderColor = UIColor.systemGreen.cgColor //UIColor.green.cgColor
+//        butt2.layer.cornerRadius = 5
+//        butt2.layer.borderWidth = 3
+//        butt2.layer.borderColor = UIColor.green.cgColor
         
+        //for
+        stackView.arrangedSubviews.forEach { (button) in
+            if let butt = button as? UIButton {
+                butt.backgroundColor = .yellow
+                butt.clipsToBounds = true
+                butt.layer.cornerRadius = self.cornerRadius
+                butt.layer.borderWidth = 1
+                butt.layer.borderColor = UIColor.brown.cgColor
+            }
+        }
         
         tabHigh.append(highButton1)
         tabHigh.append(highButton2)
@@ -120,15 +130,20 @@ class FirstViewController: UIViewController {
     }
     
     @IBAction func checkButtonPress(_ sender: UIButton) {
-
-        if let button = stackView.arrangedSubviews[0] as? UIButton {
-            button.layer.borderWidth = 3
-            button.layer.borderColor = UIColor.systemGreen.cgColor
+        let currTest = testList[currentTest]
+        let countTest = currTest.okAnswer.count ?? 0
+        for i in 0..<countTest {
+            if let button = stackView.arrangedSubviews[i] as? UIButton {
+                button.layer.borderWidth =  currTest.okAnswer[i] ? 3 : 1
+                button.layer.borderColor = currTest.okAnswer[i] ? UIColor.systemGreen.cgColor : UIColor.brown.cgColor
+            }
         }
-        if let button = stackView.arrangedSubviews[2] as? UIButton {
-             button.layer.borderWidth = 3
-             button.layer.borderColor = UIColor.systemGreen.cgColor
-         }
+        
+        
+//        if let button = stackView.arrangedSubviews[2] as? UIButton {
+//             button.layer.borderWidth = 3
+//             button.layer.borderColor = UIColor.systemGreen.cgColor
+//         }
 
 //        butt1.layer.borderWidth = 3
 //        butt1.layer.borderColor = UIColor.systemGreen.cgColor //UIColor.green.cgColor
@@ -178,18 +193,15 @@ class FirstViewController: UIViewController {
         let currTest = testList[currentTest]
         if  let totalQuest = currTest.answerList?.count  {
             var i = 0
-            for curButt in stackView.arrangedSubviews     {  //tabButt
-                if i < totalQuest {
-                    curButt.isHidden = false
+            for curButt in stackView.arrangedSubviews     {
+                if let butt = curButt as? UIButton {
+                    butt.isHidden = (i < totalQuest) ? false : true
+                    
+                    butt.setTitle((i < totalQuest) ? currTest.answerList?[i] : "", for: .normal)
+                    butt.layer.borderWidth = 1
+                    butt.layer.borderColor = UIColor.brown.cgColor
+                    i += 1
                 }
-                else {
-                    curButt.isHidden = true
-                }
-                i += 1
-            }
-            for i in 0..<totalQuest {
-                let butt = stackView.arrangedSubviews[i] as! UIButton
-                butt.setTitle(currTest.answerList?[i], for: .normal)
             }
             actionsButtonStackView.arrangedSubviews[0].isHidden = (currentTest == 0)
             actionsButtonStackView.arrangedSubviews[1].isHidden = (currentTest == 0)
