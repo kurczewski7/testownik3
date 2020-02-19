@@ -22,12 +22,14 @@ class FirstViewController: UIViewController {
             refreshView()
         }
     }
-    var tabButt: [UIButton] = [UIButton]()
+    //var tabButt: [UIButton] = [UIButton]()
+    
+    var cornerRadius: CGFloat = 10
     var tabHigh: [NSLayoutConstraint] = [NSLayoutConstraint]()
     
-    @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var askLabel: UILabel!
-    
+    @IBOutlet weak var stackView: UIStackView!
+    @IBOutlet weak var actionsButtonStackView: UIStackView!
     
     @IBOutlet weak var butt1: UIButton!
     @IBOutlet weak var butt2: UIButton!
@@ -47,27 +49,20 @@ class FirstViewController: UIViewController {
     @IBOutlet weak var highButton7: NSLayoutConstraint!
     @IBOutlet weak var highButton8: NSLayoutConstraint!
     
-    @IBAction func buttonPress(_ sender: UISegmentedControl) {
-        print("sender:\(sender.selectedSegmentIndex)")
-        if sender.selectedSegmentIndex == 0 {
-            currentTest -= 1
-        }
-        else {
-            currentTest += 1
-        }
-    }
+
     @IBOutlet weak var labelLeading: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("Stack count: \(actionsButtonStackView.arrangedSubviews.count)")
        
-        tabButt.append(butt1)
-        tabButt.append(butt2)
-        tabButt.append(butt3)
-        tabButt.append(butt4)
-        tabButt.append(butt5)
-        tabButt.append(butt6)
-        tabButt.append(butt7)
-        tabButt.append(butt8)
+        butt1.layer.cornerRadius = 10
+        butt1.layer.borderWidth = 3
+        butt1.layer.borderColor = UIColor.systemGreen.cgColor //UIColor.green.cgColor
+        butt2.layer.cornerRadius = 5
+        butt2.layer.borderWidth = 3
+        butt2.layer.borderColor = UIColor.green.cgColor
+        
         
         tabHigh.append(highButton1)
         tabHigh.append(highButton2)
@@ -78,9 +73,10 @@ class FirstViewController: UIViewController {
         tabHigh.append(highButton7)
         tabHigh.append(highButton8)
         
-        askLabel.layer.cornerRadius = 10
-        butt1.layer.cornerRadius = 10
-        butt2.layer.cornerRadius = 5
+        askLabel.layer.cornerRadius = self.cornerRadius
+        butt1.layer.cornerRadius = self.cornerRadius
+        butt2.layer.cornerRadius = self.cornerRadius
+        butt2.clipsToBounds = true
         
         
         fillData(totallQuestionsCount: 117)
@@ -96,26 +92,42 @@ class FirstViewController: UIViewController {
 
     @IBAction func navButt1Press(_ sender: UIBarButtonItem) {
         stackView.spacing += 5
-        butt7.isHidden.toggle()
     }
     
     @IBAction func nevButton2Press(_ sender: UIBarButtonItem) {
         stackView.spacing -= 5
-        butt6.isHidden.toggle()
     }
     @IBAction func ResizeButtonPlusPress(_ sender: UIBarButtonItem) {
         //labelLeading.constant += 50
-        highButton1.constant += 5
-        highButton2.constant += 5
-       
-         butt1.titleLabel?.text = "Jaka jest odległość ziemi od księżyca"
-        
+        highButton1.constant -= 5
+        highButton2.constant -= 5
     }
     @IBAction func ResizeButtonMinusPress(_ sender: UIBarButtonItem) {
         //butt4.contentRect(forBounds: CGRect(x: 0, y: 0, width: 150, height: 50))
-        askLabel.layer.cornerRadius = 1
-        butt6.layer.cornerRadius = 5
-        butt7.sizeThatFits(CGSize(width: 150, height: 50))
+        askLabel.layer.cornerRadius = 10
+        highButton1.constant += 5
+        highButton2.constant += 5
+    }
+    
+    @IBAction func firstButtonPress(_ sender: UIButton) {
+        currentTest = 0
+    }
+    
+    @IBAction func previousButtonPress(_ sender: UIButton) {
+        if currentTest > 0 {
+            currentTest -= 1
+        }
+    }
+    
+    @IBAction func checkButtonPress(_ sender: UIButton) {
+    }
+    
+    @IBAction func nextButtonPress(_ sender: UIButton) {
+        if currentTest<101 {
+            currentTest += 1
+        }
+      print("next:\(currentTest)")
+
     }
     func getText(fileName: String, encodingSystem encoding: String.Encoding = .windowsCP1250) -> [String] {
         var texts: [String] = ["brak"]
@@ -132,21 +144,29 @@ class FirstViewController: UIViewController {
         return texts
     }
     func fillData(totallQuestionsCount: Int) {
+        var answerList = [String]()
         for i in 1...117 {
+            answerList = []
             let name = String(format: "%03d", i)
             print("name:\(name)")
             let textLines=getText(fileName: name)
-            let answerList=[textLines[2],textLines[3],textLines[4]]
+            for i in 2..<textLines.count {
+                if textLines[i].count > 0 {
+                    answerList.append(textLines[i])
+                }
+            }
+            let answerList=answerList
             let test=Test(code: textLines[0], ask: textLines[1], pict: nil, answerList: answerList, okAnswer: 1)
             testList.append(test)
             print(test)
+            print("\r\n")
         }
     }
     func refreshView() {
         let currTest = testList[currentTest]
         if  let totalQuest = currTest.answerList?.count  {
             var i = 0
-            for curButt in tabButt {
+            for curButt in stackView.arrangedSubviews     {  //tabButt
                 if i < totalQuest {
                     curButt.isHidden = false
                 }
@@ -156,9 +176,11 @@ class FirstViewController: UIViewController {
                 i += 1
             }
             for i in 0..<totalQuest {
-                tabButt[i].setTitle(currTest.answerList?[i], for: .normal)
+                let butt = stackView.arrangedSubviews[i] as! UIButton
+                butt.setTitle(currTest.answerList?[i], for: .normal)
             }
-            
+            actionsButtonStackView.arrangedSubviews[0].isHidden = (currentTest == 0)
+            actionsButtonStackView.arrangedSubviews[1].isHidden = (currentTest == 0)
         }
         askLabel.text = currTest.ask
         

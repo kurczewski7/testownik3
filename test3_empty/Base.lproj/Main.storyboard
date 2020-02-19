@@ -15,16 +15,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="DF9-LR-wtJ">
-                                <rect key="frame" x="20" y="831" width="374" height="32"/>
-                                <segments>
-                                    <segment title="Previous"/>
-                                    <segment title="Next"/>
-                                </segments>
-                                <connections>
-                                    <action selector="buttonPress:" destination="BYZ-38-t0r" eventType="valueChanged" id="oIk-S6-Ue6"/>
-                                </connections>
-                            </segmentedControl>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="xuO-fW-0nf">
                                 <rect key="frame" x="10" y="223" width="394" height="450"/>
                                 <subviews>
@@ -97,25 +87,105 @@
                                     <constraint firstItem="8lw-GS-xyB" firstAttribute="centerX" secondItem="xuO-fW-0nf" secondAttribute="centerX" id="nZz-bP-YPd"/>
                                 </constraints>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pytanie numer 77 aaaa bbbb cccc ddd eee ffff gggg" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tFz-9g-NIy">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pytanie numer 77 aaaa bbbb cccc ddd eee ffff gggg" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tFz-9g-NIy">
                                 <rect key="frame" x="10" y="88" width="394" height="48"/>
                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="sUd-SH-WPt">
+                                <rect key="frame" x="33.5" y="812" width="347.5" height="40"/>
+                                <subviews>
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="czF-Us-4Vk">
+                                        <rect key="frame" x="0.0" y="0.0" width="70" height="40"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="f6s-Tj-tmL"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="70" id="oVC-DN-vDK"/>
+                                        </constraints>
+                                        <state key="normal" title="First" image="backward.end" catalog="system"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="firstButtonPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Rsf-ct-akE"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VRi-jC-cBp">
+                                        <rect key="frame" x="90" y="0.0" width="77.5" height="40"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="70" id="EuC-Gd-p99"/>
+                                            <constraint firstAttribute="height" constant="40" id="Pan-VT-MxH"/>
+                                        </constraints>
+                                        <state key="normal" title="Previus" image="arrowtriangle.left" catalog="system"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="previousButtonPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mau-85-XMM"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZwN-fO-Aea">
+                                        <rect key="frame" x="187.5" y="0.0" width="70" height="40"/>
+                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="70" id="9X4-Kh-rZK"/>
+                                            <constraint firstAttribute="height" constant="40" id="CGV-30-71B"/>
+                                        </constraints>
+                                        <color key="tintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" image="eye" catalog="system"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="checkButtonPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7cD-rY-IOw"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H33-pg-Q0g">
+                                        <rect key="frame" x="277.5" y="0.0" width="70" height="40"/>
+                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="Dfs-q0-QJf"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="70" id="bi1-vk-HFj"/>
+                                        </constraints>
+                                        <state key="normal" title="Next" image="arrowtriangle.right" catalog="system"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="nextButtonPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2F5-As-kk8"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="a7i-fg-Xe3"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="xuO-fW-0nf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="8O6-rB-4sW"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="xuO-fW-0nf" secondAttribute="trailing" constant="10" id="FUm-Dc-QpK"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="DF9-LR-wtJ" secondAttribute="trailing" constant="20" id="Pv0-dy-HDa"/>
                             <constraint firstItem="xuO-fW-0nf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="TcO-8k-akQ"/>
-                            <constraint firstItem="DF9-LR-wtJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Yue-XP-9ad"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="tFz-9g-NIy" secondAttribute="trailing" constant="10" id="dHA-LA-jih"/>
                             <constraint firstItem="tFz-9g-NIy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="fKa-B3-rqG"/>
+                            <constraint firstItem="sUd-SH-WPt" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="geI-jh-TCY"/>
                             <constraint firstItem="tFz-9g-NIy" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="gmc-U4-U8V"/>
-                            <constraint firstItem="DF9-LR-wtJ" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="tfw-RP-Rw3"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="sUd-SH-WPt" secondAttribute="bottom" constant="10" id="i9j-aM-9y9"/>
                             <constraint firstItem="xuO-fW-0nf" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="zyS-sh-kcU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -147,6 +217,7 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="actionsButtonStackView" destination="sUd-SH-WPt" id="FTP-n3-1rv"/>
                         <outlet property="askLabel" destination="tFz-9g-NIy" id="EzE-iT-6mZ"/>
                         <outlet property="butt1" destination="8lw-GS-xyB" id="Fiv-Nd-Yhm"/>
                         <outlet property="butt2" destination="J2d-P7-3n7" id="ZIZ-lI-hb5"/>
@@ -192,6 +263,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrowtriangle.left" catalog="system" width="64" height="56"/>
+        <image name="arrowtriangle.right" catalog="system" width="64" height="56"/>
+        <image name="backward.end" catalog="system" width="64" height="60"/>
+        <image name="eye" catalog="system" width="64" height="40"/>
         <image name="minus.rectangle" catalog="system" width="64" height="46"/>
         <image name="plus.rectangle" catalog="system" width="64" height="46"/>
         <image name="rectangle.badge.xmark" catalog="system" width="64" height="44"/>
