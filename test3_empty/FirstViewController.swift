@@ -70,7 +70,6 @@ class FirstViewController: UIViewController {
         askLabel.layer.cornerRadius = self.cornerRadius
         fillData(totallQuestionsCount: 117)
         refreshView()
-        // Do any additional setup after loading the view.
     }
 
     @IBAction func navButt1Press(_ sender: UIBarButtonItem) {
@@ -91,17 +90,14 @@ class FirstViewController: UIViewController {
         highButton1.constant += 5
         highButton2.constant += 5
     }
-    
     @IBAction func firstButtonPress(_ sender: UIButton) {
         currentTest = 0
     }
-    
     @IBAction func previousButtonPress(_ sender: UIButton) {
         if currentTest > 0 {
             currentTest -= 1
         }
     }
-    
     @IBAction func checkButtonPress(_ sender: UIButton) {
         let currTest = testList[currentTest]
         let countTest = currTest.okAnswer.count
@@ -112,13 +108,10 @@ class FirstViewController: UIViewController {
             }
         }
     }
-
     @IBAction func nextButtonPress(_ sender: UIButton) {
         if currentTest<101 {
             currentTest += 1
         }
-      print("next:\(currentTest)")
-
     }
     func getText(fileName: String, encodingSystem encoding: String.Encoding = .windowsCP1250) -> [String] {
         var texts: [String] = ["brak"]
@@ -146,12 +139,23 @@ class FirstViewController: UIViewController {
                     answerList.append(textLines[i])
                 }
             }
-            let okAnswer = [true, false, true]
+            //let okAnswer = [true, false, true]
+            let okAnswer = getAnswer(textLines[0]) //textLines[0]
             let test=Test(code: textLines[0], ask: textLines[1], pict: nil, answerList: answerList, okAnswer: okAnswer)
             testList.append(test)
             print(test)
             print("\r\n")
         }
+    }
+    func getAnswer(_ codeAnswer: String) -> [Bool] {
+        var answer = [Bool]()
+        let myLenght=codeAnswer.count
+        print("myLenght:\(myLenght)")
+        for i in 1..<myLenght {
+            answer.append(codeAnswer.suffix(codeAnswer.count)[i]=="1" ? true : false)
+        }
+        print("answer,\(answer)")
+        return answer
     }
     func refreshView() {
         let currTest = testList[currentTest]
@@ -160,7 +164,6 @@ class FirstViewController: UIViewController {
             for curButt in stackView.arrangedSubviews     {
                 if let butt = curButt as? UIButton {
                     butt.isHidden = (i < totalQuest) ? false : true
-                    
                     butt.setTitle((i < totalQuest) ? currTest.answerList?[i] : "", for: .normal)
                     butt.layer.borderWidth = 1
                     butt.layer.borderColor = UIColor.brown.cgColor
