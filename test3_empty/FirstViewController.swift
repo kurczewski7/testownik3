@@ -15,6 +15,7 @@ class FirstViewController: UIViewController {
         let pict: UIImage?
         let answerList: [String]?
         let okAnswer: [Bool]
+        let order: [Int]
     }
     var testList: [Test] = [Test]()
     var currentTest: Int = 0 {
@@ -41,6 +42,10 @@ class FirstViewController: UIViewController {
     @IBOutlet weak var highButton7: NSLayoutConstraint!
     @IBOutlet weak var highButton8: NSLayoutConstraint!
     
+    @objc func buttonAnswerPress(sender: UIButton) {
+        print("buttonAnswerPress:\(sender.tag)")
+    }
+
     override func viewDidLoad() {
         var i = 0
         super.viewDidLoad()
@@ -53,11 +58,11 @@ class FirstViewController: UIViewController {
                 butt.layer.cornerRadius = self.cornerRadius
                 butt.layer.borderWidth = 1
                 butt.layer.borderColor = UIColor.brown.cgColor
+                butt.addTarget(self, action: #selector(buttonAnswerPress), for: .touchUpInside)
                 butt.tag = i
                 i += 1
             }
         }
-        
         tabHigh.append(highButton1)
         tabHigh.append(highButton2)
         tabHigh.append(highButton3)
@@ -74,6 +79,11 @@ class FirstViewController: UIViewController {
 
     @IBAction func navButt1Press(_ sender: UIBarButtonItem) {
         stackView.spacing += 5
+        //stackView.
+//        UIView.animateWithDuration(0.25) { () -> Void in
+//            newView.hidden = false
+//            scroll.contentOffset = offset
+//        }
     }
     
     @IBAction func nevButton2Press(_ sender: UIBarButtonItem) {
@@ -141,7 +151,8 @@ class FirstViewController: UIViewController {
             }
             //let okAnswer = [true, false, true]
             let okAnswer = getAnswer(textLines[0]) //textLines[0]
-            let test=Test(code: textLines[0], ask: textLines[1], pict: nil, answerList: answerList, okAnswer: okAnswer)
+            let order = randomOrderList()
+            let test=Test(code: textLines[0], ask: textLines[1], pict: nil, answerList: answerList, okAnswer: okAnswer, order: order)
             testList.append(test)
             print(test)
             print("\r\n")
@@ -180,6 +191,9 @@ class FirstViewController: UIViewController {
         //    button.setTitle("Test Button", forState: .Normal)
         //    button.addTarget(self, action: #selector(buttonAction), forControlEvents: .TouchUpInside)
         //
+    }
+    func randomOrderList() -> [Int] {
+        return [4,2,3,1]
     }
 }
 
