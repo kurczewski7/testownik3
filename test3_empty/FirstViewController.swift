@@ -14,8 +14,9 @@ class FirstViewController: UIViewController {
         let ask: String?
         let pict: UIImage?
         let answerList: [String]?
-        let okAnswer: [Bool]
+        let okAnswers: [Bool]
         let order: [Int]
+        var youAnswers = [Int]()
     }
     var testList: [Test] = [Test]()
     var currentTest: Int = 0 {
@@ -44,6 +45,37 @@ class FirstViewController: UIViewController {
     
     @objc func buttonAnswerPress(sender: UIButton) {
         print("buttonAnswerPress:\(sender.tag)")
+        
+        var found = false
+        let youSelectedNumber = sender.tag
+        let okAnswer = isAnswerOk(selectedOptionForTest: youSelectedNumber)
+        for elem in testList[currentTest].youAnswers {
+            if elem == currentTest {   found = true     }
+        }
+        if !found {
+            testList[currentTest].youAnswers.append(youSelectedNumber)
+        }
+        if let button = stackView.arrangedSubviews[youSelectedNumber] as? UIButton {
+            button.layer.borderWidth = 3
+            button.layer.borderColor = okAnswer ? UIColor.green.cgColor : UIColor.red.cgColor
+        }
+        print("aswers:\(testList[currentTest].youAnswers)")
+    }
+    func isAnswerOk(selectedOptionForTest selectedOption: Int) -> Bool {
+        var value = false
+        let currAnswers = testList[currentTest].okAnswers
+        if   selectedOption < currAnswers.count {
+             value =  currAnswers[selectedOption]
+        }
+        //  value = false
+        return value
+    }
+    func findValue<T: Comparable>(currentList: [T], valueToFind: T) -> Bool {
+        var found = false
+        for i in 0..<currentList.count {
+            if (currentList[i] == valueToFind)  {   found = true     }
+        }
+        return found
     }
 
     override func viewDidLoad() {
@@ -95,8 +127,7 @@ class FirstViewController: UIViewController {
         highButton2.constant -= 5
     }
     @IBAction func ResizeButtonMinusPress(_ sender: UIBarButtonItem) {
-        //butt4.contentRect(forBounds: CGRect(x: 0, y: 0, width: 150, height: 50))
-        askLabel.layer.cornerRadius = 10
+         askLabel.layer.cornerRadius = 10
         highButton1.constant += 5
         highButton2.constant += 5
     }
@@ -110,11 +141,11 @@ class FirstViewController: UIViewController {
     }
     @IBAction func checkButtonPress(_ sender: UIButton) {
         let currTest = testList[currentTest]
-        let countTest = currTest.okAnswer.count
+        let countTest = currTest.okAnswers.count
         for i in 0..<countTest {
             if let button = stackView.arrangedSubviews[i] as? UIButton {
-                button.layer.borderWidth =  currTest.okAnswer[i] ? 3 : 1
-                button.layer.borderColor = currTest.okAnswer[i] ? UIColor.systemGreen.cgColor : UIColor.brown.cgColor
+                button.layer.borderWidth =  currTest.okAnswers[i] ? 3 : 1
+                button.layer.borderColor = currTest.okAnswers[i] ? UIColor.systemGreen.cgColor : UIColor.brown.cgColor
             }
         }
     }
@@ -150,9 +181,9 @@ class FirstViewController: UIViewController {
                 }
             }
             //let okAnswer = [true, false, true]
-            let okAnswer = getAnswer(textLines[0]) //textLines[0]
+            let okAnswers = getAnswer(textLines[0]) //textLines[0]
             let order = randomOrderList()
-            let test=Test(code: textLines[0], ask: textLines[1], pict: nil, answerList: answerList, okAnswer: okAnswer, order: order)
+            let test=Test(code: textLines[0], ask: textLines[1], pict: nil, answerList: answerList, okAnswers: okAnswers, order: order)
             testList.append(test)
             print(test)
             print("\r\n")
@@ -169,13 +200,13 @@ class FirstViewController: UIViewController {
         return answer
     }
     func refreshView() {
-        let currTest = testList[currentTest]
-        if  let totalQuest = currTest.answerList?.count  {
+        if  let totalQuest = testList[currentTest].answerList?.count  {
             var i = 0
+            testList[currentTest].youAnswers = []
             for curButt in stackView.arrangedSubviews     {
                 if let butt = curButt as? UIButton {
                     butt.isHidden = (i < totalQuest) ? false : true
-                    butt.setTitle((i < totalQuest) ? currTest.answerList?[i] : "", for: .normal)
+                    butt.setTitle((i < totalQuest) ? testList[currentTest].answerList?[i] : "", for: .normal)
                     butt.layer.borderWidth = 1
                     butt.layer.borderColor = UIColor.brown.cgColor
                     i += 1
@@ -184,7 +215,12 @@ class FirstViewController: UIViewController {
             actionsButtonStackView.arrangedSubviews[0].isHidden = (currentTest == 0)
             actionsButtonStackView.arrangedSubviews[1].isHidden = (currentTest == 0)
         }
-        askLabel.text = currTest.ask
+        askLabel.text = testList[currentTest].ask
+//        let okAnswers: [Bool]
+//        let order: [Int]
+//        var youAnswers = [Int]()
+
+        
         
         //    let button = UIButton(frame: CGRect(x: 100, y: 100, width: 100, height: 50))
         //    button.backgroundColor = .greenColor()
