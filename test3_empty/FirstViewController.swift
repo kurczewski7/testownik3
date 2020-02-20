@@ -46,10 +46,20 @@ class FirstViewController: UIViewController {
     @IBOutlet weak var highButton6: NSLayoutConstraint!
     @IBOutlet weak var highButton7: NSLayoutConstraint!
     @IBOutlet weak var highButton8: NSLayoutConstraint!
-
+    
+    func fillOneTestAnswers() -> [Answer] {
+        let isOk = [true, false, true, false]
+        let titles = ["raz","dwa","trzy","cztery"]
+        var answerOptions: [Answer] = []
+        
+        for i in 0..<titles.count {
+            answerOptions.append(Answer(isOK: isOk[i], answerOption: titles[i]))
+        }
+        return answerOptions
+    }
     func fillData(totallQuestionsCount: Int) {
         var answerList = [String]()
-        var answerOptions: [Answer] = []
+
         for i in 1...117 {
             answerList = []
             let name = String(format: "%03d", i)
@@ -60,25 +70,14 @@ class FirstViewController: UIViewController {
                     answerList.append(textLines[i])
                 }
             }
-            //let okAnswer = [true, false, true]
-            let okAnswers = getAnswer(textLines[0]) //textLines[0]
             let order = randomOrderList()
-            //let xx = Answer(isOK: true, answerOption: "BBBB")
-            //answerOptions.append(An)
-            answerOptions.append(Answer(isOK: false, answerOption: "AAAA"))
-            answerOptions.append(Answer(isOK: true, answerOption: "BBBB"))
-            answerOptions.append(Answer(isOK: false, answerOption: "CCCC"))
-            answerOptions.append(Answer(isOK: true, answerOption: "DDDDD"))
-                        
+            let answerOptions = fillOneTestAnswers()
             let test = Test(code: textLines[0], ask: textLines[1], pict: nil, answerOptions: answerOptions, order: order, youAnswers: [])
-            //let test = Test(code: textLines[0], ask: textLines[1], pict: nil, answerOptions: answerOptions, okAnswers: okAnswers, order: order)
-            //let test=Test(code: textLines[0], ask: textLines[1], pict: nil, answerList: answerList, okAnswers: okAnswers, order: order)
             testList.append(test)
             print(test)
             print("\r\n")
         }
     }
-
     @objc func buttonAnswerPress(sender: UIButton) {
         print("buttonAnswerPress:\(sender.tag)")
         
