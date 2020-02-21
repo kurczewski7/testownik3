@@ -47,31 +47,29 @@ class FirstViewController: UIViewController {
     @IBOutlet weak var highButton7: NSLayoutConstraint!
     @IBOutlet weak var highButton8: NSLayoutConstraint!
     
-    func fillOneTestAnswers() -> [Answer] {
-        let isOk = [true, false, true, false]
-        let titles = ["raz","dwa","trzy","cztery"]
+    func fillOneTestAnswers(isOk: [Bool], titles: [String]) -> [Answer] {
         var answerOptions: [Answer] = []
-        
-        for i in 0..<titles.count {
+        let lenght = isOk.count < titles.count ? isOk.count : titles.count
+        for i in 0..<lenght {
             answerOptions.append(Answer(isOK: isOk[i], answerOption: titles[i]))
         }
         return answerOptions
     }
     func fillData(totallQuestionsCount: Int) {
-        var answerList = [String]()
-
+        var titles = [String]()
         for i in 1...117 {
-            answerList = []
+            titles = []
             let name = String(format: "%03d", i)
             print("name:\(name)")
             let textLines=getText(fileName: name)
             for i in 2..<textLines.count {
                 if textLines[i].count > 0 {
-                    answerList.append(textLines[i])
+                    titles.append(textLines[i])
                 }
             }
             let order = randomOrderList()
-            let answerOptions = fillOneTestAnswers()
+            let isOk = getAnswer(textLines[0])
+            let answerOptions = fillOneTestAnswers(isOk: isOk, titles: titles)
             let test = Test(code: textLines[0], ask: textLines[1], pict: nil, answerOptions: answerOptions, order: order, youAnswers: [])
             testList.append(test)
             print(test)
@@ -149,8 +147,7 @@ class FirstViewController: UIViewController {
 //            newView.hidden = false
 //            scroll.contentOffset = offset
 //        }
-    }
-    
+    }    
     @IBAction func nevButton2Press(_ sender: UIBarButtonItem) {
         stackView.spacing -= 5
     }
@@ -201,7 +198,6 @@ class FirstViewController: UIViewController {
         }
         return texts
     }
-
     func getAnswer(_ codeAnswer: String) -> [Bool] {
         var answer = [Bool]()
         let myLenght=codeAnswer.count
@@ -229,9 +225,6 @@ class FirstViewController: UIViewController {
         actionsButtonStackView.arrangedSubviews[1].isHidden = (currentTest == 0)
         askLabel.text = testList[currentTest].ask
     }
-        //        let okAnswers: [Bool]
-        //        let order: [Int]
-        //        var youAnswers = [Int]()
         //    let button = UIButton(frame: CGRect(x: 100, y: 100, width: 100, height: 50))
         //    button.backgroundColor = .greenColor()
         //    button.setTitle("Test Button", forState: .Normal)
