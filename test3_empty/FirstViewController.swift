@@ -93,11 +93,18 @@ class FirstViewController: UIViewController {
             let order = randomOrderList()
             let isOk = getAnswer(textLines[0])
             let answerOptions = fillOneTestAnswers(isOk: isOk, titles: titles)
-            let test = Test(code: textLines[0], ask: textLines[1], pict: nil, answerOptions: answerOptions, order: order, youAnswers: [])
+            let sortedAnswerOptions = changeOrder(forAnswerOptions: answerOptions)
+            let test = Test(code: textLines[0], ask: textLines[1], pict: nil, answerOptions: sortedAnswerOptions, order: order, youAnswers: [])
             testList.append(test)
             print(test)
             print("\r\n")
         }
+    }
+    func changeOrder(forAnswerOptions answerOptions: [Answer]) -> [Answer] {
+        let order = [3, 1, 4, 2, 6, 5, 8, 7]
+        var sortedAnswerOptions = [Answer]()
+        sortedAnswerOptions = answerOptions
+        return sortedAnswerOptions
     }
     func fillOneTestAnswers(isOk: [Bool], titles: [String]) -> [Answer] {
         var answerOptions: [Answer] = []
@@ -164,11 +171,17 @@ class FirstViewController: UIViewController {
     }
     @IBAction func firstButtonPress(_ sender: UIButton) {
         currentTest = 0
+        hideButton(forButtonNumber: 3, isHide: false)
     }
     @IBAction func previousButtonPress(_ sender: UIButton) {
         if currentTest > 0 {
             currentTest -= 1
         }
+        hideButton(forButtonNumber: 3, isHide: false)
+//        if let button = actionsButtonStackView.arrangedSubviews[3] as? UIButton {
+//            button.isHidden = true
+//        }
+
     }
     @IBAction func checkButtonPress(_ sender: UIButton) {
         let currTest = testList[currentTest]
@@ -181,9 +194,33 @@ class FirstViewController: UIViewController {
         }
     }
     @IBAction func nextButtonPress(_ sender: UIButton) {
-        if currentTest<101 {
+        if currentTest < testList.count {
             currentTest += 1
         }
+        if currentTest  == (testList.count-1) {     hideButton(forButtonNumber: 3)     }
+    }
+    func hideButton(forButtonNumber buttonNumber: Int, isHide: Bool = true) {
+        if let button = actionsButtonStackView.arrangedSubviews[buttonNumber] as? UIButton {
+            button.isHidden = isHide
+        }
+    }
+
+    func refreshView() {
+        var i = 0
+        let totalQuest = testList[currentTest].answerOptions.count
+        testList[currentTest].youAnswers = []
+        for curButt in stackView.arrangedSubviews     {
+            if let butt = curButt as? UIButton {
+                butt.isHidden = (i < totalQuest) ? false : true
+                butt.setTitle((i < totalQuest) ? testList[currentTest].answerOptions[i].answerOption : "", for: .normal)  //nswerList?[i]
+                butt.layer.borderWidth = 1
+                butt.layer.borderColor = UIColor.brown.cgColor
+                i += 1
+            }
+        }
+        actionsButtonStackView.arrangedSubviews[0].isHidden = (currentTest == 0)
+        actionsButtonStackView.arrangedSubviews[1].isHidden = (currentTest == 0)
+        askLabel.text = testList[currentTest].ask
     }
     func getText(fileName: String, encodingSystem encoding: String.Encoding = .utf8) -> [String] {  //windowsCP1250
         var texts: [String] = ["brak"]
@@ -191,6 +228,9 @@ class FirstViewController: UIViewController {
             do {
 //                let charSetFileType = NSHFSTypeOfFile(path)
 //                print("File char set: \(charSetFileType)")
+                //let xx = String("ąćśżź")
+                //xx.encode(to: <#T##Encoder#>)
+                //stringWithContentsOfFile;: aaa, usedEncoding:error: )
                 let data = try String(contentsOfFile: path ,encoding: encoding)
                 let myStrings = data.components(separatedBy: .newlines)
                 texts = myStrings
@@ -210,23 +250,6 @@ class FirstViewController: UIViewController {
         }
         print("answer,\(answer)")
         return answer
-    }
-    func refreshView() {
-        var i = 0
-        let totalQuest = testList[currentTest].answerOptions.count
-        testList[currentTest].youAnswers = []
-        for curButt in stackView.arrangedSubviews     {
-            if let butt = curButt as? UIButton {
-                butt.isHidden = (i < totalQuest) ? false : true
-                butt.setTitle((i < totalQuest) ? testList[currentTest].answerOptions[i].answerOption : "", for: .normal)  //nswerList?[i]
-                butt.layer.borderWidth = 1
-                butt.layer.borderColor = UIColor.brown.cgColor
-                i += 1
-            }
-        }
-        actionsButtonStackView.arrangedSubviews[0].isHidden = (currentTest == 0)
-        actionsButtonStackView.arrangedSubviews[1].isHidden = (currentTest == 0)
-        askLabel.text = testList[currentTest].ask
     }
         //    let button = UIButton(frame: CGRect(x: 100, y: 100, width: 100, height: 50))
         //    button.backgroundColor = .greenColor()
