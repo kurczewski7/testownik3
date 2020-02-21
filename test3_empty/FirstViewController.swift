@@ -82,7 +82,7 @@ class FirstViewController: UIViewController {
 
     func fillData(totallQuestionsCount: Int) {
         var titles = [String]()
-        for i in 1...117 {
+        for i in 201...204 { //117
             titles = []
             let name = String(format: "%03d", i)
             print("name:\(name)")
@@ -185,10 +185,12 @@ class FirstViewController: UIViewController {
             currentTest += 1
         }
     }
-    func getText(fileName: String, encodingSystem encoding: String.Encoding = .windowsCP1250) -> [String] {
+    func getText(fileName: String, encodingSystem encoding: String.Encoding = .utf8) -> [String] {  //windowsCP1250
         var texts: [String] = ["brak"]
         if let path = Bundle.main.path(forResource: fileName, ofType: "txt") {
             do {
+//                let charSetFileType = NSHFSTypeOfFile(path)
+//                print("File char set: \(charSetFileType)")
                 let data = try String(contentsOfFile: path ,encoding: encoding)
                 let myStrings = data.components(separatedBy: .newlines)
                 texts = myStrings

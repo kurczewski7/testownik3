@@ -125,6 +125,10 @@
 		2C7ACB2C23F9EF6D00AE4E42 /* 079.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2C7ACAB623F9EF6D00AE4E42 /* 079.txt */; };
 		2C7ACB2D23F9EF6D00AE4E42 /* 092.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2C7ACAB723F9EF6D00AE4E42 /* 092.txt */; };
 		2C7ACB2E23F9EF6D00AE4E42 /* 086.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2C7ACAB823F9EF6D00AE4E42 /* 086.txt */; };
+		2C99AE9924001A6700FF28F5 /* 201.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2C99AE9524001A6700FF28F5 /* 201.txt */; };
+		2C99AE9A24001A6700FF28F5 /* 202.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2C99AE9624001A6700FF28F5 /* 202.txt */; };
+		2C99AE9B24001A6700FF28F5 /* 203.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2C99AE9724001A6700FF28F5 /* 203.txt */; };
+		2C99AE9E24001BCE00FF28F5 /* 204.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2C99AE9D24001BCE00FF28F5 /* 204.txt */; };
 		2CE1477923F6901800C834F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE1477823F6901800C834F4 /* AppDelegate.swift */; };
 		2CE1477B23F6901900C834F4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE1477A23F6901900C834F4 /* SceneDelegate.swift */; };
 		2CE1477D23F6901900C834F4 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE1477C23F6901900C834F4 /* FirstViewController.swift */; };
@@ -272,6 +276,10 @@
 		2C7ACAB623F9EF6D00AE4E42 /* 079.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 079.txt; sourceTree = "<group>"; };
 		2C7ACAB723F9EF6D00AE4E42 /* 092.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 092.txt; sourceTree = "<group>"; };
 		2C7ACAB823F9EF6D00AE4E42 /* 086.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 086.txt; sourceTree = "<group>"; };
+		2C99AE9524001A6700FF28F5 /* 201.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 201.txt; sourceTree = "<group>"; };
+		2C99AE9624001A6700FF28F5 /* 202.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 202.txt; sourceTree = "<group>"; };
+		2C99AE9724001A6700FF28F5 /* 203.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 203.txt; sourceTree = "<group>"; };
+		2C99AE9D24001BCE00FF28F5 /* 204.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 204.txt; path = ../../../../../baza2/204.txt; sourceTree = "<group>"; };
 		2CE1477523F6901800C834F4 /* test3_empty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = test3_empty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CE1477823F6901800C834F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2CE1477A23F6901900C834F4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -438,6 +446,17 @@
 			path = baza;
 			sourceTree = "<group>";
 		};
+		2C99AE9424001A6700FF28F5 /* baza2 */ = {
+			isa = PBXGroup;
+			children = (
+				2C99AE9524001A6700FF28F5 /* 201.txt */,
+				2C99AE9624001A6700FF28F5 /* 202.txt */,
+				2C99AE9724001A6700FF28F5 /* 203.txt */,
+				2C99AE9D24001BCE00FF28F5 /* 204.txt */,
+			);
+			path = baza2;
+			sourceTree = "<group>";
+		};
 		2CE1476C23F6901800C834F4 = {
 			isa = PBXGroup;
 			children = (
@@ -466,6 +485,7 @@
 				2CE1477C23F6901900C834F4 /* FirstViewController.swift */,
 				2CE1477E23F6901900C834F4 /* Main.storyboard */,
 				2CE1478423F6901C00C834F4 /* Assets.xcassets */,
+				2C99AE9424001A6700FF28F5 /* baza2 */,
 				2C7ACA4323F9EF6C00AE4E42 /* 060.txt */,
 				2C7ACA4223F9EF6C00AE4E42 /* baza */,
 				2CE1478623F6901C00C834F4 /* LaunchScreen.storyboard */,
@@ -619,6 +639,7 @@
 				2C7ACB1B23F9EF6D00AE4E42 /* 080.txt in Resources */,
 				2C7ACB1723F9EF6D00AE4E42 /* 056.txt in Resources */,
 				2C7ACAFA23F9EF6D00AE4E42 /* 021.txt in Resources */,
+				2C99AE9B24001A6700FF28F5 /* 203.txt in Resources */,
 				2C7ACAC423F9EF6D00AE4E42 /* 077.txt in Resources */,
 				2C7ACABF23F9EF6D00AE4E42 /* 115.txt in Resources */,
 				2C7ACAEC23F9EF6D00AE4E42 /* 011.txt in Resources */,
@@ -635,6 +656,7 @@
 				2C7ACAD923F9EF6D00AE4E42 /* 071.txt in Resources */,
 				2C7ACB2823F9EF6D00AE4E42 /* 044.txt in Resources */,
 				2C7ACAF123F9EF6D00AE4E42 /* 006.txt in Resources */,
+				2C99AE9924001A6700FF28F5 /* 201.txt in Resources */,
 				2C7ACAD623F9EF6D00AE4E42 /* 098.txt in Resources */,
 				2C7ACAF823F9EF6D00AE4E42 /* 023.txt in Resources */,
 				2C7ACB0123F9EF6D00AE4E42 /* 024.txt in Resources */,
@@ -662,6 +684,7 @@
 				2C7ACADB23F9EF6D00AE4E42 /* 105.txt in Resources */,
 				2C7ACB1623F9EF6D00AE4E42 /* 081.txt in Resources */,
 				2C7ACAEF23F9EF6D00AE4E42 /* 010.txt in Resources */,
+				2C99AE9A24001A6700FF28F5 /* 202.txt in Resources */,
 				2C7ACB2C23F9EF6D00AE4E42 /* 079.txt in Resources */,
 				2C7ACAF023F9EF6D00AE4E42 /* 038.txt in Resources */,
 				2C7ACAD023F9EF6D00AE4E42 /* 106.txt in Resources */,
@@ -711,6 +734,7 @@
 				2C7ACACC23F9EF6D00AE4E42 /* 089.txt in Resources */,
 				2C7ACAE823F9EF6D00AE4E42 /* 029.txt in Resources */,
 				2C7ACB2023F9EF6D00AE4E42 /* 047.txt in Resources */,
+				2C99AE9E24001BCE00FF28F5 /* 204.txt in Resources */,
 				2C7ACABD23F9EF6D00AE4E42 /* 100.txt in Resources */,
 				2C7ACADF23F9EF6D00AE4E42 /* 064.txt in Resources */,
 				2C7ACAC523F9EF6D00AE4E42 /* 063.txt in Resources */,
