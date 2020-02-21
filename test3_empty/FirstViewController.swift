@@ -90,7 +90,7 @@ class FirstViewController: UIViewController {
             for i in 2..<textLines.count {
                 if textLines[i].count > 0 {    titles.append(textLines[i])      }
             }
-            let order = randomOrderList()
+            let order = [99,5,7]
             let isOk = getAnswer(textLines[0])
             let answerOptions = fillOneTestAnswers(isOk: isOk, titles: titles)
             let sortedAnswerOptions = changeOrder(forAnswerOptions: answerOptions)
@@ -101,10 +101,21 @@ class FirstViewController: UIViewController {
         }
     }
     func changeOrder(forAnswerOptions answerOptions: [Answer]) -> [Answer] {
-        let order = [3, 1, 4, 2, 6, 5, 8, 7]
+        
+        var position = 0
         var sortedAnswerOptions = [Answer]()
-        sortedAnswerOptions = answerOptions
+        var srcAnswerOptions = answerOptions
+        
+        for _ in 1...srcAnswerOptions.count {
+            position = randomOrder(toMax: srcAnswerOptions.count-1)
+            let elem = srcAnswerOptions[position]
+            sortedAnswerOptions.append(elem)
+            srcAnswerOptions.remove(at: position)
+        }
         return sortedAnswerOptions
+    }
+    func randomOrder(toMax: Int) -> Int {
+        return Int(arc4random_uniform(UInt32(toMax)))
     }
     func fillOneTestAnswers(isOk: [Bool], titles: [String]) -> [Answer] {
         var answerOptions: [Answer] = []
@@ -139,10 +150,10 @@ class FirstViewController: UIViewController {
         }
         return value
     }
-    func findValue<T: Comparable>(currentList: [T], valueToFind: T) -> Bool {
-        var found = false
+    func findValue<T: Comparable>(currentList: [T], valueToFind: T) -> Int {
+        var found = -1
         for i in 0..<currentList.count {
-            if (currentList[i] == valueToFind)  {   found = true     }
+            if (currentList[i] == valueToFind)  {   found = i     }
         }
         return found
     }
@@ -160,14 +171,19 @@ class FirstViewController: UIViewController {
         stackView.spacing -= 5
     }
     @IBAction func ResizeButtonPlusPress(_ sender: UIBarButtonItem) {
-        //labelLeading.constant += 50
-        highButton1.constant -= 5
-        highButton2.constant -= 5
+        for buttHight in tabHigh {
+            buttHight.constant -= 2
+        }
+
+        //          labelLeading.constant += 50
+        //        highButton1.constant -= 5
+        //        highButton2.constant -= 5
     }
     @IBAction func ResizeButtonMinusPress(_ sender: UIBarButtonItem) {
          askLabel.layer.cornerRadius = 10
-        highButton1.constant += 5
-        highButton2.constant += 5
+        for buttHight in tabHigh {
+            buttHight.constant += 2
+        }
     }
     @IBAction func firstButtonPress(_ sender: UIButton) {
         currentTest = 0
@@ -178,10 +194,6 @@ class FirstViewController: UIViewController {
             currentTest -= 1
         }
         hideButton(forButtonNumber: 3, isHide: false)
-//        if let button = actionsButtonStackView.arrangedSubviews[3] as? UIButton {
-//            button.isHidden = true
-//        }
-
     }
     @IBAction func checkButtonPress(_ sender: UIButton) {
         let currTest = testList[currentTest]
@@ -204,7 +216,6 @@ class FirstViewController: UIViewController {
             button.isHidden = isHide
         }
     }
-
     func refreshView() {
         var i = 0
         let totalQuest = testList[currentTest].answerOptions.count
@@ -257,8 +268,5 @@ class FirstViewController: UIViewController {
         //    button.addTarget(self, action: #selector(buttonAction), forControlEvents: .TouchUpInside)
         //
 
-    func randomOrderList() -> [Int] {
-        return [4,2,3,1]
-    }
 }
 
