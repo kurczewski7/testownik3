@@ -20,6 +20,9 @@ class FirstViewController: UIViewController {
         var answerOptions  = [Answer]()
         var order          = [Int]()
         var youAnswers     = [Int]()
+        var currentRating  = 0
+        var maxRating      = 0
+        
         //let answerList: [String]?
         //        let okAnswers      = [Bool]()
     }
@@ -47,14 +50,36 @@ class FirstViewController: UIViewController {
     @IBOutlet weak var highButton7: NSLayoutConstraint!
     @IBOutlet weak var highButton8: NSLayoutConstraint!
     
-    func fillOneTestAnswers(isOk: [Bool], titles: [String]) -> [Answer] {
-        var answerOptions: [Answer] = []
-        let lenght = isOk.count < titles.count ? isOk.count : titles.count
-        for i in 0..<lenght {
-            answerOptions.append(Answer(isOK: isOk[i], answerOption: titles[i]))
+    override func viewDidLoad() {
+        var i = 0
+        super.viewDidLoad()
+        
+        print("Stack count: \(actionsButtonStackView.arrangedSubviews.count)")
+        stackView.arrangedSubviews.forEach { (button) in
+            if let butt = button as? UIButton {
+                butt.backgroundColor = #colorLiteral(red: 0.8469454646, green: 0.9804453254, blue: 0.9018514752, alpha: 1)
+                butt.layer.cornerRadius = self.cornerRadius
+                butt.layer.borderWidth = 1
+                butt.layer.borderColor = UIColor.brown.cgColor
+                butt.addTarget(self, action: #selector(buttonAnswerPress), for: .touchUpInside)
+                butt.tag = i
+                i += 1
+            }
         }
-        return answerOptions
+        tabHigh.append(highButton1)
+        tabHigh.append(highButton2)
+        tabHigh.append(highButton3)
+        tabHigh.append(highButton4)
+        tabHigh.append(highButton5)
+        tabHigh.append(highButton6)
+        tabHigh.append(highButton7)
+        tabHigh.append(highButton8)
+        
+        askLabel.layer.cornerRadius = self.cornerRadius
+        fillData(totallQuestionsCount: 117)
+        refreshView()
     }
+
     func fillData(totallQuestionsCount: Int) {
         var titles = [String]()
         for i in 1...117 {
@@ -63,9 +88,7 @@ class FirstViewController: UIViewController {
             print("name:\(name)")
             let textLines=getText(fileName: name)
             for i in 2..<textLines.count {
-                if textLines[i].count > 0 {
-                    titles.append(textLines[i])
-                }
+                if textLines[i].count > 0 {    titles.append(textLines[i])      }
             }
             let order = randomOrderList()
             let isOk = getAnswer(textLines[0])
@@ -75,6 +98,14 @@ class FirstViewController: UIViewController {
             print(test)
             print("\r\n")
         }
+    }
+    func fillOneTestAnswers(isOk: [Bool], titles: [String]) -> [Answer] {
+        var answerOptions: [Answer] = []
+        let lenght = isOk.count < titles.count ? isOk.count : titles.count
+        for i in 0..<lenght {
+            answerOptions.append(Answer(isOK: isOk[i], answerOption: titles[i]))
+        }
+        return answerOptions
     }
     @objc func buttonAnswerPress(sender: UIButton) {
         print("buttonAnswerPress:\(sender.tag)")
@@ -109,45 +140,15 @@ class FirstViewController: UIViewController {
         return found
     }
 
-    override func viewDidLoad() {
-        var i = 0
-        super.viewDidLoad()
-        
-        print("Stack count: \(actionsButtonStackView.arrangedSubviews.count)")
-        stackView.arrangedSubviews.forEach { (button) in
-            if let butt = button as? UIButton {
-                butt.backgroundColor = .yellow
-                butt.clipsToBounds = true
-                butt.layer.cornerRadius = self.cornerRadius
-                butt.layer.borderWidth = 1
-                butt.layer.borderColor = UIColor.brown.cgColor
-                butt.addTarget(self, action: #selector(buttonAnswerPress), for: .touchUpInside)
-                butt.tag = i
-                i += 1
-            }
-        }
-        tabHigh.append(highButton1)
-        tabHigh.append(highButton2)
-        tabHigh.append(highButton3)
-        tabHigh.append(highButton4)
-        tabHigh.append(highButton5)
-        tabHigh.append(highButton6)
-        tabHigh.append(highButton7)
-        tabHigh.append(highButton8)
-        
-        askLabel.layer.cornerRadius = self.cornerRadius
-        fillData(totallQuestionsCount: 117)
-        refreshView()
-    }
 
     @IBAction func navButt1Press(_ sender: UIBarButtonItem) {
         stackView.spacing += 5
-        //stackView.
+//        stackView.
 //        UIView.animateWithDuration(0.25) { () -> Void in
 //            newView.hidden = false
 //            scroll.contentOffset = offset
 //        }
-    }    
+    }
     @IBAction func nevButton2Press(_ sender: UIBarButtonItem) {
         stackView.spacing -= 5
     }
