@@ -29,12 +29,28 @@ class FirstViewController: UIViewController {
     var testList: [Test] = [Test]()
     var currentTest: Int = 0 {
         didSet {
-            refreshView()
+            if currentTest == 0 {
+                hideButton(forButtonNumber: 0)
+                hideButton(forButtonNumber: 1)
+            }
+            else if currentTest == testList.count-1 {
+                hideButton(forButtonNumber: 3)
+            }
+            else {
+                hideButton(forButtonNumber: 0, isHide: false)
+                hideButton(forButtonNumber: 1, isHide: false)
+                hideButton(forButtonNumber: 3, isHide: false)
+            }
+            //if (currentTest >= 0) && (currentTest < testList.count) {
+              refreshView()
+            //}
+            
         }
     }
     
     var cornerRadius: CGFloat = 10
     var tabHigh: [NSLayoutConstraint] = [NSLayoutConstraint]()
+    
     
     @IBOutlet weak var askLabel: UILabel!
     @IBOutlet weak var stackView: UIStackView!
@@ -75,9 +91,36 @@ class FirstViewController: UIViewController {
         tabHigh.append(highButton7)
         tabHigh.append(highButton8)
         
+
+        addSwipeGestureToView(direction: .right)
+        addSwipeGestureToView(direction: .left)
+        addSwipeGestureToView(direction: .up)
+        addSwipeGestureToView(direction: .down)
+        
         askLabel.layer.cornerRadius = self.cornerRadius
         fillData(totallQuestionsCount: 117)
         refreshView()
+    }
+    func addSwipeGestureToView(direction: UISwipeGestureRecognizer.Direction) {
+        let swipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeAction))
+        swipe.direction = direction
+        view.addGestureRecognizer(swipe)
+    }
+    @objc func swipeAction(sender: UISwipeGestureRecognizer) {
+        switch sender.direction {
+        case .right:
+            currentTest = currentTest > 0 ? currentTest-1 : currentTest
+            print("Swipe right")
+        case .left:
+            currentTest = currentTest < testList.count-1 ? currentTest+1 : currentTest
+            print("Swipe left")
+        case .up:
+            print("Swipe up")
+        case .down:
+            print("Swipe down")
+        default:
+            print("Swipe unrecognized")
+        }
     }
 
     func fillData(totallQuestionsCount: Int) {
@@ -187,13 +230,11 @@ class FirstViewController: UIViewController {
     }
     @IBAction func firstButtonPress(_ sender: UIButton) {
         currentTest = 0
-        hideButton(forButtonNumber: 3, isHide: false)
     }
     @IBAction func previousButtonPress(_ sender: UIButton) {
         if currentTest > 0 {
             currentTest -= 1
         }
-        hideButton(forButtonNumber: 3, isHide: false)
     }
     @IBAction func checkButtonPress(_ sender: UIButton) {
         let currTest = testList[currentTest]
@@ -209,7 +250,6 @@ class FirstViewController: UIViewController {
         if currentTest < testList.count {
             currentTest += 1
         }
-        if currentTest  == (testList.count-1) {     hideButton(forButtonNumber: 3)     }
     }
     func hideButton(forButtonNumber buttonNumber: Int, isHide: Bool = true) {
         if let button = actionsButtonStackView.arrangedSubviews[buttonNumber] as? UIButton {
