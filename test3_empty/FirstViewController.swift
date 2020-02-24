@@ -113,7 +113,7 @@ class FirstViewController: UIViewController {
             print("Swipe right")
         case .left:
             currentTest = currentTest < testList.count-1 ? currentTest+1 : currentTest
-            print("Swipe left")
+            print("Swipe  & left ")
         case .up:
             print("Swipe up")
         case .down:
