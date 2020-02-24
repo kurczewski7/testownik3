@@ -96,6 +96,7 @@ class FirstViewController: UIViewController {
         addSwipeGestureToView(direction: .left)
         addSwipeGestureToView(direction: .up)
         addSwipeGestureToView(direction: .down)
+        addPinchGestureToView()
         
         askLabel.layer.cornerRadius = self.cornerRadius
         fillData(totallQuestionsCount: 117)
@@ -106,11 +107,21 @@ class FirstViewController: UIViewController {
         swipe.direction = direction
         view.addGestureRecognizer(swipe)
     }
+    func addPinchGestureToView() {
+        let pinch = UIPinchGestureRecognizer(target: self, action: #selector(pichAction))
+        //pinch.scale
+        //print("touches:\(pinch.numberOfTouches),\(pinch.scale) ")
+        view.addGestureRecognizer(pinch)
+    }
+    @objc func pichAction(sender: UIPinchGestureRecognizer) {
+        print("Pinch touches:\(sender.numberOfTouches),\(sender.scale) ")
+        view.transform = CGAffineTransform(scaleX: sender.scale, y: sender.scale)
+    }
     @objc func swipeAction(sender: UISwipeGestureRecognizer) {
         switch sender.direction {
         case .right:
             currentTest = currentTest > 0 ? currentTest-1 : currentTest
-            print("Swipe right")
+            print("Swipe to right")
         case .left:
             currentTest = currentTest < testList.count-1 ? currentTest+1 : currentTest
             print("Swipe  & left ")
@@ -122,7 +133,11 @@ class FirstViewController: UIViewController {
             print("Swipe unrecognized")
         }
     }
-
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            print("Shake")
+        }
+    }
     func fillData(totallQuestionsCount: Int) {
         var titles = [String]()
         for i in 201...204 { //117
