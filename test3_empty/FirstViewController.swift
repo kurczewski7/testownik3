@@ -97,6 +97,7 @@ class FirstViewController: UIViewController {
         addSwipeGestureToView(direction: .up)
         addSwipeGestureToView(direction: .down)
         addPinchGestureToView()
+        addScreenEdgeGesture()
         
         askLabel.layer.cornerRadius = self.cornerRadius
         fillData(totallQuestionsCount: 117)
@@ -113,6 +114,14 @@ class FirstViewController: UIViewController {
         //print("touches:\(pinch.numberOfTouches),\(pinch.scale) ")
         view.addGestureRecognizer(pinch)
     }
+    func addScreenEdgeGesture() {
+        let gesture = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(eadgeAction))
+        gesture.edges = .left
+        view.addGestureRecognizer(gesture)
+    }
+    @objc func eadgeAction() {
+        print("Edge gesture")
+    }
     @objc func pichAction(sender: UIPinchGestureRecognizer) {
         print("Pinch touches:\(sender.numberOfTouches),\(sender.scale) ")
         view.transform = CGAffineTransform(scaleX: sender.scale, y: sender.scale)
@@ -127,8 +136,10 @@ class FirstViewController: UIViewController {
             print("Swipe  & left ")
         case .up:
             print("Swipe up")
+            stackView.spacing += 1
         case .down:
             print("Swipe down")
+            stackView.spacing -= 1
         default:
             print("Swipe unrecognized")
         }
