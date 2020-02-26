@@ -7,8 +7,68 @@
 //
 
 import UIKit
-class TestownikViewController: UIViewController, GesturesDelegate {
+class TestownikViewController: UIViewController, GesturesDelegate, TestownikDelegate {
+    func refreshButtonUI(forCurrentTest currentTest: Int, countTest count: Int) {
+        if currentTest == 0 {
+            hideButton(forButtonNumber: 0)
+            hideButton(forButtonNumber: 1)
+        }
+        else if currentTest == count-1 {
+            hideButton(forButtonNumber: 3)
+        }
+        else {
+            hideButton(forButtonNumber: 0, isHide: false)
+            hideButton(forButtonNumber: 1, isHide: false)
+            hideButton(forButtonNumber: 3, isHide: false)
+        }
+        refreshView()
+    }
+    func refreshTabbarUI(visableLevel: Int) {
+        if visableLevel == 2 {
+            buttonLayerToZ(isHide: false)
+            self.tabBarController?.tabBar.isHidden = false
+        } else if  visableLevel == 1 {
+            buttonLayerToZ(isHide: true)
+            self.tabBarController?.tabBar.isHidden = false
+        }
+        else {
+            buttonLayerToZ(isHide: true)
+            self.tabBarController?.tabBar.isHidden = true
+        }
+        print("visableLevel:\(visableLevel)")
+    }
     
+    //        func refreshButtonUI(forCurrentTest currentTest: Int, countTest count: Int) {
+    //            if currentTest == 0 {
+    //                hideButton(forButtonNumber: 0)
+    //                hideButton(forButtonNumber: 1)
+    //            }
+    //            else if currentTest == count-1 {
+    //                hideButton(forButtonNumber: 3)
+    //            }
+    //            else {
+    //                hideButton(forButtonNumber: 0, isHide: false)
+    //                hideButton(forButtonNumber: 1, isHide: false)
+    //                hideButton(forButtonNumber: 3, isHide: false)
+    //            }
+    //            refreshView()
+    //        }
+
+    //    func refreshTabbarUI(visableLevel: Int) {
+    //        if visableLevel == 2 {
+    //            buttonLayerToZ(isHide: false)
+    //            self.tabBarController?.tabBar.isHidden = false
+    //        } else if  visableLevel == 1 {
+    //            buttonLayerToZ(isHide: true)
+    //            self.tabBarController?.tabBar.isHidden = false
+    //        }
+    //        else {
+    //            buttonLayerToZ(isHide: true)
+    //            self.tabBarController?.tabBar.isHidden = true
+    //        }
+    //        print("visableLevel:\(visableLevel)")
+    //    }
+
     struct Answer {
         let isOK: Bool
         let answerOption: String
@@ -106,14 +166,10 @@ class TestownikViewController: UIViewController, GesturesDelegate {
                 print("Swipe  & left ")
             case .up:
                 print("Swipe up")
-                //self.tabBarController?.tabBar.isHidden = false
                 visableLevel +=  visableLevel < 2 ? 1 : 0
-                //resizeView(toMaximalize: true)
             case .down:
                 print("Swipe down")
                 visableLevel -= visableLevel > 0 ? 1 : 0
-                //resizeView(toMaximalize: false)
-                //self.tabBarController?.tabBar.isHidden = true
             default:
                 print("Swipe unrecognized")
             }

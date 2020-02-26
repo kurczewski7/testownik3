@@ -267,9 +267,6 @@
                     <navigationItem key="navigationItem" title="Title" id="Pwh-WY-qtE">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="ogG-WG-WMd"/>
                     </navigationItem>
-                    <connections>
-                        <segue destination="y7M-Bf-Ul5" kind="presentation" modalPresentationStyle="pageSheet" modalTransitionStyle="flipHorizontal" id="eaa-JK-TwH"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LHz-WC-1Nf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -324,6 +321,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Gpk-Z3-T9O" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="06o-dp-T9F">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
@@ -343,7 +341,4 @@
         <image name="backward.end" catalog="system" width="64" height="60"/>
         <image name="eye" catalog="system" width="64" height="40"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="zn0-98-EqI"/>
-    </inferredMetricsTieBreakers>
 </document>
