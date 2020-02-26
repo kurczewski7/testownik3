@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C6538DB2406FA8D004B1FC8 /* Gestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6538DA2406FA8D004B1FC8 /* Gestures.swift */; };
 		2C7ACAB923F9EF6D00AE4E42 /* 060.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2C7ACA4323F9EF6C00AE4E42 /* 060.txt */; };
 		2C7ACABA23F9EF6D00AE4E42 /* 074.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2C7ACA4423F9EF6C00AE4E42 /* 074.txt */; };
 		2C7ACABB23F9EF6D00AE4E42 /* 048.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2C7ACA4523F9EF6C00AE4E42 /* 048.txt */; };
@@ -131,7 +132,7 @@
 		2CA8229F240411DB000941E1 /* 204.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2CA8229E240411DB000941E1 /* 204.txt */; };
 		2CE1477923F6901800C834F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE1477823F6901800C834F4 /* AppDelegate.swift */; };
 		2CE1477B23F6901900C834F4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE1477A23F6901900C834F4 /* SceneDelegate.swift */; };
-		2CE1477D23F6901900C834F4 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE1477C23F6901900C834F4 /* FirstViewController.swift */; };
+		2CE1477D23F6901900C834F4 /* TestownikViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE1477C23F6901900C834F4 /* TestownikViewController.swift */; };
 		2CE1478023F6901900C834F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CE1477E23F6901900C834F4 /* Main.storyboard */; };
 		2CE1478323F6901900C834F4 /* test3_empty.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2CE1478123F6901900C834F4 /* test3_empty.xcdatamodeld */; };
 		2CE1478523F6901C00C834F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CE1478423F6901C00C834F4 /* Assets.xcassets */; };
@@ -158,6 +159,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2C6538DA2406FA8D004B1FC8 /* Gestures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gestures.swift; sourceTree = "<group>"; };
 		2C7ACA4323F9EF6C00AE4E42 /* 060.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 060.txt; sourceTree = "<group>"; };
 		2C7ACA4423F9EF6C00AE4E42 /* 074.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 074.txt; sourceTree = "<group>"; };
 		2C7ACA4523F9EF6C00AE4E42 /* 048.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 048.txt; sourceTree = "<group>"; };
@@ -283,7 +285,7 @@
 		2CE1477523F6901800C834F4 /* Testownik.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Testownik.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CE1477823F6901800C834F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2CE1477A23F6901900C834F4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		2CE1477C23F6901900C834F4 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		2CE1477C23F6901900C834F4 /* TestownikViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestownikViewController.swift; sourceTree = "<group>"; };
 		2CE1477F23F6901900C834F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2CE1478223F6901900C834F4 /* test3_empty.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = test3_empty.xcdatamodel; sourceTree = "<group>"; };
 		2CE1478423F6901C00C834F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -482,7 +484,8 @@
 			children = (
 				2CE1477823F6901800C834F4 /* AppDelegate.swift */,
 				2CE1477A23F6901900C834F4 /* SceneDelegate.swift */,
-				2CE1477C23F6901900C834F4 /* FirstViewController.swift */,
+				2CE1477C23F6901900C834F4 /* TestownikViewController.swift */,
+				2C6538DA2406FA8D004B1FC8 /* Gestures.swift */,
 				2CE1477E23F6901900C834F4 /* Main.storyboard */,
 				2CE1478423F6901C00C834F4 /* Assets.xcassets */,
 				2C99AE9424001A6700FF28F5 /* baza2 */,
@@ -766,8 +769,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2CE1477D23F6901900C834F4 /* FirstViewController.swift in Sources */,
+				2CE1477D23F6901900C834F4 /* TestownikViewController.swift in Sources */,
 				2CE1478323F6901900C834F4 /* test3_empty.xcdatamodeld in Sources */,
+				2C6538DB2406FA8D004B1FC8 /* Gestures.swift in Sources */,
 				2CE1477923F6901800C834F4 /* AppDelegate.swift in Sources */,
 				2CE1477B23F6901900C834F4 /* SceneDelegate.swift in Sources */,
 			);

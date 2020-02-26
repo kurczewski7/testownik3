@@ -7,8 +7,8 @@
 //
 
 import UIKit
-
-class FirstViewController: UIViewController {
+class TestownikViewController: UIViewController, GesturesDelegate {
+    
     struct Answer {
         let isOK: Bool
         let answerOption: String
@@ -26,6 +26,11 @@ class FirstViewController: UIViewController {
         //let answerList: [String]?
         //        let okAnswers      = [Bool]()
     }
+    var gestures: Gestures =  Gestures()
+    var cornerRadius: CGFloat = 10
+    let initalStackSpacing: CGFloat = 30.0
+    var tabHigh: [NSLayoutConstraint] = [NSLayoutConstraint]()
+
     var testList: [Test] = [Test]()
     var currentTest: Int = 0 {
         didSet {
@@ -47,11 +52,27 @@ class FirstViewController: UIViewController {
             
         }
     }
-    
-    var cornerRadius: CGFloat = 10
-    var tabHigh: [NSLayoutConstraint] = [NSLayoutConstraint]()
-    
-    
+    var visableLevel: Int = 2 {
+        didSet {
+            if visableLevel == 2 {
+                buttonLayerToZ(isHide: false)
+                self.tabBarController?.tabBar.isHidden = false
+            } else if  visableLevel == 1 {
+                buttonLayerToZ(isHide: true)
+                self.tabBarController?.tabBar.isHidden = false
+            }
+            else {
+                buttonLayerToZ(isHide: true)
+                self.tabBarController?.tabBar.isHidden = true
+            }
+            print("visableLevel:\(visableLevel)")
+        }
+    }
+    func buttonLayerToZ(isHide: Bool) {
+        for elem in actionsButtonStackView.arrangedSubviews {
+            elem.layer.zPosition = isHide ? -1 : 0
+        }
+    }
     @IBOutlet weak var askLabel: UILabel!
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var actionsButtonStackView: UIStackView!
@@ -66,10 +87,44 @@ class FirstViewController: UIViewController {
     @IBOutlet weak var highButton7: NSLayoutConstraint!
     @IBOutlet weak var highButton8: NSLayoutConstraint!
     
+    // GesturesDelegate  protocol metods
+    func pinchRefreshUI(sender: UIPinchGestureRecognizer) {
+        print("Pinch touches:\(sender.numberOfTouches),\(sender.scale) ")
+        stackView.spacing = initalStackSpacing * sender.scale
+        //view.transform = CGAffineTransform(scaleX: sender.scale, y: sender.scale)
+    }
+    func eadgePanRefreshUI() {
+        print("Edge gesture")
+    }
+    func swipeRefreshUI(direction: UISwipeGestureRecognizer.Direction) {
+        switch direction {
+            case .right:
+                currentTest = currentTest > 0 ? currentTest-1 : currentTest
+                print("Swipe to right")
+            case .left:
+                currentTest = currentTest < testList.count-1 ? currentTest+1 : currentTest
+                print("Swipe  & left ")
+            case .up:
+                print("Swipe up")
+                //self.tabBarController?.tabBar.isHidden = false
+                visableLevel +=  visableLevel < 2 ? 1 : 0
+                //resizeView(toMaximalize: true)
+            case .down:
+                print("Swipe down")
+                visableLevel -= visableLevel > 0 ? 1 : 0
+                //resizeView(toMaximalize: false)
+                //self.tabBarController?.tabBar.isHidden = true
+            default:
+                print("Swipe unrecognized")
+            }
+    }
     override func viewDidLoad() {
-        var i = 0
         super.viewDidLoad()
+        //gestures =  Gestures(forView: view)
+        gestures.setView(forView: view)
+        gestures.delegate = self
         
+        var i = 0
         print("Stack count: \(actionsButtonStackView.arrangedSubviews.count)")
         stackView.arrangedSubviews.forEach { (button) in
             if let butt = button as? UIButton {
@@ -91,57 +146,21 @@ class FirstViewController: UIViewController {
         tabHigh.append(highButton7)
         tabHigh.append(highButton8)
         
-
-        addSwipeGestureToView(direction: .right)
-        addSwipeGestureToView(direction: .left)
-        addSwipeGestureToView(direction: .up)
-        addSwipeGestureToView(direction: .down)
-        addPinchGestureToView()
-        addScreenEdgeGesture()
+        gestures.addSwipeGestureToView(direction: .right)
+        gestures.addSwipeGestureToView(direction: .left)
+        gestures.addSwipeGestureToView(direction: .up)
+        gestures.addSwipeGestureToView(direction: .down)
+        gestures.addPinchGestureToView()
+        gestures.addScreenEdgeGesture()
         
         askLabel.layer.cornerRadius = self.cornerRadius
         fillData(totallQuestionsCount: 117)
         refreshView()
     }
-    func addSwipeGestureToView(direction: UISwipeGestureRecognizer.Direction) {
-        let swipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeAction))
-        swipe.direction = direction
-        view.addGestureRecognizer(swipe)
-    }
-    func addPinchGestureToView() {
-        let pinch = UIPinchGestureRecognizer(target: self, action: #selector(pichAction))
-        //pinch.scale
-        //print("touches:\(pinch.numberOfTouches),\(pinch.scale) ")
-        view.addGestureRecognizer(pinch)
-    }
-    func addScreenEdgeGesture() {
-        let gesture = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(eadgeAction))
-        gesture.edges = .left
-        view.addGestureRecognizer(gesture)
-    }
-    @objc func eadgeAction() {
-        print("Edge gesture")
-    }
-    @objc func pichAction(sender: UIPinchGestureRecognizer) {
-        print("Pinch touches:\(sender.numberOfTouches),\(sender.scale) ")
-        view.transform = CGAffineTransform(scaleX: sender.scale, y: sender.scale)
-    }
-    @objc func swipeAction(sender: UISwipeGestureRecognizer) {
-        switch sender.direction {
-        case .right:
-            currentTest = currentTest > 0 ? currentTest-1 : currentTest
-            print("Swipe to right")
-        case .left:
-            currentTest = currentTest < testList.count-1 ? currentTest+1 : currentTest
-            print("Swipe  & left ")
-        case .up:
-            print("Swipe up")
-            stackView.spacing += 1
-        case .down:
-            print("Swipe down")
-            stackView.spacing -= 1
-        default:
-            print("Swipe unrecognized")
+
+    func resizeView(toMaximalize: Bool? = nil) {
+        if let toAddSize = toMaximalize {
+            stackView.spacing += toAddSize ? 1 : -1
         }
     }
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
