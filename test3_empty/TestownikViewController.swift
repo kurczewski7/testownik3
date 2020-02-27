@@ -8,36 +8,6 @@
 
 import UIKit
 class TestownikViewController: UIViewController, GesturesDelegate, TestownikDelegate {
-    func refreshButtonUI(forCurrentTest currentTest: Int, countTest count: Int) {
-        if currentTest == 0 {
-            hideButton(forButtonNumber: 0)
-            hideButton(forButtonNumber: 1)
-        }
-        else if currentTest == count-1 {
-            hideButton(forButtonNumber: 3)
-        }
-        else {
-            hideButton(forButtonNumber: 0, isHide: false)
-            hideButton(forButtonNumber: 1, isHide: false)
-            hideButton(forButtonNumber: 3, isHide: false)
-        }
-        refreshView()
-    }
-    func refreshTabbarUI(visableLevel: Int) {
-        if visableLevel == 2 {
-            buttonLayerToZ(isHide: false)
-            self.tabBarController?.tabBar.isHidden = false
-        } else if  visableLevel == 1 {
-            buttonLayerToZ(isHide: true)
-            self.tabBarController?.tabBar.isHidden = false
-        }
-        else {
-            buttonLayerToZ(isHide: true)
-            self.tabBarController?.tabBar.isHidden = true
-        }
-        print("visableLevel:\(visableLevel)")
-    }
-    // -----------------------------
     struct Answer {
         let isOK: Bool
         let answerOption: String
@@ -62,11 +32,7 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
     var tabHigh: [NSLayoutConstraint] = [NSLayoutConstraint]()
 
     //var testList: [Test] = [Test]()
-    func buttonLayerToZ(isHide: Bool) {
-        for elem in actionsButtonStackView.arrangedSubviews {
-            elem.layer.zPosition = isHide ? -1 : 0
-        }
-    }
+
     @IBOutlet weak var askLabel: UILabel!
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var actionsButtonStackView: UIStackView!
@@ -81,163 +47,6 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
     @IBOutlet weak var highButton7: NSLayoutConstraint!
     @IBOutlet weak var highButton8: NSLayoutConstraint!
     
-    // GesturesDelegate  protocol metods
-    func pinchRefreshUI(sender: UIPinchGestureRecognizer) {
-        print("Pinch touches:\(sender.numberOfTouches),\(sender.scale) ")
-        stackView.spacing = initalStackSpacing * sender.scale
-        //view.transform = CGAffineTransform(scaleX: sender.scale, y: sender.scale)
-    }
-    func eadgePanRefreshUI() {
-        print("Edge gesture")
-    }
-    func swipeRefreshUI(direction: UISwipeGestureRecognizer.Direction) {
-        switch direction {
-            case .right:
-                testownik.currentTest -=  testownik.currentTest > 0 ? 1 : 0
-                print("Swipe to right")
-            case .left:
-                testownik.currentTest += testownik.currentTest < testownik.count-1 ? 1 : 0         //currentTest < testList.count-1 ? currentTest+1 : currentTest
-                print("Swipe  & left ")
-            case .up:
-                print("Swipe up")
-                testownik.visableLevel +=  testownik.visableLevel < 2 ? 1 : 0
-            case .down:
-                print("Swipe down")
-                testownik.visableLevel -= testownik.visableLevel > 0 ? 1 : 0
-            default:
-                print("Swipe unrecognized")
-            }
-    }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        gestures.setView(forView: view)
-        gestures.delegate  = self
-        testownik.delegate = self
-        
-        var i = 0
-        print("Stack count: \(actionsButtonStackView.arrangedSubviews.count)")
-        stackView.arrangedSubviews.forEach { (button) in
-            if let butt = button as? UIButton {
-                butt.backgroundColor = #colorLiteral(red: 0.8469454646, green: 0.9804453254, blue: 0.9018514752, alpha: 1)
-                butt.layer.cornerRadius = self.cornerRadius
-                butt.layer.borderWidth = 1
-                butt.layer.borderColor = UIColor.brown.cgColor
-                butt.addTarget(self, action: #selector(buttonAnswerPress), for: .touchUpInside)
-                butt.tag = i
-                i += 1
-            }
-        }
-        tabHigh.append(highButton1)
-        tabHigh.append(highButton2)
-        tabHigh.append(highButton3)
-        tabHigh.append(highButton4)
-        tabHigh.append(highButton5)
-        tabHigh.append(highButton6)
-        tabHigh.append(highButton7)
-        tabHigh.append(highButton8)
-        
-        gestures.addSwipeGestureToView(direction: .right)
-        gestures.addSwipeGestureToView(direction: .left)
-        gestures.addSwipeGestureToView(direction: .up)
-        gestures.addSwipeGestureToView(direction: .down)
-        gestures.addPinchGestureToView()
-        gestures.addScreenEdgeGesture()
-        
-        askLabel.layer.cornerRadius = self.cornerRadius
-        testownik.fillData(totallQuestionsCount: 117)
-        refreshView()
-    }
-
-    func resizeView(toMaximalize: Bool? = nil) {
-        if let toAddSize = toMaximalize {
-            stackView.spacing += toAddSize ? 1 : -1
-        }
-    }
-    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-        if motion == .motionShake {
-            print("Shake")
-        }
-    }
-//    func fillData(totallQuestionsCount: Int) {
-//        var titles = [String]()
-//        for i in 201...204 { //117
-//            titles = []
-//            let name = String(format: "%03d", i)
-//            print("name:\(name)")
-//            let textLines=getText(fileName: name)
-//            for i in 2..<textLines.count {
-//                if textLines[i].count > 0 {    titles.append(textLines[i])      }
-//            }
-//            let order = [99,5,7]
-//            let isOk = getAnswer(textLines[0])
-//            let answerOptions = fillOneTestAnswers(isOk: isOk, titles: titles)
-//            let sortedAnswerOptions = changeOrder(forAnswerOptions: answerOptions)
-//            let test = Test(code: textLines[0], ask: textLines[1], pict: nil, answerOptions: sortedAnswerOptions, order: order, youAnswers: [])
-//            testList.append(test)
-//            print(test)
-//            print("\r\n")
-//        }
-//    }
-//    func changeOrder(forAnswerOptions answerOptions: [Answer]) -> [Answer] {
-//
-//        var position = 0
-//        var sortedAnswerOptions = [Answer]()
-//        var srcAnswerOptions = answerOptions
-//
-//        for _ in 1...srcAnswerOptions.count {
-//            position = randomOrder(toMax: srcAnswerOptions.count-1)
-//            let elem = srcAnswerOptions[position]
-//            sortedAnswerOptions.append(elem)
-//            srcAnswerOptions.remove(at: position)
-//        }
-//        return sortedAnswerOptions
-//    }
-//    func randomOrder(toMax: Int) -> Int {
-//        return Int(arc4random_uniform(UInt32(toMax)))
-//    }
-    func fillOneTestAnswers(isOk: [Bool], titles: [String]) -> [Answer] {
-        var answerOptions: [Answer] = []
-        let lenght = isOk.count < titles.count ? isOk.count : titles.count
-        for i in 0..<lenght {
-            answerOptions.append(Answer(isOK: isOk[i], answerOption: titles[i]))
-        }
-        return answerOptions
-    }
-    @objc func buttonAnswerPress(sender: UIButton) {
-        print("buttonAnswerPress:\(sender.tag)")
-        
-        var found = false
-        let youSelectedNumber = sender.tag
-        let okAnswer = isAnswerOk(selectedOptionForTest: youSelectedNumber)
-        
-        for elem in testownik[testownik.currentTest].youAnswers {
-            if elem == testownik.currentTest {   found = true     }
-        }
-        if !found {
-            testownik[testownik.currentTest].youAnswers.append(youSelectedNumber)
-        }
-        if let button = stackView.arrangedSubviews[youSelectedNumber] as? UIButton {
-            button.layer.borderWidth = 3
-            button.layer.borderColor = okAnswer ? UIColor.green.cgColor : UIColor.red.cgColor
-        }
-        print("aswers:\(testownik[testownik.currentTest].youAnswers)")
-    }
-    func isAnswerOk(selectedOptionForTest selectedOption: Int) -> Bool {
-         var value = false
-        if  selectedOption < testownik[testownik.currentTest].answerOptions.count {
-            value = testownik[testownik.currentTest].answerOptions[selectedOption].isOK
-        }
-        return value
-    }
-    func findValue<T: Comparable>(currentList: [T], valueToFind: T) -> Int {
-        var found = -1
-        for i in 0..<currentList.count {
-            if (currentList[i] == valueToFind)  {   found = i     }
-        }
-        return found
-    }
-
-
     @IBAction func navButt1Press(_ sender: UIBarButtonItem) {
         stackView.spacing += 5
 //        stackView.
@@ -287,6 +96,161 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
             testownik.currentTest += 1
         }
     }
+    //--------------------------------
+    // GesturesDelegate  protocol metods
+    func pinchRefreshUI(sender: UIPinchGestureRecognizer) {
+        print("Pinch touches:\(sender.numberOfTouches),\(sender.scale) ")
+        stackView.spacing = initalStackSpacing * sender.scale
+        //view.transform = CGAffineTransform(scaleX: sender.scale, y: sender.scale)
+    }
+    func eadgePanRefreshUI() {
+        print("Edge gesture")
+    }
+    func swipeRefreshUI(direction: UISwipeGestureRecognizer.Direction) {
+        switch direction {
+            case .right:
+                testownik.currentTest -=  testownik.currentTest > 0 ? 1 : 0
+                print("Swipe to right")
+            case .left:
+                testownik.currentTest += testownik.currentTest < testownik.count-1 ? 1 : 0
+                print("Swipe  & left ")
+            case .up:
+                print("Swipe up")
+                testownik.visableLevel +=  testownik.visableLevel < 2 ? 1 : 0
+            case .down:
+                print("Swipe down")
+                testownik.visableLevel -= testownik.visableLevel > 0 ? 1 : 0
+            default:
+                print("Swipe unrecognized")
+            }
+    }
+    // TestownikDelegate protocol metods
+    func refreshButtonUI(forCurrentTest currentTest: Int, countTest count: Int) {
+        if currentTest == 0 {
+            hideButton(forButtonNumber: 0)
+            hideButton(forButtonNumber: 1)
+        }
+        else if currentTest == count-1 {
+            hideButton(forButtonNumber: 3)
+        }
+        else {
+            hideButton(forButtonNumber: 0, isHide: false)
+            hideButton(forButtonNumber: 1, isHide: false)
+            hideButton(forButtonNumber: 3, isHide: false)
+        }
+        refreshView()
+    }
+    func refreshTabbarUI(visableLevel: Int) {
+        if visableLevel == 2 {
+            buttonLayerToZ(isHide: false)
+            self.tabBarController?.tabBar.isHidden = false
+        } else if  visableLevel == 1 {
+            buttonLayerToZ(isHide: true)
+            self.tabBarController?.tabBar.isHidden = false
+        }
+        else {
+            buttonLayerToZ(isHide: true)
+            self.tabBarController?.tabBar.isHidden = true
+        }
+        print("visableLevel:\(visableLevel)")
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        gestures.setView(forView: view)
+        gestures.delegate  = self
+        testownik.delegate = self
+        
+        var i = 0
+        print("Stack count: \(actionsButtonStackView.arrangedSubviews.count)")
+        stackView.arrangedSubviews.forEach { (button) in
+            if let butt = button as? UIButton {
+                butt.backgroundColor = #colorLiteral(red: 0.8469454646, green: 0.9804453254, blue: 0.9018514752, alpha: 1)
+                butt.layer.cornerRadius = self.cornerRadius
+                butt.layer.borderWidth = 1
+                butt.layer.borderColor = UIColor.brown.cgColor
+                butt.addTarget(self, action: #selector(buttonAnswerPress), for: .touchUpInside)
+                butt.tag = i
+                i += 1
+            }
+        }
+        tabHigh.append(highButton1)
+        tabHigh.append(highButton2)
+        tabHigh.append(highButton3)
+        tabHigh.append(highButton4)
+        tabHigh.append(highButton5)
+        tabHigh.append(highButton6)
+        tabHigh.append(highButton7)
+        tabHigh.append(highButton8)
+        
+        gestures.addSwipeGestureToView(direction: .right)
+        gestures.addSwipeGestureToView(direction: .left)
+        gestures.addSwipeGestureToView(direction: .up)
+        gestures.addSwipeGestureToView(direction: .down)
+        gestures.addPinchGestureToView()
+        gestures.addScreenEdgeGesture()
+        
+        askLabel.layer.cornerRadius = self.cornerRadius
+        testownik.fillData(totallQuestionsCount: 117)
+        refreshView()
+    }
+    //---------------------------
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            print("Shake")
+        }
+    }
+    func buttonLayerToZ(isHide: Bool) {
+        for elem in actionsButtonStackView.arrangedSubviews {
+            elem.layer.zPosition = isHide ? -1 : 0
+        }
+    }
+    func resizeView(toMaximalize: Bool? = nil) {
+        if let toAddSize = toMaximalize {
+            stackView.spacing += toAddSize ? 1 : -1
+        }
+    }
+    func fillOneTestAnswers(isOk: [Bool], titles: [String]) -> [Answer] {
+        var answerOptions: [Answer] = []
+        let lenght = isOk.count < titles.count ? isOk.count : titles.count
+        for i in 0..<lenght {
+            answerOptions.append(Answer(isOK: isOk[i], answerOption: titles[i]))
+        }
+        return answerOptions
+    }
+    @objc func buttonAnswerPress(sender: UIButton) {
+        print("buttonAnswerPress:\(sender.tag)")
+        
+        var found = false
+        let youSelectedNumber = sender.tag
+        let okAnswer = isAnswerOk(selectedOptionForTest: youSelectedNumber)
+        
+        for elem in testownik[testownik.currentTest].youAnswers {
+            if elem == testownik.currentTest {   found = true     }
+        }
+        if !found {
+            testownik[testownik.currentTest].youAnswers.append(youSelectedNumber)
+        }
+        if let button = stackView.arrangedSubviews[youSelectedNumber] as? UIButton {
+            button.layer.borderWidth = 3
+            button.layer.borderColor = okAnswer ? UIColor.green.cgColor : UIColor.red.cgColor
+        }
+        print("aswers:\(testownik[testownik.currentTest].youAnswers)")
+    }
+    func isAnswerOk(selectedOptionForTest selectedOption: Int) -> Bool {
+         var value = false
+        if  selectedOption < testownik[testownik.currentTest].answerOptions.count {
+            value = testownik[testownik.currentTest].answerOptions[selectedOption].isOK
+        }
+        return value
+    }
+    func findValue<T: Comparable>(currentList: [T], valueToFind: T) -> Int {
+        var found = -1
+        for i in 0..<currentList.count {
+            if (currentList[i] == valueToFind)  {   found = i     }
+        }
+        return found
+    }
     func hideButton(forButtonNumber buttonNumber: Int, isHide: Bool = true) {
         if let button = actionsButtonStackView.arrangedSubviews[buttonNumber] as? UIButton {
             button.isHidden = isHide
@@ -299,7 +263,7 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
         for curButt in stackView.arrangedSubviews     {
             if let butt = curButt as? UIButton {
                 butt.isHidden = (i < totalQuest) ? false : true
-                butt.setTitle((i < totalQuest) ? testownik[testownik.currentTest].answerOptions[i].answerOption : "", for: .normal)  //nswerList?[i]
+                butt.setTitle((i < totalQuest) ? testownik[testownik.currentTest].answerOptions[i].answerOption : "", for: .normal)
                 butt.layer.borderWidth = 1
                 butt.layer.borderColor = UIColor.brown.cgColor
                 i += 1
@@ -349,6 +313,5 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
         //    button.setTitle("Test Button", forState: .Normal)
         //    button.addTarget(self, action: #selector(buttonAction), forControlEvents: .TouchUpInside)
         //
-
 }
 
