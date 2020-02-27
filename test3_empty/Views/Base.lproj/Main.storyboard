@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Title-->
+        <!--Testownik-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="TestownikViewController" customModule="Testownik" customModuleProvider="target" sceneMemberID="viewController">
@@ -198,7 +198,32 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <tabBarItem key="tabBarItem" springLoaded="YES" systemItem="featured" id="R2g-yW-Ktg"/>
-                    <navigationItem key="navigationItem" title="Title" id="Ey0-Y1-Rkw"/>
+                    <navigationItem key="navigationItem" title="Testownik" id="Ey0-Y1-Rkw">
+                        <leftBarButtonItems>
+                            <barButtonItem title="Item" image="minus.magnifyingglass" catalog="system" id="ks6-E2-aaK">
+                                <connections>
+                                    <action selector="nevButtonSpaceSubPress:" destination="BYZ-38-t0r" id="hoB-if-ARX"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Item" image="plus.magnifyingglass" catalog="system" id="A7e-RI-blr">
+                                <connections>
+                                    <action selector="navButtSpaseAddPress:" destination="BYZ-38-t0r" id="ftG-4e-idK"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Item" image="rectangle.expand.vertical" catalog="system" id="39w-9S-nWE">
+                                <connections>
+                                    <action selector="ResizeButtonPlusPress:" destination="BYZ-38-t0r" id="lCG-L8-rOg"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Item" image="rectangle.compress.vertical" catalog="system" id="5y7-8n-yxz">
+                                <connections>
+                                    <action selector="ResizeButtonMinusPress:" destination="BYZ-38-t0r" id="vbu-he-ngW"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
                     <connections>
                         <outlet property="actionsButtonStackView" destination="sUd-SH-WPt" id="FTP-n3-1rv"/>
                         <outlet property="askLabel" destination="tFz-9g-NIy" id="EzE-iT-6mZ"/>
@@ -340,5 +365,9 @@
         <image name="arrowtriangle.right" catalog="system" width="64" height="56"/>
         <image name="backward.end" catalog="system" width="64" height="60"/>
         <image name="eye" catalog="system" width="64" height="40"/>
+        <image name="minus.magnifyingglass" catalog="system" width="64" height="56"/>
+        <image name="plus.magnifyingglass" catalog="system" width="64" height="56"/>
+        <image name="rectangle.compress.vertical" catalog="system" width="64" height="64"/>
+        <image name="rectangle.expand.vertical" catalog="system" width="64" height="60"/>
     </resources>
 </document>

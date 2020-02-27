@@ -30,7 +30,7 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
     @IBOutlet weak var highButton7: NSLayoutConstraint!
     @IBOutlet weak var highButton8: NSLayoutConstraint!
     
-    @IBAction func navButt1Press(_ sender: UIBarButtonItem) {
+    @IBAction func navButtSpaseAddPress(_ sender: UIBarButtonItem) {
         stackView.spacing += 5
 //        stackView.
 //        UIView.animateWithDuration(0.25) { () -> Void in
@@ -38,12 +38,12 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
 //            scroll.contentOffset = offset
 //        }
     }
-    @IBAction func nevButton2Press(_ sender: UIBarButtonItem) {
+    @IBAction func nevButtonSpaceSubPress(_ sender: UIBarButtonItem) {
         stackView.spacing -= 5
     }
     @IBAction func ResizeButtonPlusPress(_ sender: UIBarButtonItem) {
         for buttHight in tabHigh {
-            buttHight.constant -= 2
+            buttHight.constant += 2
         }
 
         //          labelLeading.constant += 50
@@ -53,7 +53,7 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
     @IBAction func ResizeButtonMinusPress(_ sender: UIBarButtonItem) {
          askLabel.layer.cornerRadius = 10
         for buttHight in tabHigh {
-            buttHight.constant += 2
+            buttHight.constant -= 2
         }
     }
     @IBAction func firstButtonPress(_ sender: UIButton) {

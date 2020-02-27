@@ -11,7 +11,7 @@ protocol TestownikDelegate {
     func refreshButtonUI(forCurrentTest currentTest: Int, countTest count: Int)
     func refreshTabbarUI(visableLevel: Int)
 }
-class Testownik {
+class Testownik: DataOperations {
     enum FilePosition {
         case first
         case last
@@ -21,18 +21,8 @@ class Testownik {
             let isOK: Bool
             let answerOption: String
     }
-    struct Test {
-        let code: String?
-        let ask: String?
-        let pict: UIImage?
-        var answerOptions  = [Answer]()
-        var order          = [Int]()
-        var youAnswers     = [Int]()
-        var currentRating  = 0
-        var maxRating      = 0
-    }
     var delegate: TestownikDelegate?
-    var testList: [Test] = [Test]()
+    //var testList: [Test] = [Test]()
     var filePosition = FilePosition.first
     var currentTest: Int = 0 {
         didSet {
@@ -45,18 +35,6 @@ class Testownik {
     var visableLevel: Int = 2 {
         didSet {     delegate?.refreshTabbarUI(visableLevel: visableLevel)    }
     }
-    var count: Int {
-        return testList.count
-    }
-        subscript(index: Int) -> Test {
-            get {
-                return testList[index]
-            }
-            set(newValue) {
-                
-                testList[index] = newValue
-            }
-        }
         func fillData(totallQuestionsCount: Int) {
             var titles = [String]()
             for i in 201...204 { //117
@@ -77,8 +55,7 @@ class Testownik {
                 print("\r\n")
             }
         }
-        func changeOrder(forAnswerOptions answerOptions: [Answer]) -> [Answer] {
-            
+        func changeOrder(forAnswerOptions answerOptions: [Answer]) -> [Answer] {            
             var position = 0
             var sortedAnswerOptions = [Answer]()
             var srcAnswerOptions = answerOptions

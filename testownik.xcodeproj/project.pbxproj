@@ -131,11 +131,13 @@
 		2C99AE9A24001A6700FF28F5 /* 202.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2C99AE9624001A6700FF28F5 /* 202.txt */; };
 		2C99AE9B24001A6700FF28F5 /* 203.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2C99AE9724001A6700FF28F5 /* 203.txt */; };
 		2CA8229F240411DB000941E1 /* 204.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2CA8229E240411DB000941E1 /* 204.txt */; };
+		2CDB1DF62407C08800361884 /* DataOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDB1DF52407C08800361884 /* DataOperations.swift */; };
+		2CDB1DF82407C98500361884 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDB1DF72407C98500361884 /* Test.swift */; };
 		2CE1477923F6901800C834F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE1477823F6901800C834F4 /* AppDelegate.swift */; };
 		2CE1477B23F6901900C834F4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE1477A23F6901900C834F4 /* SceneDelegate.swift */; };
 		2CE1477D23F6901900C834F4 /* TestownikViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE1477C23F6901900C834F4 /* TestownikViewController.swift */; };
 		2CE1478023F6901900C834F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CE1477E23F6901900C834F4 /* Main.storyboard */; };
-		2CE1478323F6901900C834F4 /* test3_empty.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2CE1478123F6901900C834F4 /* test3_empty.xcdatamodeld */; };
+		2CE1478323F6901900C834F4 /* testownik.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2CE1478123F6901900C834F4 /* testownik.xcdatamodeld */; };
 		2CE1478523F6901C00C834F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CE1478423F6901C00C834F4 /* Assets.xcassets */; };
 		2CE1478823F6901C00C834F4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CE1478623F6901C00C834F4 /* LaunchScreen.storyboard */; };
 		2CE1479323F6901C00C834F4 /* test3_emptyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE1479223F6901C00C834F4 /* test3_emptyTests.swift */; };
@@ -284,6 +286,8 @@
 		2C99AE9624001A6700FF28F5 /* 202.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 202.txt; sourceTree = "<group>"; };
 		2C99AE9724001A6700FF28F5 /* 203.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 203.txt; sourceTree = "<group>"; };
 		2CA8229E240411DB000941E1 /* 204.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 204.txt; sourceTree = "<group>"; };
+		2CDB1DF52407C08800361884 /* DataOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataOperations.swift; sourceTree = "<group>"; };
+		2CDB1DF72407C98500361884 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		2CE1477523F6901800C834F4 /* Testownik.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Testownik.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CE1477823F6901800C834F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2CE1477A23F6901900C834F4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -474,9 +478,11 @@
 		2CDB1DF32407BE1700361884 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				2CE1478123F6901900C834F4 /* test3_empty.xcdatamodeld */,
+				2CE1478123F6901900C834F4 /* testownik.xcdatamodeld */,
 				2C6538DA2406FA8D004B1FC8 /* Gestures.swift */,
 				2C6538DC2407282A004B1FC8 /* Testownik.swift */,
+				2CDB1DF52407C08800361884 /* DataOperations.swift */,
+				2CDB1DF72407C98500361884 /* Test.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -797,11 +803,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CE1477D23F6901900C834F4 /* TestownikViewController.swift in Sources */,
-				2CE1478323F6901900C834F4 /* test3_empty.xcdatamodeld in Sources */,
+				2CE1478323F6901900C834F4 /* testownik.xcdatamodeld in Sources */,
 				2C6538DD2407282A004B1FC8 /* Testownik.swift in Sources */,
 				2C6538DB2406FA8D004B1FC8 /* Gestures.swift in Sources */,
 				2CE1477923F6901800C834F4 /* AppDelegate.swift in Sources */,
+				2CDB1DF82407C98500361884 /* Test.swift in Sources */,
 				2CE1477B23F6901900C834F4 /* SceneDelegate.swift in Sources */,
+				2CDB1DF62407C08800361884 /* DataOperations.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1132,13 +1140,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		2CE1478123F6901900C834F4 /* test3_empty.xcdatamodeld */ = {
+		2CE1478123F6901900C834F4 /* testownik.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				2CE1478223F6901900C834F4 /* test3_empty.xcdatamodel */,
 			);
 			currentVersion = 2CE1478223F6901900C834F4 /* test3_empty.xcdatamodel */;
-			path = test3_empty.xcdatamodeld;
+			path = testownik.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
