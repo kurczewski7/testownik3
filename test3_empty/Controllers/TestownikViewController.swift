@@ -8,19 +8,22 @@
 
 import UIKit
 class TestownikViewController: UIViewController, GesturesDelegate, TestownikDelegate {
+    //  MARK: variable
     var gestures:  Gestures  = Gestures()
     var testownik: Testownik = Testownik()
     var cornerRadius: CGFloat = 10
     let initalStackSpacing: CGFloat = 30.0
     var tabHigh: [NSLayoutConstraint] = [NSLayoutConstraint]()
     
+    var isLightStyle = true
     let selectedColor: UIColor   = #colorLiteral(red: 0.9999151826, green: 0.9882825017, blue: 0.4744609594, alpha: 1)
     let unSelectedColor: UIColor = #colorLiteral(red: 0.8469454646, green: 0.9804453254, blue: 0.9018514752, alpha: 1)
     let okBorderedColor: UIColor = #colorLiteral(red: 0.2034551501, green: 0.7804297805, blue: 0.34896487, alpha: 1)
     let borderColor: UIColor     = #colorLiteral(red: 0.7254344821, green: 0.6902328134, blue: 0.5528755784, alpha: 1)
     let otherColor: UIColor      = #colorLiteral(red: 0.8469454646, green: 0.9804453254, blue: 0.9018514752, alpha: 1)
-
-    //  "testList" declared in super of Testownik
+    
+    // "testList" declared in super of Testownik
+    //  MARK: IBOutlets
     @IBOutlet weak var askLabel: UILabel!
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var actionsButtonStackView: UIStackView!
@@ -34,7 +37,7 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
     @IBOutlet weak var highButton6: NSLayoutConstraint!
     @IBOutlet weak var highButton7: NSLayoutConstraint!
     @IBOutlet weak var highButton8: NSLayoutConstraint!
-    
+    // MARK: IBAction
     @IBAction func navButtSpaseAddPress(_ sender: UIBarButtonItem) {
         stackView.spacing += 5
 //        stackView.
@@ -80,8 +83,11 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
             testownik.currentTest += 1
         }
     }
+    // MARK: viewDidLoad - initial method
     override func viewDidLoad() {
         super.viewDidLoad()
+        //overrideUserInterfaceStyle = .dark
+        //navigationController?.overrideUserInterfaceStyle = .dark
         gestures.setView(forView: view)
         gestures.delegate  = self
         testownik.delegate = self
@@ -120,7 +126,7 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
         refreshView()
     }
     //--------------------------------
-    // GesturesDelegate  protocol metods
+    // MARK: GesturesDelegate  protocol metods
     func pinchRefreshUI(sender: UIPinchGestureRecognizer) {
         print("Pinch touches:\(sender.numberOfTouches),\(sender.scale) ")
         stackView.spacing = initalStackSpacing * sender.scale
@@ -147,7 +153,7 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
                 print("Swipe unrecognized")
             }
     }
-    // TestownikDelegate protocol metods
+    // MARK: TestownikDelegate protocol "refreshUI" metods
     func refreshButtonUI(forFilePosition filePosition: Testownik.FilePosition) {
         if filePosition == .first {
             hideButton(forButtonNumber: 0)
@@ -180,9 +186,11 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
         }
         print("visableLevel:\(visableLevel)")
     }
-    //---------------------------
+    // MARK: Shake event method
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
+            tabBarController?.overrideUserInterfaceStyle = isLightStyle ? .dark : .light
+            isLightStyle.toggle()
             print("Shake")
         }
     }
@@ -196,7 +204,7 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
             stackView.spacing += toAddSize ? 1 : -1
         }
     }
-    //-----------
+    // MARK: Method to press answer button
     @objc func buttonAnswerPress(sender: UIButton) {
         let bgColorSelelect:   UIColor =  selectedColor
         let bgColorUnSelelect: UIColor =  unSelectedColor
@@ -235,7 +243,7 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
 //            button.layer.borderWidth = 3
 //            button.layer.borderColor = okAnswer ? UIColor.green.cgColor : UIColor.red.cgColor
 //        }
-        print("aswers:\(testownik[testownik.currentTest].youAnswers)")
+        print("aswers:\(testownik[testownik.currentTest].youAnswers5)")
         print("aswers2:\(testownik[testownik.currentTest].youAnswer2.sorted())")
     }
     func isAnswerOk(selectedOptionForTest selectedOption: Int) -> Bool {
@@ -261,7 +269,7 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
         var i = 0
         testownik[testownik.currentTest].youAnswer2 = []
         let totalQuest = testownik[testownik.currentTest].answerOptions.count
-        testownik[testownik.currentTest].youAnswers = []
+        testownik[testownik.currentTest].youAnswers5 = []
         for curButt in stackView.arrangedSubviews     {
             if let butt = curButt as? UIButton {
                 butt.isHidden = (i < totalQuest) ? false : true

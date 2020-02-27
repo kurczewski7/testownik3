@@ -51,7 +51,7 @@ class Testownik: DataOperations {
                 let isOk = getAnswer(textLines[0])
                 let answerOptions = fillOneTestAnswers(isOk: isOk, titles: titles)
                 let sortedAnswerOptions = changeOrder(forAnswerOptions: answerOptions)
-                let test = Test(code: textLines[0], ask: textLines[1], pict: nil, answerOptions: sortedAnswerOptions, order: order, youAnswers: [])
+                let test = Test(code: textLines[0], ask: textLines[1], pict: nil, answerOptions: sortedAnswerOptions, order: order, youAnswers5: [])
                 testList.append(test)
                 print(test)
                 print("\r\n")

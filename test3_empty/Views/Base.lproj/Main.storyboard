@@ -340,7 +340,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="4P4-BA-cn8">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Gpk-Z3-T9O" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" interfaceStyle="light" id="Gpk-Z3-T9O" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="06o-dp-T9F">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>

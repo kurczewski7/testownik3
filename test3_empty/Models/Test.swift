@@ -14,7 +14,7 @@ struct Test {
     let pict: UIImage?
     var answerOptions           = [Testownik.Answer]()
     var order                   = [Int]()
-    var youAnswers              = [Int]()
+    var youAnswers5              = [Int]()
     var youAnswer2: Set<Int>    = []
     var currentRating  = 0
     var maxRating      = 0
