@@ -37,38 +37,7 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
         }
         print("visableLevel:\(visableLevel)")
     }
-    
-    //        func refreshButtonUI(forCurrentTest currentTest: Int, countTest count: Int) {
-    //            if currentTest == 0 {
-    //                hideButton(forButtonNumber: 0)
-    //                hideButton(forButtonNumber: 1)
-    //            }
-    //            else if currentTest == count-1 {
-    //                hideButton(forButtonNumber: 3)
-    //            }
-    //            else {
-    //                hideButton(forButtonNumber: 0, isHide: false)
-    //                hideButton(forButtonNumber: 1, isHide: false)
-    //                hideButton(forButtonNumber: 3, isHide: false)
-    //            }
-    //            refreshView()
-    //        }
-
-    //    func refreshTabbarUI(visableLevel: Int) {
-    //        if visableLevel == 2 {
-    //            buttonLayerToZ(isHide: false)
-    //            self.tabBarController?.tabBar.isHidden = false
-    //        } else if  visableLevel == 1 {
-    //            buttonLayerToZ(isHide: true)
-    //            self.tabBarController?.tabBar.isHidden = false
-    //        }
-    //        else {
-    //            buttonLayerToZ(isHide: true)
-    //            self.tabBarController?.tabBar.isHidden = true
-    //        }
-    //        print("visableLevel:\(visableLevel)")
-    //    }
-
+    // -----------------------------
     struct Answer {
         let isOK: Bool
         let answerOption: String
@@ -86,48 +55,49 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
         //let answerList: [String]?
         //        let okAnswers      = [Bool]()
     }
-    var gestures: Gestures =  Gestures()
+    var gestures:  Gestures  = Gestures()
+    var testownik: Testownik = Testownik()
     var cornerRadius: CGFloat = 10
     let initalStackSpacing: CGFloat = 30.0
     var tabHigh: [NSLayoutConstraint] = [NSLayoutConstraint]()
 
     var testList: [Test] = [Test]()
-    var currentTest: Int = 0 {
-        didSet {
-            if currentTest == 0 {
-                hideButton(forButtonNumber: 0)
-                hideButton(forButtonNumber: 1)
-            }
-            else if currentTest == testList.count-1 {
-                hideButton(forButtonNumber: 3)
-            }
-            else {
-                hideButton(forButtonNumber: 0, isHide: false)
-                hideButton(forButtonNumber: 1, isHide: false)
-                hideButton(forButtonNumber: 3, isHide: false)
-            }
-            //if (currentTest >= 0) && (currentTest < testList.count) {
-              refreshView()
-            //}
-            
-        }
-    }
-    var visableLevel: Int = 2 {
-        didSet {
-            if visableLevel == 2 {
-                buttonLayerToZ(isHide: false)
-                self.tabBarController?.tabBar.isHidden = false
-            } else if  visableLevel == 1 {
-                buttonLayerToZ(isHide: true)
-                self.tabBarController?.tabBar.isHidden = false
-            }
-            else {
-                buttonLayerToZ(isHide: true)
-                self.tabBarController?.tabBar.isHidden = true
-            }
-            print("visableLevel:\(visableLevel)")
-        }
-    }
+//    var currentTest: Int = 0 {
+//        didSet {
+//            if currentTest == 0 {
+//                hideButton(forButtonNumber: 0)
+//                hideButton(forButtonNumber: 1)
+//            }
+//            else if currentTest == testList.count-1 {
+//                hideButton(forButtonNumber: 3)
+//            }
+//            else {
+//                hideButton(forButtonNumber: 0, isHide: false)
+//                hideButton(forButtonNumber: 1, isHide: false)
+//                hideButton(forButtonNumber: 3, isHide: false)
+//            }
+//            //if (currentTest >= 0) && (currentTest < testList.count) {
+//              refreshView()
+//            //}
+//
+//        }
+//    }
+//    var visableLevel: Int = 2 {
+//        didSet {
+//            if visableLevel == 2 {
+//                buttonLayerToZ(isHide: false)
+//                self.tabBarController?.tabBar.isHidden = false
+//            } else if  visableLevel == 1 {
+//                buttonLayerToZ(isHide: true)
+//                self.tabBarController?.tabBar.isHidden = false
+//            }
+//            else {
+//                buttonLayerToZ(isHide: true)
+//                self.tabBarController?.tabBar.isHidden = true
+//            }
+//            print("visableLevel:\(visableLevel)")
+//        }
+//    }
     func buttonLayerToZ(isHide: Bool) {
         for elem in actionsButtonStackView.arrangedSubviews {
             elem.layer.zPosition = isHide ? -1 : 0
@@ -159,26 +129,26 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
     func swipeRefreshUI(direction: UISwipeGestureRecognizer.Direction) {
         switch direction {
             case .right:
-                currentTest = currentTest > 0 ? currentTest-1 : currentTest
+                testownik.currentTest -=  testownik.currentTest > 0 ? 1 : 0
                 print("Swipe to right")
             case .left:
-                currentTest = currentTest < testList.count-1 ? currentTest+1 : currentTest
+                testownik.currentTest += testownik.currentTest < testList.count-1 ? 1 : 0         //currentTest < testList.count-1 ? currentTest+1 : currentTest
                 print("Swipe  & left ")
             case .up:
                 print("Swipe up")
-                visableLevel +=  visableLevel < 2 ? 1 : 0
+                testownik.visableLevel +=  testownik.visableLevel < 2 ? 1 : 0
             case .down:
                 print("Swipe down")
-                visableLevel -= visableLevel > 0 ? 1 : 0
+                testownik.visableLevel -= testownik.visableLevel > 0 ? 1 : 0
             default:
                 print("Swipe unrecognized")
             }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        //gestures =  Gestures(forView: view)
         gestures.setView(forView: view)
-        gestures.delegate = self
+        gestures.delegate  = self
+        testownik.delegate = self
         
         var i = 0
         print("Stack count: \(actionsButtonStackView.arrangedSubviews.count)")
@@ -210,7 +180,7 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
         gestures.addScreenEdgeGesture()
         
         askLabel.layer.cornerRadius = self.cornerRadius
-        fillData(totallQuestionsCount: 117)
+        testownik.fillData(totallQuestionsCount: 117)
         refreshView()
     }
 
@@ -224,43 +194,43 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
             print("Shake")
         }
     }
-    func fillData(totallQuestionsCount: Int) {
-        var titles = [String]()
-        for i in 201...204 { //117
-            titles = []
-            let name = String(format: "%03d", i)
-            print("name:\(name)")
-            let textLines=getText(fileName: name)
-            for i in 2..<textLines.count {
-                if textLines[i].count > 0 {    titles.append(textLines[i])      }
-            }
-            let order = [99,5,7]
-            let isOk = getAnswer(textLines[0])
-            let answerOptions = fillOneTestAnswers(isOk: isOk, titles: titles)
-            let sortedAnswerOptions = changeOrder(forAnswerOptions: answerOptions)
-            let test = Test(code: textLines[0], ask: textLines[1], pict: nil, answerOptions: sortedAnswerOptions, order: order, youAnswers: [])
-            testList.append(test)
-            print(test)
-            print("\r\n")
-        }
-    }
-    func changeOrder(forAnswerOptions answerOptions: [Answer]) -> [Answer] {
-        
-        var position = 0
-        var sortedAnswerOptions = [Answer]()
-        var srcAnswerOptions = answerOptions
-        
-        for _ in 1...srcAnswerOptions.count {
-            position = randomOrder(toMax: srcAnswerOptions.count-1)
-            let elem = srcAnswerOptions[position]
-            sortedAnswerOptions.append(elem)
-            srcAnswerOptions.remove(at: position)
-        }
-        return sortedAnswerOptions
-    }
-    func randomOrder(toMax: Int) -> Int {
-        return Int(arc4random_uniform(UInt32(toMax)))
-    }
+//    func fillData(totallQuestionsCount: Int) {
+//        var titles = [String]()
+//        for i in 201...204 { //117
+//            titles = []
+//            let name = String(format: "%03d", i)
+//            print("name:\(name)")
+//            let textLines=getText(fileName: name)
+//            for i in 2..<textLines.count {
+//                if textLines[i].count > 0 {    titles.append(textLines[i])      }
+//            }
+//            let order = [99,5,7]
+//            let isOk = getAnswer(textLines[0])
+//            let answerOptions = fillOneTestAnswers(isOk: isOk, titles: titles)
+//            let sortedAnswerOptions = changeOrder(forAnswerOptions: answerOptions)
+//            let test = Test(code: textLines[0], ask: textLines[1], pict: nil, answerOptions: sortedAnswerOptions, order: order, youAnswers: [])
+//            testList.append(test)
+//            print(test)
+//            print("\r\n")
+//        }
+//    }
+//    func changeOrder(forAnswerOptions answerOptions: [Answer]) -> [Answer] {
+//
+//        var position = 0
+//        var sortedAnswerOptions = [Answer]()
+//        var srcAnswerOptions = answerOptions
+//
+//        for _ in 1...srcAnswerOptions.count {
+//            position = randomOrder(toMax: srcAnswerOptions.count-1)
+//            let elem = srcAnswerOptions[position]
+//            sortedAnswerOptions.append(elem)
+//            srcAnswerOptions.remove(at: position)
+//        }
+//        return sortedAnswerOptions
+//    }
+//    func randomOrder(toMax: Int) -> Int {
+//        return Int(arc4random_uniform(UInt32(toMax)))
+//    }
     func fillOneTestAnswers(isOk: [Bool], titles: [String]) -> [Answer] {
         var answerOptions: [Answer] = []
         let lenght = isOk.count < titles.count ? isOk.count : titles.count
@@ -275,22 +245,23 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
         var found = false
         let youSelectedNumber = sender.tag
         let okAnswer = isAnswerOk(selectedOptionForTest: youSelectedNumber)
-        for elem in testList[currentTest].youAnswers {
-            if elem == currentTest {   found = true     }
+        
+        for elem in testownik[testownik.currentTest].youAnswers {
+            if elem == testownik.currentTest {   found = true     }
         }
         if !found {
-            testList[currentTest].youAnswers.append(youSelectedNumber)
+            testList[testownik.currentTest].youAnswers.append(youSelectedNumber)
         }
         if let button = stackView.arrangedSubviews[youSelectedNumber] as? UIButton {
             button.layer.borderWidth = 3
             button.layer.borderColor = okAnswer ? UIColor.green.cgColor : UIColor.red.cgColor
         }
-        print("aswers:\(testList[currentTest].youAnswers)")
+        print("aswers:\(testownik[testownik.currentTest].youAnswers)")
     }
     func isAnswerOk(selectedOptionForTest selectedOption: Int) -> Bool {
          var value = false
-        if  selectedOption < testList[currentTest].answerOptions.count {
-            value = testList[currentTest].answerOptions[selectedOption].isOK
+        if  selectedOption < testownik[testownik.currentTest].answerOptions.count {
+            value = testownik[testownik.currentTest].answerOptions[selectedOption].isOK
         }
         return value
     }
@@ -330,15 +301,15 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
         }
     }
     @IBAction func firstButtonPress(_ sender: UIButton) {
-        currentTest = 0
+        testownik.currentTest = 0
     }
     @IBAction func previousButtonPress(_ sender: UIButton) {
-        if currentTest > 0 {
-            currentTest -= 1
+        if testownik.currentTest > 0 {
+            testownik.currentTest -= 1
         }
     }
     @IBAction func checkButtonPress(_ sender: UIButton) {
-        let currTest = testList[currentTest]
+        let currTest = testownik[testownik.currentTest]
         let countTest = currTest.answerOptions.count         //okAnswers.count
         for i in 0..<countTest {
             if let button = stackView.arrangedSubviews[i] as? UIButton {
@@ -348,8 +319,8 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
         }
     }
     @IBAction func nextButtonPress(_ sender: UIButton) {
-        if currentTest < testList.count {
-            currentTest += 1
+        if testownik.currentTest < testownik.count {
+            testownik.currentTest += 1
         }
     }
     func hideButton(forButtonNumber buttonNumber: Int, isHide: Bool = true) {
@@ -359,20 +330,20 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
     }
     func refreshView() {
         var i = 0
-        let totalQuest = testList[currentTest].answerOptions.count
-        testList[currentTest].youAnswers = []
+        let totalQuest = testownik[testownik.currentTest].answerOptions.count
+        testownik[testownik.currentTest].youAnswers = []
         for curButt in stackView.arrangedSubviews     {
             if let butt = curButt as? UIButton {
                 butt.isHidden = (i < totalQuest) ? false : true
-                butt.setTitle((i < totalQuest) ? testList[currentTest].answerOptions[i].answerOption : "", for: .normal)  //nswerList?[i]
+                butt.setTitle((i < totalQuest) ? testownik[testownik.currentTest].answerOptions[i].answerOption : "", for: .normal)  //nswerList?[i]
                 butt.layer.borderWidth = 1
                 butt.layer.borderColor = UIColor.brown.cgColor
                 i += 1
             }
         }
-        actionsButtonStackView.arrangedSubviews[0].isHidden = (currentTest == 0)
-        actionsButtonStackView.arrangedSubviews[1].isHidden = (currentTest == 0)
-        askLabel.text = testList[currentTest].ask
+        actionsButtonStackView.arrangedSubviews[0].isHidden = (testownik.currentTest == 0)
+        actionsButtonStackView.arrangedSubviews[1].isHidden = (testownik.currentTest == 0)
+        askLabel.text = testownik[testownik.currentTest].ask
     }
     func getText(fileName: String, encodingSystem encoding: String.Encoding = .utf8) -> [String] {  //windowsCP1250
         var texts: [String] = ["brak"]
@@ -402,6 +373,12 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
         }
         print("answer,\(answer)")
         return answer
+    }
+    func minimum<T: Comparable>(_ arg1: T, _ arg2: T) -> T {
+        return arg1 < arg2 ? arg1 : arg2
+    }
+    func maximum<T: Comparable>(_ arg1: T, _ arg2: T) -> T {
+         return arg1 > arg2 ? arg1 : arg2
     }
         //    let button = UIButton(frame: CGRect(x: 100, y: 100, width: 100, height: 50))
         //    button.backgroundColor = .greenColor()

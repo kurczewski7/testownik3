@@ -31,12 +31,26 @@ class Testownik {
         var testList: [Test] = [Test]()
         var currentTest: Int = 0 {
             didSet {
+                delegate?.refreshButtonUI(forCurrentTest: currentTest, countTest: testList.count)
                 //refreshButtonUI(forCurrentTest: currentTest, countTest: testList)
             }
         }
         var visableLevel: Int = 2 {
             didSet {
+                delegate?.refreshTabbarUI(visableLevel: visableLevel)
                 //refreshTabbarUI(visableLevel: visableLevel)
+            }
+        }
+        var count: Int {
+            return testList.count
+        }
+        subscript(index: Int) -> Test {
+            get {
+                return testList[index]
+            }
+            set(newValue) {
+                
+                testList[index] = newValue
             }
         }
 //        func buttonLayerToZ(isHide: Bool) {
