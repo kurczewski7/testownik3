@@ -8,23 +8,6 @@
 
 import UIKit
 class TestownikViewController: UIViewController, GesturesDelegate, TestownikDelegate {
-    struct Answer {
-        let isOK: Bool
-        let answerOption: String
-    }
-    struct Test {
-        let code: String?
-        let ask: String?
-        let pict: UIImage?
-        var answerOptions  = [Answer]()
-        var order          = [Int]()
-        var youAnswers     = [Int]()
-        var currentRating  = 0
-        var maxRating      = 0
-        
-        //let answerList: [String]?
-        //        let okAnswers      = [Bool]()
-    }
     var gestures:  Gestures  = Gestures()
     var testownik: Testownik = Testownik()
     var cornerRadius: CGFloat = 10
@@ -96,6 +79,45 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
             testownik.currentTest += 1
         }
     }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        gestures.setView(forView: view)
+        gestures.delegate  = self
+        testownik.delegate = self
+        
+        var i = 0
+        print("Stack count: \(actionsButtonStackView.arrangedSubviews.count)")
+        stackView.arrangedSubviews.forEach { (button) in
+            if let butt = button as? UIButton {
+                butt.backgroundColor = #colorLiteral(red: 0.8469454646, green: 0.9804453254, blue: 0.9018514752, alpha: 1)
+                butt.layer.cornerRadius = self.cornerRadius
+                butt.layer.borderWidth = 1
+                butt.layer.borderColor = UIColor.brown.cgColor
+                butt.addTarget(self, action: #selector(buttonAnswerPress), for: .touchUpInside)
+                butt.tag = i
+                i += 1
+            }
+        }
+        tabHigh.append(highButton1)
+        tabHigh.append(highButton2)
+        tabHigh.append(highButton3)
+        tabHigh.append(highButton4)
+        tabHigh.append(highButton5)
+        tabHigh.append(highButton6)
+        tabHigh.append(highButton7)
+        tabHigh.append(highButton8)
+        
+        gestures.addSwipeGestureToView(direction: .right)
+        gestures.addSwipeGestureToView(direction: .left)
+        gestures.addSwipeGestureToView(direction: .up)
+        gestures.addSwipeGestureToView(direction: .down)
+        gestures.addPinchGestureToView()
+        gestures.addScreenEdgeGesture()
+        
+        askLabel.layer.cornerRadius = self.cornerRadius
+        testownik.fillData(totallQuestionsCount: 117)
+        refreshView()
+    }
     //--------------------------------
     // GesturesDelegate  protocol metods
     func pinchRefreshUI(sender: UIPinchGestureRecognizer) {
@@ -109,10 +131,10 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
     func swipeRefreshUI(direction: UISwipeGestureRecognizer.Direction) {
         switch direction {
             case .right:
-                testownik.currentTest -=  testownik.currentTest > 0 ? 1 : 0
+                testownik.currentTest -=  testownik.filePosition != .first  ? 1 : 0
                 print("Swipe to right")
             case .left:
-                testownik.currentTest += testownik.currentTest < testownik.count-1 ? 1 : 0
+                testownik.currentTest +=  testownik.filePosition != .last  ? 1 : 0
                 print("Swipe  & left ")
             case .up:
                 print("Swipe up")
@@ -154,46 +176,6 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
         }
         print("visableLevel:\(visableLevel)")
     }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        gestures.setView(forView: view)
-        gestures.delegate  = self
-        testownik.delegate = self
-        
-        var i = 0
-        print("Stack count: \(actionsButtonStackView.arrangedSubviews.count)")
-        stackView.arrangedSubviews.forEach { (button) in
-            if let butt = button as? UIButton {
-                butt.backgroundColor = #colorLiteral(red: 0.8469454646, green: 0.9804453254, blue: 0.9018514752, alpha: 1)
-                butt.layer.cornerRadius = self.cornerRadius
-                butt.layer.borderWidth = 1
-                butt.layer.borderColor = UIColor.brown.cgColor
-                butt.addTarget(self, action: #selector(buttonAnswerPress), for: .touchUpInside)
-                butt.tag = i
-                i += 1
-            }
-        }
-        tabHigh.append(highButton1)
-        tabHigh.append(highButton2)
-        tabHigh.append(highButton3)
-        tabHigh.append(highButton4)
-        tabHigh.append(highButton5)
-        tabHigh.append(highButton6)
-        tabHigh.append(highButton7)
-        tabHigh.append(highButton8)
-        
-        gestures.addSwipeGestureToView(direction: .right)
-        gestures.addSwipeGestureToView(direction: .left)
-        gestures.addSwipeGestureToView(direction: .up)
-        gestures.addSwipeGestureToView(direction: .down)
-        gestures.addPinchGestureToView()
-        gestures.addScreenEdgeGesture()
-        
-        askLabel.layer.cornerRadius = self.cornerRadius
-        testownik.fillData(totallQuestionsCount: 117)
-        refreshView()
-    }
     //---------------------------
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
@@ -209,14 +191,6 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
         if let toAddSize = toMaximalize {
             stackView.spacing += toAddSize ? 1 : -1
         }
-    }
-    func fillOneTestAnswers(isOk: [Bool], titles: [String]) -> [Answer] {
-        var answerOptions: [Answer] = []
-        let lenght = isOk.count < titles.count ? isOk.count : titles.count
-        for i in 0..<lenght {
-            answerOptions.append(Answer(isOK: isOk[i], answerOption: titles[i]))
-        }
-        return answerOptions
     }
     @objc func buttonAnswerPress(sender: UIButton) {
         print("buttonAnswerPress:\(sender.tag)")
@@ -269,8 +243,8 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
                 i += 1
             }
         }
-        actionsButtonStackView.arrangedSubviews[0].isHidden = (testownik.currentTest == 0)
-        actionsButtonStackView.arrangedSubviews[1].isHidden = (testownik.currentTest == 0)
+        actionsButtonStackView.arrangedSubviews[0].isHidden = (testownik.filePosition == .first)
+        actionsButtonStackView.arrangedSubviews[1].isHidden = (testownik.filePosition == .first)
         askLabel.text = testownik[testownik.currentTest].ask
     }
     func getText(fileName: String, encodingSystem encoding: String.Encoding = .utf8) -> [String] {  //windowsCP1250
@@ -301,12 +275,6 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
         }
         print("answer,\(answer)")
         return answer
-    }
-    func minimum<T: Comparable>(_ arg1: T, _ arg2: T) -> T {
-        return arg1 < arg2 ? arg1 : arg2
-    }
-    func maximum<T: Comparable>(_ arg1: T, _ arg2: T) -> T {
-         return arg1 > arg2 ? arg1 : arg2
     }
         //    let button = UIButton(frame: CGRect(x: 100, y: 100, width: 100, height: 50))
         //    button.backgroundColor = .greenColor()

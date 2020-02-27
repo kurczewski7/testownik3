@@ -37,14 +37,9 @@ class Testownik {
     var currentTest: Int = 0 {
         didSet {
             delegate?.refreshButtonUI(forCurrentTest: currentTest, countTest: testList.count)
-            if  currentTest==0 {
-                filePosition = .first
-            } else if  currentTest == count-1 {
-                filePosition = .last
-            } else
-            {
-                filePosition = .other
-            }
+            if  currentTest==0 {    filePosition = .first     }
+            else if  currentTest == count-1 {   filePosition = .last     }
+            else  {  filePosition = .other      }
         }
     }
     var visableLevel: Int = 2 {
