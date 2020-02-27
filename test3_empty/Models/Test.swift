@@ -15,6 +15,8 @@ struct Test {
     var answerOptions  = [Testownik.Answer]()
     var order          = [Int]()
     var youAnswers     = [Int]()
+    var youAnswer2     = Set<Int>()
     var currentRating  = 0
     var maxRating      = 0
 }
+//

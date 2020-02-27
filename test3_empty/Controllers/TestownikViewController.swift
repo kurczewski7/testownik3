@@ -47,8 +47,6 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
         }
 
         //          labelLeading.constant += 50
-        //        highButton1.constant -= 5
-        //        highButton2.constant -= 5
     }
     @IBAction func ResizeButtonMinusPress(_ sender: UIBarButtonItem) {
          askLabel.layer.cornerRadius = 10
@@ -166,13 +164,16 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
         if visableLevel == 2 {
             buttonLayerToZ(isHide: false)
             self.tabBarController?.tabBar.isHidden = false
+            self.navigationController?.isNavigationBarHidden = false
         } else if  visableLevel == 1 {
             buttonLayerToZ(isHide: true)
             self.tabBarController?.tabBar.isHidden = false
+            self.navigationController?.isNavigationBarHidden = false
         }
         else {
             buttonLayerToZ(isHide: true)
             self.tabBarController?.tabBar.isHidden = true
+            self.navigationController?.isNavigationBarHidden = true
         }
         print("visableLevel:\(visableLevel)")
     }
