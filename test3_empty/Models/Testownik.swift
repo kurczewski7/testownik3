@@ -8,8 +8,9 @@
 
 import UIKit
 protocol TestownikDelegate {
-    func refreshButtonUI(forCurrentTest currentTest: Int, countTest count: Int)
+    func refreshButtonUI(forFilePosition filePosition: Testownik.FilePosition)
     func refreshTabbarUI(visableLevel: Int)
+    //refreshButtonUI
 }
 class Testownik: DataOperations {
     enum FilePosition {
@@ -26,8 +27,9 @@ class Testownik: DataOperations {
     var filePosition = FilePosition.first
     var currentTest: Int = 0 {
         didSet {
-            delegate?.refreshButtonUI(forCurrentTest: currentTest, countTest: testList.count)
-            if  currentTest==0 {    filePosition = .first     }
+            //delegate?.refreshButtonUI(forCurrentTest: currentTest, countTest: testList.count)
+            delegate?.refreshButtonUI(forFilePosition: filePosition)
+            if  currentTest == 0 {    filePosition = .first     }
             else if  currentTest == count-1 {   filePosition = .last     }
             else  {  filePosition = .other      }
         }

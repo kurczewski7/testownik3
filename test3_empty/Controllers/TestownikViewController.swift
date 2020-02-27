@@ -13,9 +13,14 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
     var cornerRadius: CGFloat = 10
     let initalStackSpacing: CGFloat = 30.0
     var tabHigh: [NSLayoutConstraint] = [NSLayoutConstraint]()
+    
+    let selectedColor: UIColor   = #colorLiteral(red: 0.9999151826, green: 0.9882825017, blue: 0.4744609594, alpha: 1)
+    let unSelectedColor: UIColor = #colorLiteral(red: 0.8469454646, green: 0.9804453254, blue: 0.9018514752, alpha: 1)
+    let okBorderedColor: UIColor = #colorLiteral(red: 0.2034551501, green: 0.7804297805, blue: 0.34896487, alpha: 1)
+    let borderColor: UIColor     = #colorLiteral(red: 0.7254344821, green: 0.6902328134, blue: 0.5528755784, alpha: 1)
+    let otherColor: UIColor      = #colorLiteral(red: 0.8469454646, green: 0.9804453254, blue: 0.9018514752, alpha: 1)
 
-    //var testList: [Test] = [Test]()
-
+    //  "testList" declared in super of Testownik
     @IBOutlet weak var askLabel: UILabel!
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var actionsButtonStackView: UIStackView!
@@ -45,8 +50,6 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
         for buttHight in tabHigh {
             buttHight.constant += 2
         }
-
-        //          labelLeading.constant += 50
     }
     @IBAction func ResizeButtonMinusPress(_ sender: UIBarButtonItem) {
          askLabel.layer.cornerRadius = 10
@@ -145,12 +148,12 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
             }
     }
     // TestownikDelegate protocol metods
-    func refreshButtonUI(forCurrentTest currentTest: Int, countTest count: Int) {
-        if currentTest == 0 {
+    func refreshButtonUI(forFilePosition filePosition: Testownik.FilePosition) {
+        if filePosition == .first {
             hideButton(forButtonNumber: 0)
             hideButton(forButtonNumber: 1)
         }
-        else if currentTest == count-1 {
+        else if filePosition == .last {
             hideButton(forButtonNumber: 3)
         }
         else {
@@ -167,7 +170,7 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
             self.navigationController?.isNavigationBarHidden = false
         } else if  visableLevel == 1 {
             buttonLayerToZ(isHide: true)
-            self.tabBarController?.tabBar.isHidden = false
+            self.tabBarController?.tabBar.isHidden = true
             self.navigationController?.isNavigationBarHidden = false
         }
         else {
@@ -193,24 +196,47 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
             stackView.spacing += toAddSize ? 1 : -1
         }
     }
+    //-----------
     @objc func buttonAnswerPress(sender: UIButton) {
-        print("buttonAnswerPress:\(sender.tag)")
+        let bgColorSelelect:   UIColor =  selectedColor
+        let bgColorUnSelelect: UIColor =  unSelectedColor
+        let youSelectedNumber: Int = sender.tag
         
-        var found = false
-        let youSelectedNumber = sender.tag
-        let okAnswer = isAnswerOk(selectedOptionForTest: youSelectedNumber)
+        var isChecked:Bool = false
+        print("buttonAnswerPress:\(youSelectedNumber)")
+        isChecked = testownik[testownik.currentTest].youAnswer2.contains(youSelectedNumber)
+        if isChecked {
+            testownik[testownik.currentTest].youAnswer2.remove(youSelectedNumber)
+            isChecked = false
+        } else  {
+            testownik[testownik.currentTest].youAnswer2.insert(youSelectedNumber)
+            isChecked = true
+        }
+        //#colorLiteral(red: 0.9995340705, green: 0.988355577, blue: 0.4726552367, alpha: 1)
+        //#colorLiteral(red: 0.4513868093, green: 0.9930960536, blue: 1, alpha: 1)
         
-        for elem in testownik[testownik.currentTest].youAnswers {
-            if elem == testownik.currentTest {   found = true     }
-        }
-        if !found {
-            testownik[testownik.currentTest].youAnswers.append(youSelectedNumber)
-        }
         if let button = stackView.arrangedSubviews[youSelectedNumber] as? UIButton {
             button.layer.borderWidth = 3
-            button.layer.borderColor = okAnswer ? UIColor.green.cgColor : UIColor.red.cgColor
+            //button.layer.borderColor = okAnswer ? UIColor.green.cgColor : UIColor.red.cgColor
+            button.layer.backgroundColor = isChecked ?  bgColorSelelect.cgColor : bgColorUnSelelect.cgColor
         }
+        //--------------------
+//        var found = false
+//
+//        let okAnswer = isAnswerOk(selectedOptionForTest: youSelectedNumber)
+//
+//        for elem in testownik[testownik.currentTest].youAnswers {
+//            if elem == testownik.currentTest {   found = true     }
+//        }
+//        if !found {
+//            testownik[testownik.currentTest].youAnswers.append(youSelectedNumber)
+//        }
+//        if let button = stackView.arrangedSubviews[youSelectedNumber] as? UIButton {
+//            button.layer.borderWidth = 3
+//            button.layer.borderColor = okAnswer ? UIColor.green.cgColor : UIColor.red.cgColor
+//        }
         print("aswers:\(testownik[testownik.currentTest].youAnswers)")
+        print("aswers2:\(testownik[testownik.currentTest].youAnswer2.sorted())")
     }
     func isAnswerOk(selectedOptionForTest selectedOption: Int) -> Bool {
          var value = false
@@ -233,6 +259,7 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
     }
     func refreshView() {
         var i = 0
+        testownik[testownik.currentTest].youAnswer2 = []
         let totalQuest = testownik[testownik.currentTest].answerOptions.count
         testownik[testownik.currentTest].youAnswers = []
         for curButt in stackView.arrangedSubviews     {
@@ -241,6 +268,8 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
                 butt.setTitle((i < totalQuest) ? testownik[testownik.currentTest].answerOptions[i].answerOption : "", for: .normal)
                 butt.layer.borderWidth = 1
                 butt.layer.borderColor = UIColor.brown.cgColor
+                let isSelect = testownik[testownik.currentTest].youAnswer2.contains(i)
+                butt.layer.backgroundColor = isSelect ? selectedColor.cgColor: unSelectedColor.cgColor
                 i += 1
             }
         }
