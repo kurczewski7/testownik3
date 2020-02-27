@@ -61,43 +61,7 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
     let initalStackSpacing: CGFloat = 30.0
     var tabHigh: [NSLayoutConstraint] = [NSLayoutConstraint]()
 
-    var testList: [Test] = [Test]()
-//    var currentTest: Int = 0 {
-//        didSet {
-//            if currentTest == 0 {
-//                hideButton(forButtonNumber: 0)
-//                hideButton(forButtonNumber: 1)
-//            }
-//            else if currentTest == testList.count-1 {
-//                hideButton(forButtonNumber: 3)
-//            }
-//            else {
-//                hideButton(forButtonNumber: 0, isHide: false)
-//                hideButton(forButtonNumber: 1, isHide: false)
-//                hideButton(forButtonNumber: 3, isHide: false)
-//            }
-//            //if (currentTest >= 0) && (currentTest < testList.count) {
-//              refreshView()
-//            //}
-//
-//        }
-//    }
-//    var visableLevel: Int = 2 {
-//        didSet {
-//            if visableLevel == 2 {
-//                buttonLayerToZ(isHide: false)
-//                self.tabBarController?.tabBar.isHidden = false
-//            } else if  visableLevel == 1 {
-//                buttonLayerToZ(isHide: true)
-//                self.tabBarController?.tabBar.isHidden = false
-//            }
-//            else {
-//                buttonLayerToZ(isHide: true)
-//                self.tabBarController?.tabBar.isHidden = true
-//            }
-//            print("visableLevel:\(visableLevel)")
-//        }
-//    }
+    //var testList: [Test] = [Test]()
     func buttonLayerToZ(isHide: Bool) {
         for elem in actionsButtonStackView.arrangedSubviews {
             elem.layer.zPosition = isHide ? -1 : 0
@@ -132,7 +96,7 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
                 testownik.currentTest -=  testownik.currentTest > 0 ? 1 : 0
                 print("Swipe to right")
             case .left:
-                testownik.currentTest += testownik.currentTest < testList.count-1 ? 1 : 0         //currentTest < testList.count-1 ? currentTest+1 : currentTest
+                testownik.currentTest += testownik.currentTest < testownik.count-1 ? 1 : 0         //currentTest < testList.count-1 ? currentTest+1 : currentTest
                 print("Swipe  & left ")
             case .up:
                 print("Swipe up")
@@ -250,7 +214,7 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
             if elem == testownik.currentTest {   found = true     }
         }
         if !found {
-            testList[testownik.currentTest].youAnswers.append(youSelectedNumber)
+            testownik[testownik.currentTest].youAnswers.append(youSelectedNumber)
         }
         if let button = stackView.arrangedSubviews[youSelectedNumber] as? UIButton {
             button.layer.borderWidth = 3
