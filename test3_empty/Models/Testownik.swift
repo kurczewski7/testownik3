@@ -96,7 +96,7 @@ class Testownik: DataOperations {
             return found
         }
         func getText(fileName: String, encodingSystem encoding: String.Encoding = .utf8) -> [String] {  //windowsCP1250
-            var texts: [String] = ["brak"]
+            var texts: [String] = ["brak danych"]
             if let path = Bundle.main.path(forResource: fileName, ofType: "txt") {
                 do {
                     let data = try String(contentsOfFile: path ,encoding: encoding)
