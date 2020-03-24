@@ -1,0 +1,6 @@
+framework module Pods_testownik {
+  umbrella header "Pods-testownik-umbrella.h"
+
+  export *
+  module * { export * }
+}

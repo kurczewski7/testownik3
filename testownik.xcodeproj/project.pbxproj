@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -144,8 +144,9 @@
 		2CE1478323F6901900C834F4 /* testownik.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2CE1478123F6901900C834F4 /* testownik.xcdatamodeld */; };
 		2CE1478523F6901C00C834F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CE1478423F6901C00C834F4 /* Assets.xcassets */; };
 		2CE1478823F6901C00C834F4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CE1478623F6901C00C834F4 /* LaunchScreen.storyboard */; };
-		2CE1479323F6901C00C834F4 /* test3_emptyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE1479223F6901C00C834F4 /* test3_emptyTests.swift */; };
-		2CE1479E23F6901C00C834F4 /* test3_emptyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE1479D23F6901C00C834F4 /* test3_emptyUITests.swift */; };
+		2CE1479323F6901C00C834F4 /* testownikTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE1479223F6901C00C834F4 /* testownikTests.swift */; };
+		2CE1479E23F6901C00C834F4 /* testownikUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE1479D23F6901C00C834F4 /* testownikUITests.swift */; };
+		2CE2F38C242A4CE800D1B731 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CE2F38B242A4CE800D1B731 /* Default-568h@2x.png */; };
 		8FDFB571752A124E526A2156 /* Pods_testownikTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79A1BC69F8F7A649280F9893 /* Pods_testownikTests.framework */; };
 		DAF4FDB17B76593DB8940522 /* Pods_testownik_testownikUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9955B276027483A867FC29B2 /* Pods_testownik_testownikUITests.framework */; };
 /* End PBXBuildFile section */
@@ -307,11 +308,12 @@
 		2CE1478723F6901C00C834F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2CE1478923F6901C00C834F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2CE1478E23F6901C00C834F4 /* testownikTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = testownikTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2CE1479223F6901C00C834F4 /* test3_emptyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test3_emptyTests.swift; sourceTree = "<group>"; };
+		2CE1479223F6901C00C834F4 /* testownikTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testownikTests.swift; sourceTree = "<group>"; };
 		2CE1479423F6901C00C834F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2CE1479923F6901C00C834F4 /* testownikUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = testownikUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2CE1479D23F6901C00C834F4 /* test3_emptyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test3_emptyUITests.swift; sourceTree = "<group>"; };
+		2CE1479D23F6901C00C834F4 /* testownikUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testownikUITests.swift; sourceTree = "<group>"; };
 		2CE1479F23F6901C00C834F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2CE2F38B242A4CE800D1B731 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		5793B275A7533EE8EB96AD6F /* Pods-testownik-testownikUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-testownik-testownikUITests.release.xcconfig"; path = "Target Support Files/Pods-testownik-testownikUITests/Pods-testownik-testownikUITests.release.xcconfig"; sourceTree = "<group>"; };
 		58223D6906B99452B1445D68 /* Pods-testownikTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-testownikTests.release.xcconfig"; path = "Target Support Files/Pods-testownikTests/Pods-testownikTests.release.xcconfig"; sourceTree = "<group>"; };
 		5B958BDE30598B7BC950CFD0 /* Pods-testownikTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-testownikTests.debug.xcconfig"; path = "Target Support Files/Pods-testownikTests/Pods-testownikTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -361,7 +363,6 @@
 				5B958BDE30598B7BC950CFD0 /* Pods-testownikTests.debug.xcconfig */,
 				58223D6906B99452B1445D68 /* Pods-testownikTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -537,9 +538,10 @@
 		2CE1476C23F6901800C834F4 = {
 			isa = PBXGroup;
 			children = (
-				2CE1477723F6901800C834F4 /* test3_empty */,
-				2CE1479123F6901C00C834F4 /* test3_emptyTests */,
-				2CE1479C23F6901C00C834F4 /* test3_emptyUITests */,
+				2CE2F38B242A4CE800D1B731 /* Default-568h@2x.png */,
+				2CE1477723F6901800C834F4 /* testownik */,
+				2CE1479123F6901C00C834F4 /* testownikTests */,
+				2CE1479C23F6901C00C834F4 /* testownikUITests */,
 				2CE1477623F6901800C834F4 /* Products */,
 				24CB44A426911E1C6D89270B /* Pods */,
 				C4C348240D892A987534B509 /* Frameworks */,
@@ -556,7 +558,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2CE1477723F6901800C834F4 /* test3_empty */ = {
+		2CE1477723F6901800C834F4 /* testownik */ = {
 			isa = PBXGroup;
 			children = (
 				2CE1478923F6901C00C834F4 /* Info.plist */,
@@ -568,25 +570,25 @@
 				2C7ACA4323F9EF6C00AE4E42 /* 060.txt */,
 				2C7ACA4223F9EF6C00AE4E42 /* baza */,
 			);
-			path = test3_empty;
+			path = testownik;
 			sourceTree = "<group>";
 		};
-		2CE1479123F6901C00C834F4 /* test3_emptyTests */ = {
+		2CE1479123F6901C00C834F4 /* testownikTests */ = {
 			isa = PBXGroup;
 			children = (
-				2CE1479223F6901C00C834F4 /* test3_emptyTests.swift */,
+				2CE1479223F6901C00C834F4 /* testownikTests.swift */,
 				2CE1479423F6901C00C834F4 /* Info.plist */,
 			);
-			path = test3_emptyTests;
+			path = testownikTests;
 			sourceTree = "<group>";
 		};
-		2CE1479C23F6901C00C834F4 /* test3_emptyUITests */ = {
+		2CE1479C23F6901C00C834F4 /* testownikUITests */ = {
 			isa = PBXGroup;
 			children = (
-				2CE1479D23F6901C00C834F4 /* test3_emptyUITests.swift */,
+				2CE1479D23F6901C00C834F4 /* testownikUITests.swift */,
 				2CE1479F23F6901C00C834F4 /* Info.plist */,
 			);
-			path = test3_emptyUITests;
+			path = testownikUITests;
 			sourceTree = "<group>";
 		};
 		C4C348240D892A987534B509 /* Frameworks */ = {
@@ -755,6 +757,7 @@
 				2C7ACB1E23F9EF6D00AE4E42 /* 084.txt in Resources */,
 				2C7ACAFB23F9EF6D00AE4E42 /* 009.txt in Resources */,
 				2C7ACB1423F9EF6D00AE4E42 /* 083.txt in Resources */,
+				2CE2F38C242A4CE800D1B731 /* Default-568h@2x.png in Resources */,
 				2C7ACB0E23F9EF6D00AE4E42 /* 109.txt in Resources */,
 				2C7ACAF223F9EF6D00AE4E42 /* 012.txt in Resources */,
 				2C7ACB0323F9EF6D00AE4E42 /* 031.txt in Resources */,
@@ -978,7 +981,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2CE1479323F6901C00C834F4 /* test3_emptyTests.swift in Sources */,
+				2CE1479323F6901C00C834F4 /* testownikTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -986,7 +989,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2CE1479E23F6901C00C834F4 /* test3_emptyUITests.swift in Sources */,
+				2CE1479E23F6901C00C834F4 /* testownikUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1146,7 +1149,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 667E7NU7M9;
-				INFOPLIST_FILE = test3_empty/Info.plist;
+				INFOPLIST_FILE = testownik/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1165,7 +1168,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 667E7NU7M9;
-				INFOPLIST_FILE = test3_empty/Info.plist;
+				INFOPLIST_FILE = testownik/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1185,7 +1188,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 667E7NU7M9;
-				INFOPLIST_FILE = test3_emptyTests/Info.plist;
+				INFOPLIST_FILE = testownikTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1208,7 +1211,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 667E7NU7M9;
-				INFOPLIST_FILE = test3_emptyTests/Info.plist;
+				INFOPLIST_FILE = testownikTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1230,7 +1233,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 667E7NU7M9;
-				INFOPLIST_FILE = test3_emptyUITests/Info.plist;
+				INFOPLIST_FILE = testownikUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1240,7 +1243,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = test3_empty;
+				TEST_TARGET_NAME = testownik;
 			};
 			name = Debug;
 		};
@@ -1251,7 +1254,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 667E7NU7M9;
-				INFOPLIST_FILE = test3_emptyUITests/Info.plist;
+				INFOPLIST_FILE = testownikUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1261,7 +1264,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = test3_empty;
+				TEST_TARGET_NAME = testownik;
 			};
 			name = Release;
 		};
