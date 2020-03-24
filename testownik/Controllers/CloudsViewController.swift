@@ -1,92 +1,127 @@
 //
-//  CloudsViewController.swift
-//  testownik
+//  CloudViewController.swift
+//  SwiftyDocPicker
 //
-//  Created by Slawek Kurczewski on 27/02/2020.
-//  Copyright © 2020 Slawomir Kurczewski. All rights reserved.
+//  Created by Abraham Mangona on 9/14/19.
+//  Copyright © 2019 Abraham Mangona. All rights reserved.
 //
 
 import UIKit
+import SSZipArchive
 
-class CloudsViewController: UIViewController, DocumentDelegate {
-    
-    //CloudPickerDeleate
-
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//
-//        // Do any additional setup after loading the view.
-//    }
-    var documents = [CloudPicker.Document]()
+class CloudViewController: UIViewController, CloudPickerDelegate, SSZipArchiveDelegate {
     var cloudPicker: CloudPicker!
-    private let refreshControl = UIRefreshControl()
-    @IBOutlet weak var tableView: UITableView!
+    var documents : [CloudPicker.Document] = []
+    var indexpath = IndexPath(row: 0, section: 0)
     
-    @IBAction func addFiles(_ sender: UIBarButtonItem) {
-        //documents = []
-        cloudPicker.present(from: view)
-        tableView.reloadData()
-    }
-    @IBAction func refreshAction(_ sender: UIBarButtonItem) {
-          tableView.reloadData()
-    }
-    @objc private func refreshData(_ sender: Any) {
-        print("Refresh Data")
-        DispatchQueue.main.async {  self.tableView.reloadData()   }
-        self.refreshControl.endRefreshing()
-    }
-    func didPickDocuments(documents: [CloudPicker.Document]?) {
-        documents?.forEach {
-            self.documents.append($0)
-            self.tableView.reloadData()
-        }
-    }
+    
+    @IBOutlet weak var collectionView: UICollectionView!
+    
+    
     override func viewDidLoad() {
+        //collectionView.register(<#T##cellClass: AnyClass?##AnyClass?#>, forCellWithReuseIdentifier: <#T##String#>)
+        collectionView.register(DocumentCell.self, forCellWithReuseIdentifier: "documentCell")
+        //        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        //            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
+        //            return cell
+        //        }
         super.viewDidLoad()
-        tableView.delegate = self
+        self.documents =  []
         cloudPicker = CloudPicker(presentationController: self)
         cloudPicker.delegate = self
-        // Add Refresh Control to Table View
-        if #available(iOS 10.0, *) {
-            tableView.refreshControl = refreshControl
-        } else {
-            tableView.addSubview(refreshControl)
+        Setup.popUp(context: self, msg: "Your message")
+    }
+    func didPickDocuments(documents: [CloudPicker.Document]?) {
+        self.documents = []
+        documents?.forEach {
+            self.documents.append($0)
         }
-        // Configure Refresh Control
-        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
-        refreshControl.tintColor =  UIColor.orange        //UIColor(red:0.25, green:0.72, blue:0.85, alpha:1.0)
-        refreshControl .attributedTitle = NSAttributedString(string: "Proszę czekać...odświeżanie", attributes: .none)
+        self.documents.sort {
+            $0.fileURL.lastPathComponent < $1.fileURL.lastPathComponent
+        }
+        collectionView.reloadData()
     }
-    func documentsPicked(documents: [CloudPicker.Document]?) {
-        print("documentsPicked:\(String(describing: documents))")
-        documents?.forEach({ (elem) in
-            self.documents.append(elem)
-        })
-        print("XXX:\(String(describing: documents))")
+    @IBAction func pickPressed(_ sender: UIBarButtonItem) {
+        cloudPicker.present(from: view)
     }
+    
+    @IBAction func trashPressed(_ sender: UIBarButtonItem) {
+        cloudPicker.cleadData()
+        documents.removeAll()
+        collectionView.reloadData()
     }
-    extension CloudsViewController: UITableViewDelegate,UITableViewDataSource {
+    
+    @IBAction func savePressed(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true)
+    }
+    func unzip(document: CloudPicker.Document, tmpFolder: String = "Testownik_tmp") -> String {
+        let sourcePath = document.fileURL.relativePath
+        let pathTmp = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let destPath = pathTmp.appendingPathComponent(tmpFolder, isDirectory: true).relativePath
         
-        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return documents.count
-        }
-        
-        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-            cell.textLabel?.text = "\(indexPath.row):  \(documents[indexPath.row].fileURL.lastPathComponent)"
-            cell.detailTextLabel?.text = "\(documents[indexPath.row].fileURL)"
-            return cell
-        }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+        print("srcPath \(sourcePath)")
+        print("\ndestPath \(destPath)")
+        let success = SSZipArchive.unzipFile(atPath: sourcePath, toDestination: destPath, delegate: self)
+        print("ZipArchive - Success: \(success)")
+        return success ? destPath : ""
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        print("segue: \(String(describing: segue.identifier))")
+        let document = documents[self.indexpath.row]
+        if segue.identifier == "showDetail" {
+            if let nextViewController = segue.destination as? DetailViewController {
+                //let document = documents[self.indexpath.row]
+                nextViewController.descriptionLabelValue = document.fileURL.lastPathComponent
+                nextViewController.textViewValue = "\(document.myTexts)\n"  + "\n:" + document.fileURL.absoluteString
+                nextViewController.indexpathValue = self.indexpath
+                            
+                Setup.displayToast(forView: self.view, message: "Druga wiadomość", seconds: 3)
+                Setup.popUp(context: self, msg: "Trzecia wiadomość")
+                
+                print("nextViewController:\(nextViewController)")
+                print("fileURL: \(document.fileURL)")
+                print("self.indexpath 2:\(self.indexpath)")
+            }
+      }
+      if segue.identifier == "showArchive" {
+        if let nextViewController = segue.destination as? ZipViewController {
+            nextViewController.zipFileNameValue = document.fileURL.lastPathComponent
+            
+            //Setup.unzipFile(atPath: document.fileURL.absoluteString, delegate: self)
+            let urlStr = unzip(document: document)
+            nextViewController.urlValue = urlStr
+        }
+         print("showArchive")
+      }
+        
     }
-    */
+}
+
+extension CloudViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return documents.count
+    }
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "documentCell", for: indexPath) as! DocumentCell
+        cell.configure(document: documents[indexPath.row])
+        //cell.titleLabel.text = "AAA"
+        return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.indexpath = indexPath
+        print("self.indexpath 1:\(self.indexpath)")
+        guard let cell = collectionView.cellForItem(at: indexPath) else { return }
+        let noZip = cloudPicker.sourceType != .filesZip
+        if noZip {
+          performSegue(withIdentifier: "showDetail", sender: cell)
+        }
+        else {
+            //Setup.popUp(context: self, msg: "Zbior ZIP")
+            performSegue(withIdentifier: "showArchive", sender: cell)
+        }
+    }
 
 }
+
+

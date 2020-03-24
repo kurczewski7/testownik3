@@ -19,8 +19,8 @@ class  XXDocument: UIDocument {
         self.data = data
     }
 }
-extension URL {
-    var isDirectory: Bool! {
-        return (try? resourceValues(forKeys: [.isDirectoryKey]).isDirectory)
-    }
-}
+//extension URL {
+//    var isDirectory: Bool! {
+//        return (try? resourceValues(forKeys: [.isDirectoryKey]).isDirectory)
+//    }
+//}

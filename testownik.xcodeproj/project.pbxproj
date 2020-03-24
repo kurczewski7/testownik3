@@ -147,6 +147,14 @@
 		2CE1479323F6901C00C834F4 /* testownikTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE1479223F6901C00C834F4 /* testownikTests.swift */; };
 		2CE1479E23F6901C00C834F4 /* testownikUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE1479D23F6901C00C834F4 /* testownikUITests.swift */; };
 		2CE2F38C242A4CE800D1B731 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CE2F38B242A4CE800D1B731 /* Default-568h@2x.png */; };
+		2CE2F38E242A56CF00D1B731 /* ZipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE2F38D242A56CF00D1B731 /* ZipViewController.swift */; };
+		2CE2F390242A574100D1B731 /* CollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE2F38F242A574100D1B731 /* CollectionReusableView.swift */; };
+		2CE2F392242A59CE00D1B731 /* ZipCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE2F391242A59CE00D1B731 /* ZipCollectionViewCell.swift */; };
+		2CE2F394242A5A1A00D1B731 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE2F393242A5A1A00D1B731 /* DetailViewController.swift */; };
+		2CE2F396242A5AA000D1B731 /* DocumentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE2F395242A5AA000D1B731 /* DocumentCell.swift */; };
+		2CE2F398242A5B1B00D1B731 /* Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE2F397242A5B1B00D1B731 /* Setup.swift */; };
+		2CE2F39A242A5B9200D1B731 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE2F399242A5B9200D1B731 /* Colors.swift */; };
+		2CE2F39C242A5BEF00D1B731 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE2F39B242A5BEF00D1B731 /* Extensions.swift */; };
 		8FDFB571752A124E526A2156 /* Pods_testownikTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79A1BC69F8F7A649280F9893 /* Pods_testownikTests.framework */; };
 		DAF4FDB17B76593DB8940522 /* Pods_testownik_testownikUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9955B276027483A867FC29B2 /* Pods_testownik_testownikUITests.framework */; };
 /* End PBXBuildFile section */
@@ -314,6 +322,14 @@
 		2CE1479D23F6901C00C834F4 /* testownikUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testownikUITests.swift; sourceTree = "<group>"; };
 		2CE1479F23F6901C00C834F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2CE2F38B242A4CE800D1B731 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		2CE2F38D242A56CF00D1B731 /* ZipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ZipViewController.swift; path = testownik/Controllers/ZipViewController.swift; sourceTree = SOURCE_ROOT; };
+		2CE2F38F242A574100D1B731 /* CollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CollectionReusableView.swift; path = testownik/Controllers/CollectionReusableView.swift; sourceTree = SOURCE_ROOT; };
+		2CE2F391242A59CE00D1B731 /* ZipCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ZipCollectionViewCell.swift; path = testownik/Models/ZipCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
+		2CE2F393242A5A1A00D1B731 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		2CE2F395242A5AA000D1B731 /* DocumentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentCell.swift; sourceTree = "<group>"; };
+		2CE2F397242A5B1B00D1B731 /* Setup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Setup.swift; path = testownik/Controllers/Setup.swift; sourceTree = SOURCE_ROOT; };
+		2CE2F399242A5B9200D1B731 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		2CE2F39B242A5BEF00D1B731 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		5793B275A7533EE8EB96AD6F /* Pods-testownik-testownikUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-testownik-testownikUITests.release.xcconfig"; path = "Target Support Files/Pods-testownik-testownikUITests/Pods-testownik-testownikUITests.release.xcconfig"; sourceTree = "<group>"; };
 		58223D6906B99452B1445D68 /* Pods-testownikTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-testownikTests.release.xcconfig"; path = "Target Support Files/Pods-testownikTests/Pods-testownikTests.release.xcconfig"; sourceTree = "<group>"; };
 		5B958BDE30598B7BC950CFD0 /* Pods-testownikTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-testownikTests.debug.xcconfig"; path = "Target Support Files/Pods-testownikTests/Pods-testownikTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -504,10 +520,15 @@
 		2CDB1DF22407BE0400361884 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				2CE1477823F6901800C834F4 /* AppDelegate.swift */,
 				2C652AFC2408805100284ADF /* CloudsViewController.swift */,
+				2CE2F393242A5A1A00D1B731 /* DetailViewController.swift */,
+				2CE1477823F6901800C834F4 /* AppDelegate.swift */,
 				2CE1477C23F6901900C834F4 /* TestownikViewController.swift */,
 				2CE1477A23F6901900C834F4 /* SceneDelegate.swift */,
+				2CE2F38F242A574100D1B731 /* CollectionReusableView.swift */,
+				2CE2F38D242A56CF00D1B731 /* ZipViewController.swift */,
+				2CE2F391242A59CE00D1B731 /* ZipCollectionViewCell.swift */,
+				2CE2F395242A5AA000D1B731 /* DocumentCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -515,6 +536,9 @@
 		2CDB1DF32407BE1700361884 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2CE2F397242A5B1B00D1B731 /* Setup.swift */,
+				2CE2F399242A5B9200D1B731 /* Colors.swift */,
+				2CE2F39B242A5BEF00D1B731 /* Extensions.swift */,
 				2CE1478123F6901900C834F4 /* testownik.xcdatamodeld */,
 				2C6538DA2406FA8D004B1FC8 /* Gestures.swift */,
 				2C6538DC2407282A004B1FC8 /* Testownik.swift */,
@@ -964,15 +988,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CE1477D23F6901900C834F4 /* TestownikViewController.swift in Sources */,
+				2CE2F39A242A5B9200D1B731 /* Colors.swift in Sources */,
 				2C652AFB24087DCC00284ADF /* CloudPicker.swift in Sources */,
 				2CE1478323F6901900C834F4 /* testownik.xcdatamodeld in Sources */,
+				2CE2F398242A5B1B00D1B731 /* Setup.swift in Sources */,
+				2CE2F390242A574100D1B731 /* CollectionReusableView.swift in Sources */,
 				2C6538DD2407282A004B1FC8 /* Testownik.swift in Sources */,
+				2CE2F39C242A5BEF00D1B731 /* Extensions.swift in Sources */,
+				2CE2F38E242A56CF00D1B731 /* ZipViewController.swift in Sources */,
 				2C1409BC240EDA6D001611F0 /* XXDocument.swift in Sources */,
 				2C652AFD2408805100284ADF /* CloudsViewController.swift in Sources */,
 				2C6538DB2406FA8D004B1FC8 /* Gestures.swift in Sources */,
 				2CE1477923F6901800C834F4 /* AppDelegate.swift in Sources */,
 				2CDB1DF82407C98500361884 /* Test.swift in Sources */,
 				2CE1477B23F6901900C834F4 /* SceneDelegate.swift in Sources */,
+				2CE2F396242A5AA000D1B731 /* DocumentCell.swift in Sources */,
+				2CE2F394242A5A1A00D1B731 /* DetailViewController.swift in Sources */,
+				2CE2F392242A59CE00D1B731 /* ZipCollectionViewCell.swift in Sources */,
 				2CDB1DF62407C08800361884 /* DataOperations.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
