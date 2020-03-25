@@ -11,12 +11,14 @@ import UIKit
 class DocumentCell: UICollectionViewCell {
    
     @IBOutlet weak var titleLabel: UILabel!
+    
     override func awakeFromNib() {
         self.layer.cornerRadius = 8
         self.clipsToBounds = true
     }
     func configure(document: CloudPicker.Document) {
-        //self.titleLabel.text = document.fileURL.lastPathComponent
+        self.titleLabel.text = document.fileURL.lastPathComponent
         self.setGradientBackgroundColor(colorOne: Colors().randomColors.first!, colorTwo: Colors().randomColors.last!)
     }
+    // titleLabel
 }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Gpk-Z3-T9O">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Gpk-Z3-T9O">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -239,7 +239,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2697.1014492753625" y="-115.17857142857142"/>
+            <point key="canvasLocation" x="2577" y="-115"/>
         </scene>
         <!--Item-->
         <scene sceneID="1MI-Yc-YSP">
@@ -259,60 +259,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JcE-0z-S5x" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1784.057971014493" y="-115.17857142857142"/>
-        </scene>
-        <!--Clouds-->
-        <scene sceneID="dI0-XZ-zbt">
-            <objects>
-                <viewController id="HJV-IS-EqZ" customClass="CloudsViewController" customModule="Testownik" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="jJi-bC-BRy">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="c6A-31-KZa">
-                                <rect key="frame" x="20" y="88" width="374" height="709"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="uyZ-DM-zL9">
-                                    <size key="itemSize" width="50" height="50"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="XmP-3V-fVb">
-                                        <rect key="frame" x="0.0" y="0.0" width="140" height="133"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="lOm-bB-zLe">
-                                            <rect key="frame" x="0.0" y="0.0" width="140" height="133"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </collectionViewCellContentView>
-                                        <size key="customSize" width="140" height="133"/>
-                                    </collectionViewCell>
-                                </cells>
-                                <connections>
-                                    <outlet property="dataSource" destination="HJV-IS-EqZ" id="6d1-Yo-jkZ"/>
-                                    <outlet property="delegate" destination="HJV-IS-EqZ" id="Xil-er-8kY"/>
-                                </connections>
-                            </collectionView>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="KnO-oB-J2F"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Clouds" id="Pwh-WY-qtE">
-                        <leftBarButtonItems>
-                            <barButtonItem systemItem="add" id="ogG-WG-WMd"/>
-                            <barButtonItem systemItem="refresh" id="mYh-eq-OWK"/>
-                        </leftBarButtonItems>
-                        <barButtonItem key="rightBarButtonItem" systemItem="organize" id="wCy-Av-SOE">
-                            <connections>
-                                <segue destination="y7M-Bf-Ul5" kind="show" identifier="aaa" id="1dt-NU-ysw"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="LHz-WC-1Nf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3984" y="-30"/>
         </scene>
         <!--Zip View Controller-->
         <scene sceneID="U2F-5w-KSS">
@@ -378,7 +324,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bA8-CX-f2J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2692.753623188406" y="1366.7410714285713"/>
+            <point key="canvasLocation" x="2577" y="1313"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="CLB-ew-7tg">
@@ -432,7 +378,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QLr-Ly-OU0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3608.6956521739135" y="979.6875"/>
+            <point key="canvasLocation" x="3345" y="776"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Jau-2H-Thw">
@@ -471,40 +417,29 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="documentCell" id="tsd-lY-LsN" customClass="DocumentCell" customModule="Testownik" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="documentCell" id="ulP-OK-1lg" customClass="DocumentCell" customModule="Testownik" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="150" height="100"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="MeZ-jv-eDk">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="4b0-vp-SZ3">
                                             <rect key="frame" x="0.0" y="0.0" width="150" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Pn-0T-nn3">
-                                                    <rect key="frame" x="8" y="40" width="134" height="20"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hRR-iU-tpy">
+                                                    <rect key="frame" x="5" y="39.5" width="140" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius ">
-                                                            <integer key="value" value="8"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
-                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="4Pn-0T-nn3" firstAttribute="trailing" secondItem="MeZ-jv-eDk" secondAttribute="trailingMargin" id="gyw-cH-ryY"/>
-                                                <constraint firstItem="4Pn-0T-nn3" firstAttribute="leading" secondItem="MeZ-jv-eDk" secondAttribute="leadingMargin" id="k6f-a4-njz"/>
-                                                <constraint firstItem="4Pn-0T-nn3" firstAttribute="top" secondItem="MeZ-jv-eDk" secondAttribute="top" constant="40" id="oy3-59-jQ3"/>
-                                                <constraint firstItem="4Pn-0T-nn3" firstAttribute="centerY" secondItem="MeZ-jv-eDk" secondAttribute="centerY" id="skD-Bx-ZiX"/>
+                                                <constraint firstItem="hRR-iU-tpy" firstAttribute="centerX" secondItem="4b0-vp-SZ3" secondAttribute="centerX" id="Jim-yM-CU8"/>
+                                                <constraint firstItem="hRR-iU-tpy" firstAttribute="leading" secondItem="4b0-vp-SZ3" secondAttribute="leading" constant="5" id="f35-cM-MUc"/>
+                                                <constraint firstItem="hRR-iU-tpy" firstAttribute="centerY" secondItem="4b0-vp-SZ3" secondAttribute="centerY" id="iFa-85-ogt"/>
+                                                <constraint firstAttribute="trailing" secondItem="hRR-iU-tpy" secondAttribute="trailing" constant="5" id="m2I-qf-SJ9"/>
                                             </constraints>
                                         </collectionViewCellContentView>
-                                        <color key="backgroundColor" red="0.86222709500000005" green="1" blue="0.92222450170000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <size key="customSize" width="150" height="100"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="keyPath" value="YES"/>
-                                        </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <outlet property="titleLabel" destination="4Pn-0T-nn3" id="yV0-sq-Mth"/>
+                                            <outlet property="titleLabel" destination="hRR-iU-tpy" id="TcL-qA-csl"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -545,6 +480,7 @@
                     <connections>
                         <outlet property="collectionView" destination="04x-B4-Ufd" id="t4x-g3-PDQ"/>
                         <segue destination="y7M-Bf-Ul5" kind="show" identifier="showDetail" id="NFu-6L-H6g"/>
+                        <segue destination="5Tl-P1-oHt" kind="show" identifier="showArchive" id="pS4-fh-ksw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GcB-lo-OaE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -571,17 +507,17 @@
             <point key="canvasLocation" x="801" y="222"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="arrowtriangle.left" catalog="system" width="64" height="56"/>
-        <image name="arrowtriangle.right" catalog="system" width="64" height="56"/>
-        <image name="backward.end" catalog="system" width="64" height="60"/>
-        <image name="eye" catalog="system" width="64" height="40"/>
-        <image name="minus.magnifyingglass" catalog="system" width="64" height="56"/>
-        <image name="plus.magnifyingglass" catalog="system" width="64" height="56"/>
-        <image name="rectangle.compress.vertical" catalog="system" width="64" height="64"/>
-        <image name="rectangle.expand.vertical" catalog="system" width="64" height="60"/>
-    </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="NFu-6L-H6g"/>
+        <segue reference="4Vr-pz-ThB"/>
     </inferredMetricsTieBreakers>
+    <resources>
+        <image name="arrowtriangle.left" catalog="system" width="128" height="113"/>
+        <image name="arrowtriangle.right" catalog="system" width="128" height="113"/>
+        <image name="backward.end" catalog="system" width="128" height="120"/>
+        <image name="eye" catalog="system" width="128" height="81"/>
+        <image name="minus.magnifyingglass" catalog="system" width="128" height="115"/>
+        <image name="plus.magnifyingglass" catalog="system" width="128" height="115"/>
+        <image name="rectangle.compress.vertical" catalog="system" width="128" height="128"/>
+        <image name="rectangle.expand.vertical" catalog="system" width="128" height="122"/>
+    </resources>
 </document>

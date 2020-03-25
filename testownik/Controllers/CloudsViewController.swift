@@ -20,7 +20,7 @@ class CloudViewController: UIViewController, CloudPickerDelegate, SSZipArchiveDe
     
     override func viewDidLoad() {
         //collectionView.register(<#T##cellClass: AnyClass?##AnyClass?#>, forCellWithReuseIdentifier: <#T##String#>)
-        collectionView.register(DocumentCell.self, forCellWithReuseIdentifier: "documentCell")
+        //collectionView.register(DocumentCell.self, forCellWithReuseIdentifier: "documentCell")
         //        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         //            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
         //            return cell
@@ -103,10 +103,9 @@ extension CloudViewController: UICollectionViewDelegate, UICollectionViewDataSou
         return documents.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "documentCell", for: indexPath) as! DocumentCell
-        cell.configure(document: documents[indexPath.row])
-        //cell.titleLabel.text = "AAA"
-        return cell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "documentCell", for: indexPath) as? DocumentCell
+        cell?.configure(document: documents[indexPath.row])
+        return cell!
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.indexpath = indexPath
