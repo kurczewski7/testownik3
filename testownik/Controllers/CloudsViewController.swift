@@ -120,6 +120,49 @@ extension CloudViewController: UICollectionViewDelegate, UICollectionViewDataSou
             performSegue(withIdentifier: "showArchive", sender: cell)
         }
     }
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        // 1
+           switch kind {
+           // 2
+           case UICollectionView.elementKindSectionHeader:
+             // 3  \(ZipSectionHeaderView.self)  sectionHeader
+             guard
+               let headerView = collectionView.dequeueReusableSupplementaryView(
+                 ofKind: kind,
+                 withReuseIdentifier: "detailSectionHeader",
+                 for: indexPath) as? DetailSectionHeaderView
+               else {
+                 fatalError("Invalid view type")
+             }
+
+             //let searchTerm = searches[indexPath.section].searchTerm
+             headerView.label.text = "Zbiory"    //searchTerm
+             return headerView
+           default:
+             // 4
+             assert(false, "Invalid element type")
+           }
+
+        
+        //--------
+//        if kind == UICollectionView.elementKindSectionHeader {
+//            guard let headerView = collectionView.dequeueReusableSupplementaryView(
+//                ofKind: kind,
+//                withReuseIdentifier: "detailSectionHeader",
+//                for: indexPath) as? DetailSectionHeaderView
+//              else {
+//                fatalError("Invalid view type")
+//            }
+//
+//            //let searchTerm = searches[indexPath.section].searchTerm
+//            headerView.label.text = "Folder AAAAAA"    //searchTerm
+//            return headerView
+//        }
+//        else {
+//            return UICollectionReusableView()
+//        }
+        
+    }
 
 }
 

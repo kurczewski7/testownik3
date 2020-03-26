@@ -412,13 +412,13 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="FPq-l5-r7t">
                                     <size key="itemSize" width="150" height="100"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="headerReferenceSize" width="50" height="50"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="documentCell" id="ulP-OK-1lg" customClass="DocumentCell" customModule="Testownik" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="150" height="100"/>
+                                        <rect key="frame" x="0.0" y="50" width="150" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="4b0-vp-SZ3">
                                             <rect key="frame" x="0.0" y="0.0" width="150" height="100"/>
@@ -443,6 +443,22 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="detailSectionHeader" id="4Rz-o5-UYQ" customClass="DetailSectionHeaderView" customModule="Testownik" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iel-W2-gUz">
+                                            <rect key="frame" x="14" y="11" width="358" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <connections>
+                                        <outlet property="label" destination="Iel-W2-gUz" id="50X-1u-FtC"/>
+                                    </connections>
+                                </collectionReusableView>
                                 <connections>
                                     <outlet property="dataSource" destination="tYc-6R-9Jl" id="eZ9-yR-PTU"/>
                                     <outlet property="delegate" destination="tYc-6R-9Jl" id="3hA-52-7Hg"/>
@@ -508,7 +524,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="4Vr-pz-ThB"/>
+        <segue reference="NFu-6L-H6g"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrowtriangle.left" catalog="system" width="128" height="113"/>
