@@ -37,6 +37,7 @@ class CloudPicker: NSObject, UINavigationControllerDelegate {
     private weak var presentationController: UIViewController?
  
     private var folderURL: URL?
+    var folderName = ""
     var sourceType: SourceType = .folder
     private var documents = [Document]()
     //private var lastSourceTypeData: SourceType = .folder
@@ -181,18 +182,20 @@ extension CloudPicker: UIDocumentPickerDelegate {
           
                     switch sourceType {
                         case .folder:
-                        for case let fileURL as URL in fileList! {
-                            if !fileURL.isDirectory {
-                                var document = Document(fileURL: fileURL)
-                                if isFileUnhided(fileURL: fileURL, folderURL: folderURL, sourceType: .folder) {
-                                    fillDocument(forUrl: fileURL, document: &document)
-                                    documents.append(document)
-                                    print("File_URL:\(fileURL.absoluteString)")
+                            folderName = folderURL.lastPathComponent
+                            for case let fileURL as URL in fileList! {
+                                if !fileURL.isDirectory {
+                                    var document = Document(fileURL: fileURL)
+                                    if isFileUnhided(fileURL: fileURL, folderURL: folderURL, sourceType: .folder) {
+                                        fillDocument(forUrl: fileURL, document: &document)
+                                        documents.append(document)
+                                        print("File_URL:\(fileURL.absoluteString)")
+                                    }
                                 }
                             }
-                        }
                     
                         case .filesTxt:
+                            folderName = "Files"
                             var document = Document(fileURL: pickedURL)
                             print("One_File_URL:\(pickedURL.absoluteString)")
                             if isFileUnhided(fileURL: pickedURL, folderURL: folderURL, sourceType: .filesTxt) {

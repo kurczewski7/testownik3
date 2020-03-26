@@ -121,6 +121,12 @@ extension CloudViewController: UICollectionViewDelegate, UICollectionViewDataSou
         }
     }
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        //let folderName = cloudPicker.sourceType == .folder ? "Folder: \(cloudPicker.folderName)" : cloudPicker.folderName
+        let folderName = (cloudPicker.sourceType == .folder ? "Folder: " : "") +  cloudPicker.folderName
+//        let sourceType = cloudPicker.sourceType
+//        if sourceType == .folder {
+//            let xx = cloudPicker.folderName
+//        }
         // 1
            switch kind {
            // 2
@@ -136,7 +142,7 @@ extension CloudViewController: UICollectionViewDelegate, UICollectionViewDataSou
              }
 
              //let searchTerm = searches[indexPath.section].searchTerm
-             headerView.label.text = "Zbiory"    //searchTerm
+             headerView.label.text =  folderName   //searchTerm
              return headerView
            default:
              // 4

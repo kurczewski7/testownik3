@@ -543,6 +543,7 @@
 			isa = PBXGroup;
 			children = (
 				2CE2F397242A5B1B00D1B731 /* Setup.swift */,
+				2C652AFA24087DCC00284ADF /* CloudPicker.swift */,
 				2CE2F399242A5B9200D1B731 /* Colors.swift */,
 				2CE2F39B242A5BEF00D1B731 /* Extensions.swift */,
 				2CE1478123F6901900C834F4 /* testownik.xcdatamodeld */,
@@ -550,7 +551,6 @@
 				2C6538DC2407282A004B1FC8 /* Testownik.swift */,
 				2CDB1DF52407C08800361884 /* DataOperations.swift */,
 				2CDB1DF72407C98500361884 /* Test.swift */,
-				2C652AFA24087DCC00284ADF /* CloudPicker.swift */,
 				2C1409BB240EDA6D001611F0 /* XXDocument.swift */,
 			);
 			path = Models;
