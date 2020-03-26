@@ -425,7 +425,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hRR-iU-tpy">
-                                                    <rect key="frame" x="5" y="39.5" width="140" height="21"/>
+                                                    <rect key="frame" x="54" y="39.5" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -433,9 +433,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="hRR-iU-tpy" firstAttribute="centerX" secondItem="4b0-vp-SZ3" secondAttribute="centerX" id="Jim-yM-CU8"/>
-                                                <constraint firstItem="hRR-iU-tpy" firstAttribute="leading" secondItem="4b0-vp-SZ3" secondAttribute="leading" constant="5" id="f35-cM-MUc"/>
                                                 <constraint firstItem="hRR-iU-tpy" firstAttribute="centerY" secondItem="4b0-vp-SZ3" secondAttribute="centerY" id="iFa-85-ogt"/>
-                                                <constraint firstAttribute="trailing" secondItem="hRR-iU-tpy" secondAttribute="trailing" constant="5" id="m2I-qf-SJ9"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <connections>
@@ -447,14 +445,18 @@
                                     <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iel-W2-gUz">
-                                            <rect key="frame" x="14" y="11" width="358" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iel-W2-gUz">
+                                            <rect key="frame" x="5" y="14.5" width="364" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Iel-W2-gUz" firstAttribute="leading" secondItem="4Rz-o5-UYQ" secondAttribute="leading" constant="5" id="8LU-Ye-8zE"/>
+                                        <constraint firstItem="Iel-W2-gUz" firstAttribute="centerY" secondItem="4Rz-o5-UYQ" secondAttribute="centerY" id="RO6-oL-bfu"/>
+                                        <constraint firstAttribute="trailing" secondItem="Iel-W2-gUz" secondAttribute="trailing" constant="5" id="aeh-LI-LQ2"/>
+                                    </constraints>
                                     <connections>
                                         <outlet property="label" destination="Iel-W2-gUz" id="50X-1u-FtC"/>
                                     </connections>
