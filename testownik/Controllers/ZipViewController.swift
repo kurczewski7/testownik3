@@ -16,7 +16,6 @@ class ZipViewController: UIViewController, UICollectionViewDelegate, UICollectio
     var documents : [CloudPicker.Document] = []
     var indexpath = IndexPath(row: 0, section: 0)
     var tmpDoc = [CloudPicker.Document]()
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,20 +25,17 @@ class ZipViewController: UIViewController, UICollectionViewDelegate, UICollectio
             let urlStr = urlValue
             let url = URL(fileURLWithPath: urlStr, isDirectory: true)
             tmpDoc = cloudPicker.documentFromZip(pickedURL: url)
-            print("tmpDoc:\(tmpDoc),\(tmpDoc.count)")
+            print("++++++\n\(tmpDoc.count),\n\(tmpDoc[0].myTexts)")
         }
         else {
             print("Error Display Zip")
         }
         
-
         // Do any additional setup after loading the view.
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return tmpDoc.count
     }
-    
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "zipCell", for: indexPath) as! ZipCollectionViewCell
         cell.titleLabel.text =  tmpDoc[indexPath.item].fileURL.lastPathComponent    // "\(indexPath.item)"
@@ -76,13 +72,12 @@ class ZipViewController: UIViewController, UICollectionViewDelegate, UICollectio
         performSegue(withIdentifier: "showZipDetail", sender: cell)
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("showZipDetail")
         if segue.identifier == "showZipDetail" {
             let document = tmpDoc[self.indexpath.row]
             if let nextViewController = segue.destination as? DetailViewController {
                 nextViewController.descriptionLabelValue = document.fileURL.lastPathComponent
                 nextViewController.textViewValue = document.myTexts
-                
-                
                 //nextViewController.zipFileNameValue = document.fileURL.lastPathComponent
                 //Setup.unzipFile(atPath: document.fileURL.absoluteString, delegate: self)
                 //let urlStr = unzip(document: document)
@@ -93,7 +88,6 @@ class ZipViewController: UIViewController, UICollectionViewDelegate, UICollectio
     }
 }
 
-        
 //        print("segue: \(String(describing: segue.identifier))")
 //        let document = documents[self.indexpath.row]
 //        if segue.identifier == "showDetail" {
@@ -124,7 +118,6 @@ class ZipViewController: UIViewController, UICollectionViewDelegate, UICollectio
         
 //-------
 
-
 //    extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
 //        func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 //            return documents.count
@@ -147,8 +140,6 @@ class ZipViewController: UIViewController, UICollectionViewDelegate, UICollectio
 //                performSegue(withIdentifier: "showArchive", sender: cell)
 //            }
 //        }
-
-    
     
     /*
     // MARK: - Navigation

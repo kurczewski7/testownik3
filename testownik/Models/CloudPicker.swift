@@ -216,7 +216,7 @@ extension CloudPicker: UIDocumentPickerDelegate {
                 do {
                     let keys: [URLResourceKey] = [.nameKey, .isDirectoryKey] //isDirectoryKey isRegularFileKey
                     let fileList = FileManager.default.enumerator(at: pickedURL, includingPropertiesForKeys: keys)
-                    print("Folder_URL:\(folderURL.absoluteString)")
+                    //print("Folder_URL:\(folderURL.absoluteString)")
           
                     switch sourceType {
                         case .folder:
@@ -267,14 +267,14 @@ extension CloudPicker: UIDocumentPickerDelegate {
                 do {
                     let keys: [URLResourceKey] = [.nameKey, .isDirectoryKey] //isDirectoryKey isRegularFileKey
                     let fileList = FileManager.default.enumerator(at: pickedURL, includingPropertiesForKeys: keys)
-                    print("Folder_URL:\(folderURL.absoluteString)")
+                    //print("Folder_URL:\(folderURL.absoluteString)")
                         for case let fileURL as URL in fileList! {
                             if !fileURL.isDirectory {
                                 var document = Document(fileURL: fileURL)
                                 if isFileUnhided(fileURL: fileURL, folderURL: folderURL, sourceType: .folder) {
                                     fillDocument(forUrl: fileURL, document: &document)
                                     documents_tmp.append(document)
-                                    print("File_Zip_URL:\(fileURL.absoluteString)")
+                                    //print("File_Zip_URL:\(fileURL.absoluteString)")
                                 }
                             }
                         }
