@@ -154,7 +154,7 @@ class CloudPicker: NSObject, UINavigationControllerDelegate, SSZipArchiveDelegat
         let zipFileNames = document.fileURL.lastPathComponent.components(separatedBy: ".")
         var zipName = ""
         if zipFileNames.count > 0 {
-            for i in 0..<zipFileNames.count {
+            for i in 0..<zipFileNames.count-1 {
                 zipName += zipFileNames[i]
                 zipName += ( i < zipFileNames.count-2 ? "." : "")
             }
