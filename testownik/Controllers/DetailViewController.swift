@@ -20,7 +20,7 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         textView.text = textViewValue
         descriptionLabel.text = descriptionLabelValue
-        print("self.indexpathValue 3:\(self.indexpathValue)")
+        print("DetailViewController, self.indexpathValue 3:\(self.indexpathValue)")
         //textView.text =  textViewValue
     }
     

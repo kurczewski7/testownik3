@@ -263,7 +263,7 @@
         <!--Zip View Controller-->
         <scene sceneID="U2F-5w-KSS">
             <objects>
-                <viewController id="5Tl-P1-oHt" userLabel="Zip View Controller" sceneMemberID="viewController">
+                <viewController id="5Tl-P1-oHt" userLabel="Zip View Controller" customClass="ZipViewController" customModule="Testownik" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xC4-Sb-y7S">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -299,7 +299,7 @@
                                         <size key="customSize" width="140" height="133"/>
                                     </collectionViewCell>
                                 </cells>
-                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="dVO-Bq-cqc" userLabel="Zip Section Header View">
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="zipSectionHeader" id="dVO-Bq-cqc" userLabel="Zip Section Header View" customClass="ZipSectionHeaderView" customModule="Testownik" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>

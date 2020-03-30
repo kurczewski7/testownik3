@@ -20,9 +20,10 @@ class ZipViewController: UIViewController, UICollectionViewDelegate, UICollectio
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("ZipViewController")
         cloudPicker = CloudPicker(presentationController: self)
         if urlValue.count > 0 {
-            let urlStr = urlValue+"/baza"
+            let urlStr = urlValue
             let url = URL(fileURLWithPath: urlStr, isDirectory: true)
             tmpDoc = cloudPicker.documentFromZip(pickedURL: url)
             print("tmpDoc:\(tmpDoc),\(tmpDoc.count)")
@@ -54,7 +55,7 @@ class ZipViewController: UIViewController, UICollectionViewDelegate, UICollectio
         guard
           let headerView = collectionView.dequeueReusableSupplementaryView(
             ofKind: kind,
-            withReuseIdentifier: "sectionHeader",
+            withReuseIdentifier: "zipSectionHeader",
             for: indexPath) as? ZipSectionHeaderView
           else {
             fatalError("Invalid view type")

@@ -8,11 +8,12 @@
 
 import UIKit
 import MobileCoreServices
+import SSZipArchive
 
 protocol CloudPickerDelegate: class {
     func didPickDocuments(documents: [CloudPicker.Document]?)
 }
-class CloudPicker: NSObject, UINavigationControllerDelegate {
+class CloudPicker: NSObject, UINavigationControllerDelegate, SSZipArchiveDelegate {
     public enum SourceType: Int {
         case filesTxt
         case filesZip
@@ -145,6 +146,42 @@ class CloudPicker: NSObject, UINavigationControllerDelegate {
         }
         return  (encoding, data)
     }
+    func unzip(document: CloudPicker.Document, tmpFolder: String = "Testownik_tmp") -> String {
+        let sourcePath = document.fileURL.relativePath
+        let pathTmp = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let destPath = pathTmp.appendingPathComponent(tmpFolder, isDirectory: true).relativePath
+        
+        let zipFileNames = document.fileURL.lastPathComponent.components(separatedBy: ".")
+        var zipName = ""
+        if zipFileNames.count > 0 {
+            for i in 0..<zipFileNames.count {
+                zipName += zipFileNames[i]
+                zipName += ( i < zipFileNames.count-2 ? "." : "")
+            }
+        }
+        print("srcPath \(sourcePath)")
+        print("\ndestPath \(destPath)")
+        let success = SSZipArchive.unzipFile(atPath: sourcePath, toDestination: destPath, delegate: self)
+        let msg = success ? "Rozpakowanie poprawne \(zipName)" : "Błąd rozpakowania"
+        print("=====\nmsg=\(msg)")
+        print("ZipArchive - Success: \(success)")
+        let fullDestPath = zipFileNames.isEmpty ? "" : "\(destPath)/\(zipName)"
+        return success ? fullDestPath : ""
+    }
+    private func deleteFolder(deleteFilePath atPath: String) {
+        do {
+            let fileManager = FileManager.default
+            if fileManager.fileExists(atPath: atPath) {
+                try fileManager.removeItem(atPath: atPath)
+            }
+            else {
+                print("File does not exist")
+            }
+        }
+        catch let error as NSError {
+            print("Error delete: \(error.localizedDescription)")
+        }
+    }
     func mergeText(forStrings strings: [String]) -> String {
         var val = ""
             for elem in strings {     val += elem + "\n"        }
@@ -153,6 +190,7 @@ class CloudPicker: NSObject, UINavigationControllerDelegate {
     func cleadData() {
             documents.removeAll()
     }
+    
     //-----------------------
     deinit {
         print("DEINIT")

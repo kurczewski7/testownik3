@@ -525,16 +525,16 @@
 			isa = PBXGroup;
 			children = (
 				2C652AFC2408805100284ADF /* CloudsViewController.swift */,
+				2CE2F38D242A56CF00D1B731 /* ZipViewController.swift */,
 				2CE2F393242A5A1A00D1B731 /* DetailViewController.swift */,
 				2CE1477823F6901800C834F4 /* AppDelegate.swift */,
 				2CE1477C23F6901900C834F4 /* TestownikViewController.swift */,
 				2CE1477A23F6901900C834F4 /* SceneDelegate.swift */,
 				2C9A0972242C1EEB00A1DC4E /* File.swift */,
-				2CE2F38D242A56CF00D1B731 /* ZipViewController.swift */,
 				2CE2F391242A59CE00D1B731 /* ZipCollectionViewCell.swift */,
 				2CE2F395242A5AA000D1B731 /* DocumentCell.swift */,
-				2CE2F38F242A574100D1B731 /* ZipSectionHeaderView.swift */,
 				2C9A0974242C1F2900A1DC4E /* DetailSectionHeaderView.swift */,
+				2CE2F38F242A574100D1B731 /* ZipSectionHeaderView.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";

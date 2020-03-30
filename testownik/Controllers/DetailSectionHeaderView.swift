@@ -8,7 +8,6 @@
 
 import UIKit
 
-class DetailSectionHeaderView: UICollectionReusableView {  
-    
+class DetailSectionHeaderView: UICollectionReusableView {      
     @IBOutlet weak var label: UILabel!
 }
