@@ -15,18 +15,19 @@ class ZipViewController: UIViewController, UICollectionViewDelegate, UICollectio
     var cloudPicker: CloudPicker!
     var documents : [CloudPicker.Document] = []
     var indexpath = IndexPath(row: 0, section: 0)
-    var tmpDoc = [CloudPicker.Document]()
+    //var tmpDoc = [CloudPicker.Document]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         print("--------------------\nZipViewController,urlValue=\(urlValue)")
         cloudPicker = CloudPicker(presentationController: self)
         if !urlValue.isEmpty  {
             print(",,,,,,,,,,,")
             let urlStr = urlValue
             let url = URL(fileURLWithPath: urlStr, isDirectory: true)
-            tmpDoc = cloudPicker.documentFromZip(pickedURL: url)
-            print("++++++\n\(tmpDoc.count),\n\(tmpDoc[0].myTexts)")
+            documents = cloudPicker.documentFromZip(pickedURL: url)
+            print("++++++\n\(documents.count),\n\(documents[0].myTexts)")
         }
         else {
             print("Error Display Zip")
@@ -35,12 +36,14 @@ class ZipViewController: UIViewController, UICollectionViewDelegate, UICollectio
         // Do any additional setup after loading the view.
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return tmpDoc.count
+        return documents.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        print("cellForItemAt:\(indexPath.row),\(indexPath.section)")
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "zipCell", for: indexPath) as! ZipCollectionViewCell
-        cell.titleLabel.text =  tmpDoc[indexPath.item].fileURL.lastPathComponent    // "\(indexPath.item)"
-        //cell.configure(document: documents[indexPath.row])
+//        cell.backgroundColor = .brown
+        //cell.titleLabel.text =  tmpDoc[indexPath.item].fileURL.lastPathComponent    // "\(indexPath.item)"
+        cell.configure(document: documents[indexPath.row])
         return cell
     }
 
@@ -53,7 +56,7 @@ class ZipViewController: UIViewController, UICollectionViewDelegate, UICollectio
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         print("showZipDetail")
         if segue.identifier == "showZipDetail" {
-            let document = tmpDoc[self.indexpath.row]
+            let document = documents[self.indexpath.row]
             if let nextViewController = segue.destination as? DetailViewController {
                 nextViewController.descriptionLabelValue = document.fileURL.lastPathComponent
                 nextViewController.textViewValue = document.myTexts
@@ -81,7 +84,7 @@ class ZipViewController: UIViewController, UICollectionViewDelegate, UICollectio
         }
 
         //let searchTerm = searches[indexPath.section].searchTerm
-        headerView.label.text = zipFileNameValue    //searchTerm
+//        headerView.label.text = zipFileNameValue    //searchTerm
         return headerView
       default:
         // 4
