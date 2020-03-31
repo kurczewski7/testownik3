@@ -287,12 +287,13 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ffP-6U-hqB">
                                                     <rect key="frame" x="8" y="56" width="124" height="21"/>
+                                                    <color key="tintColor" red="0.0" green="0.99143940210000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" red="0.0" green="0.98106676339999999" blue="0.57369142770000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.0" green="0.99143940210000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" red="0.32369780539999998" green="0.1063579395" blue="0.574860394" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstItem="ffP-6U-hqB" firstAttribute="centerY" secondItem="4pP-cW-Rnh" secondAttribute="centerY" id="9M7-jr-pI9"/>
                                                 <constraint firstAttribute="trailing" secondItem="ffP-6U-hqB" secondAttribute="trailing" constant="8" id="jd1-EV-ffT"/>
@@ -316,13 +317,15 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                    <color key="backgroundColor" red="0.99953407049999998" green="0.98835557699999999" blue="0.47265523669999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstItem="SfE-VZ-3tE" firstAttribute="trailing" secondItem="dVO-Bq-cqc" secondAttribute="trailingMargin" id="5lf-pz-1tT"/>
                                         <constraint firstItem="SfE-VZ-3tE" firstAttribute="top" secondItem="dVO-Bq-cqc" secondAttribute="topMargin" constant="7" id="APr-p1-Ui9"/>
                                         <constraint firstItem="SfE-VZ-3tE" firstAttribute="leading" secondItem="dVO-Bq-cqc" secondAttribute="leadingMargin" id="HSJ-C6-IUM"/>
                                         <constraint firstItem="SfE-VZ-3tE" firstAttribute="centerY" secondItem="dVO-Bq-cqc" secondAttribute="centerY" id="PbW-HZ-fPp"/>
                                     </constraints>
+                                    <connections>
+                                        <outlet property="label" destination="SfE-VZ-3tE" id="XRg-jw-TRM"/>
+                                    </connections>
                                 </collectionReusableView>
                                 <connections>
                                     <outlet property="dataSource" destination="5Tl-P1-oHt" id="abf-Ah-nfq"/>

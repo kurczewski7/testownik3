@@ -84,7 +84,7 @@ class ZipViewController: UIViewController, UICollectionViewDelegate, UICollectio
         }
 
         //let searchTerm = searches[indexPath.section].searchTerm
-//        headerView.label.text = zipFileNameValue    //searchTerm
+        headerView.label.text = zipFileNameValue    //searchTerm
         return headerView
       default:
         // 4
