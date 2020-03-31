@@ -294,7 +294,7 @@ extension CloudPicker: UIDocumentPickerDelegate {
     
     func isFileUnhided(fileURL url: URL, folderURL: URL, sourceType: SourceType)  -> Bool {
         let name = url.lastPathComponent
-         print("isFileUnhided przed")
+         //print("isFileUnhided przed")
         if name.hasPrefix(".")                           {   return false   }
         if sourceType == .folder && folderURL !=  url.deletingLastPathComponent() {
             return false

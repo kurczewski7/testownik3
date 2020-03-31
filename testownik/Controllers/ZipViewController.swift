@@ -19,9 +19,10 @@ class ZipViewController: UIViewController, UICollectionViewDelegate, UICollectio
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("ZipViewController")
+        print("--------------------\nZipViewController,urlValue=\(urlValue)")
         cloudPicker = CloudPicker(presentationController: self)
-        if urlValue.count > 0 {
+        if !urlValue.isEmpty  {
+            print(",,,,,,,,,,,")
             let urlStr = urlValue
             let url = URL(fileURLWithPath: urlStr, isDirectory: true)
             tmpDoc = cloudPicker.documentFromZip(pickedURL: url)
@@ -41,6 +42,28 @@ class ZipViewController: UIViewController, UICollectionViewDelegate, UICollectio
         cell.titleLabel.text =  tmpDoc[indexPath.item].fileURL.lastPathComponent    // "\(indexPath.item)"
         //cell.configure(document: documents[indexPath.row])
         return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("didSelectItemAt")
+        self.indexpath = indexPath
+        guard let cell = collectionView.cellForItem(at: indexPath) else { return }
+        performSegue(withIdentifier: "showZipDetail", sender: cell)
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("showZipDetail")
+        if segue.identifier == "showZipDetail" {
+            let document = tmpDoc[self.indexpath.row]
+            if let nextViewController = segue.destination as? DetailViewController {
+                nextViewController.descriptionLabelValue = document.fileURL.lastPathComponent
+                nextViewController.textViewValue = document.myTexts
+                //nextViewController.zipFileNameValue = document.fileURL.lastPathComponent
+                //Setup.unzipFile(atPath: document.fileURL.absoluteString, delegate: self)
+                //let urlStr = unzip(document: document)
+                //nextViewController.urlValue = urlStr
+            }
+         print("showArchiveDetail")
+        }
     }
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
       // 1
@@ -64,27 +87,6 @@ class ZipViewController: UIViewController, UICollectionViewDelegate, UICollectio
         // 4
         assert(false, "Invalid element type")
       }
-    }
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("didSelectItemAt")
-        self.indexpath = indexPath
-        guard let cell = collectionView.cellForItem(at: indexPath) else { return }
-        performSegue(withIdentifier: "showZipDetail", sender: cell)
-    }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("showZipDetail")
-        if segue.identifier == "showZipDetail" {
-            let document = tmpDoc[self.indexpath.row]
-            if let nextViewController = segue.destination as? DetailViewController {
-                nextViewController.descriptionLabelValue = document.fileURL.lastPathComponent
-                nextViewController.textViewValue = document.myTexts
-                //nextViewController.zipFileNameValue = document.fileURL.lastPathComponent
-                //Setup.unzipFile(atPath: document.fileURL.absoluteString, delegate: self)
-                //let urlStr = unzip(document: document)
-                //nextViewController.urlValue = urlStr
-            }
-         print("showArchiveDetail")
-        }
     }
 }
 
