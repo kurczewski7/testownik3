@@ -1,6 +1,6 @@
 //
-//  test3_emptyUITests.swift
-//  test3_emptyUITests
+//  testownikUITests.swift
+//  testownikUITests
 //
 //  Created by Slawek Kurczewski on 14/02/2020.
 //  Copyright © 2020 Slawomir Kurczewski. All rights reserved.
@@ -8,7 +8,7 @@
 
 import XCTest
 
-class test3_emptyUITests: XCTestCase {
+class TestownikUITests: XCTestCase {
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.

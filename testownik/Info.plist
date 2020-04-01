@@ -3,9 +3,13 @@
 <plist version="1.0">
 <dict>
 	<key>NSDocumentsFolderUsageDescription</key>
-	<string></string>
+	<string>Użycie folderu dokumentów</string>
 	<key>NSFileProviderDomainUsageDescription</key>
-	<string></string>
+	<string>Użycie zbiorów</string>
+	<key>LSSupportsOpeningDocumentsInPlace</key>
+	<true/>
+	<key>UIFileSharingEnabled</key>
+	<true/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -21,7 +25,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>1.0</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIApplicationSceneManifest</key>

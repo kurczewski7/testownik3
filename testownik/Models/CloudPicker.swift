@@ -149,8 +149,8 @@ class CloudPicker: NSObject, UINavigationControllerDelegate, SSZipArchiveDelegat
     func unzip(document: CloudPicker.Document, tmpFolder: String = "Testownik_tmp") -> String {
         let sourcePath = document.fileURL.relativePath
         let pathTmp = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        let destPath = pathTmp.appendingPathComponent(tmpFolder, isDirectory: true).relativePath
         
+        let destPath = pathTmp.appendingPathComponent(tmpFolder, isDirectory: true).relativePath
         let zipFileNames = document.fileURL.lastPathComponent.components(separatedBy: ".")
         var zipName = ""
         if zipFileNames.count > 0 {
@@ -159,8 +159,11 @@ class CloudPicker: NSObject, UINavigationControllerDelegate, SSZipArchiveDelegat
                 zipName += ( i < zipFileNames.count-2 ? "." : "")
             }
         }
+        print("zipfileName:\(zipName)")
         print("srcPath \(sourcePath)")
         print("\ndestPath \(destPath)")
+        deleteFolder(deleteFilePath: destPath)
+
         let success = SSZipArchive.unzipFile(atPath: sourcePath, toDestination: destPath, delegate: self)
         let msg = success ? "Rozpakowanie poprawne \(zipName)" : "Błąd rozpakowania"
         print("=====\nmsg=\(msg)")

@@ -55,8 +55,7 @@ class CloudViewController: UIViewController, CloudPickerDelegate  {  //SSZipArch
     @IBAction func savePressed(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true)
     }
-
-    
+    // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         print("------\nsegue: \(String(describing: segue.identifier))")
         let document = documents[self.indexpath.row]
@@ -81,12 +80,11 @@ class CloudViewController: UIViewController, CloudPickerDelegate  {  //SSZipArch
             
             //Setup.unzipFile(atPath: document.fileURL.absoluteString, delegate: self)
             let urlStr = cloudPicker.unzip(document: document)
-            print("---AAA---\nurlStr:\(urlStr)")
+            print(":::\(urlStr)")
             nextViewController.urlValue = urlStr
         }
          print("showArchive")
       }
-        
     }
 }
 
@@ -140,8 +138,8 @@ extension CloudViewController: UICollectionViewDelegate, UICollectionViewDataSou
              // 4
              assert(false, "Invalid element type")
            }
-
-        
+    }
+}
         //--------
 //        if kind == UICollectionView.elementKindSectionHeader {
 //            guard let headerView = collectionView.dequeueReusableSupplementaryView(
@@ -159,9 +157,4 @@ extension CloudViewController: UICollectionViewDelegate, UICollectionViewDataSou
 //        else {
 //            return UICollectionReusableView()
 //        }
-        
-    }
-
-}
-
 

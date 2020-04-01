@@ -1,15 +1,15 @@
 //
-//  test3_emptyTests.swift
-//  test3_emptyTests
+//  TestownikTests.swift
+//  TestownikTests
 //
 //  Created by Slawek Kurczewski on 14/02/2020.
 //  Copyright © 2020 Slawomir Kurczewski. All rights reserved.
 //
 
 import XCTest
-@testable import test3_empty
+@testable import Testownik
 
-class test3_emptyTests: XCTestCase {
+class TestownikTests: XCTestCase {
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.

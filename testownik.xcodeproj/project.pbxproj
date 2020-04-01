@@ -528,7 +528,6 @@
 				2CE2F38D242A56CF00D1B731 /* ZipViewController.swift */,
 				2CE2F391242A59CE00D1B731 /* ZipCollectionViewCell.swift */,
 				2CE2F393242A5A1A00D1B731 /* DetailViewController.swift */,
-				2CE1477823F6901800C834F4 /* AppDelegate.swift */,
 				2CE1477C23F6901900C834F4 /* TestownikViewController.swift */,
 				2CE1477A23F6901900C834F4 /* SceneDelegate.swift */,
 				2C9A0972242C1EEB00A1DC4E /* File.swift */,
@@ -546,12 +545,12 @@
 				2C652AFA24087DCC00284ADF /* CloudPicker.swift */,
 				2CE2F399242A5B9200D1B731 /* Colors.swift */,
 				2CE2F39B242A5BEF00D1B731 /* Extensions.swift */,
-				2CE1478123F6901900C834F4 /* testownik.xcdatamodeld */,
 				2C6538DA2406FA8D004B1FC8 /* Gestures.swift */,
 				2C6538DC2407282A004B1FC8 /* Testownik.swift */,
 				2CDB1DF52407C08800361884 /* DataOperations.swift */,
 				2CDB1DF72407C98500361884 /* Test.swift */,
 				2C1409BB240EDA6D001611F0 /* XXDocument.swift */,
+				2CE1478123F6901900C834F4 /* testownik.xcdatamodeld */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -592,6 +591,7 @@
 			isa = PBXGroup;
 			children = (
 				2CE1478923F6901C00C834F4 /* Info.plist */,
+				2CE1477823F6901800C834F4 /* AppDelegate.swift */,
 				2CDB1DF42407BE5400361884 /* Views */,
 				2CDB1DF32407BE1700361884 /* Models */,
 				2CDB1DF22407BE0400361884 /* Controllers */,
