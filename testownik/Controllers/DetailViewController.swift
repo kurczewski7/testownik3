@@ -22,16 +22,24 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         descriptionLabel.text = descriptionLabelValue
         textView.text = textViewValue
-        textView.isHidden = !imageOnSwitch
+        refreshView()
 
         
         picture.image = UIImage(named: "100.png")
-        picture.isHidden = imageOnSwitch
+       
         print("=================\nDetailViewController, self.indexpathValue 3:\(self.indexpathValue)")
         //textView.text =  textViewValue
     }
+    func refreshView() {
+        textView.isHidden = !imageOnSwitch
+        picture.isHidden = imageOnSwitch
+    }
     
-
+    @IBAction func switchPicture(_ sender: UIBarButtonItem) {
+        imageOnSwitch.toggle()
+        refreshView()
+    }
+    
     /*
     // MARK: - Navigation
 

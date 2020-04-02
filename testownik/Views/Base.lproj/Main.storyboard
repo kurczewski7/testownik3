@@ -413,11 +413,8 @@
                                 <rect key="frame" x="20" y="148" width="374" height="635"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="l0a-Ev-g51">
-                                        <rect key="frame" x="8" y="8" width="358" height="198"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="198" id="YE8-dM-KNa"/>
-                                        </constraints>
+                                        <rect key="frame" x="8" y="8" width="358" height="619"/>
+                                        <color key="backgroundColor" red="0.86222709500000005" green="1" blue="0.92222450170000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                         <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -433,11 +430,15 @@
                                 <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="dv7-MO-tDU" firstAttribute="leading" secondItem="VNo-Ou-1hT" secondAttribute="leading" constant="8" id="35a-gc-ZpN"/>
+                                    <constraint firstAttribute="trailing" secondItem="l0a-Ev-g51" secondAttribute="trailing" constant="8" id="5ev-vV-8iw"/>
                                     <constraint firstItem="dv7-MO-tDU" firstAttribute="centerY" secondItem="VNo-Ou-1hT" secondAttribute="centerY" id="Bdq-UC-QDl"/>
                                     <constraint firstItem="dv7-MO-tDU" firstAttribute="trailing" secondItem="l0a-Ev-g51" secondAttribute="trailing" id="HjR-RO-5zj"/>
                                     <constraint firstItem="dv7-MO-tDU" firstAttribute="leading" secondItem="l0a-Ev-g51" secondAttribute="leading" id="Ipc-yM-CgS"/>
                                     <constraint firstAttribute="trailing" secondItem="dv7-MO-tDU" secondAttribute="trailing" constant="8" id="Nu0-iJ-j3t"/>
+                                    <constraint firstItem="l0a-Ev-g51" firstAttribute="top" secondItem="VNo-Ou-1hT" secondAttribute="top" constant="8" id="aht-rk-Ddt"/>
                                     <constraint firstItem="l0a-Ev-g51" firstAttribute="top" secondItem="VNo-Ou-1hT" secondAttribute="topMargin" id="dMn-aD-n7D"/>
+                                    <constraint firstItem="l0a-Ev-g51" firstAttribute="leading" secondItem="VNo-Ou-1hT" secondAttribute="leading" constant="8" id="vhi-hb-o0H"/>
+                                    <constraint firstAttribute="bottom" secondItem="l0a-Ev-g51" secondAttribute="bottom" constant="8" id="z8V-nB-fnD"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius ">
@@ -469,7 +470,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="38f-7k-5HV"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="9xv-Z6-pm3"/>
+                    <navigationItem key="navigationItem" title="Title" id="9xv-Z6-pm3">
+                        <barButtonItem key="rightBarButtonItem" systemItem="bookmarks" id="326-T8-EzQ">
+                            <connections>
+                                <action selector="switchPicture:" destination="b6i-fI-LZp" id="B7l-Yb-sbb"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="descriptionLabel" destination="VkX-ix-mRC" id="hOA-X6-pWR"/>
                         <outlet property="picture" destination="dv7-MO-tDU" id="G8Z-Us-YXH"/>
