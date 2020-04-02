@@ -314,8 +314,8 @@ extension CloudPicker: UIDocumentPickerDelegate {
             
             case .filesZip:
                 print("Zip")
-                return true
-                //return (values[values.count-1].uppercased() == "ZIP")
+                //return true
+                return (values[values.count-1].uppercased() == "ZIP")
 
             case .folder:
                 print("folder")
