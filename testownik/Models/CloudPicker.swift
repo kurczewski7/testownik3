@@ -319,15 +319,13 @@ extension CloudPicker: UIDocumentPickerDelegate {
 
             case .folder:
                 print("folder")
-                return true
-//                let tmpUrl = url
-//                tmpUrl.deletingLastPathComponent()
-//                if folderURL !=  tmpUrl {
+                return isTextDataOk(values: values)
+//                if folderURL !=   tmpUrl.deletingLastPathComponent() {
 //                    return false
 //                }
 
 
-//                return isTextDataOk(values: values)
+
         }
     }
 
