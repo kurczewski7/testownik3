@@ -270,15 +270,21 @@ extension CloudPicker: UIDocumentPickerDelegate {
                 do {
                     let keys: [URLResourceKey] = [.nameKey, .isDirectoryKey] //isDirectoryKey isRegularFileKey
                     let fileList = FileManager.default.enumerator(at: pickedURL, includingPropertiesForKeys: keys)
-                    //print("Folder_URL:\(folderURL.absoluteString)")
+                    print("Folder_URL:\(folderURL.absoluteString)")
                         for case let fileURL as URL in fileList! {
                             if !fileURL.isDirectory {
                                 var document = Document(fileURL: fileURL)
                                 if isFileUnhided(fileURL: fileURL, folderURL: folderURL, sourceType: .folder) {
                                     fillDocument(forUrl: fileURL, document: &document)
                                     documents_tmp.append(document)
-                                    //print("File_Zip_URL:\(fileURL.absoluteString)")
+                                    print("File_Zip_URL:\(fileURL.absoluteString)")
                                 }
+                                else {
+                                    print("NO UNHIDE: File_Zip_URL:\(fileURL.absoluteString)")
+                                }
+                            }
+                            else {
+                                print("NO DIRECTORY: File_Zip_URL:\(fileURL.absoluteString)")
                             }
                         }
                     }
@@ -298,6 +304,7 @@ extension CloudPicker: UIDocumentPickerDelegate {
     func isFileUnhided(fileURL url: URL, folderURL: URL, sourceType: SourceType)  -> Bool {
         let name = url.lastPathComponent
          //print("isFileUnhided przed")
+        return true
         if name.hasPrefix(".")                           {   return false   }
         if sourceType == .folder && folderURL !=  url.deletingLastPathComponent() {
             return false

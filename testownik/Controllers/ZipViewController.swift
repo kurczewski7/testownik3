@@ -26,6 +26,8 @@ class ZipViewController: UIViewController, UICollectionViewDelegate, UICollectio
             print(",,,,,,,,,,,")
             let urlStr = urlValue
             let url = URL(fileURLWithPath: urlStr, isDirectory: true)
+            print("--------\nurlStr:=:=  \(urlStr)")
+            print("--------\nFolder URL=  \(url)")
             documents = cloudPicker.documentFromZip(pickedURL: url)
             print("++++++\n\(documents.count)")
         }
