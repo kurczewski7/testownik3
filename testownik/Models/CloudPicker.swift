@@ -303,13 +303,8 @@ extension CloudPicker: UIDocumentPickerDelegate {
     
     func isFileUnhided(fileURL url: URL, folderURL: URL, sourceType: SourceType)  -> Bool {
         let name = url.lastPathComponent
-         //print("isFileUnhided przed")
-        return true
-        if name.hasPrefix(".")                           {   return false   }
-        if sourceType == .folder && folderURL !=  url.deletingLastPathComponent() {
-            return false
-        }
-        print("isFileUnhided po")
+        print("isFileUnhided przed>\(sourceType)")
+        if name.hasPrefix(".")       {   return false   }
 
         let values =  name.split(separator: ".")
         switch sourceType {
@@ -319,16 +314,20 @@ extension CloudPicker: UIDocumentPickerDelegate {
             
             case .filesZip:
                 print("Zip")
-                if  values[values.count-1].uppercased() == "ZIP"   {
-                     return true
-                 }
-                 else {
-                     return false
-                 }
+                return true
+                //return (values[values.count-1].uppercased() == "ZIP")
 
             case .folder:
                 print("folder")
-                return isTextDataOk(values: values)
+                return true
+//                let tmpUrl = url
+//                tmpUrl.deletingLastPathComponent()
+//                if folderURL !=  tmpUrl {
+//                    return false
+//                }
+
+
+//                return isTextDataOk(values: values)
         }
     }
 
