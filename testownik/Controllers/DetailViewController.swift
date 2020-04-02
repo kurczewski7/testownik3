@@ -12,14 +12,21 @@ class DetailViewController: UIViewController {
     var textViewValue = ""
     var descriptionLabelValue = ""
     var indexpathValue = IndexPath(item: 0, section: 0)
+    var imageOnSwitch = !true
     
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var picture: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        textView.text = textViewValue
         descriptionLabel.text = descriptionLabelValue
+        textView.text = textViewValue
+        textView.isHidden = !imageOnSwitch
+
+        
+        picture.image = UIImage(named: "100.png")
+        picture.isHidden = imageOnSwitch
         print("=================\nDetailViewController, self.indexpathValue 3:\(self.indexpathValue)")
         //textView.text =  textViewValue
     }

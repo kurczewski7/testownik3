@@ -351,10 +351,10 @@
             </objects>
             <point key="canvasLocation" x="2576.811594202899" y="1312.5"/>
         </scene>
-        <!--Detail View Controller-->
+        <!--View Controller-->
         <scene sceneID="CLB-ew-7tg">
             <objects>
-                <viewController id="y7M-Bf-Ul5" customClass="DetailViewController" customModule="Testownik" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="y7M-Bf-Ul5" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8WS-l0-oCZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -396,14 +396,89 @@
                         <viewLayoutGuide key="safeArea" id="T7j-Ky-mTN"/>
                     </view>
                     <navigationItem key="navigationItem" id="1KV-mk-VTE"/>
-                    <connections>
-                        <outlet property="descriptionLabel" destination="gRo-bW-ZXz" id="X55-Bb-bKJ"/>
-                        <outlet property="textView" destination="243-LZ-QdO" id="WRY-Ay-KYc"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QLr-Ly-OU0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3345" y="776"/>
+            <point key="canvasLocation" x="3577" y="1313"/>
+        </scene>
+        <!--New Detail View Controller-->
+        <scene sceneID="Fiq-4i-r90">
+            <objects>
+                <viewController id="b6i-fI-LZp" userLabel="New Detail View Controller" customClass="DetailViewController" customModule="Testownik" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="FeY-YS-7RX">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VNo-Ou-1hT">
+                                <rect key="frame" x="20" y="148" width="374" height="635"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="l0a-Ev-g51">
+                                        <rect key="frame" x="8" y="8" width="358" height="198"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="198" id="YE8-dM-KNa"/>
+                                        </constraints>
+                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dv7-MO-tDU">
+                                        <rect key="frame" x="8" y="148" width="358" height="339"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="339" id="z2k-7X-zsN"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="dv7-MO-tDU" firstAttribute="leading" secondItem="VNo-Ou-1hT" secondAttribute="leading" constant="8" id="35a-gc-ZpN"/>
+                                    <constraint firstItem="dv7-MO-tDU" firstAttribute="centerY" secondItem="VNo-Ou-1hT" secondAttribute="centerY" id="Bdq-UC-QDl"/>
+                                    <constraint firstItem="dv7-MO-tDU" firstAttribute="trailing" secondItem="l0a-Ev-g51" secondAttribute="trailing" id="HjR-RO-5zj"/>
+                                    <constraint firstItem="dv7-MO-tDU" firstAttribute="leading" secondItem="l0a-Ev-g51" secondAttribute="leading" id="Ipc-yM-CgS"/>
+                                    <constraint firstAttribute="trailing" secondItem="dv7-MO-tDU" secondAttribute="trailing" constant="8" id="Nu0-iJ-j3t"/>
+                                    <constraint firstItem="l0a-Ev-g51" firstAttribute="top" secondItem="VNo-Ou-1hT" secondAttribute="topMargin" id="dMn-aD-n7D"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius ">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds " value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VkX-ix-mRC">
+                                <rect key="frame" x="20" y="93" width="374" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="6QE-4a-a7B"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="OhW-OS-0yb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="VNo-Ou-1hT" firstAttribute="top" secondItem="VkX-ix-mRC" secondAttribute="bottom" constant="5" id="08K-P9-zaY"/>
+                            <constraint firstItem="VkX-ix-mRC" firstAttribute="top" secondItem="38f-7k-5HV" secondAttribute="top" constant="5" id="2Qz-BP-AB1"/>
+                            <constraint firstItem="VkX-ix-mRC" firstAttribute="leading" secondItem="38f-7k-5HV" secondAttribute="leading" constant="20" id="5bB-k8-bdh"/>
+                            <constraint firstItem="38f-7k-5HV" firstAttribute="trailing" secondItem="VkX-ix-mRC" secondAttribute="trailing" constant="20" id="5hc-nG-xbE"/>
+                            <constraint firstItem="VNo-Ou-1hT" firstAttribute="leading" secondItem="38f-7k-5HV" secondAttribute="leading" constant="20" id="Wel-Ww-G94"/>
+                            <constraint firstItem="38f-7k-5HV" firstAttribute="bottom" secondItem="VNo-Ou-1hT" secondAttribute="bottom" constant="30" id="cJb-yo-Mpe"/>
+                            <constraint firstItem="38f-7k-5HV" firstAttribute="trailing" secondItem="VNo-Ou-1hT" secondAttribute="trailing" constant="20" id="jPl-9m-zrx"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="38f-7k-5HV"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="9xv-Z6-pm3"/>
+                    <connections>
+                        <outlet property="descriptionLabel" destination="VkX-ix-mRC" id="hOA-X6-pWR"/>
+                        <outlet property="picture" destination="dv7-MO-tDU" id="G8Z-Us-YXH"/>
+                        <outlet property="textView" destination="l0a-Ev-g51" id="r8A-hv-uUT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hXe-Ns-zDA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3628.985507246377" y="583.92857142857144"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Jau-2H-Thw">
@@ -516,15 +591,24 @@
                                 </connections>
                             </barButtonItem>
                         </leftBarButtonItems>
-                        <barButtonItem key="rightBarButtonItem" systemItem="trash" id="Yvt-xR-B9E">
-                            <connections>
-                                <action selector="trashPressed:" destination="tYc-6R-9Jl" id="akY-Ls-diO"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="trash" id="Yvt-xR-B9E">
+                                <connections>
+                                    <action selector="trashPressed:" destination="tYc-6R-9Jl" id="akY-Ls-diO"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="compose" id="gXp-Jx-ScV">
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="keyPath" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="b6i-fI-LZp" kind="show" identifier="showDetail" id="Bm0-IT-hNY"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="04x-B4-Ufd" id="t4x-g3-PDQ"/>
-                        <segue destination="y7M-Bf-Ul5" kind="show" identifier="showDetail" id="NFu-6L-H6g"/>
                         <segue destination="5Tl-P1-oHt" kind="show" identifier="showArchive" id="pS4-fh-ksw"/>
                     </connections>
                 </viewController>
@@ -552,9 +636,6 @@
             <point key="canvasLocation" x="801" y="222"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="4Vr-pz-ThB"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="arrowtriangle.left" catalog="system" width="128" height="113"/>
         <image name="arrowtriangle.right" catalog="system" width="128" height="113"/>
