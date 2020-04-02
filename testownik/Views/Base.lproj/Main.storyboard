@@ -427,7 +427,7 @@
                                         </constraints>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.99953407049999998" green="0.98835557699999999" blue="0.47265523669999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="dv7-MO-tDU" firstAttribute="leading" secondItem="VNo-Ou-1hT" secondAttribute="leading" constant="8" id="35a-gc-ZpN"/>
                                     <constraint firstAttribute="trailing" secondItem="l0a-Ev-g51" secondAttribute="trailing" constant="8" id="5ev-vV-8iw"/>
