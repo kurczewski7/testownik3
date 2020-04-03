@@ -85,8 +85,14 @@ class ZipViewController: UIViewController, UICollectionViewDelegate, UICollectio
         if segue.identifier == "showZipDetail" {
             let document = documents[self.indexpath.row]
             if let nextViewController = segue.destination as? DetailViewController {
+                let pic = document.myPicture  ?? UIImage(named: "ask.png")
+                let data = pic!.pngData() as Data?
+                nextViewController.dataValue = data
                 nextViewController.descriptionLabelValue = document.fileURL.lastPathComponent
                 nextViewController.textViewValue = document.myTexts
+                nextViewController.indexpathValue = indexpath
+                nextViewController.fileExtensionValue = cloudPicker.splitFilenameAndExtension(fullFileName: document.fileURL.lastPathComponent).fileExt
+                nextViewController.totalItemValue = documents.count
             }
          print("showArchiveDetail")
         }

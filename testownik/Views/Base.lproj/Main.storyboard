@@ -344,7 +344,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="rIA-Ym-TmS"/>
                     <connections>
-                        <segue destination="y7M-Bf-Ul5" kind="show" identifier="showZipDetail" id="4Vr-pz-ThB"/>
+                        <segue destination="b6i-fI-LZp" kind="show" identifier="showZipDetail" id="tsm-RE-lKY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bA8-CX-f2J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -360,7 +360,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="243-LZ-QdO">
-                                <rect key="frame" x="20" y="143" width="374" height="650"/>
+                                <rect key="frame" x="20" y="99" width="374" height="743"/>
                                 <color key="backgroundColor" red="0.99953407049999998" green="0.98835557699999999" blue="0.47265523669999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -374,7 +374,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gRo-bW-ZXz">
-                                <rect key="frame" x="20" y="88" width="374" height="50"/>
+                                <rect key="frame" x="20" y="44" width="374" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="HgK-Ip-29C"/>
                                 </constraints>
@@ -485,7 +485,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hXe-Ns-zDA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3628.985507246377" y="583.92857142857144"/>
+            <point key="canvasLocation" x="3371" y="578"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Jau-2H-Thw">
@@ -643,6 +643,9 @@
             <point key="canvasLocation" x="801" y="222"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="tsm-RE-lKY"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="arrowtriangle.left" catalog="system" width="128" height="113"/>
         <image name="arrowtriangle.right" catalog="system" width="128" height="113"/>

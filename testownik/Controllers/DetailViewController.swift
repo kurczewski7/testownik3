@@ -9,10 +9,19 @@
 import UIKit
 
 class DetailViewController: UIViewController {
+    // MARK: Parameters for segue
     var textViewValue = ""
     var descriptionLabelValue = ""
     var indexpathValue = IndexPath(item: 0, section: 0)
-    var imageOnSwitch = !true
+    var pictureValue: UIImage?  //= UIImage(named: "ask.png")!
+    var fileExtensionValue = ""
+    var dataValue: Data? = nil
+    var totalItemValue = 0
+    
+
+    
+    
+    var imageOffSwitch = false
     
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -20,23 +29,30 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        descriptionLabel.text = descriptionLabelValue
-        textView.text = textViewValue
-        refreshView()
+        imageOffSwitch = fileExtensionValue == "TXT"
+        //pictureValue = UIImage(named: "100.png")
+        descriptionLabel.text = descriptionLabelValue + "   (\(indexpathValue.row+1)/\(totalItemValue))"
+        if imageOffSwitch {
+            textView.text = textViewValue
+            refreshView()
+        }
+        else {
+            if let datValue = dataValue {
+                picture.image = UIImage(data: datValue)
+            }
+        }
 
-        
-        picture.image = UIImage(named: "100.png")
-       
+
         print("=================\nDetailViewController, self.indexpathValue 3:\(self.indexpathValue)")
         //textView.text =  textViewValue
     }
     func refreshView() {
-        textView.isHidden = !imageOnSwitch
-        picture.isHidden = imageOnSwitch
+        textView.isHidden = !imageOffSwitch
+        picture.isHidden = imageOffSwitch
     }
     
     @IBAction func switchPicture(_ sender: UIBarButtonItem) {
-        imageOnSwitch.toggle()
+        imageOffSwitch.toggle()
         refreshView()
     }
     

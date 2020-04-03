@@ -14,6 +14,7 @@ protocol CloudPickerDelegate: class {
     func didPickDocuments(documents: [CloudPicker.Document]?)
 }
 class CloudPicker: NSObject, UINavigationControllerDelegate, SSZipArchiveDelegate {
+    typealias FileExt = (fileName: String, fileExt: String)
     public enum SourceType: Int {
         case filesTxt
         case filesZip
@@ -24,6 +25,7 @@ class CloudPicker: NSObject, UINavigationControllerDelegate, SSZipArchiveDelegat
     class Document: UIDocument {
         var data: Data?
         var myTexts = ""
+        var myPicture: UIImage? = nil
         
         override func contents(forType typeName: String) throws -> Any {
             guard let data = data else { return Data() }
@@ -193,7 +195,18 @@ class CloudPicker: NSObject, UINavigationControllerDelegate, SSZipArchiveDelegat
     func cleadData() {
             documents.removeAll()
     }
-    
+    func isTextDataOk(values: [Substring])  -> Bool{
+        if let number = Int(values[0]), number >= 0 {     return true             }
+        else {       return false             }
+    }
+    func splitFilenameAndExtension(fullFileName name: String) -> FileExt  {
+        let values = name.split(separator: ".")
+        let ext = String(values.last ?? "").uppercased()
+        let extCount = ext.count
+        let prefixIndex = name.index(name.endIndex, offsetBy: -extCount-1)
+        let retVal: FileExt = (String(name.prefix(upTo: prefixIndex)),   ext)
+        return retVal
+      }
     //-----------------------
     deinit {
         print("DEINIT")
@@ -297,10 +310,26 @@ extension CloudPicker: UIDocumentPickerDelegate {
 
         return documents_tmp
     }
+ 
     func fillDocument(forUrl url: URL, document: inout Document) {
-        let txts = getText(fromCloudFilePath: url)
-        let txt = mergeText(forStrings: txts)
-        document.myTexts = txt
+        let fileSplitName = splitFilenameAndExtension(fullFileName: url.lastPathComponent)
+        //let fileName = fileSplitName.fileName
+        let fileExt = fileSplitName.fileExt
+        if fileExt.uppercased() == "TXT" {
+            print("to jest TXT")
+            let txts = getText(fromCloudFilePath: url)
+            let txt = mergeText(forStrings: txts)
+            document.myTexts = txt
+        }
+        if fileExt.uppercased() == "PNG" {
+            print("to jest PNG")
+            document.myPicture = UIImage(named: "100.png")
+        }
+        if fileExt.uppercased() == "JPG" {
+            print("to jest JPG")
+        }
+
+
     }
     
     func isFileUnhided(fileURL url: URL, folderURL: URL, sourceType: SourceType)  -> Bool {
@@ -317,7 +346,7 @@ extension CloudPicker: UIDocumentPickerDelegate {
             case .filesZip:
                 print("Zip")
                 //return true
-                return (values[values.count-1].uppercased() == "ZIP")
+                return  values.last?.uppercased() == "ZIP" //(values[values.count-1].uppercased() == "ZIP")
 
             case .folder:
                 print("folder, values[0]:\(values[0])")
@@ -326,10 +355,6 @@ extension CloudPicker: UIDocumentPickerDelegate {
 //                    return false
 //                }
         }
-    }
-    func isTextDataOk(values: [Substring])  -> Bool{
-        if let number = Int(values[0]), number >= 0 {     return true             }
-        else {       return false             }
     }
 }
 
