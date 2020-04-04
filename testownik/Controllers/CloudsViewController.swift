@@ -61,21 +61,12 @@ class CloudViewController: UIViewController, CloudPickerDelegate  {  //SSZipArch
         let document = documents[self.indexpath.row]
         if segue.identifier == "showDetail" {
             if let nextViewController = segue.destination as? DetailViewController {
-                //let document = documents[self.indexpath.row]
-//                nextViewController.descriptionLabelValue = document.fileURL.lastPathComponent
-//                nextViewController.textViewValue = "\(document.myTexts)\n"  + "\n:" + document.fileURL.absoluteString
-//                nextViewController.indexpathValue = self.indexpath
-                         
-                
-               // let pic = UIImage(data: document.myPictureData ?? <#default value#>) //document.myPictureData  //?? Data(base64Encoded: "ask.png")
-                //let data = pic!.pngData() as Data?
                 nextViewController.dataValue = document.myPictureData
                 nextViewController.descriptionLabelValue = document.fileURL.lastPathComponent
                 nextViewController.textViewValue = document.myTexts
                 nextViewController.indexpathValue = indexpath
-                nextViewController.fileExtensionValue = cloudPicker.splitFilenameAndExtension(fullFileName: document.fileURL.lastPathComponent).fileExt
                 nextViewController.totalItemValue = documents.count
-
+                nextViewController.fileExtensionValue = cloudPicker.splitFilenameAndExtension(fullFileName: document.fileURL.lastPathComponent).fileExt
                 
                 Setup.displayToast(forView: self.view, message: "Druga wiadomość", seconds: 3)
                 Setup.popUp(context: self, msg: "Trzecia wiadomość")
@@ -130,10 +121,6 @@ extension CloudViewController: UICollectionViewDelegate, UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         //let folderName = cloudPicker.sourceType == .folder ? "Folder: \(cloudPicker.folderName)" : cloudPicker.folderName
         let folderName = (cloudPicker.sourceType == .folder ? "Folder: " : "") +  cloudPicker.folderName
-//        let sourceType = cloudPicker.sourceType
-//        if sourceType == .folder {
-//            let xx = cloudPicker.folderName
-//        }
         // 1
            switch kind {
            // 2

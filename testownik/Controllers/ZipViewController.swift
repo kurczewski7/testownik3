@@ -81,19 +81,12 @@ class ZipViewController: UIViewController, UICollectionViewDelegate, UICollectio
     }
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        var pic: UIImage? = nil
+        //var pic: UIImage? = nil
         print("showZipDetail")
         if segue.identifier == "showZipDetail" {
             let document = documents[self.indexpath.row]
             if let nextViewController = segue.destination as? DetailViewController {
-                cloudPicker.getImage(fromUrl: document.fileURL.absoluteString) { image in
-                    print("PNG:========\n\(document.fileURL.absoluteString)\n\(image)")
-                    pic = image
-                }
-                let picFromDocum = document.myPictureData
-                    //document.myPicture // ?? UIImage(named: "Kartka.png")
-                //let data = pic?.pngData() as Data?
-                nextViewController.dataValue = picFromDocum
+                nextViewController.dataValue = document.myPictureData
                 nextViewController.descriptionLabelValue = document.fileURL.lastPathComponent
                 nextViewController.textViewValue = document.myTexts
                 nextViewController.indexpathValue = indexpath

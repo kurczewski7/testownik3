@@ -208,13 +208,12 @@ class CloudPicker: NSObject, UINavigationControllerDelegate, SSZipArchiveDelegat
         return retVal
       }
     //-----------------------
-    func getImage(fromUrl url: String, completionHandler: @escaping(_ image: UIImage?) -> ()) {
-        guard let imageURL = URL(string: url) else { return }
+    func getImageData(fromUrl url: URL, completionHandler: @escaping(_ imageData: Data?) -> ()) {
+        //guard let imageURL = URL(string: url) else { return }
         DispatchQueue.global(qos: .background).async {
-            guard let imageData = try? Data(contentsOf: imageURL) else { return }
-            let image = UIImage(data: imageData)
+            let data = try? Data(contentsOf: url)
             DispatchQueue.main.async {
-                if let img = image {    completionHandler(img)            }
+                if let imgData = data {    completionHandler(imgData)            }
                 else {   completionHandler(nil)           }
                 }
         }
@@ -343,7 +342,6 @@ extension CloudPicker: UIDocumentPickerDelegate {
     }
  
     func fillDocument(forUrl url: URL, document: inout Document) {
-        //var img: UIImage? = nil
         let fileSplitName = splitFilenameAndExtension(fullFileName: url.lastPathComponent)
         //let fileName = fileSplitName.fileName
         let fileExt = fileSplitName.fileExt
@@ -358,7 +356,6 @@ extension CloudPicker: UIDocumentPickerDelegate {
             print("PNG url:\(url)")
             guard let data = try? Data(contentsOf: url) else { return }
             document.myPictureData = data
-            //img = UIImage(data: data)
         }
         
         
