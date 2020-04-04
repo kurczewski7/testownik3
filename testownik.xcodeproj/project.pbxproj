@@ -131,6 +131,7 @@
 		2C7ACB2C23F9EF6D00AE4E42 /* 079.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2C7ACAB623F9EF6D00AE4E42 /* 079.txt */; };
 		2C7ACB2D23F9EF6D00AE4E42 /* 092.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2C7ACAB723F9EF6D00AE4E42 /* 092.txt */; };
 		2C7ACB2E23F9EF6D00AE4E42 /* 086.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2C7ACAB823F9EF6D00AE4E42 /* 086.txt */; };
+		2C82DE8C24393DA0002CDA10 /* FavoriteTestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C82DE8B24393DA0002CDA10 /* FavoriteTestsViewController.swift */; };
 		2C99AE9924001A6700FF28F5 /* 201.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2C99AE9524001A6700FF28F5 /* 201.txt */; };
 		2C99AE9A24001A6700FF28F5 /* 202.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2C99AE9624001A6700FF28F5 /* 202.txt */; };
 		2C99AE9B24001A6700FF28F5 /* 203.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2C99AE9724001A6700FF28F5 /* 203.txt */; };
@@ -302,6 +303,7 @@
 		2C7ACAB623F9EF6D00AE4E42 /* 079.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 079.txt; sourceTree = "<group>"; };
 		2C7ACAB723F9EF6D00AE4E42 /* 092.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 092.txt; sourceTree = "<group>"; };
 		2C7ACAB823F9EF6D00AE4E42 /* 086.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 086.txt; sourceTree = "<group>"; };
+		2C82DE8B24393DA0002CDA10 /* FavoriteTestsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FavoriteTestsViewController.swift; path = testownik/Controllers/FavoriteTestsViewController.swift; sourceTree = SOURCE_ROOT; };
 		2C99AE9524001A6700FF28F5 /* 201.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 201.txt; sourceTree = "<group>"; };
 		2C99AE9624001A6700FF28F5 /* 202.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 202.txt; sourceTree = "<group>"; };
 		2C99AE9724001A6700FF28F5 /* 203.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 203.txt; sourceTree = "<group>"; };
@@ -524,6 +526,7 @@
 		2CDB1DF22407BE0400361884 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2C82DE8B24393DA0002CDA10 /* FavoriteTestsViewController.swift */,
 				2C652AFC2408805100284ADF /* CloudsViewController.swift */,
 				2CE2F38D242A56CF00D1B731 /* ZipViewController.swift */,
 				2CE2F391242A59CE00D1B731 /* ZipCollectionViewCell.swift */,
@@ -995,6 +998,7 @@
 			files = (
 				2CE1477D23F6901900C834F4 /* TestownikViewController.swift in Sources */,
 				2CE2F39A242A5B9200D1B731 /* Colors.swift in Sources */,
+				2C82DE8C24393DA0002CDA10 /* FavoriteTestsViewController.swift in Sources */,
 				2C652AFB24087DCC00284ADF /* CloudPicker.swift in Sources */,
 				2CE1478323F6901900C834F4 /* testownik.xcdatamodeld in Sources */,
 				2CE2F398242A5B1B00D1B731 /* Setup.swift in Sources */,
