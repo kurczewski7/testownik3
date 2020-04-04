@@ -21,7 +21,11 @@ class DetailViewController: UIViewController {
 
     
     
-    var imageOffSwitch = false
+    var imageOffSwitch = false {
+        didSet {
+            refreshView()
+        }
+    }
     
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -37,8 +41,12 @@ class DetailViewController: UIViewController {
             refreshView()
         }
         else {
-            if let datValue = dataValue {
-                picture.image = UIImage(data: datValue)
+            if let  dateTmp = dataValue, let  pict = UIImage(data: dateTmp)  {
+                picture.image = pict
+                print("picture.image")
+            }
+            else {
+                 print("else picture.image")
             }
         }
 

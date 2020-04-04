@@ -62,16 +62,33 @@ class CloudViewController: UIViewController, CloudPickerDelegate  {  //SSZipArch
         if segue.identifier == "showDetail" {
             if let nextViewController = segue.destination as? DetailViewController {
                 //let document = documents[self.indexpath.row]
+//                nextViewController.descriptionLabelValue = document.fileURL.lastPathComponent
+//                nextViewController.textViewValue = "\(document.myTexts)\n"  + "\n:" + document.fileURL.absoluteString
+//                nextViewController.indexpathValue = self.indexpath
+                         
+                
+               // let pic = UIImage(data: document.myPictureData ?? <#default value#>) //document.myPictureData  //?? Data(base64Encoded: "ask.png")
+                //let data = pic!.pngData() as Data?
+                nextViewController.dataValue = document.myPictureData
                 nextViewController.descriptionLabelValue = document.fileURL.lastPathComponent
-                nextViewController.textViewValue = "\(document.myTexts)\n"  + "\n:" + document.fileURL.absoluteString
-                nextViewController.indexpathValue = self.indexpath
-                            
+                nextViewController.textViewValue = document.myTexts
+                nextViewController.indexpathValue = indexpath
+                nextViewController.fileExtensionValue = cloudPicker.splitFilenameAndExtension(fullFileName: document.fileURL.lastPathComponent).fileExt
+                nextViewController.totalItemValue = documents.count
+
+                
                 Setup.displayToast(forView: self.view, message: "Druga wiadomość", seconds: 3)
                 Setup.popUp(context: self, msg: "Trzecia wiadomość")
                 
                 print("nextViewController:\(nextViewController)")
                 print("fileURL: \(document.fileURL)")
                 print("self.indexpath 2:\(self.indexpath)")
+                
+                
+
+                
+                
+                
             }
       }
       if segue.identifier == "showArchive" {

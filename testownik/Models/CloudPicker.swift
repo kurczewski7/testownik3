@@ -25,7 +25,7 @@ class CloudPicker: NSObject, UINavigationControllerDelegate, SSZipArchiveDelegat
     class Document: UIDocument {
         var data: Data?
         var myTexts = ""
-        var myPicture: UIImage? = nil
+        var myPictureData: Data? = nil
         
         override func contents(forType typeName: String) throws -> Any {
             guard let data = data else { return Data() }
@@ -208,6 +208,37 @@ class CloudPicker: NSObject, UINavigationControllerDelegate, SSZipArchiveDelegat
         return retVal
       }
     //-----------------------
+    func getImage(fromUrl url: String, completionHandler: @escaping(_ image: UIImage?) -> ()) {
+        guard let imageURL = URL(string: url) else { return }
+        DispatchQueue.global(qos: .background).async {
+            guard let imageData = try? Data(contentsOf: imageURL) else { return }
+            let image = UIImage(data: imageData)
+            DispatchQueue.main.async {
+                if let img = image {    completionHandler(img)            }
+                else {   completionHandler(nil)           }
+                }
+        }
+    }
+    //--------
+    
+//    class func image(for url: URL, completionHandler: @escaping(_ image: UIImage?) -> ()) {
+//      DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async {
+//        if let data = self.cache.object(forKey: url.absoluteString as NSString) {
+//          DispatchQueue.main.async { completionHandler(UIImage(data: data as Data)) }
+//          return
+//        }
+//
+//        guard let data = NSData(contentsOf: url) else {
+//          DispatchQueue.main.async { completionHandler(nil) }
+//          return
+//        }
+//
+//        self.cache.setObject(data, forKey: url.absoluteString as NSString)
+//        DispatchQueue.main.async { completionHandler(UIImage(data: data as Data)) }
+//      }
+//    }
+
+    //--------
     deinit {
         print("DEINIT")
     }
@@ -312,6 +343,7 @@ extension CloudPicker: UIDocumentPickerDelegate {
     }
  
     func fillDocument(forUrl url: URL, document: inout Document) {
+        //var img: UIImage? = nil
         let fileSplitName = splitFilenameAndExtension(fullFileName: url.lastPathComponent)
         //let fileName = fileSplitName.fileName
         let fileExt = fileSplitName.fileExt
@@ -323,13 +355,26 @@ extension CloudPicker: UIDocumentPickerDelegate {
         }
         if fileExt.uppercased() == "PNG" {
             print("to jest PNG")
-            document.myPicture = UIImage(named: "100.png")
+            print("PNG url:\(url)")
+            guard let data = try? Data(contentsOf: url) else { return }
+            document.myPictureData = data
+            //img = UIImage(data: data)
         }
+        
+        
         if fileExt.uppercased() == "JPG" {
             print("to jest JPG")
         }
 
+        //            getImage(fromUrl: url.absoluteString) { image in
+        //                img = image
+        //            }
+        //img = UIImage(contentsOfFile: url.absoluteString)
 
+        //            let imgageData = data {
+        //            document.myPictureData = imgageData //UIImage(named: "100.png")
+        //            }
+        //document.myPicture = UIImage(named: "100.png")
     }
     
     func isFileUnhided(fileURL url: URL, folderURL: URL, sourceType: SourceType)  -> Bool {
