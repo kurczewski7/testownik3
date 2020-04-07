@@ -26,6 +26,7 @@ class CloudPicker: NSObject, UINavigationControllerDelegate, SSZipArchiveDelegat
         var data: Data?
         var myTexts = ""
         var myPictureData: Data? = nil
+
         
         override func contents(forType typeName: String) throws -> Any {
             guard let data = data else { return Data() }
@@ -48,6 +49,8 @@ class CloudPicker: NSObject, UINavigationControllerDelegate, SSZipArchiveDelegat
     
     var delegate: CloudPickerDelegate?
     var showHidden = false
+    var hiddenFiles = 0
+
     
     init(presentationController: UIViewController) {
         super.init()
@@ -193,7 +196,8 @@ class CloudPicker: NSObject, UINavigationControllerDelegate, SSZipArchiveDelegat
         return val
     }
     func cleadData() {
-            documents.removeAll()
+        self.documents.removeAll()
+        self.hiddenFiles = 0
     }
     func isTextDataOk(values: [Substring])  -> Bool{
         if let number = Int(values[0]), number >= 0 {     return true             }
@@ -376,13 +380,31 @@ extension CloudPicker: UIDocumentPickerDelegate {
     
     func isFileUnhided(fileURL url: URL, folderURL: URL, sourceType: SourceType)  -> Bool {
         let name = url.lastPathComponent
-        print("isFileUnhided przed>\(sourceType)")
-        if name.hasPrefix(".")       {   return false   }
+        print("isFileUnhided:\(sourceType),\(url.absoluteString)")        
+        if name.hasPrefix(".")
+        {
+            print("Hidden file \(name) not selected")
+            self.hiddenFiles += 1
+            return false
+        }
+
+        if url.deletingLastPathComponent() == folderURL {
+            print("Root folder")
+        }
+        else {
+            print("sub folder")
+            return false
+        }
 
         let values =  name.split(separator: ".")
         switch sourceType {
             case .filesTxt:
                 print("Txt")
+//                if values[0] == "." {
+//                    if let number = Int(values[1]), number >= 0 {
+//                        let name2 = "\(values[1]).txt"
+//                    }
+//                }
                 return isTextDataOk(values: values)
             
             case .filesZip:

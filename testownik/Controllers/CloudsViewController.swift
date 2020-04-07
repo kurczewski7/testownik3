@@ -8,15 +8,12 @@
 
 import UIKit
 
-
 class CloudViewController: UIViewController, CloudPickerDelegate  {  //SSZipArchiveDelegate
     var cloudPicker: CloudPicker!
     var documents : [CloudPicker.Document] = []
     var indexpath = IndexPath(row: 0, section: 0)
     
-    
     @IBOutlet weak var collectionView: UICollectionView!
-    
     
     override func viewDidLoad() {
         //collectionView.register(<#T##cellClass: AnyClass?##AnyClass?#>, forCellWithReuseIdentifier: <#T##String#>)
@@ -30,7 +27,7 @@ class CloudViewController: UIViewController, CloudPickerDelegate  {  //SSZipArch
         self.documents =  []
         cloudPicker = CloudPicker(presentationController: self)
         cloudPicker.delegate = self
-        Setup.popUp(context: self, msg: "Your message")
+        Setup.popUp(context: self, msg: "Pres + and select folder or zip file")
     }
     func didPickDocuments(documents: [CloudPicker.Document]?) {
         self.documents = []
@@ -50,8 +47,7 @@ class CloudViewController: UIViewController, CloudPickerDelegate  {  //SSZipArch
         cloudPicker.cleadData()
         documents.removeAll()
         collectionView.reloadData()
-    }
-    
+    }    
     @IBAction func savePressed(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true)
     }
@@ -74,12 +70,6 @@ class CloudViewController: UIViewController, CloudPickerDelegate  {  //SSZipArch
                 print("nextViewController:\(nextViewController)")
                 print("fileURL: \(document.fileURL)")
                 print("self.indexpath 2:\(self.indexpath)")
-                
-                
-
-                
-                
-                
             }
       }
       if segue.identifier == "showArchive" {
