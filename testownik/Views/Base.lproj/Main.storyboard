@@ -349,7 +349,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bA8-CX-f2J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3358" y="830"/>
+            <point key="canvasLocation" x="4268.115942028986" y="829.6875"/>
         </scene>
         <!--Favorite Tests View Controller-->
         <scene sceneID="CLB-ew-7tg">
@@ -359,21 +359,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gRo-bW-ZXz">
-                                <rect key="frame" x="20" y="44" width="374" height="50"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select your test to start" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gRo-bW-ZXz">
+                                <rect key="frame" x="20" y="88" width="374" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="HgK-Ip-29C"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zay-9E-Aks">
-                                <rect key="frame" x="0.0" y="102" width="414" height="711"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="120" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zay-9E-Aks">
+                                <rect key="frame" x="0.0" y="146" width="414" height="667"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="favoriteCell" rowHeight="120" id="xDw-lq-YBz" customClass="FavoriteTestsTableViewCell" customModule="Testownik" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="120"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="414" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xDw-lq-YBz" id="pUD-Ag-idE">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
@@ -421,6 +421,7 @@
                                             <outlet property="label1" destination="sfn-ST-24k" id="ugq-Vg-LaK"/>
                                             <outlet property="label2" destination="8oV-Sf-zhs" id="KZh-Rd-tsM"/>
                                             <outlet property="label3" destination="7ud-NW-SiB" id="p3O-Z9-YsC"/>
+                                            <segue destination="V2A-f6-1Jk" kind="show" id="2wU-yX-dPV"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -442,12 +443,29 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="T7j-Ky-mTN"/>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="bookmarks" id="Ybi-lK-klk"/>
-                    <navigationItem key="navigationItem" id="1KV-mk-VTE"/>
+                    <navigationItem key="navigationItem" title="Your tests" id="Dgu-SD-Ttz">
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="Q4m-D8-L2H"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QLr-Ly-OU0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1750.7246376811595" y="1300.4464285714284"/>
+            <point key="canvasLocation" x="2660.8695652173915" y="1300.4464285714284"/>
+        </scene>
+        <!--Test description-->
+        <scene sceneID="HfQ-HE-4z6">
+            <objects>
+                <viewController id="V2A-f6-1Jk" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="okw-V4-BOb">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="KGW-7y-uYs"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Test description" id="xj9-9i-wjx"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BWU-m3-k1g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3442" y="1300"/>
         </scene>
         <!--New Detail View Controller-->
         <scene sceneID="Fiq-4i-r90">
@@ -683,13 +701,32 @@
                     </tabBar>
                     <connections>
                         <segue destination="EIw-9T-Dvc" kind="relationship" relationship="viewControllers" id="zlI-d8-e73"/>
-                        <segue destination="y7M-Bf-Ul5" kind="relationship" relationship="viewControllers" id="0mw-Mk-cbn"/>
+                        <segue destination="xyD-Sr-GgE" kind="relationship" relationship="viewControllers" id="0mw-Mk-cbn"/>
                         <segue destination="LRR-4o-vGG" kind="relationship" relationship="viewControllers" id="oRp-EH-CmP"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sgG-TP-Xom" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-587" y="578"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="qLU-Rx-Io8">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xyD-Sr-GgE" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" systemItem="bookmarks" id="Ybi-lK-klk"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="zsk-Xs-MDW">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="y7M-Bf-Ul5" kind="relationship" relationship="rootViewController" id="Utk-nM-VnD"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EKH-XM-ex5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1750.7246376811595" y="1300.4464285714284"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

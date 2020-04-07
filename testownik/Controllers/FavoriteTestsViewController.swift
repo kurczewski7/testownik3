@@ -27,9 +27,21 @@ class FavoriteTestsViewController: UIViewController, UITableViewDataSource, UITa
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label = UILabel()
-        label.text = "AAAA: \(section)"
-        label.textColor = .red
+        label.textAlignment = .center
+        label.font = UIFont (name: "Helvetica-Bold", size: 20)  //Helvetica-Bold "Helvetica Neue"
+        if section == 0 {
+            label.text = "Favorites tests"
+            label.textColor = .white
+            label.backgroundColor = . systemGreen
+        } else {
+            label.text = "Others tests"
+            label.textColor = .black
+            label.backgroundColor = . lightGray
+        }
         return label
+    }
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "    "
     }
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let action = UIContextualAction(style: .normal, title: "AAAA") { (act, view, exec) in
@@ -47,6 +59,9 @@ class FavoriteTestsViewController: UIViewController, UITableViewDataSource, UITa
         let swipe = UISwipeActionsConfiguration(actions: [action])
         return swipe
 
+    }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 40.0
     }
     
 
