@@ -276,9 +276,12 @@
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="v7h-LK-9be">
                                         <rect key="frame" x="0.0" y="210.5" width="374" height="32"/>
                                         <segments>
-                                            <segment title="First"/>
-                                            <segment title="Second"/>
+                                            <segment title="Cancel"/>
+                                            <segment title="Save"/>
                                         </segments>
+                                        <connections>
+                                            <action selector="buttonPress:" destination="TLi-WE-UAY" eventType="valueChanged" id="1kq-Ef-NYk"/>
+                                        </connections>
                                     </segmentedControl>
                                 </subviews>
                             </stackView>

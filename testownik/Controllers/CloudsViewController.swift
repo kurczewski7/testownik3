@@ -55,6 +55,9 @@ class CloudViewController: UIViewController, CloudPickerDelegate  {  //SSZipArch
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         print("------\nsegue: \(String(describing: segue.identifier))")
          if segue.identifier == "showSave" {
+            if let nextViewController = segue.destination as? AddTestViewController {
+                nextViewController.documentsValue = self.documents                
+            }
             
         }
         if segue.identifier == "showDetail" {
