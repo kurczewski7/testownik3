@@ -295,7 +295,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="uyh-S0-61S"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Add test" id="cqh-6e-sUl"/>
+                    <navigationItem key="navigationItem" title="Add test" id="cqh-6e-sUl">
+                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="MzX-8h-L60">
+                            <connections>
+                                <action selector="cancelNavigatorButton:" destination="TLi-WE-UAY" id="xRT-Zh-dB8"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="label" destination="7FA-IX-TWw" id="sUG-sg-q3h"/>
                         <outlet property="textField1" destination="QDS-zz-JdZ" id="ztA-P4-Ncs"/>

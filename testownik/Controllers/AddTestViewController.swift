@@ -16,11 +16,16 @@ class AddTestViewController: UIViewController {
     @IBOutlet weak var textField2: UITextField!
     @IBOutlet weak var textField3: UITextField!
     @IBOutlet weak var label: UILabel!
+   
+    @IBAction func cancelNavigatorButton(_ sender: UIBarButtonItem) {
+         self.dismiss(animated: true, completion: nil)
+    }
     
     @IBAction func buttonPress(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
              print("Cancel")
-            self.dismiss(animated: true)
+            //self.dismiss(animated: true)
+            self.dismiss(animated: true, completion: nil)
         }
          if sender.selectedSegmentIndex == 1 {
            print("AAA")
