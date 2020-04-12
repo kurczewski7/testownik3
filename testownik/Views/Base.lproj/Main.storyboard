@@ -241,6 +241,69 @@
             </objects>
             <point key="canvasLocation" x="2577" y="-115"/>
         </scene>
+        <!--Add test-->
+        <scene sceneID="zEA-IP-qh1">
+            <objects>
+                <viewController id="TLi-WE-UAY" customClass="AddTestViewController" customModule="Testownik" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6nt-DE-fWf">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="Tax-lW-gAm">
+                                <rect key="frame" x="20" y="327.5" width="374" height="241.5"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Insert your test name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QDS-zz-JdZ">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your description" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="imq-Pa-4VO">
+                                        <rect key="frame" x="0.0" y="56" width="374" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter category" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AUz-Le-kQK">
+                                        <rect key="frame" x="0.0" y="112" width="374" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Automatic label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7FA-IX-TWw">
+                                        <rect key="frame" x="0.0" y="168" width="374" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="v7h-LK-9be">
+                                        <rect key="frame" x="0.0" y="210.5" width="374" height="32"/>
+                                        <segments>
+                                            <segment title="First"/>
+                                            <segment title="Second"/>
+                                        </segments>
+                                    </segmentedControl>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Tax-lW-gAm" firstAttribute="centerX" secondItem="6nt-DE-fWf" secondAttribute="centerX" id="BHG-Cb-axN"/>
+                            <constraint firstItem="uyh-S0-61S" firstAttribute="trailing" secondItem="Tax-lW-gAm" secondAttribute="trailing" constant="20" id="cNe-A1-jSm"/>
+                            <constraint firstItem="Tax-lW-gAm" firstAttribute="leading" secondItem="uyh-S0-61S" secondAttribute="leading" constant="20" id="gNt-J6-qq7"/>
+                            <constraint firstItem="Tax-lW-gAm" firstAttribute="centerY" secondItem="6nt-DE-fWf" secondAttribute="centerY" id="uOs-lc-Wl9"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="uyh-S0-61S"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add test" id="cqh-6e-sUl"/>
+                    <connections>
+                        <outlet property="label" destination="7FA-IX-TWw" id="sUG-sg-q3h"/>
+                        <outlet property="textField1" destination="QDS-zz-JdZ" id="ztA-P4-Ncs"/>
+                        <outlet property="textField2" destination="imq-Pa-4VO" id="UgC-fK-19H"/>
+                        <outlet property="textField3" destination="AUz-Le-kQK" id="Bnz-xx-rdC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ev7-ks-ef3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3524.6376811594205" y="-106.47321428571428"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="1MI-Yc-YSP">
             <objects>
@@ -349,7 +412,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bA8-CX-f2J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4268.115942028986" y="829.6875"/>
+            <point key="canvasLocation" x="4228" y="595"/>
         </scene>
         <!--Favorite Tests View Controller-->
         <scene sceneID="CLB-ew-7tg">
@@ -551,7 +614,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hXe-Ns-zDA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4078" y="-115"/>
+            <point key="canvasLocation" x="5025" y="-47"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Jau-2H-Thw">
@@ -661,6 +724,7 @@
                             <barButtonItem systemItem="save" id="tkh-9h-7d3">
                                 <connections>
                                     <action selector="savePressed:" destination="tYc-6R-9Jl" id="pgu-Nm-eNl"/>
+                                    <segue destination="TLi-WE-UAY" kind="show" identifier="showSave" id="Qmg-A5-wg0"/>
                                 </connections>
                             </barButtonItem>
                         </leftBarButtonItems>
@@ -730,7 +794,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="tsm-RE-lKY"/>
+        <segue reference="Bm0-IT-hNY"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrowtriangle.left" catalog="system" width="128" height="113"/>

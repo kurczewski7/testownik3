@@ -54,8 +54,11 @@ class CloudViewController: UIViewController, CloudPickerDelegate  {  //SSZipArch
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         print("------\nsegue: \(String(describing: segue.identifier))")
-        let document = documents[self.indexpath.row]
+         if segue.identifier == "showSave" {
+            
+        }
         if segue.identifier == "showDetail" {
+            let document = documents[self.indexpath.row]
             if let nextViewController = segue.destination as? DetailViewController {
                 nextViewController.dataValue = document.myPictureData
                 nextViewController.descriptionLabelValue = document.fileURL.lastPathComponent
@@ -73,6 +76,7 @@ class CloudViewController: UIViewController, CloudPickerDelegate  {  //SSZipArch
             }
       }
       if segue.identifier == "showArchive" {
+        let document = documents[self.indexpath.row]
         if let nextViewController = segue.destination as? ZipViewController {
             nextViewController.zipFileNameValue = document.fileURL.lastPathComponent
             
