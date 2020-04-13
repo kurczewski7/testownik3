@@ -250,7 +250,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="Tax-lW-gAm">
-                                <rect key="frame" x="20" y="327.5" width="374" height="241.5"/>
+                                <rect key="frame" x="20" y="325.5" width="374" height="245.5"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Insert your test name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QDS-zz-JdZ">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="34"/>
@@ -273,32 +273,45 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="v7h-LK-9be">
-                                        <rect key="frame" x="0.0" y="210.5" width="374" height="32"/>
-                                        <segments>
-                                            <segment title="Cancel"/>
-                                            <segment title="Save"/>
-                                        </segments>
-                                        <connections>
-                                            <action selector="buttonPress:" destination="TLi-WE-UAY" eventType="valueChanged" id="1kq-Ef-NYk"/>
-                                        </connections>
-                                    </segmentedControl>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="IqN-nv-GEn">
+                                        <rect key="frame" x="0.0" y="210.5" width="374" height="35"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EBC-Yw-PzC">
+                                                <rect key="frame" x="0.0" y="0.0" width="174" height="35"/>
+                                                <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" image="cancel_filled"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Wr-IM-8Jb">
+                                                <rect key="frame" x="224" y="0.0" width="150" height="35"/>
+                                                <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="150" id="L9k-3q-ODS"/>
+                                                </constraints>
+                                                <color key="tintColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" image="save_filled"/>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="stn-3d-Vmj"/>
+                                        </constraints>
+                                    </stackView>
                                 </subviews>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="Tax-lW-gAm" firstAttribute="centerX" secondItem="6nt-DE-fWf" secondAttribute="centerX" id="BHG-Cb-axN"/>
-                            <constraint firstItem="uyh-S0-61S" firstAttribute="trailing" secondItem="Tax-lW-gAm" secondAttribute="trailing" constant="20" id="cNe-A1-jSm"/>
-                            <constraint firstItem="Tax-lW-gAm" firstAttribute="leading" secondItem="uyh-S0-61S" secondAttribute="leading" constant="20" id="gNt-J6-qq7"/>
-                            <constraint firstItem="Tax-lW-gAm" firstAttribute="centerY" secondItem="6nt-DE-fWf" secondAttribute="centerY" id="uOs-lc-Wl9"/>
+                            <constraint firstItem="Tax-lW-gAm" firstAttribute="centerX" secondItem="6nt-DE-fWf" secondAttribute="centerX" id="BxI-Su-4qQ"/>
+                            <constraint firstItem="uyh-S0-61S" firstAttribute="trailing" secondItem="Tax-lW-gAm" secondAttribute="trailing" constant="20" id="aHc-d6-zTS"/>
+                            <constraint firstItem="Tax-lW-gAm" firstAttribute="centerY" secondItem="6nt-DE-fWf" secondAttribute="centerY" id="mla-xU-tJA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="uyh-S0-61S"/>
                     </view>
                     <navigationItem key="navigationItem" title="Add test" id="cqh-6e-sUl">
                         <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="MzX-8h-L60">
                             <connections>
-                                <action selector="cancelNavigatorButton:" destination="TLi-WE-UAY" id="xRT-Zh-dB8"/>
+                                <action selector="unwindToVCloudVCWithSegue:" destination="TLi-WE-UAY" id="9yc-YQ-2vY"/>
+                                <segue destination="cBP-5K-aA8" kind="unwind" unwindAction="unwindToCloudVC:" id="GyH-w4-dWa"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -310,6 +323,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ev7-ks-ef3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="cBP-5K-aA8" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3524.6376811594205" y="-106.47321428571428"/>
         </scene>
@@ -809,10 +823,12 @@
         <image name="arrowtriangle.left" catalog="system" width="128" height="113"/>
         <image name="arrowtriangle.right" catalog="system" width="128" height="113"/>
         <image name="backward.end" catalog="system" width="128" height="120"/>
+        <image name="cancel_filled" width="25" height="25"/>
         <image name="eye" catalog="system" width="128" height="81"/>
         <image name="minus.magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="plus.magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="rectangle.compress.vertical" catalog="system" width="128" height="128"/>
         <image name="rectangle.expand.vertical" catalog="system" width="128" height="122"/>
+        <image name="save_filled" width="25" height="25"/>
     </resources>
 </document>

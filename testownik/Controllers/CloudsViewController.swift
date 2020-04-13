@@ -14,14 +14,14 @@ class CloudViewController: UIViewController, CloudPickerDelegate  {  //SSZipArch
     var indexpath = IndexPath(row: 0, section: 0)
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBAction func unwindToCloudVC(_ unwindSegue: UIStoryboardSegue) {
+        let sourceViewController = unwindSegue.source as? AddTestViewController
+        print("label:\(String(describing: sourceViewController?.label.text))")
+        print("Unwind")
+        // Use data from the view controller which initiated the unwind segue
+    }
     
     override func viewDidLoad() {
-        //collectionView.register(<#T##cellClass: AnyClass?##AnyClass?#>, forCellWithReuseIdentifier: <#T##String#>)
-        //collectionView.register(DocumentCell.self, forCellWithReuseIdentifier: "documentCell")
-        //        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        //            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
-        //            return cell
-        //        }
         super.viewDidLoad()
         print("CloudViewController")
         self.documents =  []
@@ -51,6 +51,7 @@ class CloudViewController: UIViewController, CloudPickerDelegate  {  //SSZipArch
     @IBAction func savePressed(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true)
     }
+ 
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         print("------\nsegue: \(String(describing: segue.identifier))")
@@ -58,7 +59,6 @@ class CloudViewController: UIViewController, CloudPickerDelegate  {  //SSZipArch
             if let nextViewController = segue.destination as? AddTestViewController {
                 nextViewController.documentsValue = self.documents                
             }
-            
         }
         if segue.identifier == "showDetail" {
             let document = documents[self.indexpath.row]
@@ -141,21 +141,4 @@ extension CloudViewController: UICollectionViewDelegate, UICollectionViewDataSou
            }
     }
 }
-        //--------
-//        if kind == UICollectionView.elementKindSectionHeader {
-//            guard let headerView = collectionView.dequeueReusableSupplementaryView(
-//                ofKind: kind,
-//                withReuseIdentifier: "detailSectionHeader",
-//                for: indexPath) as? DetailSectionHeaderView
-//              else {
-//                fatalError("Invalid view type")
-//            }
-//
-//            //let searchTerm = searches[indexPath.section].searchTerm
-//            headerView.label.text = "Folder AAAAAA"    //searchTerm
-//            return headerView
-//        }
-//        else {
-//            return UICollectionReusableView()
-//        }
 
