@@ -9,7 +9,8 @@
 import UIKit
 
 class AddTestViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
-    var groups = ["Matematyka", "Informatyka", "Elektronika", "Literatura", "Automatyka", "Medycyna"].sorted()
+    var selectedCategory = ""
+    var groups = ["Matematyka","Fizyka", "Chemia", "Biologia", "Historia", "Geografia", "Genetyka", "Języki obce", "Sztuka", "Geologia", "Informatyka", "Elektronika", "Literatura", "Automatyka", "Medycyna", "Telekomunikacja","I N N E", "Zologia" ].sorted()
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -19,6 +20,10 @@ class AddTestViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return groups[row]
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        selectedCategory = groups[row]
+        print("EEE:\(groups[row])")
     }
     
     var folderUrlValue: String = ""
@@ -71,7 +76,7 @@ class AddTestViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         allTestRecord.auto_name = label.text
         allTestRecord.user_name = textField1.text
         allTestRecord.user_description  = textField2.text
-        allTestRecord.category = textField3.text
+        allTestRecord.category = selectedCategory 
         allTestRecord.create_date = Date()
         allTestRecord.is_favorite = false
         allTestRecord.uuId = uuid
