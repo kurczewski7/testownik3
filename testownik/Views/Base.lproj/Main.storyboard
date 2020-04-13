@@ -281,6 +281,9 @@
                                                 <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" image="cancel_filled"/>
+                                                <connections>
+                                                    <action selector="cancelButtonPressed:" destination="TLi-WE-UAY" eventType="touchUpInside" id="lQ0-ld-WeW"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Wr-IM-8Jb">
                                                 <rect key="frame" x="200" y="0.0" width="150" height="35"/>
@@ -290,6 +293,9 @@
                                                 </constraints>
                                                 <color key="tintColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" image="save_filled"/>
+                                                <connections>
+                                                    <action selector="saveButtonPressed:" destination="TLi-WE-UAY" eventType="touchUpInside" id="oi6-1R-Wzs"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
@@ -313,7 +319,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="MzX-8h-L60">
                             <connections>
                                 <action selector="unwindToVCloudVCWithSegue:" destination="TLi-WE-UAY" id="9yc-YQ-2vY"/>
-                                <segue destination="cBP-5K-aA8" kind="unwind" unwindAction="unwindToCloudVC:" id="GyH-w4-dWa"/>
+                                <segue destination="cBP-5K-aA8" kind="unwind" identifier="goToUnwindCloudVC" unwindAction="unwindToCloudVC:" id="GyH-w4-dWa"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
