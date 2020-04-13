@@ -8,7 +8,19 @@
 
 import UIKit
 
-class AddTestViewController: UIViewController {
+class AddTestViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+    var groups = ["Matematyka", "Informatyka", "Elektronika", "Literatura", "Automatyka", "Medycyna"].sorted()
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return groups.count
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return groups[row]
+    }
+    
     var folderUrlValue: String = ""
     var documentsValue : [CloudPicker.Document] = []
 
@@ -34,6 +46,7 @@ class AddTestViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //groups.sorted()
 
         label.text =  getCurrentDate()
         if documentsValue.count > 0 {
