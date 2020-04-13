@@ -245,45 +245,45 @@
         <scene sceneID="zEA-IP-qh1">
             <objects>
                 <viewController id="TLi-WE-UAY" customClass="AddTestViewController" customModule="Testownik" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="6nt-DE-fWf">
+                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="6nt-DE-fWf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="Tax-lW-gAm">
-                                <rect key="frame" x="20" y="325.5" width="374" height="245.5"/>
+                                <rect key="frame" x="20" y="325.5" width="350" height="245.5"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Insert your test name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QDS-zz-JdZ">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="34"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="350" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your description" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="imq-Pa-4VO">
-                                        <rect key="frame" x="0.0" y="56" width="374" height="34"/>
+                                        <rect key="frame" x="0.0" y="56" width="350" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter category" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AUz-Le-kQK">
-                                        <rect key="frame" x="0.0" y="112" width="374" height="34"/>
+                                        <rect key="frame" x="0.0" y="112" width="350" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Automatic label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7FA-IX-TWw">
-                                        <rect key="frame" x="0.0" y="168" width="374" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="168" width="350" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="IqN-nv-GEn">
-                                        <rect key="frame" x="0.0" y="210.5" width="374" height="35"/>
+                                        <rect key="frame" x="0.0" y="210.5" width="350" height="35"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EBC-Yw-PzC">
-                                                <rect key="frame" x="0.0" y="0.0" width="174" height="35"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="150" height="35"/>
                                                 <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" image="cancel_filled"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Wr-IM-8Jb">
-                                                <rect key="frame" x="224" y="0.0" width="150" height="35"/>
+                                                <rect key="frame" x="200" y="0.0" width="150" height="35"/>
                                                 <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="150" id="L9k-3q-ODS"/>
@@ -293,6 +293,7 @@
                                             </button>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstItem="EBC-Yw-PzC" firstAttribute="width" secondItem="5Wr-IM-8Jb" secondAttribute="width" id="6DA-80-XgD"/>
                                             <constraint firstAttribute="height" constant="35" id="stn-3d-Vmj"/>
                                         </constraints>
                                     </stackView>
@@ -302,8 +303,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="Tax-lW-gAm" firstAttribute="centerX" secondItem="6nt-DE-fWf" secondAttribute="centerX" id="BxI-Su-4qQ"/>
-                            <constraint firstItem="uyh-S0-61S" firstAttribute="trailing" secondItem="Tax-lW-gAm" secondAttribute="trailing" constant="20" id="aHc-d6-zTS"/>
+                            <constraint firstItem="Tax-lW-gAm" firstAttribute="leading" secondItem="uyh-S0-61S" secondAttribute="leading" constant="20" id="QV4-H8-nv2"/>
                             <constraint firstItem="Tax-lW-gAm" firstAttribute="centerY" secondItem="6nt-DE-fWf" secondAttribute="centerY" id="mla-xU-tJA"/>
+                            <constraint firstItem="Tax-lW-gAm" firstAttribute="centerY" secondItem="6nt-DE-fWf" secondAttribute="centerY" id="qAM-9m-II7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="uyh-S0-61S"/>
                     </view>
