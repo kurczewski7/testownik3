@@ -50,8 +50,8 @@ class AddTestViewController: UIViewController {
         return "Test  "+formatter.string(from: currentDateTime)
     }
     func saveData() {
-        database.allTestsTable.deleteAll()
-        database.testDescriptionTable.deleteAll()
+        //database.allTestsTable.deleteAll()
+        //database.testDescriptionTable.deleteAll()
         let uuid = UUID()
         let context = database.context
         let allTestRecord = AllTestEntity(context: context)
