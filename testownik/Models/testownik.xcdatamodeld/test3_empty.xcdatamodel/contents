@@ -5,6 +5,7 @@
         <attribute name="category" optional="YES" attributeType="String"/>
         <attribute name="create_date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="is_favorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="user_description" optional="YES" attributeType="String"/>
         <attribute name="user_name" optional="YES" attributeType="String"/>
         <attribute name="uuId" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <relationship name="toCateoryRelationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CategoriesEntity" inverseName="toAllTestRelationship" inverseEntity="CategoriesEntity"/>
@@ -21,11 +22,12 @@
         <attribute name="picture" optional="YES" attributeType="Binary"/>
         <attribute name="text" optional="YES" attributeType="String"/>
         <attribute name="uuId" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="uuid_parent" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <relationship name="toAllTestRelationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AllTestEntity" inverseName="toDescriptionRelationship" inverseEntity="AllTestEntity"/>
     </entity>
     <elements>
-        <element name="AllTestEntity" positionX="100.31640625" positionY="-10965.70703125" width="163.9453125" height="163"/>
+        <element name="AllTestEntity" positionX="100.31640625" positionY="-10965.70703125" width="163.9453125" height="178"/>
         <element name="CategoriesEntity" positionX="431.65625" positionY="-10905.859375" width="128" height="88"/>
-        <element name="TestDescriptionEntity" positionX="430.66015625" positionY="-10795.6171875" width="128" height="133"/>
+        <element name="TestDescriptionEntity" positionX="430.66015625" positionY="-10795.6171875" width="128" height="148"/>
     </elements>
 </model>

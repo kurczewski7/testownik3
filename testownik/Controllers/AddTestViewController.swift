@@ -50,12 +50,25 @@ class AddTestViewController: UIViewController {
         return "Test  "+formatter.string(from: currentDateTime)
     }
     func saveData() {
+        database.allTestsTable.deleteAll()
+        database.testDescriptionTable.deleteAll()
+        let uuid = UUID()
         let context = database.context
         let allTestRecord = AllTestEntity(context: context)
         allTestRecord.auto_name = label.text
         allTestRecord.user_name = textField1.text
-        //allTestRecord.description = "AAA description"//textField2.text
+        allTestRecord.user_description  = textField2.text
         allTestRecord.category = textField3.text
+        allTestRecord.create_date = Date()
+        allTestRecord.is_favorite = false
+        allTestRecord.uuId = uuid
+        let uu = UUID()
+        let zz = uu.hashValue
+        print("\(zz)")
+        
+        // toShop.productRelation=product
+//        allTestRecord.toDescriptionRelationship =
+//        allTestRecord.toCateoryRelationship =
         database.allTestsTable.append(allTestRecord)
         database.allTestsTable.save()
         for i in 0..<documentsValue.count {
@@ -64,6 +77,8 @@ class AddTestViewController: UIViewController {
             record.file_name = documentsValue[i].fileURL.lastPathComponent
             record.text = documentsValue[i].myTexts
             record.picture = documentsValue[i].myPictureData
+            record.uuid_parent = uuid
+            record.uuId = UUID()
             database.testDescriptionTable.append(record)
             database.testDescriptionTable.save()
         }
