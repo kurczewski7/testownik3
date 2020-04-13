@@ -20,6 +20,7 @@ class AddTestViewController: UIViewController {
     
     @IBAction func saveButtonPressed(_ sender: UIButton) {
         print("saveButtonPressed")
+        saveData()
         self.performSegue(withIdentifier: "goToUnwindCloudVC", sender: nil)
     }
     @IBAction func cancelButtonPressed(_ sender: Any) {
@@ -48,8 +49,25 @@ class AddTestViewController: UIViewController {
         formatter.dateFormat = "yyyy/MM/dd  HH:mm:ss"
         return "Test  "+formatter.string(from: currentDateTime)
     }
-    
-    
+    func saveData() {
+        let context = database.context
+        let allTestRecord = AllTestEntity(context: context)
+        allTestRecord.auto_name = label.text
+        allTestRecord.user_name = textField1.text
+        //allTestRecord.description = "AAA description"//textField2.text
+        allTestRecord.category = textField3.text
+        database.allTestsTable.append(allTestRecord)
+        database.allTestsTable.save()
+        for i in 0..<documentsValue.count {
+            let record = TestDescriptionEntity(context: context)
+            record.file_url = documentsValue[i].fileURL.absoluteString
+            record.file_name = documentsValue[i].fileURL.lastPathComponent
+            record.text = documentsValue[i].myTexts
+            record.picture = documentsValue[i].myPictureData
+            database.testDescriptionTable.append(record)
+            database.testDescriptionTable.save()
+        }
+    }
 
     /*
     // MARK: - Navigation
