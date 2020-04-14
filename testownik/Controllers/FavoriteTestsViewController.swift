@@ -22,9 +22,10 @@ class FavoriteTestsViewController: UIViewController, UITableViewDataSource, UITa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "favoriteCell") as! FavoriteTestsTableViewCell
          if indexPath.section == 0 {
-            cell.label1.text = "XXXXX: \(database.allTestsTable[indexPath.row].user_name ?? "")"
-            cell.label2.text = "aaa: \(database.allTestsTable[indexPath.row].user_description ?? "")"
-            cell.label3.text = "bbb: \(database.allTestsTable[indexPath.row].category ?? "")"
+            cell.label1.text = "\(database.allTestsTable[indexPath.row].user_name ?? " ")"
+            cell.label2.text = "\(database.allTestsTable[indexPath.row].user_description ?? " ")"
+            cell.label3.text = "\(database.allTestsTable[indexPath.row].category ?? " ")" +
+            " (\(database.allTestsTable[indexPath.row].auto_name ?? ""))"
         }
         if indexPath.section == 1 {
             cell.label1.text = "AAAA: \(docum[indexPath.section][indexPath.row])"

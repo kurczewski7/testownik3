@@ -152,17 +152,13 @@ class DatabaseTableGeneric <P: NSFetchRequestResult> {
         genericArray.remove(at: sourceIndex)
         genericArray.insert(objectToMove, at: destinationIndex)
     }
-    
-    func save() {
-        self.databaseSelf.save()
-    }
-    //--------------------------
-    func loadData(fieldName: String, fieldValue: Int16 = 0) {
+    //      func append<T>(_ value: T) {
+    func loadData<T>(fieldName: String, fieldValue: T) {
         var request : NSFetchRequest<NSFetchRequestResult>?
         var groupPredicate:NSPredicate?
-        request = AllTestEntity.fetchRequest()
-//        groupPredicate = NSPredicate(format: "%K = %@", fieldName, "\(fieldValue)")
-//        request?.predicate = groupPredicate
+        request = self.feachRequest
+        groupPredicate = NSPredicate(format: "%K = %@", fieldName, "\(fieldValue)")
+        request?.predicate = groupPredicate
         do {
             let newArray     = try context.fetch(request!)
             self.genericArray = newArray as! [P]
@@ -170,8 +166,22 @@ class DatabaseTableGeneric <P: NSFetchRequestResult> {
             print("Error fetching data from context \(error.localizedDescription)")
         }
     }
-    
+    func loadData() {
+        var request : NSFetchRequest<NSFetchRequestResult>?
+        request = self.feachRequest
+        do {
+            let newArray     = try context.fetch(request!)
+            self.genericArray = newArray as! [P]
+        } catch  {
+            print("Error fetching data from context \(error.localizedDescription)")
+        }
+    }
 
+    func save() {
+        self.databaseSelf.save()
+    }
+
+//feachRequest
     
     //<P: NSFetchRequestResult>
 //private var  genericArray = [P]()

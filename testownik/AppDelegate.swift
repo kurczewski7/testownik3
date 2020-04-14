@@ -17,9 +17,8 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        database.allTestsTable.loadData(fieldName: "uuId")
-        
+        //database.allTestsTable.loadData(fieldName: "user_name", fieldValue: "trzeci")
+        database.allTestsTable.loadData()
         return true
     }
 
