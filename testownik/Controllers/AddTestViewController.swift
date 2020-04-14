@@ -11,29 +11,13 @@ import UIKit
 class AddTestViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     var selectedCategory = ""
     var groups = ["Matematyka","Fizyka", "Chemia", "Biologia", "Historia", "Geografia", "Genetyka", "Języki obce", "Sztuka", "Geologia", "Informatyka", "Elektronika", "Literatura", "Automatyka", "Medycyna", "Telekomunikacja","I N N E", "Zologia" ].sorted()
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return groups.count
-    }
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return groups[row]
-    }
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        selectedCategory = groups[row]
-        print("EEE:\(groups[row])")
-    }
     
     var folderUrlValue: String = ""
     var documentsValue : [CloudPicker.Document] = []
 
     @IBOutlet weak var textField1: UITextField!
     @IBOutlet weak var textField2: UITextField!
-    @IBOutlet weak var textField3: UITextField!
     @IBOutlet weak var label: UILabel!
-
     
     @IBAction func saveButtonPressed(_ sender: UIButton) {
         print("saveButtonPressed")
@@ -56,10 +40,23 @@ class AddTestViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         label.text =  getCurrentDate()
         if documentsValue.count > 0 {
             textField2.text = "\(documentsValue[0].myTexts)"
-            textField3.text = "\(documentsValue.count)"
         }
         //database.testDescriptionTable[0].file_name
         // Do any additional setup after loading the view.
+    }
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    // MARK: - UIPickerViewDelegate methods
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return groups.count
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return groups[row]
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        selectedCategory = groups[row]
+        print("EEE:\(groups[row])")
     }
     func getCurrentDate() -> String {
        let currentDateTime = Date()
@@ -76,7 +73,7 @@ class AddTestViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         allTestRecord.auto_name = label.text
         allTestRecord.user_name = textField1.text
         allTestRecord.user_description  = textField2.text
-        allTestRecord.category = selectedCategory 
+        allTestRecord.category = selectedCategory
         allTestRecord.create_date = Date()
         allTestRecord.is_favorite = false
         allTestRecord.uuId = uuid
