@@ -75,7 +75,7 @@ class AddTestViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         allTestRecord.user_description  = textField2.text
         allTestRecord.category = selectedCategory
         allTestRecord.create_date = Date()
-        allTestRecord.is_favorite = false
+        allTestRecord.is_favorite = true
         allTestRecord.uuId = uuid
         let uu = UUID()
         let zz = uu.hashValue
