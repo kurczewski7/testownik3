@@ -153,7 +153,7 @@ class DatabaseTableGeneric <P: NSFetchRequestResult> {
         genericArray.insert(objectToMove, at: destinationIndex)
     }
     //      func append<T>(_ value: T) {
-    func loadData<T>(fieldName: String, fieldValue: T) {
+    func loadData<T>(forFilterField fieldName: String, fieldValue: T) {
         var request : NSFetchRequest<NSFetchRequestResult>?
         var groupPredicate:NSPredicate?
         request = self.feachRequest
