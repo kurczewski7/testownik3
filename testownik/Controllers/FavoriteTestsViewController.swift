@@ -77,7 +77,37 @@ class FavoriteTestsViewController: UIViewController, UITableViewDataSource, UITa
     }
     // MARK: NSFetchedResultsControllerDelegate
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        self.tableView?.reloadData()
+        //self.tableView?.reloadData()
+          switch (type) {
+          case .insert:
+            if let indexPath = newIndexPath {
+              tableView.insertRows(at: [indexPath], with: .fade)
+            }
+            break;
+          case .delete:
+            if let indexPath = indexPath {
+              tableView.deleteRows(at: [indexPath], with: .fade)
+            }
+            break;
+          case .update:
+            if let indexPath = indexPath, let cell = tableView.cellForRow(at: indexPath) {
+                cell.textLabel?.text = "AAASfghh"
+            }
+            break;
+            
+          case .move:
+            if let indexPath = indexPath {
+              tableView.deleteRows(at: [indexPath], with: .fade)
+            }
+            
+            if let newIndexPath = newIndexPath {
+              tableView.insertRows(at: [newIndexPath], with: .fade)
+            }
+            break;
+            
+          @unknown default:
+            fatalError()
+        }
     }
 
     /*
