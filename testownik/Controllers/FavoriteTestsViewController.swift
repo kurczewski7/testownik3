@@ -12,41 +12,29 @@ import CoreData
 class FavoriteTestsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate {
     let docum = [[1,2,3,4,5,6],[7,8,9,10,11]]
     var allTests: [AllTestEntity]!
-    var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>!
+    
     
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        configFetch(entityName: "AllTestEntity", key: "is_favorite", ascending: true)
+
+        database.fetch[0].configFetch(entityName: "AllTestEntity", context: database.context, key: "is_favorite", ascending: true)
+        database.fetch[0].fetchedResultsController.delegate = self
         allTests = database.allTestsTable.array
     }
-    func configFetch(entityName: String, key: String, ascending: Bool = true) {
-        let context = database.context
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
-        let sort1 = NSSortDescriptor(key: key, ascending: ascending)
-        fetchRequest.sortDescriptors = [sort1]
-        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest,  managedObjectContext: context,
-                                                              sectionNameKeyPath: key, cacheName: "SectionCache")
-        fetchedResultsController.delegate =  self
-        do {
-            try fetchedResultsController.performFetch()
-        } catch let error as NSError {
-            print("Error: \(error.localizedDescription)")
-        }
-    }    
     func numberOfSections(in tableView: UITableView) -> Int {
-        return  fetchedResultsController.sections?.count ?? 1
+        return  database.fetch[0].sectionCount
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return fetchedResultsController.sections?[section].numberOfObjects ?? 0
+        return database.fetch[0].rowCount(forSection: section)
+            //fetchedResultsController.sections?[section].numberOfObjects ?? 0
             //section == 0 ? database.allTestsTable.count : docum[section].count  //docum[section].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "favoriteCell") as! FavoriteTestsTableViewCell
-        if let obj=fetchedResultsController.object(at: indexPath) as? AllTestEntity {
+        if let obj=database.fetch[0].getObj(at: indexPath) as? AllTestEntity {
             cell.label1.text = obj.user_name
             cell.label2.text = obj.user_description
             cell.label3.text = obj.category ?? "" + "\((obj.auto_name) ?? "")"
