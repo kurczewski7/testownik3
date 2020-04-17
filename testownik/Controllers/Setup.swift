@@ -10,6 +10,18 @@ import UIKit
 import SSZipArchive
 
 class Setup {
+    enum LanguaesList: String {
+        case enlish     = "en"
+        case english_US = "en-US"
+        case english_GB = "en-GB"
+        case polish     = "pl"
+        case german     = "de"
+        case french     = "fr_FR"
+        case spanish    = "es_ES"
+    }
+    
+    static var currentLanguage: LanguaesList = .polish
+    
 //   class func getText(fromCloudFilePath filePath: URL) -> [String] {
 //        let value = getTextEncoding(filePath: filePath)
 //        let data = value.data

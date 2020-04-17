@@ -10,16 +10,13 @@ import UIKit
 import CoreData
 
 class FavoriteTestsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate {
-    let docum = [[1,2,3,4,5,6],[7,8,9,10,11]]
+    //let docum = [[1,2,3,4,5,6],[7,8,9,10,11]]
     var allTests: [AllTestEntity]!
-    
-    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        database.fetch[0].configFetch(entityName: "AllTestEntity", context: database.context, key: "is_favorite", ascending: true)
+        database.fetch[0].configFetch(entityName: "AllTestEntity", context: database.context, key: "is_favorite", ascending: false)
         database.fetch[0].fetchedResultsController.delegate = self
         allTests = database.allTestsTable.array
     }
@@ -31,7 +28,6 @@ class FavoriteTestsViewController: UIViewController, UITableViewDataSource, UITa
             //fetchedResultsController.sections?[section].numberOfObjects ?? 0
             //section == 0 ? database.allTestsTable.count : docum[section].count  //docum[section].count
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "favoriteCell") as! FavoriteTestsTableViewCell
         if let obj=database.fetch[0].getObj(at: indexPath) as? AllTestEntity {
@@ -41,7 +37,6 @@ class FavoriteTestsViewController: UIViewController, UITableViewDataSource, UITa
         }
         return cell
     }
-     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label = UILabel()
         label.textAlignment = .center
@@ -69,24 +64,21 @@ class FavoriteTestsViewController: UIViewController, UITableViewDataSource, UITa
         return swipe
     }
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-               let action = UIContextualAction(style: .normal, title: "BBBB") { (act, view, exec) in
+        let message = Setup.currentLanguage == .polish ? "Kasuj" : "Delete"  // static var currentLanguage: LanguaesList = .polish
+               let action = UIContextualAction(style: .normal, title: message) { (act, view, exec) in
             print("leadingSwipeActionsConfigurationForRowAt")
         }
         action.backgroundColor = .red
         let swipe = UISwipeActionsConfiguration(actions: [action])
         return swipe
-
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 40.0
     }
-    
-
     // MARK: NSFetchedResultsControllerDelegate
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         self.tableView?.reloadData()
     }
-    
 
     /*
     // MARK: - - Navigation
