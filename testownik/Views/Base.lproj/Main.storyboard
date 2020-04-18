@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Gpk-Z3-T9O">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -539,7 +539,14 @@
                         <viewLayoutGuide key="safeArea" id="T7j-Ky-mTN"/>
                     </view>
                     <navigationItem key="navigationItem" title="Your tests" id="Dgu-SD-Ttz">
-                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="Q4m-D8-L2H"/>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="compose" id="Q4m-D8-L2H"/>
+                            <barButtonItem title="Item" image="unlock" id="D04-lb-JKL">
+                                <connections>
+                                    <action selector="luckNavigatorButtonPress:" destination="y7M-Bf-Ul5" id="nQx-IH-z8i"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="zay-9E-Aks" id="MCf-Kp-1jT"/>
@@ -842,5 +849,6 @@
         <image name="rectangle.compress.vertical" catalog="system" width="128" height="128"/>
         <image name="rectangle.expand.vertical" catalog="system" width="128" height="122"/>
         <image name="save_filled" width="25" height="25"/>
+        <image name="unlock" width="25" height="25"/>
     </resources>
 </document>

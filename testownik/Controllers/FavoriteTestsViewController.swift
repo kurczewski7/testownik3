@@ -14,6 +14,18 @@ class FavoriteTestsViewController: UIViewController, UITableViewDataSource, UITa
     var allTests: [AllTestEntity]!
     @IBOutlet weak var tableView: UITableView!
     
+    
+    @IBAction func luckNavigatorButtonPress(_ sender: UIBarButtonItem) {
+        var ikonName: String = ""
+        let statusOn = self.tableView.isEditing
+        self.tableView.isEditing = !statusOn
+        ikonName = statusOn ? "unlock" : "lock"
+        let image = UIImage(named: ikonName)
+        navigationItem.rightBarButtonItem?.image = image
+    }
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         database.fetch[0].configFetch(entityName: "AllTestEntity", context: database.context, key: "is_favorite", ascending: false)
@@ -65,11 +77,11 @@ class FavoriteTestsViewController: UIViewController, UITableViewDataSource, UITa
             exec(true)
          }
         if indexPath.section == 0 {
-             action.backgroundColor = .green
+             action.backgroundColor = .lightGray
              action.title = "Unselect"
              action.image = UIImage(named: "hand_down_filled_big")
          } else {
-            action.backgroundColor = .blue
+            action.backgroundColor = .green
             action.title = "Select"
             action.image = UIImage(named: "hand_up_filled_big")
          }
@@ -93,6 +105,18 @@ class FavoriteTestsViewController: UIViewController, UITableViewDataSource, UITa
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 40.0
     }
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+//        contactList.remove(at: sourceIndexPath.row)
+//        contactList.insert(objectToMove, at: destinationIndexPath.row)
+    }
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .none
+    }
+    
+    
     // MARK: NSFetchedResultsControllerDelegate
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         self.tableView?.reloadData()
