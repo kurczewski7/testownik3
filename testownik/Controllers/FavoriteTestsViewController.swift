@@ -56,19 +56,37 @@ class FavoriteTestsViewController: UIViewController, UITableViewDataSource, UITa
         return "    "
     }
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let action = UIContextualAction(style: .normal, title: "AAAA") { (act, view, exec) in
+        let action = UIContextualAction(style: .normal, title: "Empty") { (act, view, exec) in
             print("trailingSwipeActionsConfigurationForRowAt")
-        }
-        action.backgroundColor = .green
+            let selectedTest = database.fetch[0].getObj(at: indexPath) as! AllTestEntity
+            selectedTest.is_favorite.toggle()
+            database.fetch[0].save()
+            tableView.reloadData()
+            exec(true)
+         }
+        if indexPath.section == 0 {
+             action.backgroundColor = .green
+             action.title = "Unselect"
+             action.image = UIImage(named: "hand_down_filled_big")
+         } else {
+            action.backgroundColor = .blue
+            action.title = "Select"
+            action.image = UIImage(named: "hand_up_filled_big")
+         }
         let swipe = UISwipeActionsConfiguration(actions: [action])
         return swipe
     }
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let message = Setup.currentLanguage == .polish ? "Kasuj" : "Delete"  // static var currentLanguage: LanguaesList = .polish
                let action = UIContextualAction(style: .normal, title: message) { (act, view, exec) in
-            print("leadingSwipeActionsConfigurationForRowAt")
+                print("leadingSwipeActionsConfigurationForRowAt")
+                let selectedTest = database.fetch[0].getObj(at: indexPath) as! AllTestEntity
+                database.fetch[0].context.delete(selectedTest)
+                database.fetch[0].save()
+                exec(true)
         }
         action.backgroundColor = .red
+        action.image=UIImage(named: "full_trash_big")
         let swipe = UISwipeActionsConfiguration(actions: [action])
         return swipe
     }
@@ -77,37 +95,37 @@ class FavoriteTestsViewController: UIViewController, UITableViewDataSource, UITa
     }
     // MARK: NSFetchedResultsControllerDelegate
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        //self.tableView?.reloadData()
-          switch (type) {
-          case .insert:
-            if let indexPath = newIndexPath {
-              tableView.insertRows(at: [indexPath], with: .fade)
-            }
-            break;
-          case .delete:
-            if let indexPath = indexPath {
-              tableView.deleteRows(at: [indexPath], with: .fade)
-            }
-            break;
-          case .update:
-            if let indexPath = indexPath, let cell = tableView.cellForRow(at: indexPath) {
-                cell.textLabel?.text = "AAASfghh"
-            }
-            break;
-            
-          case .move:
-            if let indexPath = indexPath {
-              tableView.deleteRows(at: [indexPath], with: .fade)
-            }
-            
-            if let newIndexPath = newIndexPath {
-              tableView.insertRows(at: [newIndexPath], with: .fade)
-            }
-            break;
-            
-          @unknown default:
-            fatalError()
-        }
+        self.tableView?.reloadData()
+//          switch (type) {
+//          case .insert:
+//            if let indexPath = newIndexPath {
+//              tableView.insertRows(at: [indexPath], with: .fade)
+//            }
+//            break;
+//          case .delete:
+//            if let indexPath = indexPath {
+//              tableView.deleteRows(at: [indexPath], with: .fade)
+//            }
+//            break;
+//          case .update:
+//            if let indexPath = indexPath, let cell = tableView.cellForRow(at: indexPath) {
+//                cell.textLabel?.text = "AAASfghh"
+//            }
+//            break;
+//
+//          case .move:
+//            if let indexPath = indexPath {
+//              tableView.deleteRows(at: [indexPath], with: .fade)
+//            }
+//
+//            if let newIndexPath = newIndexPath {
+//              tableView.insertRows(at: [newIndexPath], with: .fade)
+//            }
+//            break;
+//
+//          @unknown default:
+//            fatalError()
+//        }
     }
 
     /*

@@ -11,6 +11,11 @@ import CoreData
 
 class DatabaseFetch  {
     var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>!
+    var context : NSManagedObjectContext {
+        get {
+            return fetchedResultsController.managedObjectContext //.delete(<#T##object: NSManagedObject##NSManagedObject#>)
+        }
+    }
     var sectionCount : Int {
         get {   return fetchedResultsController.sections?.count ?? 1     }
     }
@@ -33,6 +38,13 @@ class DatabaseFetch  {
     func getObj(at indexPath: IndexPath) -> NSFetchRequestResult {
         let obj = fetchedResultsController.object(at: indexPath)
         return obj
+    }
+    func deleteObj(_ object: NSManagedObject) { 
+        context.delete(object)
+    }
+    func save() {
+        do {   try self.context.save()    }
+        catch  {  print("Error saveing context \(error.localizedDescription)")   }
     }
 }
 
