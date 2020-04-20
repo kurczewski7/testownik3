@@ -12,6 +12,8 @@ import CoreData
 class FavoriteTestsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate {
     //let docum = [[1,2,3,4,5,6],[7,8,9,10,11]]
     var allTests: [AllTestEntity]!
+    let colorFavorite = Colors().green[1]
+    let colorOther =  Colors().kindaBlue[1]
     @IBOutlet weak var tableView: UITableView!
     
     
@@ -23,9 +25,6 @@ class FavoriteTestsViewController: UIViewController, UITableViewDataSource, UITa
         let image = UIImage(named: ikonName)
         navigationItem.rightBarButtonItem?.image = image
     }
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         database.fetch[0].configFetch(entityName: "AllTestEntity", context: database.context, key: "is_favorite", ascending: false)
@@ -37,9 +36,7 @@ class FavoriteTestsViewController: UIViewController, UITableViewDataSource, UITa
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return database.fetch[0].rowCount(forSection: section)
-            //fetchedResultsController.sections?[section].numberOfObjects ?? 0
-            //section == 0 ? database.allTestsTable.count : docum[section].count  //docum[section].count
-    }
+     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "favoriteCell") as! FavoriteTestsTableViewCell
         if let obj=database.fetch[0].getObj(at: indexPath) as? AllTestEntity {
@@ -56,11 +53,11 @@ class FavoriteTestsViewController: UIViewController, UITableViewDataSource, UITa
         if section == 0 {
             label.text = "Favorites tests  👍"
             label.textColor = .white
-            label.backgroundColor = . systemGreen
+            label.backgroundColor = self.colorFavorite
         } else {
             label.text = "Others tests  👉🏻"
             label.textColor = .black
-            label.backgroundColor = . lightGray
+            label.backgroundColor = self.colorOther
         }
         return label
     }
@@ -77,17 +74,18 @@ class FavoriteTestsViewController: UIViewController, UITableViewDataSource, UITa
             exec(true)
          }
         if indexPath.section == 0 {
-             action.backgroundColor = .lightGray
+            action.backgroundColor = self.colorOther
              action.title = "Unselect"
-             action.image = UIImage(named: "hand_down_filled_big")
+             action.image = UIImage(named: "hand_down_filled_big")?.imageWithColor(.red)
          } else {
-            action.backgroundColor = .green
+            action.backgroundColor = self.colorFavorite
             action.title = "Select"
-            action.image = UIImage(named: "hand_up_filled_big")
+            action.image = UIImage(named: "hand_up_filled_big")    //.imageWithColor(.green)
          }
         let swipe = UISwipeActionsConfiguration(actions: [action])
         return swipe
     }
+    
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let message = Setup.currentLanguage == .polish ? "Kasuj" : "Delete"  // static var currentLanguage: LanguaesList = .polish
                let action = UIContextualAction(style: .normal, title: message) { (act, view, exec) in
@@ -109,6 +107,11 @@ class FavoriteTestsViewController: UIViewController, UITableViewDataSource, UITa
         return true
     }
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        if sourceIndexPath.section != destinationIndexPath.section {
+             let selectedTest = database.fetch[0].getObj(at: sourceIndexPath) as! AllTestEntity
+            selectedTest.is_favorite.toggle()
+            database.fetch[0].save()
+        }
 //        contactList.remove(at: sourceIndexPath.row)
 //        contactList.insert(objectToMove, at: destinationIndexPath.row)
     }
