@@ -65,6 +65,7 @@ class FavoriteTestsViewController: UIViewController, UITableViewDataSource, UITa
         return "    "
     }
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        var actions = [UIContextualAction]()
         let action = UIContextualAction(style: .normal, title: "Empty") { (act, view, exec) in
             print("trailingSwipeActionsConfigurationForRowAt")
             let selectedTest = database.fetch[0].getObj(at: indexPath) as! AllTestEntity
@@ -76,13 +77,26 @@ class FavoriteTestsViewController: UIViewController, UITableViewDataSource, UITa
         if indexPath.section == 0 {
             action.backgroundColor = self.colorOther
              action.title = "Unselect"
-             action.image = UIImage(named: "hand_down_filled_big")?.imageWithColor(.red)
+             action.image = UIImage(named: "thumbs_down_big")?.imageWithColor(.red)
          } else {
             action.backgroundColor = self.colorFavorite
             action.title = "Select"
-            action.image = UIImage(named: "hand_up_filled_big")    //.imageWithColor(.green)
+            action.image = UIImage(named: "thumbs_up_big")
+        
          }
-        let swipe = UISwipeActionsConfiguration(actions: [action])
+        let actionSet = UIContextualAction(style: .normal, title: "❤️ Test") { (act, view, exec) in
+             print("Testing set")
+        }
+        actionSet.backgroundColor = .cyan
+        actionSet.image = UIImage(named: "student_big")
+        
+        if indexPath.section == 0 {
+            actions = [action, actionSet]
+        }
+        else {
+            actions = [action]
+        }
+        let swipe = UISwipeActionsConfiguration(actions: actions)
         return swipe
     }
     
