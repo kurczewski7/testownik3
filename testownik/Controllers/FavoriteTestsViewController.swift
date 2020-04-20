@@ -43,6 +43,7 @@ class FavoriteTestsViewController: UIViewController, UITableViewDataSource, UITa
             cell.label1.text = obj.user_name
             cell.label2.text = obj.user_description
             cell.label3.text = obj.category ?? "" + "\((obj.auto_name) ?? "")"
+            cell.accessoryType = obj.is_selected ? .checkmark : .none
         }
         return cell
     }
@@ -77,7 +78,7 @@ class FavoriteTestsViewController: UIViewController, UITableViewDataSource, UITa
         if indexPath.section == 0 {
             action.backgroundColor = self.colorOther
              action.title = "Unselect"
-             action.image = UIImage(named: "thumbs_down_big")?.imageWithColor(.red)
+            action.image = UIImage(named: "thumbs_down_big")?.imageWithColor(.red)
          } else {
             action.backgroundColor = self.colorFavorite
             action.title = "Select"
@@ -85,10 +86,13 @@ class FavoriteTestsViewController: UIViewController, UITableViewDataSource, UITa
         
          }
         let actionSet = UIContextualAction(style: .normal, title: "❤️ Test") { (act, view, exec) in
+            let selectedTest = database.fetch[0].getObj(at: indexPath) as! AllTestEntity
+            selectedTest.is_selected = true
              print("Testing set")
+            exec(true)
         }
         actionSet.backgroundColor = .cyan
-        actionSet.image = UIImage(named: "student_big")
+        actionSet.image = UIImage(named: "student_big")?.imageWithColor(.purple)
         
         if indexPath.section == 0 {
             actions = [action, actionSet]
