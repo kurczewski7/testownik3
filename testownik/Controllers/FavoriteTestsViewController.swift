@@ -14,9 +14,10 @@ class FavoriteTestsViewController: UIViewController, UITableViewDataSource, UITa
     var allTests: [AllTestEntity]!
     let colorFavorite = Colors().green[1]
     let colorOther =  Colors().kindaBlue[1]
+    var indexpath = IndexPath(row: 0, section: 0)
+    
     @IBOutlet weak var tableView: UITableView!
-    
-    
+        
     @IBAction func luckNavigatorButtonPress(_ sender: UIBarButtonItem) {
         var ikonName: String = ""
         let statusOn = self.tableView.isEditing
@@ -80,7 +81,7 @@ class FavoriteTestsViewController: UIViewController, UITableViewDataSource, UITa
         if indexPath.section == 0 {
             action.backgroundColor = self.colorOther
              action.title = "Unselect"
-            action.image = UIImage(named: "thumbs_down_big")?.imageWithColor(.red)
+            action.image = UIImage(named: "thumbs_down_big")?.tintColor(.red)
          } else {
             action.backgroundColor = self.colorFavorite
             action.title = "Select"
@@ -95,7 +96,7 @@ class FavoriteTestsViewController: UIViewController, UITableViewDataSource, UITa
             exec(true)
         }
         actionSet.backgroundColor = .cyan
-        actionSet.image = UIImage(named: "student_big")?.imageWithColor(.purple)
+        actionSet.image = UIImage(named: "student_big")?.tintColor(.purple)
         
         if indexPath.section == 0 {
             actions = [action, actionSet]
@@ -139,52 +140,40 @@ class FavoriteTestsViewController: UIViewController, UITableViewDataSource, UITa
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .none
     }
-    
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.indexpath = indexPath
+        print("didSelectRowAt:\(self.indexpath)")
+    }
+    // MARK: - - Navigation
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToTestDescription" {
+            if let nextViewController = segue.destination as? TestDescriptionViewController {
+                let allTestRec = database.fetch[0].getObj(at: self.indexpath) as! AllTestEntity
+                nextViewController.isLikeValue = true
+                nextViewController.userNameTextFieldValue = "userNameTextFieldValue"
+                nextViewController.userDescriptionTextFieldValue = "userDescriptionTextFieldValue"
+                nextViewController.categoryLabelValue = "categoryLabelValue"
+                nextViewController.autoNameLabelValue = "autoNameLabel"
+                nextViewController.folderUrlLabelValue = "folderUrlLabelValue"
+                
+                
+//                var isLikeValue = false
+//                var userNameTextFieldValue = ""
+//                var userDescriptionTextFieldValue = ""
+//                var categoryLbabelValue = ""
+//                var autoNameLabelValue = ""
+//                var folderUrlLabelValue = ""
+
+                
+                
+                
+            }
+        }
+        
+    }
     // MARK: NSFetchedResultsControllerDelegate
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         self.tableView?.reloadData()
-//          switch (type) {
-//          case .insert:
-//            if let indexPath = newIndexPath {
-//              tableView.insertRows(at: [indexPath], with: .fade)
-//            }
-//            break;
-//          case .delete:
-//            if let indexPath = indexPath {
-//              tableView.deleteRows(at: [indexPath], with: .fade)
-//            }
-//            break;
-//          case .update:
-//            if let indexPath = indexPath, let cell = tableView.cellForRow(at: indexPath) {
-//                cell.textLabel?.text = "AAASfghh"
-//            }
-//            break;
-//
-//          case .move:
-//            if let indexPath = indexPath {
-//              tableView.deleteRows(at: [indexPath], with: .fade)
-//            }
-//
-//            if let newIndexPath = newIndexPath {
-//              tableView.insertRows(at: [newIndexPath], with: .fade)
-//            }
-//            break;
-//
-//          @unknown default:
-//            fatalError()
-//        }
     }
-
-    /*
-    // MARK: - - Navigation
-     
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

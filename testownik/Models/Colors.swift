@@ -33,7 +33,7 @@ class Colors {
     }
 }
 extension UIImage {
-    func imageWithColor(_ color: UIColor) -> UIImage {
+    func tintColor(_ color: UIColor) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(self.size, false, self.scale)
         color.setFill()
         let context = UIGraphicsGetCurrentContext()
