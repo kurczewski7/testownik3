@@ -9,7 +9,7 @@
 import UIKit
 
 class TestDescriptionViewController: UIViewController {
-    var isLikeValue = false
+    var isLikeValue: Bool = false
     var userNameTextFieldValue = ""
     var userDescriptionTextFieldValue = ""
     var categoryLabelValue = ""
@@ -26,35 +26,25 @@ class TestDescriptionViewController: UIViewController {
     
     var isLike: Bool = false {
         didSet {
-            let image = isLike ? UIImage(named: "thumbs_up_big")?.tintColor(.green) : UIImage(named: "thumbs_down_big")?.tintColor(.red)
-            if let image = image {
-                iLikeImage?.image = image
+                let image = isLike ? UIImage(named: "thumbs_up_big")?.tintColor(.green) : UIImage(named: "thumbs_down_big")?.tintColor(.red)
+                if let image = image {
+                    iLikeImage?.image = image
+                }
+                else {
+                    print("Null image")
+                }
+                imageDescLabel?.text = isLike ? "Favorite test" : "Unfavorite test"
             }
-            else {
-                print("Null image")
-            }
-            imageDescLabel?.text = isLike ? "Favorite test" : "Unfavorite test"
-        }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-//        iLikeImage.image =  UIImage(named: "thumbs_down_big")?.tintColor(.red)
-//        imageDescLabel.text = "A"
+        self.isLike = isLikeValue
         userNameTextField.text = userNameTextFieldValue
         userDescriptionTextField.text = userDescriptionTextFieldValue
         categoryLabel.text = categoryLabelValue
         autoNameLabel.text = autoNameLabelValue
         folderUrlLabel.text = folderUrlLabelValue
-
-        
-        
-        isLike = isLikeValue
-        
-//        iLikeImmage.image = UIImage(named: "thumbs_up_big")?.tintColor(.yellow)
-        // Do any additional setup after loading the view.
     }
-    
-
     /*
     // MARK: - Navigation
 

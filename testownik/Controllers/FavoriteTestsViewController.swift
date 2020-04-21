@@ -150,24 +150,12 @@ class FavoriteTestsViewController: UIViewController, UITableViewDataSource, UITa
         if segue.identifier == "goToTestDescription" {
             if let nextViewController = segue.destination as? TestDescriptionViewController {
                 let allTestRec = database.fetch[0].getObj(at: self.indexpath) as! AllTestEntity
-                nextViewController.isLikeValue = true
-                nextViewController.userNameTextFieldValue = "userNameTextFieldValue"
-                nextViewController.userDescriptionTextFieldValue = "userDescriptionTextFieldValue"
-                nextViewController.categoryLabelValue = "categoryLabelValue"
-                nextViewController.autoNameLabelValue = "autoNameLabel"
-                nextViewController.folderUrlLabelValue = "folderUrlLabelValue"
-                
-                
-//                var isLikeValue = false
-//                var userNameTextFieldValue = ""
-//                var userDescriptionTextFieldValue = ""
-//                var categoryLbabelValue = ""
-//                var autoNameLabelValue = ""
-//                var folderUrlLabelValue = ""
-
-                
-                
-                
+                nextViewController.isLikeValue = indexpath.section == 0
+                nextViewController.userNameTextFieldValue = allTestRec.user_name ?? ""
+                nextViewController.userDescriptionTextFieldValue = allTestRec.user_description ?? ""
+                nextViewController.categoryLabelValue = allTestRec.category ?? ""
+                nextViewController.autoNameLabelValue = allTestRec.auto_name ?? ""
+                nextViewController.folderUrlLabelValue = "URL"
             }
         }
         
