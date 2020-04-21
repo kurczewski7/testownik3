@@ -17,16 +17,22 @@ class DetailViewController: UIViewController, GesturesDelegate {
     var descriptionLabelValue = ""
     var indexpathValue = IndexPath(item: 0, section: 0)
     var pictureValue: UIImage?  //= UIImage(named: "ask.png")!
-    var fileExtensionValue = ""
+    var fileExtensionValue = "" {
+        didSet {
+            imageOffSwitch = fileExtensionValue == "TXT"
+            refreshView()
+        }
+    }
     var dataValue: Data? = nil
     var totalItemValue = 0
     var gestures = Gestures()
     
-    var imageOffSwitch = false {
-        didSet {
-            refreshView()
-        }
-    }    
+    var imageOffSwitch = false
+//    {
+//        didSet {
+//            refreshView()
+//        }
+//    }
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var picture: UIImageView!
@@ -38,8 +44,7 @@ class DetailViewController: UIViewController, GesturesDelegate {
         gestures.addSwipeGestureToView(direction: .right)
         gestures.addSwipeGestureToView(direction: .left)
         
-        
-        imageOffSwitch = fileExtensionValue == "TXT"
+        //imageOffSwitch = fileExtensionValue == "TXT"
         //pictureValue = UIImage(named: "100.png")
         descriptionLabel.text = descriptionLabelValue + "   (\(indexpathValue.row+1)/\(totalItemValue))"
         if imageOffSwitch {
@@ -67,45 +72,41 @@ class DetailViewController: UIViewController, GesturesDelegate {
         imageOffSwitch.toggle()
         refreshView()
     }
-    
     func pinchRefreshUI(sender: UIPinchGestureRecognizer) {
         print("pinchRefreshUI")
     }
-    
     func eadgePanRefreshUI() {
         print("eadgePanRefreshUI")
     }
-    
     func swipeRefreshUI(direction: UISwipeGestureRecognizer.Direction) {
+        var newRow = self.indexpathValue.row
         switch direction {
             case .right:
-                refreshTextContent(direction: direction)
+                 newRow -= newRow > 0 ? 1 : 0
+                refreshTextContent()
                 print("Swipe to right")
             case .left:
-                refreshTextContent(direction: direction)
+                 newRow += newRow < self.totalItemValue ? 1 : 0
+                refreshTextContent()
                 print("Swipe  & left ")
-            case .up:
-                print("Swipe up")
-            case .down:
-                print("Swipe down")
             default:
                 print("Swipe unrecognized")
             }
+         self.indexpathValue = IndexPath(row: newRow, section: 0)
     }
-    func refreshTextContent(direction: UISwipeGestureRecognizer.Direction) {
-        var newRow = self.indexpathValue.row
-        self.descriptionLabel.text = " AAAA:\(newRow)"
-        if direction == .left {
-            newRow -= newRow > 0 ? 1 : 0
-        }
-        if direction == .right {
-            newRow += newRow < self.totalItemValue-1 ? 1 : 0
-        }
-        if newRow < documentsValue.count - 1 {
+    func refreshTextContent() {
+        let newRow = self.indexpathValue.row
+        if newRow < documentsValue.count {
             let document = documentsValue[newRow]
             self.textView.text = document.myTexts
+            self.descriptionLabel.text = document.fileURL.lastPathComponent + "   (\(newRow+1)/\(self.totalItemValue))"
+            self.totalItemValue = documentsValue.count
+            self.fileExtensionValue = CloudPicker(presentationController: self).splitFilenameAndExtension(fullFileName: document.fileURL.lastPathComponent).fileExt  //"PNG"
+            if let data = document.myPictureData {
+               self.picture.image = UIImage(data:  data)
+            }
         }
-        self.indexpathValue = IndexPath(row: newRow, section: 0)
+       
     }
     //    let document = documents[self.indexpath.row]
     //    if let nextViewController = segue.destination as? DetailViewController {

@@ -63,10 +63,12 @@ class CloudViewController: UIViewController, CloudPickerDelegate  {  //SSZipArch
         if segue.identifier == "showDetail" {
             let document = documents[self.indexpath.row]
             if let nextViewController = segue.destination as? DetailViewController {
+                nextViewController.documentsValue = documents
+                nextViewController.indexpathValue = indexpath
+                //--------------
                 nextViewController.dataValue = document.myPictureData
                 nextViewController.descriptionLabelValue = document.fileURL.lastPathComponent
                 nextViewController.textViewValue = document.myTexts
-                nextViewController.indexpathValue = indexpath
                 nextViewController.totalItemValue = documents.count
                 nextViewController.fileExtensionValue = cloudPicker.splitFilenameAndExtension(fullFileName: document.fileURL.lastPathComponent).fileExt
                 
