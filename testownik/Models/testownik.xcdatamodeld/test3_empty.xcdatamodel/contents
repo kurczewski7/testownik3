@@ -11,11 +11,16 @@
         <attribute name="uuId" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <relationship name="toCateoryRelationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CategoriesEntity" inverseName="toAllTestRelationship" inverseEntity="CategoriesEntity"/>
         <relationship name="toDescriptionRelationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TestDescriptionEntity" inverseName="toAllTestRelationship" inverseEntity="TestDescriptionEntity"/>
+        <relationship name="toSelectedRelationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SelectedTestEntity" inverseName="toAllRelationship" inverseEntity="SelectedTestEntity"/>
     </entity>
     <entity name="CategoriesEntity" representedClassName="CategoriesEntity" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="uuId" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <relationship name="toAllTestRelationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AllTestEntity" inverseName="toCateoryRelationship" inverseEntity="AllTestEntity"/>
+    </entity>
+    <entity name="SelectedTestEntity" representedClassName="SelectedTestEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="uuId" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <relationship name="toAllRelationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AllTestEntity" inverseName="toSelectedRelationship" inverseEntity="AllTestEntity"/>
     </entity>
     <entity name="TestDescriptionEntity" representedClassName="TestDescriptionEntity" syncable="YES" codeGenerationType="class">
         <attribute name="file_name" optional="YES" attributeType="String"/>
@@ -27,8 +32,9 @@
         <relationship name="toAllTestRelationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AllTestEntity" inverseName="toDescriptionRelationship" inverseEntity="AllTestEntity"/>
     </entity>
     <elements>
-        <element name="AllTestEntity" positionX="100.31640625" positionY="-10965.70703125" width="163.9453125" height="193"/>
+        <element name="AllTestEntity" positionX="58.984375" positionY="-10917.7265625" width="163.9453125" height="208"/>
         <element name="CategoriesEntity" positionX="431.65625" positionY="-10905.859375" width="128" height="88"/>
         <element name="TestDescriptionEntity" positionX="430.66015625" positionY="-10795.6171875" width="128" height="148"/>
+        <element name="SelectedTestEntity" positionX="-154.8046875" positionY="-11101.62890625" width="128" height="73"/>
     </elements>
 </model>

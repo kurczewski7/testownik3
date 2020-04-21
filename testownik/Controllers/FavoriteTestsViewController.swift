@@ -43,7 +43,9 @@ class FavoriteTestsViewController: UIViewController, UITableViewDataSource, UITa
             cell.label1.text = obj.user_name
             cell.label2.text = obj.user_description
             cell.label3.text = obj.category ?? "" + "\((obj.auto_name) ?? "")"
-            cell.accessoryType = obj.is_selected ? .checkmark : .none
+            //cell.accessoryType = obj.is_selected ? .checkmark : .none
+            let selectedUuid = database.selectedTestTable[0].uuId
+            cell.accessoryType = obj.uuId == selectedUuid ? .checkmark : .none
         }
         return cell
     }
@@ -87,7 +89,8 @@ class FavoriteTestsViewController: UIViewController, UITableViewDataSource, UITa
          }
         let actionSet = UIContextualAction(style: .normal, title: "❤️ Test") { (act, view, exec) in
             let selectedTest = database.fetch[0].getObj(at: indexPath) as! AllTestEntity
-            selectedTest.is_selected = true
+            database.selectedTestTable[0].uuId = selectedTest.uuId
+            database.selectedTestTable[0].toAllRelationship = selectedTest
              print("Testing set")
             exec(true)
         }

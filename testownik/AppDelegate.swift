@@ -19,6 +19,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         //database.allTestsTable.loadData(fieldName: "user_name", fieldValue: "trzeci")
         database.allTestsTable.loadData()
+        database.selectedTestTable.loadData()
+        if database.selectedTestTable.count == 0 {
+            let selTest = SelectedTestEntity(context: database.context)
+            selTest.uuId = UUID()
+            _ = database.selectedTestTable.add(value: selTest)
+            database.save()
+        }
         return true
     }
 
