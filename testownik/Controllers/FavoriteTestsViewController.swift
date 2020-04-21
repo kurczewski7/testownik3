@@ -142,7 +142,9 @@ class FavoriteTestsViewController: UIViewController, UITableViewDataSource, UITa
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.indexpath = indexPath
+        performSegue(withIdentifier: "goToTestDescription", sender: self)
         print("didSelectRowAt:\(self.indexpath)")
+        
     }
     // MARK: - - Navigation
     // In a storyboard-based application, you will often want to do a little preparation before navigation
