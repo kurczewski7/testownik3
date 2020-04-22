@@ -9,41 +9,27 @@
 import UIKit
 
 class DetailViewController: UIViewController, GesturesDelegate {
+    // MARK: Parameters for segue value
+    var gestures = Gestures()
     var cloudPickerValue: CloudPicker!
     var documentsValue : [CloudPicker.Document] = []
+    //var dataValue: Data? = nil
     var indexpathRow: Int = 0
-    
-    // MARK: Parameters for segue
-//    var textViewValue = ""
-//    var descriptionLabelValue = ""
-//    var indexpathValue = IndexPath(item: 0, section: 0)
-    var pictureValue: UIImage?  //= UIImage(named: "ask.png")!
+    var imageOffSwitch = false
+    var pictureValue: UIImage?
+    var totalItem: Int {
+        get {            return documentsValue.count        }
+    }
     var fileExtensionValue = "" {
         didSet {
             imageOffSwitch = fileExtensionValue == "TXT"
             refreshView()
         }
     }
-    var dataValue: Data? = nil
-    var totalItem: Int {
-        get {
-            return documentsValue.count
-        }
-    }
-    var gestures = Gestures()
-    
-    var imageOffSwitch = false
-//    {
-//        didSet {
-//            refreshView()
-//        }
-//    }
-    // textView descriptionLabel picture
-    
+    // MARK: IBOutlets
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var picture: UIImageView!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,30 +37,8 @@ class DetailViewController: UIViewController, GesturesDelegate {
         gestures.delegate  = self        
         gestures.addSwipeGestureToView(direction: .right)
         gestures.addSwipeGestureToView(direction: .left)
-        
-        //imageOffSwitch = fileExtensionValue == "TXT"
-        //pictureValue = UIImage(named: "100.png")
-//        descriptionLabel.text = descriptionLabelValue + "   (\(indexpathValue.row+1)/\(totalItemValue))"
         refreshTextContent()
-        if imageOffSwitch {
-//            textView.text = textViewValue
-            refreshView()
-        }
-        else {
-            if let  dateTmp = dataValue, let  pict = UIImage(data: dateTmp)  {
-                picture?.image = pict
-                print("picture.image")
-            }
-            else {
-                 print("else picture.image")
-            }
-        }
-        print("=================\nDetailViewController, self.indexpathValue 3:\(self.indexpathRow)")
-        //textView.text =  textViewValue
-    }
-    func refreshView() {
-        textView?.isHidden = !imageOffSwitch
-        picture?.isHidden = imageOffSwitch
+        print("=================\nDetailViewController, self.indexpathRow 3:\(self.indexpathRow)")
     }
     // MARK: - Gesture delegate methods
     @IBAction func switchPicture(_ sender: UIBarButtonItem) {
@@ -103,32 +67,21 @@ class DetailViewController: UIViewController, GesturesDelegate {
             }
          self.indexpathRow =  newRow
     }
+    func refreshView() {
+        textView?.isHidden = !imageOffSwitch
+        picture?.isHidden = imageOffSwitch
+    }
     func refreshTextContent() {
         let newRow = self.indexpathRow
         if newRow < documentsValue.count {
             let document = documentsValue[newRow]
             self.textView?.text = document.myTexts
             self.descriptionLabel?.text = document.fileURL.lastPathComponent + "   (\(newRow+1)/\(self.totalItem))"
-            // self.totalItemValue = documentsValue.count
             self.fileExtensionValue = self.cloudPickerValue.splitFilenameAndExtension(fullFileName: document.fileURL.lastPathComponent).fileExt
-            
-                //CloudPicker(presentationController: self).splitFilenameAndExtension(fullFileName: document.fileURL.lastPathComponent).fileExt  //"PNG"
             if let data = document.myPictureData {
                self.picture?.image = UIImage(data:  data)
             }
-        }
-       
+        }       
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
