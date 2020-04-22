@@ -10,12 +10,12 @@ import UIKit
 
 class DetailViewController: UIViewController, GesturesDelegate {
     var documentsValue : [CloudPicker.Document] = []
-    var indexpath: IndexPath = IndexPath(row: 0, section: 0)
+    var indexpathRow: Int = 0
     
     // MARK: Parameters for segue
     var textViewValue = ""
     var descriptionLabelValue = ""
-    var indexpathValue = IndexPath(item: 0, section: 0)
+    //var indexpathValue = IndexPath(item: 0, section: 0)
     var pictureValue: UIImage?  //= UIImage(named: "ask.png")!
     var fileExtensionValue = "" {
         didSet {
@@ -33,9 +33,12 @@ class DetailViewController: UIViewController, GesturesDelegate {
 //            refreshView()
 //        }
 //    }
-    @IBOutlet weak var textView: UITextView!
+    // textView descriptionLabel picture
+    
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var picture: UIImageView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,26 +49,27 @@ class DetailViewController: UIViewController, GesturesDelegate {
         
         //imageOffSwitch = fileExtensionValue == "TXT"
         //pictureValue = UIImage(named: "100.png")
-        descriptionLabel.text = descriptionLabelValue + "   (\(indexpathValue.row+1)/\(totalItemValue))"
+//        descriptionLabel.text = descriptionLabelValue + "   (\(indexpathValue.row+1)/\(totalItemValue))"
+        refreshTextContent()
         if imageOffSwitch {
-            textView.text = textViewValue
+//            textView.text = textViewValue
             refreshView()
         }
         else {
             if let  dateTmp = dataValue, let  pict = UIImage(data: dateTmp)  {
-                picture.image = pict
+                picture?.image = pict
                 print("picture.image")
             }
             else {
                  print("else picture.image")
             }
         }
-        print("=================\nDetailViewController, self.indexpathValue 3:\(self.indexpathValue)")
+        print("=================\nDetailViewController, self.indexpathValue 3:\(self.indexpathRow)")
         //textView.text =  textViewValue
     }
     func refreshView() {
-        textView.isHidden = !imageOffSwitch
-        picture.isHidden = imageOffSwitch
+        textView?.isHidden = !imageOffSwitch
+        picture?.isHidden = imageOffSwitch
     }
     // MARK: - Gesture delegate methods
     @IBAction func switchPicture(_ sender: UIBarButtonItem) {
@@ -79,7 +83,7 @@ class DetailViewController: UIViewController, GesturesDelegate {
         print("eadgePanRefreshUI")
     }
     func swipeRefreshUI(direction: UISwipeGestureRecognizer.Direction) {
-        var newRow = self.indexpathValue.row
+        var newRow = self.indexpathRow
         switch direction {
             case .right:
                  newRow -= newRow > 0 ? 1 : 0
@@ -92,26 +96,22 @@ class DetailViewController: UIViewController, GesturesDelegate {
             default:
                 print("Swipe unrecognized")
             }
-         self.indexpathValue = IndexPath(row: newRow, section: 0)
+         self.indexpathRow =  newRow
     }
     func refreshTextContent() {
-        let newRow = self.indexpathValue.row
+        let newRow = self.indexpathRow
         if newRow < documentsValue.count {
             let document = documentsValue[newRow]
-            self.textView.text = document.myTexts
-            self.descriptionLabel.text = document.fileURL.lastPathComponent + "   (\(newRow+1)/\(self.totalItemValue))"
+            self.textView?.text = document.myTexts
+            self.descriptionLabel?.text = document.fileURL.lastPathComponent + "   (\(newRow+1)/\(self.totalItemValue))"
             self.totalItemValue = documentsValue.count
             self.fileExtensionValue = CloudPicker(presentationController: self).splitFilenameAndExtension(fullFileName: document.fileURL.lastPathComponent).fileExt  //"PNG"
             if let data = document.myPictureData {
-               self.picture.image = UIImage(data:  data)
+               self.picture?.image = UIImage(data:  data)
             }
         }
        
     }
-    //    let document = documents[self.indexpath.row]
-    //    if let nextViewController = segue.destination as? DetailViewController {
-    //        nextViewController.dataValue = document.myPictureData
-
 
     /*
     // MARK: - Navigation

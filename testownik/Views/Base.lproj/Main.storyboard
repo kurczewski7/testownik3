@@ -730,9 +730,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="descriptionLabel" destination="VkX-ix-mRC" id="hOA-X6-pWR"/>
-                        <outlet property="picture" destination="dv7-MO-tDU" id="G8Z-Us-YXH"/>
-                        <outlet property="textView" destination="l0a-Ev-g51" id="r8A-hv-uUT"/>
+                        <outlet property="descriptionLabel" destination="VkX-ix-mRC" id="kxD-7g-tJZ"/>
+                        <outlet property="picture" destination="dv7-MO-tDU" id="6wJ-QZ-tVw"/>
+                        <outlet property="textView" destination="l0a-Ev-g51" id="sKQ-aG-xWy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hXe-Ns-zDA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -917,7 +917,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="tsm-RE-lKY"/>
+        <segue reference="Bm0-IT-hNY"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrowtriangle.left" catalog="system" width="128" height="113"/>

@@ -87,7 +87,7 @@ class ZipViewController: UIViewController, UICollectionViewDelegate, UICollectio
             let document = documents[self.indexpath.row]
             if let nextViewController = segue.destination as? DetailViewController {
                 nextViewController.documentsValue = documents
-                nextViewController.indexpathValue = indexpath
+                nextViewController.indexpathRow = indexpath.row
                 
                 //--------------
                 nextViewController.dataValue = document.myPictureData
