@@ -297,8 +297,12 @@ extension CloudPicker: UIDocumentPickerDelegate {
                             let document = Document(fileURL: pickedURL)
                             print("Opcjia filesZip")
                             if isFileUnhided(fileURL: pickedURL, folderURL: folderURL, sourceType: .filesZip) {
+                                print("Befor append document")
                                //fillDocument(forUrl: pickedURL, document: &document)
                                documents.append(document)
+                            }
+                            else {
+                              print("Not append document")
                             }
                     }
                  }
@@ -380,7 +384,8 @@ extension CloudPicker: UIDocumentPickerDelegate {
     
     func isFileUnhided(fileURL url: URL, folderURL: URL, sourceType: SourceType)  -> Bool {
         let name = url.lastPathComponent
-        print("isFileUnhided:\(sourceType),\(url.absoluteString)")        
+        print("isFileUnhided:\(sourceType),\(url.absoluteString)")
+        return true
         if name.hasPrefix(".")
         {
             print("Hidden file \(name) not selected")

@@ -9,13 +9,14 @@
 import UIKit
 
 class DetailViewController: UIViewController, GesturesDelegate {
+    var cloudPickerValue: CloudPicker!
     var documentsValue : [CloudPicker.Document] = []
     var indexpathRow: Int = 0
     
     // MARK: Parameters for segue
-    var textViewValue = ""
-    var descriptionLabelValue = ""
-    //var indexpathValue = IndexPath(item: 0, section: 0)
+//    var textViewValue = ""
+//    var descriptionLabelValue = ""
+//    var indexpathValue = IndexPath(item: 0, section: 0)
     var pictureValue: UIImage?  //= UIImage(named: "ask.png")!
     var fileExtensionValue = "" {
         didSet {
@@ -24,7 +25,11 @@ class DetailViewController: UIViewController, GesturesDelegate {
         }
     }
     var dataValue: Data? = nil
-    var totalItemValue = 0
+    var totalItem: Int {
+        get {
+            return documentsValue.count
+        }
+    }
     var gestures = Gestures()
     
     var imageOffSwitch = false
@@ -90,7 +95,7 @@ class DetailViewController: UIViewController, GesturesDelegate {
                 refreshTextContent()
                 print("Swipe to right")
             case .left:
-                 newRow += newRow < self.totalItemValue ? 1 : 0
+                 newRow += newRow < self.totalItem ? 1 : 0
                 refreshTextContent()
                 print("Swipe  & left ")
             default:
@@ -103,9 +108,11 @@ class DetailViewController: UIViewController, GesturesDelegate {
         if newRow < documentsValue.count {
             let document = documentsValue[newRow]
             self.textView?.text = document.myTexts
-            self.descriptionLabel?.text = document.fileURL.lastPathComponent + "   (\(newRow+1)/\(self.totalItemValue))"
-            self.totalItemValue = documentsValue.count
-            self.fileExtensionValue = CloudPicker(presentationController: self).splitFilenameAndExtension(fullFileName: document.fileURL.lastPathComponent).fileExt  //"PNG"
+            self.descriptionLabel?.text = document.fileURL.lastPathComponent + "   (\(newRow+1)/\(self.totalItem))"
+            // self.totalItemValue = documentsValue.count
+            self.fileExtensionValue = self.cloudPickerValue.splitFilenameAndExtension(fullFileName: document.fileURL.lastPathComponent).fileExt
+            
+                //CloudPicker(presentationController: self).splitFilenameAndExtension(fullFileName: document.fileURL.lastPathComponent).fileExt  //"PNG"
             if let data = document.myPictureData {
                self.picture?.image = UIImage(data:  data)
             }

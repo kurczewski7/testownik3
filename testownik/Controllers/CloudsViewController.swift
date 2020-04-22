@@ -65,12 +65,8 @@ class CloudViewController: UIViewController, CloudPickerDelegate  {  //SSZipArch
             if let nextViewController = segue.destination as? DetailViewController {
                 nextViewController.documentsValue = documents
                 nextViewController.indexpathRow = indexpath.row
-                nextViewController.totalItemValue = documents.count
-                //--------------
-//                nextViewController.dataValue = document.myPictureData
-//                nextViewController.descriptionLabelValue = document.fileURL.lastPathComponent
-//                nextViewController.textViewValue = document.myTexts
-
+                nextViewController.cloudPickerValue = cloudPicker
+                
                 nextViewController.fileExtensionValue = cloudPicker.splitFilenameAndExtension(fullFileName: document.fileURL.lastPathComponent).fileExt
                 
                 Setup.displayToast(forView: self.view, message: "Druga wiadomość", seconds: 3)
