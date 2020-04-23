@@ -8,17 +8,18 @@
 
 import UIKit
 
-class AddTestViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class AddTestViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate,UITextFieldDelegate {
     var selectedCategory = ""
     var groups = ["Matematyka","Fizyka", "Chemia", "Biologia", "Historia", "Geografia", "Genetyka", "Języki obce", "Sztuka", "Geologia", "Informatyka", "Elektronika", "Literatura", "Automatyka", "Medycyna", "Telekomunikacja","I N N E", "Zologia" ].sorted()
     
     var folderUrlValue: String = ""
     var documentsValue : [CloudPicker.Document] = []
 
-    @IBOutlet weak var textField1: UITextField!
-    @IBOutlet weak var textField2: UITextField!
+    @IBOutlet weak var textField1: UITextField! {
+        didSet {  textField1.delegate = self  } }
+    @IBOutlet weak var textField2: UITextField! {
+        didSet {    textField2.delegate = self  }   }
     @IBOutlet weak var label: UILabel!
-    
     @IBAction func saveButtonPressed(_ sender: UIButton) {
         print("saveButtonPressed")
         saveData()
@@ -32,7 +33,6 @@ class AddTestViewController: UIViewController, UIPickerViewDataSource, UIPickerV
          //self.dismiss(animated: true, completion: nil)
         print("cancelNavigatorButton")
     }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         //groups.sorted()
@@ -98,15 +98,9 @@ class AddTestViewController: UIViewController, UIPickerViewDataSource, UIPickerV
             database.testDescriptionTable.save()
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    // MARK: UITextFieldDelegate method
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
-    */
-
 }

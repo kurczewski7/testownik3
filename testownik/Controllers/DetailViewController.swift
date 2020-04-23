@@ -34,7 +34,7 @@ class DetailViewController: UIViewController, GesturesDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         gestures.setView(forView: view)
-        gestures.delegate  = self        
+        gestures.delegate  = self
         gestures.addSwipeGestureToView(direction: .right)
         gestures.addSwipeGestureToView(direction: .left)
         refreshTextContent()
