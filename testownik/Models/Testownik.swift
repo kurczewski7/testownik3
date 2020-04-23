@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import  CoreData // to delete
+
 protocol TestownikDelegate {
     func refreshButtonUI(forFilePosition filePosition: Testownik.FilePosition)
     func refreshTabbarUI(visableLevel: Int)
@@ -119,5 +121,75 @@ class Testownik: DataOperations {
             print("answer,\(answer)")
             return answer
         }
+        // MARK: Methods for Testownik database
+    func getCurrentDb() {
+        print("-----------\ngetCurrentDb")
+        database.selectedTestTable.loadData()
+        print("selectedTestTable.count:\(database.selectedTestTable.count),\(String(describing: database.selectedTestTable[0].uuId))")
+        if let selectedUuid = database.selectedTestTable[0].uuId {
+            //database.testDescriptionTable.loadData(forFilterField: "uuId", fieldValue: UUID(uuidString: "9398c9196abd4142926c35fc2d4763ac"))
+            database.testDescriptionTable.loadData(forFilterField: "file_name", fieldValue: "201.txt")
+            
+            print("\(database.testDescriptionTable.count)")
+            
+            print("TXT:\(String(describing: database.testDescriptionTable[0].file_name))")
+            print("TXT:\(String(describing: database.testDescriptionTable[0].text))")
+            
+//            let testDescription = database.testDescriptionTable.findValue { (entity ) -> Bool in
+//                let text = entity?.text
+//                let picture = entity?.picture
+//                let fileName = entity?.file_name
+//                print("text:\(String(describing: text)),picture:\(String(describing: picture)),fileName:\(String(describing: fileName))")
+//
+//                database.testDescriptionTable.loadData(forFilterField: "uuId", fieldValue: selectedUuid)
+//                print("TXT:\(database.testDescriptionTable[0].text)")
+//                return true
+//            }
+            print("====   =====")
+        }
+    }
+//        func loadData(tableNameType tabName : DbTableNames, categoryId: Int16 = 0) {
+//            var request : NSFetchRequest<NSFetchRequestResult>?
+//            var groupPredicate:NSPredicate?
+//
+//            switch tabName {
+//            case .products       :
+//                request = ProductTable.fetchRequest()
+//                groupPredicate = NSPredicate(format: "%K = %@", "categoryId", "\(categoryId)")
+//                //groupPredicate = NSPredicate(format: "%K = %@", "categoryId", "\(self.selectedCategory?.id ?? 9)")
+//                request?.predicate = groupPredicate
+//            case .basket         :
+//                request = BasketProductTable.fetchRequest()
+//            }
+//            do {    let newArray     = try context.fetch(request!)
+//                // Todo- error out of range
+//
+//                if newArray.count == 0  {
+//                    print("Error loading empty data")
+//                }
+//                switch tabName {
+//                    case .products        :
+//                        product.array = newArray as! [ProductTable]
+//                    case .basket           :
+//                        basketProduct.array = newArray as! [BasketProductTable]
+//                }
+//            }
+//            catch { print("Error fetching data from context \(error)")   }
+//        }
+    
+//        func configFetch(entityName: String, context: NSManagedObjectContext, key: String, ascending: Bool = true) {
+//            let context = database.context
+//            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+//            let sort1 = NSSortDescriptor(key: key, ascending: ascending)
+//            fetchRequest.sortDescriptors = [sort1]
+//            self.fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest,  managedObjectContext: context,
+//                                                                  sectionNameKeyPath: key, cacheName: "SectionCache")
+//            do {
+//                try fetchedResultsController.performFetch()
+//            } catch let error as NSError {
+//                print("Error: \(error.localizedDescription)")
+//            }
+//        }
+
 
 }
