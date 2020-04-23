@@ -385,14 +385,17 @@ extension CloudPicker: UIDocumentPickerDelegate {
     func isFileUnhided(fileURL url: URL, folderURL: URL, sourceType: SourceType)  -> Bool {
         let name = url.lastPathComponent
         print("isFileUnhided:\(sourceType),\(url.absoluteString)")
-        return true
+
         if name.hasPrefix(".")
         {
             print("Hidden file \(name) not selected")
             self.hiddenFiles += 1
             return false
         }
-
+        print("SourceType:\(sourceType)")
+        if sourceType == .filesZip {
+            return true
+        }
         if url.deletingLastPathComponent() == folderURL {
             print("Root folder")
         }
