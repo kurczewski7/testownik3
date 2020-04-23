@@ -365,23 +365,33 @@ extension CloudPicker: UIDocumentPickerDelegate {
             guard let data = try? Data(contentsOf: url) else { return }
             document.myPictureData = data
         }
-        
-        
         if fileExt.uppercased() == "JPG" {
             print("to jest JPG")
         }
-
-        //            getImage(fromUrl: url.absoluteString) { image in
-        //                img = image
-        //            }
-        //img = UIImage(contentsOfFile: url.absoluteString)
-
-        //            let imgageData = data {
-        //            document.myPictureData = imgageData //UIImage(named: "100.png")
-        //            }
-        //document.myPicture = UIImage(named: "100.png")
     }
-    
+    func compareUrls(fileURL url: URL, folderURL: URL) -> Bool {
+        var retVal = true
+        let  urlComponents1 = url.deletingLastPathComponent().pathComponents
+        let  urlComponents2 = folderURL.pathComponents
+        var pos1 = urlComponents1.count - 1
+        var pos2 = urlComponents2.count - 1
+        for _ in 0..<3 {
+            if urlComponents1[pos1] != urlComponents2[pos2] {
+               retVal = false
+                break
+            }
+            pos1 -= 1
+            pos2 -= 1
+        }
+        print("----")
+        print("----")
+        print("folderURL:\(folderURL.deletingPathExtension())")
+        print("fileURL:\(url.deletingLastPathComponent())")
+        print("retVal:\(retVal)")
+        print("=====")
+
+       return retVal
+    }
     func isFileUnhided(fileURL url: URL, folderURL: URL, sourceType: SourceType)  -> Bool {
         let name = url.lastPathComponent
         print("isFileUnhided:\(sourceType),\(url.absoluteString)")
@@ -396,60 +406,30 @@ extension CloudPicker: UIDocumentPickerDelegate {
         if sourceType == .filesZip {
             return true
         }
-        if url.deletingLastPathComponent() == folderURL {
-            print("Root folder")
-        }
-        else {
-            print("sub folder")
+        if !compareUrls(fileURL: url, folderURL: folderURL) {
             return false
         }
-
         let values =  name.split(separator: ".")
         switch sourceType {
             case .filesTxt:
                 print("Txt")
-//                if values[0] == "." {
-//                    if let number = Int(values[1]), number >= 0 {
-//                        let name2 = "\(values[1]).txt"
-//                    }
-//                }
                 return isTextDataOk(values: values)
             
             case .filesZip:
                 print("Zip")
                 //return true
-                return  values.last?.uppercased() == "ZIP" //(values[values.count-1].uppercased() == "ZIP")
+                return  values.last?.uppercased() == "ZIP"
 
             case .folder:
                 print("folder, values[0]:\(values[0])")
-                return true //isTextDataOk(values: values)
-//                if folderURL !=   tmpUrl.deletingLastPathComponent() {
-//                    return false
-//                }
+                return true
         }
     }
 }
 
-//extension CloudPicker:  {}
+//  extension CloudPicker:  {}
 extension URL {
     var isDirectory: Bool! {
         return (try? resourceValues(forKeys: [.isDirectoryKey]))?.isDirectory
     }
 }
-
-    //----
-    //private static let documentsURL: URL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-
-//    class func unzipFile(atPath path: String, delegate: SSZipArchiveDelegate)
-//        {
-//            let destFolder = "/Folder_Name"
-//            let destPath = documentsURL.appendingPathComponent(destFolder, isDirectory: true)
-//            let destString = destPath.absoluteString
-//
-//            if ( !FileManager.default.fileExists(atPath: destString) )
-//            {
-//                try! FileManager.default.createDirectory(at: destPath, withIntermediateDirectories: true, attributes: nil)
-//            }
-//
-//            SSZipArchive.unzipFile(atPath: path, toDestination: destString, delegate: delegate)
-//        }
