@@ -126,14 +126,26 @@ class Testownik: DataOperations {
         print("-----------\ngetCurrentDb")
         database.selectedTestTable.loadData()
         print("selectedTestTable.count:\(database.selectedTestTable.count),\(String(describing: database.selectedTestTable[0].uuId))")
-        if let selectedUuid = database.selectedTestTable[0].uuId {
+        if let selectedUuid = database.selectedTestTable[0].toAllRelationship?.uuId {
             //database.testDescriptionTable.loadData(forFilterField: "uuId", fieldValue: UUID(uuidString: "9398c9196abd4142926c35fc2d4763ac"))
-            database.testDescriptionTable.loadData(forFilterField: "file_name", fieldValue: "201.txt")
+            //database.testDescriptionTable.loadData(forFilterField: "file_name", fieldValue: "201.txt")
+            //database.testDescriptionTable.loadData(forFilterFieldUuid: "uuId", fieldValue: selectedUuid)
+            //fetchOneRecord
             
-            print("\(database.testDescriptionTable.count)")
+            database.allTestsTable.loadData(forUuid: "uuId", fieldValue: selectedUuid)
+            print("xx1 count:\(database.allTestsTable.count)")
+
             
-            print("TXT:\(String(describing: database.testDescriptionTable[0].file_name))")
-            print("TXT:\(String(describing: database.testDescriptionTable[0].text))")
+            database.testDescriptionTable.loadData(forUuid: "uuid_parent", fieldValue: selectedUuid)
+            print("xx2 count:\(database.testDescriptionTable.count)")
+            
+            //print("\(database.testDescriptionTable.count)")
+            let cou = database.testDescriptionTable.count
+            print("cou:\(cou),\(selectedUuid)")
+            if cou > 0 {
+                print("TXT:\(String(describing: database.testDescriptionTable[0].file_name))")
+                print("TXT:\(String(describing: database.testDescriptionTable[0].text))")
+            }
             
 //            let testDescription = database.testDescriptionTable.findValue { (entity ) -> Bool in
 //                let text = entity?.text

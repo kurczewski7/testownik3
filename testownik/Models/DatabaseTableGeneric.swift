@@ -154,23 +154,43 @@ class DatabaseTableGeneric <P: NSFetchRequestResult> {
     }
     //      func append<T>(_ value: T) {
     func loadData<T>(forFilterField fieldName: String, fieldValue: T) {
-        var request : NSFetchRequest<NSFetchRequestResult>?
-        var groupPredicate:NSPredicate?
-        request = self.feachRequest
-        groupPredicate = NSPredicate(format: "%K = %@", fieldName, "\(fieldValue)")
-        request?.predicate = groupPredicate
+        let request = self.feachRequest
+        request.predicate = NSPredicate(format: "%K = %@", fieldName, "\(fieldValue)")
         do {
-            let newArray     = try context.fetch(request!)
+            let newArray     = try context.fetch(request)
+            self.genericArray = newArray as! [P]
+        } catch  {
+            print("Error fetching data from context \(error.localizedDescription)")
+        }
+    }
+//    func loadData<T>(forFilterField fieldName: String, fieldValue: T) {
+//        var request : NSFetchRequest<NSFetchRequestResult>?
+//        var groupPredicate:NSPredicate?
+//        request = self.feachRequest
+//        groupPredicate = NSPredicate(format: "%K = %@", fieldName, fieldValue)
+//        request?.predicate = groupPredicate
+//        do {
+//            let newArray     = try context.fetch(request!)
+//            self.genericArray = newArray as! [P]
+//        } catch  {
+//            print("Error fetching data from context \(error.localizedDescription)")
+//        }
+//    }
+    func loadData(forUuid fieldName: String, fieldValue: UUID)  //(withUuid identifier: UUID) -> P?
+    {
+        let request = self.feachRequest
+        request.predicate = NSPredicate(format: "%K = %@", fieldName, fieldValue as CVarArg)
+        do {
+            let newArray     = try context.fetch(request)
             self.genericArray = newArray as! [P]
         } catch  {
             print("Error fetching data from context \(error.localizedDescription)")
         }
     }
     func loadData() {
-        var request : NSFetchRequest<NSFetchRequestResult>?
-        request = self.feachRequest
+        let request = self.feachRequest
         do {
-            let newArray     = try context.fetch(request!)
+            let newArray     = try context.fetch(request)
             self.genericArray = newArray as! [P]
         } catch  {
             print("Error fetching data from context \(error.localizedDescription)")
@@ -180,6 +200,7 @@ class DatabaseTableGeneric <P: NSFetchRequestResult> {
     func save() {
         self.databaseSelf.save()
     }
+    //---------------
 
 //feachRequest
     
