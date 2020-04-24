@@ -77,9 +77,15 @@ class AddTestViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         allTestRecord.create_date = Date()
         allTestRecord.is_favorite = true
         allTestRecord.uuId = uuid
-        let uu = UUID()
-        let zz = uu.hashValue
-        print("\(zz)")
+        allTestRecord.folder_url = folderUrlValue
+        
+        // FIXME: comment here
+        // TODO: comment here
+        // MARK: do zrobienia
+        
+//        let uu = UUID()
+//        let zz = uu.hashValue
+//        print("\(zz)")
         
         // toShop.productRelation=product
 //        allTestRecord.toDescriptionRelationship =

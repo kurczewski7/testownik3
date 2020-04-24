@@ -160,7 +160,7 @@ class FavoriteTestsViewController: UIViewController, UITableViewDataSource, UITa
                 nextViewController.userDescriptionTextFieldValue = allTestRec.user_description ?? ""
                 nextViewController.categoryLabelValue = allTestRec.category ?? ""
                 nextViewController.autoNameLabelValue = allTestRec.auto_name ?? ""
-                nextViewController.folderUrlLabelValue = "URL"
+                nextViewController.folderUrlLabelValue = "url:\(allTestRec.folder_url ?? "")"
             }
         }
         
