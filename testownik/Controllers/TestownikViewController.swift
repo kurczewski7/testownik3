@@ -79,7 +79,7 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
         }
     }
     @IBAction func nextButtonPress(_ sender: UIButton) {
-        if testownik.currentTest < testownik.count {
+        if testownik.currentTest < testownik.count-1 {
             testownik.currentTest += 1
         }
     }
@@ -139,10 +139,15 @@ testownik.loadTestFromDatabase()
     func swipeRefreshUI(direction: UISwipeGestureRecognizer.Direction) {
         switch direction {
             case .right:
-                testownik.currentTest -=  testownik.filePosition != .first  ? 1 : 0
+                if testownik.count > 1 {
+                    testownik.currentTest -=  testownik.filePosition != .first  ? 1 : 0
+                }
                 print("Swipe to right")
             case .left:
-                testownik.currentTest +=  testownik.filePosition != .last  ? 1 : 0
+                if testownik.count > 0 {
+                    testownik.currentTest +=  testownik.filePosition != .last  ? 1 : 0
+                }
+                
                 print("Swipe  & left ")
             case .up:
                 print("Swipe up")

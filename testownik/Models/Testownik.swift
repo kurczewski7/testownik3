@@ -80,7 +80,7 @@ class Testownik: DataOperations {
         let test = Test(code: textLines[0], ask: textLines[1], pict: nil, answerOptions: sortedAnswerOptions, order: order, youAnswers5: [])
         let test2 = Test(code: textLines[0], ask: "Co to jest?", pict: nil, answerOptions: sortedAnswerOptions, order: order, youAnswers5: [])
         testList.append(test)
-        testList.append(test2)
+        //testList.append(test2)
     }
     
     func changeOrder(forAnswerOptions answerOptions: [Answer]) -> [Answer] {
