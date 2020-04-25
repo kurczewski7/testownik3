@@ -122,7 +122,8 @@ testownik.loadTestFromDatabase()
         gestures.addScreenEdgeGesture()
         
         askLabel.layer.cornerRadius = self.cornerRadius
-        testownik.fillData(totallQuestionsCount: 117)
+        //testownik.fillData(totallQuestionsCount: 117)
+        testownik.fillDataDb(totallQuestionsCount: 3)
         refreshView()
     }
     //--------------------------------
