@@ -26,7 +26,6 @@ class CloudPicker: NSObject, UINavigationControllerDelegate, SSZipArchiveDelegat
         var data: Data?
         var myTexts = ""
         var myPictureData: Data? = nil
-
         
         override func contents(forType typeName: String) throws -> Any {
             guard let data = data else { return Data() }
@@ -37,13 +36,22 @@ class CloudPicker: NSObject, UINavigationControllerDelegate, SSZipArchiveDelegat
             self.data = data
         }
     }
+    // MARK: Variable
     private var pickerController: UIDocumentPickerViewController?
     private weak var presentationController: UIViewController?
  
+    private var documents = [Document]()
+    
     private var folderURL: URL?
+    private var zipFileUrl: URL?
+    var sourceUrl: String? {
+        get {
+            return (sourceType == .folder ? folderURL : zipFileUrl)?.absoluteString
+        }
+    }
     var folderName = ""
     var sourceType: SourceType = .folder
-    private var documents = [Document]()
+
     //private var lastSourceTypeData: SourceType = .folder
     //var myTexts2 = [String]()
     
@@ -51,7 +59,7 @@ class CloudPicker: NSObject, UINavigationControllerDelegate, SSZipArchiveDelegat
     var showHidden = false
     var hiddenFiles = 0
 
-    
+    // MARK: Melods
     init(presentationController: UIViewController) {
         super.init()
         
@@ -270,6 +278,7 @@ extension CloudPicker: UIDocumentPickerDelegate {
           
                     switch sourceType {
                         case .folder:
+                            self.folderURL = folderURL
                             folderName = folderURL.lastPathComponent
                             for case let fileURL as URL in fileList! {
                                 if !fileURL.isDirectory {
@@ -294,6 +303,7 @@ extension CloudPicker: UIDocumentPickerDelegate {
                             }
                        
                         case .filesZip:
+                            self.zipFileUrl = pickedURL
                             let document = Document(fileURL: pickedURL)
                             print("Opcjia filesZip")
                             if isFileUnhided(fileURL: pickedURL, folderURL: folderURL, sourceType: .filesZip) {

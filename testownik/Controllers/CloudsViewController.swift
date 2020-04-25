@@ -57,7 +57,8 @@ class CloudViewController: UIViewController, CloudPickerDelegate  {  //SSZipArch
         print("------\nsegue: \(String(describing: segue.identifier))")
          if segue.identifier == "showSave" {
             if let nextViewController = segue.destination as? AddTestViewController {
-                nextViewController.documentsValue = self.documents                
+                nextViewController.documentsValue = self.documents
+                nextViewController.folderUrlValue = cloudPicker.sourceUrl ?? "no url"
             }
         }
         if segue.identifier == "showDetail" {
