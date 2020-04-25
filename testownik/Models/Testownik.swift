@@ -38,14 +38,17 @@ class Testownik: DataOperations {
     }
     func fillData(totallQuestionsCount: Int) {
         var titles = [String]()
+        var textLines = [String]()
         for i in 201...204 { //117
             titles = []
             let name = String(format: "%03d", i)
             print("name:\(name)")
-            let textLines=getText(fileName: name)
+            textLines=getText(fileName: name)
+            if textLines[textLines.count-1].isEmpty {    textLines.remove(at: textLines.count-1) }
             for i in 2..<textLines.count {
-                if textLines[i].count > 0 {    titles.append(textLines[i])      }
+                if !textLines[i].isEmpty  {    titles.append(textLines[i])      }
             }
+            print("i:\(i), textLines: \(textLines)")
             let order = [99,5,7]
             let isOk = getAnswer(textLines[0])
             let answerOptions = fillOneTestAnswers(isOk: isOk, titles: titles)
@@ -58,13 +61,15 @@ class Testownik: DataOperations {
     }
     func fillDataDb(totallQuestionsCount: Int) {
         var titles = [String]()
-        let textLines = [String]()
+        var textLines = [String]()
         //let dbArray = database.testDescriptionTable
         database.testDescriptionTable.forEach { (index, testRecord) in
             if let txt = testRecord?.text {
-                let textLines=getTextDb(txt: txt)
+                textLines=getTextDb(txt: txt)
+                
+                print("index:\(index), textLines: \(textLines)")
                 for i in 2..<textLines.count {
-                     if textLines[i].count > 0 {    titles.append(textLines[i])      }
+                    if !textLines[i].isEmpty  {    titles.append(textLines[i])      }
                 }
             }
         }
@@ -73,7 +78,9 @@ class Testownik: DataOperations {
         let answerOptions = fillOneTestAnswers(isOk: isOk, titles: titles)
         let sortedAnswerOptions = changeOrder(forAnswerOptions: answerOptions)
         let test = Test(code: textLines[0], ask: textLines[1], pict: nil, answerOptions: sortedAnswerOptions, order: order, youAnswers5: [])
+        let test2 = Test(code: textLines[0], ask: "Co to jest?", pict: nil, answerOptions: sortedAnswerOptions, order: order, youAnswers5: [])
         testList.append(test)
+        testList.append(test2)
     }
     
     func changeOrder(forAnswerOptions answerOptions: [Answer]) -> [Answer] {
@@ -121,6 +128,7 @@ class Testownik: DataOperations {
                 let data = try String(contentsOfFile: path ,encoding: encoding)
                 let myStrings = data.components(separatedBy: .newlines)
                 texts = myStrings
+                print("texts:\(texts)")
             }
             catch {
                 print(error.localizedDescription)
