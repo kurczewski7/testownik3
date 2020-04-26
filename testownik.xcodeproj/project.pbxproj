@@ -540,6 +540,7 @@
 		2CDB1DF22407BE0400361884 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2CE1477C23F6901900C834F4 /* TestownikViewController.swift */,
 				2C625DFA2443A68800EE29A0 /* AddTestViewController.swift */,
 				2C82DE8B24393DA0002CDA10 /* FavoriteTestsViewController.swift */,
 				2C652D1B243A3F260071A9ED /* FavoriteTestsTableViewCell.swift */,
@@ -548,7 +549,6 @@
 				2CE2F38D242A56CF00D1B731 /* ZipViewController.swift */,
 				2CE2F391242A59CE00D1B731 /* ZipCollectionViewCell.swift */,
 				2CE2F393242A5A1A00D1B731 /* DetailViewController.swift */,
-				2CE1477C23F6901900C834F4 /* TestownikViewController.swift */,
 				2C9A0972242C1EEB00A1DC4E /* File.swift */,
 				2CE2F395242A5AA000D1B731 /* DocumentCell.swift */,
 				2C9A0974242C1F2900A1DC4E /* DetailSectionHeaderView.swift */,

@@ -65,7 +65,8 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
     }
     @IBAction func previousButtonPress(_ sender: UIButton) {
         if testownik.currentTest > 0 {
-            testownik.currentTest -= 1
+            //testownik.currentTest -= 1
+            testownik.previous()
         }
     }
     @IBAction func checkButtonPress(_ sender: UIButton) {
@@ -80,7 +81,8 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
     }
     @IBAction func nextButtonPress(_ sender: UIButton) {
         if testownik.currentTest < testownik.count-1 {
-            testownik.currentTest += 1
+            //testownik.currentTest += 1
+            testownik.next()
         }
     }
     // MARK: viewDidLoad - initial method
@@ -137,17 +139,19 @@ testownik.loadTestFromDatabase()
         print("Edge gesture")
     }
     func swipeRefreshUI(direction: UISwipeGestureRecognizer.Direction) {
+        print("=====\nA currentTest: \(testownik.currentTest)")
         switch direction {
             case .right:
-                if testownik.count > 1 {
-                    testownik.currentTest -=  testownik.filePosition != .first  ? 1 : 0
-                }
+                //if testownik.count > 1 {
+                    testownik.previous()
+                    //testownik.currentTest -=  testownik.filePosition != .first  ? 1 : 0
+                //}
                 print("Swipe to right")
             case .left:
-                if testownik.count > 0 {
-                    testownik.currentTest +=  testownik.filePosition != .last  ? 1 : 0
-                }
-                
+                //if testownik.count > 0 {
+                    testownik.next()
+                    //testownik.currentTest +=  testownik.filePosition != .last  ? 1 : 0
+                //}
                 print("Swipe  & left ")
             case .up:
                 print("Swipe up")
@@ -158,6 +162,7 @@ testownik.loadTestFromDatabase()
             default:
                 print("Swipe unrecognized")
             }
+         print("Y pos: \(testownik.currentTest)")
     }
     // MARK: TestownikDelegate protocol "refreshUI" metods
     func refreshButtonUI(forFilePosition filePosition: Testownik.FilePosition) {

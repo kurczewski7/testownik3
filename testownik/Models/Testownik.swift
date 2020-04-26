@@ -25,14 +25,28 @@ class Testownik: DataOperations {
     }
     var delegate: TestownikDelegate?
     var filePosition = FilePosition.first
-    var currentTest: Int = 0 {
+    
+    //override public var text: String? = "text"
+    override var currentTest: Int  {
         didSet {
+            print("currentTest:\(oldValue),\(currentTest)")
             delegate?.refreshButtonUI(forFilePosition: filePosition)
-            if  currentTest == 0 {    filePosition = .first     }
-            else if  currentTest == count-1 {   filePosition = .last     }
+            // currentRow = currentTest < count ? currentTest : count-1
+            if  self.currentTest == 0 {    filePosition = .first     }
+            else if  self.currentTest == count-1 {   filePosition = .last     }
             else  {  filePosition = .other      }
         }
     }
+        
+//    var currentTest: Int = 0 {
+//        didSet {
+//            delegate?.refreshButtonUI(forFilePosition: filePosition)
+//            currentRow = currentTest < count ? currentTest : count-1
+//            if  currentTest == 0 {    filePosition = .first     }
+//            else if  currentTest == count-1 {   filePosition = .last     }
+//            else  {  filePosition = .other      }
+//        }
+//    }
     var visableLevel: Int = 2 {
         didSet {     delegate?.refreshTabbarUI(visableLevel: visableLevel)    }
     }
@@ -80,7 +94,7 @@ class Testownik: DataOperations {
         let test = Test(code: textLines[0], ask: textLines[1], pict: nil, answerOptions: sortedAnswerOptions, order: order, youAnswers5: [])
         let test2 = Test(code: textLines[0], ask: "Co to jest?", pict: nil, answerOptions: sortedAnswerOptions, order: order, youAnswers5: [])
         testList.append(test)
-        //testList.append(test2)
+        testList.append(test2)
     }
     
     func changeOrder(forAnswerOptions answerOptions: [Answer]) -> [Answer] {
@@ -172,6 +186,20 @@ class Testownik: DataOperations {
         print("answer,\(answer)")
         return answer
     }
+    func frstRandom(repeat: Bool) -> Test?   {
+        return nil
+    }
+    func nextRandom(repeat: Bool) -> Test?  {
+        return nil
+    }
+    func previousRandom(repeat: Bool) -> Test?  {
+        return nil
+    }
+    func lastRandom(repeat: Bool) -> Test?  {
+        return nil
+    }
+    
+    
     // MARK: Methods for Testownik database
     func loadTestFromDatabase() {
         database.selectedTestTable.loadData()

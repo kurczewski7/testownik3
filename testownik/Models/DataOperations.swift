@@ -17,11 +17,21 @@ class DataOperations {
     var count: Int {
         get {   return genericArray.count   }
     }
+    var currentTest: Int = 0
     subscript(index: Int) -> T {
-       get {  _ = isIndexInRange(index: index)
-           return genericArray[index]      }
-       set {   _ = isIndexInRange(index: index)
-           genericArray[index] = newValue  }
+    
+        get {  //_ = isIndexInRange(index: index)
+            let isValid = isIndexValid(index: index)
+            assert(isValid, "ERROR!!: Index \(index) is bigger then count \(count). Give correct index!")
+            return genericArray[index]
+        }
+       set {   //_ = isIndexInRange(index: index)
+            assert(isIndexValid(index: index), "ERROR!!: Index \(index) is bigger then count \(count). Give correct index!")
+            genericArray[index] = newValue
+        }
+    }
+    func isIndexValid(index: Int) -> Bool  {
+        return index >= 0 && index < count
     }
     func isIndexInRange(index: Int, isPrintToConsol: Bool = true) -> Bool {
         if index >= count {
@@ -34,15 +44,27 @@ class DataOperations {
             return true
         }
     }
-    func first() -> T {
-       _ = isIndexInRange(index: 0)
-       return genericArray[0]
+    func getCurrent() -> T {
+         return genericArray[currentTest]
     }
-    func last() -> T {
-       let lastVal = count-1
-       _ = isIndexInRange(index: lastVal)
-       return genericArray[lastVal]
+    func first() {
+        currentTest = 0
     }
+    func last() {
+       currentTest = count-1
+    }
+    func next() {
+        if currentTest+1 < count {
+            currentTest += 1
+        }
+    }
+    func previous() {
+        if currentTest > 0 && currentTest < count {
+            currentTest -= 1
+        }
+    }
+
+    
     func add(value: T) -> Int {
         genericArray.append(value)
         return genericArray.count
