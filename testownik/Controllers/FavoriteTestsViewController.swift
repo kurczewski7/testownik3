@@ -95,6 +95,7 @@ class FavoriteTestsViewController: UIViewController, UITableViewDataSource, UITa
             database.selectedTestTable[0].uuId = selectedTest.uuId
             database.selectedTestTable[0].toAllRelationship = selectedTest
             database.selectedTestTable.save()
+            //database.testDescriptionTable.loadData()
              print("Testing set")
             exec(true)
         }

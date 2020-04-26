@@ -560,6 +560,7 @@
 		2CDB1DF32407BE1700361884 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2C6538DC2407282A004B1FC8 /* Testownik.swift */,
 				2C625DF424435FD000EE29A0 /* CoreDataStack.swift */,
 				2C625DF62443710D00EE29A0 /* Database.swift */,
 				2C6864BF244A05D700C159C7 /* DatabaseFetch.swift */,
@@ -570,7 +571,6 @@
 				2CE2F399242A5B9200D1B731 /* Colors.swift */,
 				2CE2F39B242A5BEF00D1B731 /* Extensions.swift */,
 				2C6538DA2406FA8D004B1FC8 /* Gestures.swift */,
-				2C6538DC2407282A004B1FC8 /* Testownik.swift */,
 				2CDB1DF72407C98500361884 /* Test.swift */,
 				2C1409BB240EDA6D001611F0 /* XXDocument.swift */,
 				2CE1478123F6901900C834F4 /* testownik.xcdatamodeld */,

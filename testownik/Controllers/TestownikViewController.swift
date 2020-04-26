@@ -128,6 +128,16 @@ testownik.loadTestFromDatabase()
         testownik.fillDataDb(totallQuestionsCount: 3)
         refreshView()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        print("viewWillAppear")
+        let change = true
+        if change {
+            testownik.loadTestFromDatabase()
+            testownik.currentTest = 0
+            refreshView()
+        }
+       
+    }
     //--------------------------------
     // MARK: GesturesDelegate  protocol metods
     func pinchRefreshUI(sender: UIPinchGestureRecognizer) {

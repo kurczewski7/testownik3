@@ -78,23 +78,27 @@ class Testownik: DataOperations {
         var textLines = [String]()
         //let dbArray = database.testDescriptionTable
         database.testDescriptionTable.forEach { (index, testRecord) in
-            if let txt = testRecord?.text {
+            if let txt = testRecord?.text, !txt.isEmpty {
+                titles.removeAll()
                 textLines=getTextDb(txt: txt)
                 
                 print("index:\(index), textLines: \(textLines)")
                 for i in 2..<textLines.count {
                     if !textLines[i].isEmpty  {    titles.append(textLines[i])      }
                 }
+                let order = [99,5,7]
+                let isOk = getAnswer(textLines[0])
+                let answerOptions = fillOneTestAnswers(isOk: isOk, titles: titles)
+                let sortedAnswerOptions = changeOrder(forAnswerOptions: answerOptions)
+                let test = Test(code: textLines[0], ask: textLines[1], pict: nil, answerOptions: sortedAnswerOptions, order: order, youAnswers5: [])
+                self.testList.append(test)
             }
         }
-        let order = [99,5,7]
-        let isOk = getAnswer(textLines[0])
-        let answerOptions = fillOneTestAnswers(isOk: isOk, titles: titles)
-        let sortedAnswerOptions = changeOrder(forAnswerOptions: answerOptions)
-        let test = Test(code: textLines[0], ask: textLines[1], pict: nil, answerOptions: sortedAnswerOptions, order: order, youAnswers5: [])
-        let test2 = Test(code: textLines[0], ask: "Co to jest?", pict: nil, answerOptions: sortedAnswerOptions, order: order, youAnswers5: [])
-        testList.append(test)
-        testList.append(test2)
+
+        
+        
+        //        let test2 = Test(code: textLines[0], ask: "Co to jest?", pict: nil, answerOptions: sortedAnswerOptions, order: order, youAnswers5: [])
+        //testList.append(test2)
     }
     
     func changeOrder(forAnswerOptions answerOptions: [Answer]) -> [Answer] {
