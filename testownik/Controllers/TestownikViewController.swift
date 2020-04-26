@@ -90,6 +90,8 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
         super.viewDidLoad()
         //overrideUserInterfaceStyle = .dark
         //navigationController?.overrideUserInterfaceStyle = .dark
+        self.title = "Test (001)"
+
         gestures.setView(forView: view)
         gestures.delegate  = self
         testownik.delegate = self
@@ -288,6 +290,8 @@ testownik.loadTestFromDatabase()
     }
     func refreshView() {
         var i = 0
+        let txtFile = testownik[testownik.currentTest].fileName
+        self.title = "Test \(txtFile)"
         testownik[testownik.currentTest].youAnswer2 = []
         let totalQuest = testownik[testownik.currentTest].answerOptions.count
         testownik[testownik.currentTest].youAnswers5 = []

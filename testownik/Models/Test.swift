@@ -18,6 +18,7 @@ struct Test {
     var youAnswer2: Set<Int>    = []
     var currentRating  = 0
     var maxRating      = 0
+    var fileName: String 
 }
 // var favoriteGenres: Set<String> = ["Rock", "Classical", "Hip hop"]
 // letters.insert("a")

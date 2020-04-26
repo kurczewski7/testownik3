@@ -67,7 +67,7 @@ class Testownik: DataOperations {
             let isOk = getAnswer(textLines[0])
             let answerOptions = fillOneTestAnswers(isOk: isOk, titles: titles)
             let sortedAnswerOptions = changeOrder(forAnswerOptions: answerOptions)
-            let test = Test(code: textLines[0], ask: textLines[1], pict: nil, answerOptions: sortedAnswerOptions, order: order, youAnswers5: [])
+            let test = Test(code: textLines[0], ask: textLines[1], pict: nil, answerOptions: sortedAnswerOptions, order: order, youAnswers5: [], fileName: name)
             testList.append(test)
             print(test)
             print("\r\n")
@@ -90,7 +90,8 @@ class Testownik: DataOperations {
                 let isOk = getAnswer(textLines[0])
                 let answerOptions = fillOneTestAnswers(isOk: isOk, titles: titles)
                 let sortedAnswerOptions = changeOrder(forAnswerOptions: answerOptions)
-                let test = Test(code: textLines[0], ask: textLines[1], pict: nil, answerOptions: sortedAnswerOptions, order: order, youAnswers5: [])
+                let fileName = testRecord?.file_name?.components(separatedBy: ".")[0] ?? ""
+                let test = Test(code: textLines[0], ask: textLines[1], pict: nil, answerOptions: sortedAnswerOptions, order: order, youAnswers5: [], fileName: fileName)
                 self.testList.append(test)
             }
         }
