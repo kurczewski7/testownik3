@@ -70,6 +70,7 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
         }
     }
     @IBAction func checkButtonPress(_ sender: UIButton) {
+        guard testownik.currentTest < testownik.count else {    return        }
         let currTest = testownik[testownik.currentTest]
         let countTest = currTest.answerOptions.count         //okAnswers.count
         for i in 0..<countTest {
@@ -235,6 +236,7 @@ testownik.loadTestFromDatabase()
         
         var isChecked:Bool = false
         print("buttonAnswerPress:\(youSelectedNumber)")
+        guard testownik.currentTest < testownik.count else {  return   }
         isChecked = testownik[testownik.currentTest].youAnswer2.contains(youSelectedNumber)
         if isChecked {
             testownik[testownik.currentTest].youAnswer2.remove(youSelectedNumber)
@@ -290,11 +292,13 @@ testownik.loadTestFromDatabase()
     }
     func refreshView() {
         var i = 0
+        guard testownik.currentTest < testownik.count else {    return    }
         let txtFile = testownik[testownik.currentTest].fileName
         self.title = "Test \(txtFile)"
         testownik[testownik.currentTest].youAnswer2 = []
         let totalQuest = testownik[testownik.currentTest].answerOptions.count
         testownik[testownik.currentTest].youAnswers5 = []
+        askLabel.text = testownik[testownik.currentTest].ask
         for curButt in stackView.arrangedSubviews     {
             if let butt = curButt as? UIButton {
                 butt.isHidden = (i < totalQuest) ? false : true
@@ -308,7 +312,6 @@ testownik.loadTestFromDatabase()
         }
         actionsButtonStackView.arrangedSubviews[0].isHidden = (testownik.filePosition == .first)
         actionsButtonStackView.arrangedSubviews[1].isHidden = (testownik.filePosition == .first)
-        askLabel.text = testownik[testownik.currentTest].ask
     }
     func getText(fileName: String, encodingSystem encoding: String.Encoding = .utf8) -> [String] {  //windowsCP1250
         var texts: [String] = ["brak"]
