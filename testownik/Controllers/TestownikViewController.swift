@@ -88,16 +88,14 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
     }
     // MARK: viewDidLoad - initial method
     override func viewDidLoad() {
+        print("TestownikViewController viewDidLoad")
         super.viewDidLoad()
-        //overrideUserInterfaceStyle = .dark
-        //navigationController?.overrideUserInterfaceStyle = .dark
+        var i = 0
         self.title = "Test (001)"
-
         gestures.setView(forView: view)
         gestures.delegate  = self
         testownik.delegate = self
-testownik.loadTestFromDatabase()
-        var i = 0
+        testownik.loadTestFromDatabase()
         print("Stack count: \(actionsButtonStackView.arrangedSubviews.count)")
         stackView.arrangedSubviews.forEach { (button) in
             if let butt = button as? UIButton {
@@ -132,12 +130,14 @@ testownik.loadTestFromDatabase()
         refreshView()
     }
     override func viewWillAppear(_ animated: Bool) {
-        print("viewWillAppear")
-        let change = true
-        if change {
+        print("viewWillAppear viewWillAppear")
+
+        if database.testToUpgrade {
+            print("testToUpgrade")
             testownik.loadTestFromDatabase()
             testownik.currentTest = 0
             refreshView()
+            database.testToUpgrade.toggle()
         }
        
     }
