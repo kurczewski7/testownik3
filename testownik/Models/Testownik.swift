@@ -147,7 +147,7 @@ class Testownik: DataOperations {
                 let data = try String(contentsOfFile: path ,encoding: encoding)
                 let myStrings = data.components(separatedBy: .newlines)
                 texts = myStrings
-                print("texts:\(texts)")
+                print("text-s:\(texts)")
             }
             catch {
                 print(error.localizedDescription)
