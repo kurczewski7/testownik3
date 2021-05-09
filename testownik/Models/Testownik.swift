@@ -147,7 +147,7 @@ class Testownik: DataOperations {
                 let data = try String(contentsOfFile: path ,encoding: encoding)
                 let myStrings = data.components(separatedBy: .newlines)
                 texts = myStrings
-                print("text-s:\(texts)")
+                print("text-Cs:\(texts)")
             }
             catch {
                 print(error.localizedDescription)
@@ -164,9 +164,9 @@ class Testownik: DataOperations {
             texts = myStrings
             print("texts:\(texts)")
         }
-        catch {
-            print(error.localizedDescription)
-        }
+//        catch {
+//            print(error.localizedDescription)
+//        }
         return texts
     }
     //        let xxx = "first\nsecond\nferd"
