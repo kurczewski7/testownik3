@@ -10,7 +10,7 @@ import UIKit
 import MobileCoreServices
 import SSZipArchive
 
-protocol CloudPickerDelegate: class {
+protocol CloudPickerDelegate: AnyObject {
     func didPickDocuments(documents: [CloudPicker.Document]?)
 }
 class CloudPicker: NSObject, UINavigationControllerDelegate, SSZipArchiveDelegate {
