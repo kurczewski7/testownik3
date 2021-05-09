@@ -90,6 +90,7 @@ class FavoriteTestsViewController: UIViewController, UITableViewDataSource, UITa
          }
         let actionSet = UIContextualAction(style: .normal, title: "❤️ Test") { (act, view, exec) in
             let selectedTest = database.fetch[0].getObj(at: indexPath) as! AllTestEntity
+            // ------------------- TODOO
             print("selectedTest:\(selectedTest.auto_name ?? "brak")")
             print("uuid:\(String(describing: selectedTest.uuId))")
             database.selectedTestTable[0].uuId = selectedTest.uuId
