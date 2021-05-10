@@ -80,8 +80,8 @@ class AddTestViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         allTestRecord.folder_url = folderUrlValue
         
         // FIXME: comment here
-        // TODO: comment here
-        // MARK: do zrobienia
+        // TODO:  comment here
+        // MARK:  do zrobienia
         
 //        let uu = UUID()
 //        let zz = uu.hashValue

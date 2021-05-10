@@ -560,11 +560,12 @@
 		2CDB1DF32407BE1700361884 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				2C6538DC2407282A004B1FC8 /* Testownik.swift */,
-				2C625DF424435FD000EE29A0 /* CoreDataStack.swift */,
+				2CE1478123F6901900C834F4 /* testownik.xcdatamodeld */,
 				2C625DF62443710D00EE29A0 /* Database.swift */,
+				2C625DF424435FD000EE29A0 /* CoreDataStack.swift */,
 				2C6864BF244A05D700C159C7 /* DatabaseFetch.swift */,
 				2C625DF8244372FA00EE29A0 /* DatabaseTableGeneric.swift */,
+				2C6538DC2407282A004B1FC8 /* Testownik.swift */,
 				2CDB1DF52407C08800361884 /* DataOperations.swift */,
 				2CE2F397242A5B1B00D1B731 /* Setup.swift */,
 				2C652AFA24087DCC00284ADF /* CloudPicker.swift */,
@@ -573,7 +574,6 @@
 				2C6538DA2406FA8D004B1FC8 /* Gestures.swift */,
 				2CDB1DF72407C98500361884 /* Test.swift */,
 				2C1409BB240EDA6D001611F0 /* XXDocument.swift */,
-				2CE1478123F6901900C834F4 /* testownik.xcdatamodeld */,
 			);
 			path = Models;
 			sourceTree = "<group>";

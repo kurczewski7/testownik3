@@ -13,7 +13,8 @@ class DatabaseFetch  {
     var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>!
     var context : NSManagedObjectContext {
         get {
-            return fetchedResultsController.managedObjectContext //.delete(<#T##object: NSManagedObject##NSManagedObject#>)
+            return fetchedResultsController.managedObjectContext
+            //.delete(<#T##object: NSManagedObject##NSManagedObject#>)
         }
     }
     var sectionCount : Int {

@@ -125,6 +125,9 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
         gestures.addScreenEdgeGesture()
         
         askLabel.layer.cornerRadius = self.cornerRadius
+        
+        
+        // TODO: POPRAW
         //testownik.fillData(totallQuestionsCount: 117)
         testownik.fillDataDb(totallQuestionsCount: 3)
         refreshView()

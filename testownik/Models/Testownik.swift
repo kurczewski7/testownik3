@@ -50,6 +50,7 @@ class Testownik: DataOperations {
     var visableLevel: Int = 2 {
         didSet {     delegate?.refreshTabbarUI(visableLevel: visableLevel)    }
     }
+    // method depreciated ===> to deleted
     func fillData(totallQuestionsCount: Int) {
         var titles = [String]()
         var textLines = [String]()
@@ -78,6 +79,7 @@ class Testownik: DataOperations {
         var textLines = [String]()
         //let dbArray = database.testDescriptionTable
         database.testDescriptionTable.forEach { (index, testRecord) in
+            print("=== ind: \(index)")
             if let txt = testRecord?.text, !txt.isEmpty {
                 titles.removeAll()
                 textLines=getTextDb(txt: txt)
