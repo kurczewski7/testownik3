@@ -49,6 +49,7 @@ class CloudViewController: UIViewController, CloudPickerDelegate  {  //SSZipArch
         collectionView.reloadData()
     }    
     @IBAction func savePressed(_ sender: UIBarButtonItem) {
+        print("savePressed")
         self.dismiss(animated: true)
     }
  

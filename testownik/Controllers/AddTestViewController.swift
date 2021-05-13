@@ -83,13 +83,6 @@ class AddTestViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         // TODO:  comment here
         // MARK:  do zrobienia
         
-//        let uu = UUID()
-//        let zz = uu.hashValue
-//        print("\(zz)")
-        
-        // toShop.productRelation=product
-//        allTestRecord.toDescriptionRelationship =
-//        allTestRecord.toCateoryRelationship =
         database.allTestsTable.append(allTestRecord)
         database.allTestsTable.save()
         for i in 0..<documentsValue.count {

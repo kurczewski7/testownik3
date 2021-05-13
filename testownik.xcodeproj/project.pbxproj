@@ -562,9 +562,9 @@
 			children = (
 				2CE1478123F6901900C834F4 /* testownik.xcdatamodeld */,
 				2C625DF62443710D00EE29A0 /* Database.swift */,
+				2C625DF8244372FA00EE29A0 /* DatabaseTableGeneric.swift */,
 				2C625DF424435FD000EE29A0 /* CoreDataStack.swift */,
 				2C6864BF244A05D700C159C7 /* DatabaseFetch.swift */,
-				2C625DF8244372FA00EE29A0 /* DatabaseTableGeneric.swift */,
 				2C6538DC2407282A004B1FC8 /* Testownik.swift */,
 				2CDB1DF52407C08800361884 /* DataOperations.swift */,
 				2CE2F397242A5B1B00D1B731 /* Setup.swift */,

@@ -129,7 +129,8 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
         
         // TODO: POPRAW
         //testownik.fillData(totallQuestionsCount: 117)
-        testownik.fillDataDb(totallQuestionsCount: 3)
+        testownik.fillDataDb()
+        //testownik.fillDataXXXX()
         refreshView()
     }
     override func viewWillAppear(_ animated: Bool) {

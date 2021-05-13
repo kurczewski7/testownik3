@@ -74,20 +74,18 @@ class Testownik: DataOperations {
             print("\r\n")
         }
     }
-    func fillDataDb(totallQuestionsCount: Int) {
+    
+    func fillDataDb() {
         var titles = [String]()
         var textLines = [String]()
-        //let dbArray = database.testDescriptionTable
         database.testDescriptionTable.forEach { (index, testRecord) in
-            print("=== ind: \(index)")
             if let txt = testRecord?.text, !txt.isEmpty {
                 titles.removeAll()
                 textLines=getTextDb(txt: txt)
-                
-                print("index:\(index), textLines: \(textLines)")
                 for i in 2..<textLines.count {
                     if !textLines[i].isEmpty  {    titles.append(textLines[i])      }
                 }
+                // TODO: order
                 let order = [99,5,7]
                 let isOk = getAnswer(textLines[0])
                 let answerOptions = fillOneTestAnswers(isOk: isOk, titles: titles)
@@ -97,12 +95,7 @@ class Testownik: DataOperations {
                 self.testList.append(test)
             }
         }
-
-        
-        
-        //        let test2 = Test(code: textLines[0], ask: "Co to jest?", pict: nil, answerOptions: sortedAnswerOptions, order: order, youAnswers5: [])
-        //testList.append(test2)
-    }
+     }
     
     func changeOrder(forAnswerOptions answerOptions: [Answer]) -> [Answer] {
         var position = 0
@@ -210,6 +203,7 @@ class Testownik: DataOperations {
     // MARK: Methods for Testownik database
     func loadTestFromDatabase() {
         database.selectedTestTable.loadData()
+        //print("\nselectedTestTable.coun = \(database.selectedTestTable.count)")
         guard database.selectedTestTable.count > 0 else {   return     }
         if  let selectedUuid = database.selectedTestTable[0].toAllRelationship?.uuId {
             database.testDescriptionTable.loadData(forUuid: "uuid_parent", fieldValue: selectedUuid)
