@@ -21,6 +21,7 @@ class Setup {
     }
     
     static var currentLanguage: LanguaesList = .polish
+    static var cloudPicker: CloudPicker!
     
 //   class func getText(fromCloudFilePath filePath: URL) -> [String] {
 //        let value = getTextEncoding(filePath: filePath)

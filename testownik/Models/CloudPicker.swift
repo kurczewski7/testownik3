@@ -19,6 +19,7 @@ class CloudPicker: NSObject, UINavigationControllerDelegate, SSZipArchiveDelegat
         case filesTxt
         case filesZip
         case folder
+//        case empty
     }
 
     // MARK: Class Document
@@ -41,6 +42,13 @@ class CloudPicker: NSObject, UINavigationControllerDelegate, SSZipArchiveDelegat
     private weak var presentationController: UIViewController?
  
     private var documents = [Document]()
+    var documentsUnziped : [CloudPicker.Document] = []
+    var unzipedPathDir: String = ""
+
+    
+//    documentsUnziped = cloudPicker.documentFromZip(pickedURL: url)
+//    print("++++++\n\(documentsUnziped.count)")
+
     
     private var folderURL: URL?
     private var zipFileUrl: URL?
@@ -277,9 +285,19 @@ extension CloudPicker: UIDocumentPickerDelegate {
                     //print("Folder_URL:\(folderURL.absoluteString)")
           
                     switch sourceType {
+                        case .filesTxt:
+                            folderName = "Files"
+                            var document = Document(fileURL: pickedURL)
+                            print("One_File_URL:\(pickedURL.absoluteString)")
+                            if isFileUnhided(fileURL: pickedURL, folderURL: folderURL, sourceType: .filesTxt) {
+                                fillDocument(forUrl: pickedURL, document: &document)
+                                documents.append(document)
+                            }
+                        
                         case .folder:
                             self.folderURL = folderURL
                             folderName = folderURL.lastPathComponent
+                            //----
                             for case let fileURL as URL in fileList! {
                                 if !fileURL.isDirectory {
                                     var document = Document(fileURL: fileURL)
@@ -292,15 +310,7 @@ extension CloudPicker: UIDocumentPickerDelegate {
                                     }
                                 }
                             }
-                    
-                        case .filesTxt:
-                            folderName = "Files"
-                            var document = Document(fileURL: pickedURL)
-                            print("One_File_URL:\(pickedURL.absoluteString)")
-                            if isFileUnhided(fileURL: pickedURL, folderURL: folderURL, sourceType: .filesTxt) {
-                                fillDocument(forUrl: pickedURL, document: &document)
-                                documents.append(document)
-                            }
+                            //-----
                        
                         case .filesZip:
                             self.zipFileUrl = pickedURL
@@ -309,6 +319,13 @@ extension CloudPicker: UIDocumentPickerDelegate {
                             if isFileUnhided(fileURL: pickedURL, folderURL: folderURL, sourceType: .filesZip) {
                                 print("Befor append document")
                                //fillDocument(forUrl: pickedURL, document: &document)
+                                document.myTexts = "DUPA"
+                                //====>
+                                // TODO: pętla
+                                unzipedPathDir = unzip(document: document)
+                                if let url = URL(string: unzipedPathDir) {
+                                    documentsUnziped = documentFromZip(pickedURL: url)
+                                }
                                documents.append(document)
                             }
                             else {

@@ -9,8 +9,13 @@
 import UIKit
 
 class CloudViewController: UIViewController, CloudPickerDelegate  {  //SSZipArchiveDelegate
-    var cloudPicker: CloudPicker!
-    var documents : [CloudPicker.Document] = []
+//    var cloudPicker: CloudPicker!
+    var documents  : [CloudPicker.Document] = []
+//    var documentsUnziped : [CloudPicker.Document] = []
+//    var unzipedPathDir: String = ""
+//    documentsUnziped = cloudPicker.documentFromZip(pickedURL: url)
+//    print("++++++\n\(documentsUnziped.count)")
+
     var indexpath = IndexPath(row: 0, section: 0)
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -25,8 +30,8 @@ class CloudViewController: UIViewController, CloudPickerDelegate  {  //SSZipArch
         super.viewDidLoad()
         print("CloudViewController")
         self.documents =  []
-        cloudPicker = CloudPicker(presentationController: self)
-        cloudPicker.delegate = self
+        Setup.cloudPicker = CloudPicker(presentationController: self)
+        Setup.cloudPicker.delegate = self
         Setup.popUp(context: self, msg: "Pres + and select folder or zip file")
     }
     func didPickDocuments(documents: [CloudPicker.Document]?) {
@@ -40,11 +45,11 @@ class CloudViewController: UIViewController, CloudPickerDelegate  {  //SSZipArch
         collectionView.reloadData()
     }
     @IBAction func pickPressed(_ sender: UIBarButtonItem) {
-        cloudPicker.present(from: view)
+        Setup.cloudPicker.present(from: view)
     }
     
     @IBAction func trashPressed(_ sender: UIBarButtonItem) {
-        cloudPicker.cleadData()
+        Setup.cloudPicker.cleadData()
         documents.removeAll()
         collectionView.reloadData()
     }    
@@ -59,18 +64,18 @@ class CloudViewController: UIViewController, CloudPickerDelegate  {  //SSZipArch
          if segue.identifier == "showSave" {
             if let nextViewController = segue.destination as? AddTestViewController {
                 nextViewController.documentsValue = self.documents
-                nextViewController.folderUrlValue = cloudPicker.sourceUrl ?? "no url"
+                nextViewController.folderUrlValue = Setup.cloudPicker.sourceUrl ?? "no url"
             }
         }
         if segue.identifier == "showDetail" {
             let document = documents[self.indexpath.row]
             if let nextViewController = segue.destination as? DetailViewController {
-                nextViewController.cloudPickerValue = cloudPicker
+                nextViewController.cloudPickerValue = Setup.cloudPicker
                 nextViewController.documentsValue = documents
                 nextViewController.indexpathRow = indexpath.row
 
                 
-                nextViewController.fileExtensionValue = cloudPicker.splitFilenameAndExtension(fullFileName: document.fileURL.lastPathComponent).fileExt
+                nextViewController.fileExtensionValue = Setup.cloudPicker.splitFilenameAndExtension(fullFileName: document.fileURL.lastPathComponent).fileExt
                 
                 Setup.displayToast(forView: self.view, message: "Druga wiadomość", seconds: 3)
                 Setup.popUp(context: self, msg: "Trzecia wiadomość")
@@ -84,11 +89,16 @@ class CloudViewController: UIViewController, CloudPickerDelegate  {  //SSZipArch
         let document = documents[self.indexpath.row]
         if let nextViewController = segue.destination as? ZipViewController {
             nextViewController.zipFileNameValue = document.fileURL.lastPathComponent
+            nextViewController.urlValue = Setup.cloudPicker.unzipedPathDir
+            //nextViewController.cloudPicker = Setup.cloudPicker
             
+            print("::::::\(Setup.cloudPicker.unzipedPathDir)")
+            for i in 0..<Setup.cloudPicker.documentsUnziped.count {
+                print("\n\(Setup.cloudPicker.documentsUnziped[i].fileURL)")
+            }
+            //cloudPicker.unzipedPathDir =
             //Setup.unzipFile(atPath: document.fileURL.absoluteString, delegate: self)
-            let urlStr = cloudPicker.unzip(document: document)
-            print(":::\(urlStr)")
-            nextViewController.urlValue = urlStr
+            //let urlStr = cloudPicker.unzip(document: document)
         }
          print("showArchive")
       }
@@ -108,7 +118,7 @@ extension CloudViewController: UICollectionViewDelegate, UICollectionViewDataSou
         self.indexpath = indexPath
         print("self.indexpath 1:\(self.indexpath)")
         guard let cell = collectionView.cellForItem(at: indexPath) else { return }
-        let noZip = cloudPicker.sourceType != .filesZip
+        let noZip = Setup.cloudPicker.sourceType != .filesZip
         if noZip {
           performSegue(withIdentifier: "showDetail", sender: cell)
         }
@@ -119,7 +129,7 @@ extension CloudViewController: UICollectionViewDelegate, UICollectionViewDataSou
     }
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         //let folderName = cloudPicker.sourceType == .folder ? "Folder: \(cloudPicker.folderName)" : cloudPicker.folderName
-        let folderName = (cloudPicker.sourceType == .folder ? "Folder: " : "") +  cloudPicker.folderName
+        let folderName = (Setup.cloudPicker.sourceType == .folder ? "Folder: " : "") +  Setup.cloudPicker.folderName
         // 1
            switch kind {
            // 2
