@@ -37,8 +37,8 @@ class DetailViewController: UIViewController, GesturesDelegate {
         gestures.delegate  = self
         gestures.addSwipeGestureToView(direction: .right)
         gestures.addSwipeGestureToView(direction: .left)
-        refreshTextContent()
-        print("=================\nDetailViewController, self.indexpathRow 3:\(self.indexpathRow)")
+        refreshTextContent(forRow: indexpathRow)
+        print("=================\nDetailViewController, self.indexpathRow :\(self.indexpathRow)")
     }
     // MARK: - Gesture delegate methods
     @IBAction func switchPicture(_ sender: UIBarButtonItem) {
@@ -56,11 +56,11 @@ class DetailViewController: UIViewController, GesturesDelegate {
         switch direction {
             case .right:
                  newRow -= newRow > 0 ? 1 : 0
-                refreshTextContent()
+                refreshTextContent(forRow: newRow)
                 print("Swipe to right")
             case .left:
-                 newRow += newRow < self.totalItem ? 1 : 0
-                refreshTextContent()
+                 newRow += (newRow < self.totalItem - 1) ? 1 : 0
+                refreshTextContent(forRow: newRow)
                 print("Swipe  & left ")
             default:
                 print("Swipe unrecognized")
@@ -71,8 +71,8 @@ class DetailViewController: UIViewController, GesturesDelegate {
         textView?.isHidden = !imageOffSwitch
         picture?.isHidden = imageOffSwitch
     }
-    func refreshTextContent() {
-        let newRow = self.indexpathRow
+    func refreshTextContent(forRow newRow: Int) {
+        // let newRow = self.indexpathRow
         if newRow < documentsValue.count {
             let document = documentsValue[newRow]
             self.textView?.text = document.myTexts
@@ -81,7 +81,8 @@ class DetailViewController: UIViewController, GesturesDelegate {
             if let data = document.myPictureData {
                self.picture?.image = UIImage(data:  data)
             }
-        }       
+        }
+        self.indexpathRow = newRow
     }
 }
 
