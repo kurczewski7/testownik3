@@ -35,7 +35,7 @@ class CloudViewController: UIViewController, CloudPickerDelegate  {  //SSZipArch
         Setup.popUp(context: self, msg: "Pres + and select folder or zip file")
     }
     func didPickDocuments(documents: [CloudPicker.Document]?) {
-        self.documents = []
+        self.documents.removeAll()
         documents?.forEach {
             self.documents.append($0)
         }
