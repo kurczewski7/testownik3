@@ -12,6 +12,7 @@ import SSZipArchive
 
 protocol CloudPickerDelegate: AnyObject {
     func didPickDocuments(documents: [CloudPicker.Document]?)
+    func errorZipStructureMessae(message: String)
 }
 class CloudPicker: NSObject, UINavigationControllerDelegate, SSZipArchiveDelegate {
     typealias FileExt = (fileName: String, fileExt: String)
@@ -21,7 +22,10 @@ class CloudPicker: NSObject, UINavigationControllerDelegate, SSZipArchiveDelegat
         case folder
 //        case empty
     }
-
+    
+    typealias ReadFileData = (documents: [Document],  zipFileUrl: URL?, unzipedPathDir: String, documentsUnziped : [CloudPicker.Document],  folderURL: URL?,  sourceUrl: String?)
+    var readFileData: ReadFileData = (documents: [Document](),  zipFileUrl: nil, unzipedPathDir: "", documentsUnziped : [CloudPicker.Document](),  folderURL: nil,  sourceUrl: "")
+    
     // MARK: Class Document
     class Document: UIDocument {
         var data: Data?
@@ -37,37 +41,31 @@ class CloudPicker: NSObject, UINavigationControllerDelegate, SSZipArchiveDelegat
             self.data = data
         }
     }
+    
     // MARK: Variable
     private var pickerController: UIDocumentPickerViewController?
     private weak var presentationController: UIViewController?
- 
-    private var documents = [Document]()
-    var documentsUnziped : [CloudPicker.Document] = []
-    var unzipedPathDir: String = ""
-
-    
-//    documentsUnziped = cloudPicker.documentFromZip(pickedURL: url)
-//    print("++++++\n\(documentsUnziped.count)")
-
     
     private var folderURL: URL?
     private var zipFileUrl: URL?
-    var sourceUrl: String? {
-        get {
-            return (sourceType == .folder ? folderURL : zipFileUrl)?.absoluteString
-        }
-    }
-    var folderName = ""
-    var sourceType: SourceType = .folder
-
-    //private var lastSourceTypeData: SourceType = .folder
-    //var myTexts2 = [String]()
+    private var documents = [Document]()
     
     var delegate: CloudPickerDelegate?
     var showHidden = false
     var hiddenFiles = 0
 
-    // MARK: Melods
+    var documentsUnziped : [CloudPicker.Document] = []
+    var unzipedPathDir: String = ""
+    var folderName = ""
+    var sourceType: SourceType = .folder
+    var sourceUrl: String? {
+        get {
+            return (sourceType == .folder ? folderURL : zipFileUrl)?.absoluteString
+        }
+    }
+    //private var lastSourceTypeData: SourceType = .folder
+
+    // MARK: Metods
     init(presentationController: UIViewController) {
         super.init()
         
@@ -189,8 +187,42 @@ class CloudPicker: NSObject, UINavigationControllerDelegate, SSZipArchiveDelegat
         let msg = success ? "Rozpakowanie poprawne \(zipName)" : "Błąd rozpakowania"
         print("=====\nmsg=\(msg)")
         print("ZipArchive - Success: \(success)")
+        
+        if let urlPath =  URL(string: destPath) {
+            let xxxx = documentsFromLocalURL(pickedURL: urlPath)
+            print("xxxx=\(xxxx.count)")
+        }
+        
+        
+        
         let fullDestPath = zipFileNames.isEmpty ? "" : "\(destPath)/\(zipName)"
-        return success ? fullDestPath : ""
+
+        return success ? getPathDestSubdir(fullDestPath: fullDestPath) : ""
+    }
+    private func getPathDestSubdir(fullDestPath path: String) -> String {
+        let subPath = ""
+        //------------
+        print("fullDestPath=\(path)")
+        if path.contains(" ") {
+            print("Invalid zip structure !!!")
+            let startSeq = path.startIndex
+            //let end = unzipedPathDir.index(unzipedPathDir.endIndex, offsetBy: -2)
+            let endSeq = path.lastIndex(of: " ") ?? path.endIndex
+            let xxxUrlStr = String(path[startSeq..<endSeq])
+            //let yyy = unzipedPathDir.c
+            print("xxxUrlStr=\(xxxUrlStr)")
+        }
+        //-----------
+//        if let urlPath = URL(string: path) {
+//            let xxxx = documentsFromLocalURL(pickedURL: urlPath)
+//            print("xxxx=\(xxxx.count)")
+//        }
+        
+   
+       
+        
+        return path + subPath
+        
     }
     private func deleteFolder(deleteFilePath atPath: String) {
         do {
@@ -216,7 +248,15 @@ class CloudPicker: NSObject, UINavigationControllerDelegate, SSZipArchiveDelegat
         self.hiddenFiles = 0
     }
     func isTextDataOk(values: [Substring])  -> Bool{
-        if let number = Int(values[0]), number >= 0 {     return true             }
+        let fileName = values[0]
+        var stringNumber = ""
+        for  character in fileName {
+            if let number = Int(String(character)), number >= 0  {
+                stringNumber.append(character)
+            }
+            else { break }
+        }
+        if let numberLong = Int(stringNumber), numberLong >= 0 {     return true             }
         else {       return false             }
     }
     func splitFilenameAndExtension(fullFileName name: String) -> FileExt  {
@@ -323,9 +363,15 @@ extension CloudPicker: UIDocumentPickerDelegate {
                                 //====>
                                 // TODO: pętla
                                 unzipedPathDir = unzip(document: document)
+
                                 if let url = URL(string: unzipedPathDir) {
                                     documentsUnziped = documentFromZip(pickedURL: url)
                                 }
+                                else    {
+                                    //Setup.displayToast(forView: self, message: "ERROOOOR", seconds: 3)
+                                    delegate?.errorZipStructureMessae(message: "Invalid zip")
+                                }
+                                
                                documents.append(document)
                             }
                             else {
@@ -337,6 +383,38 @@ extension CloudPicker: UIDocumentPickerDelegate {
 //                    print("error:  \(error.localizedDescription)")
 //                }
         }
+    }
+    private func documentsFromLocalURL(pickedURL url: URL)  ->  [Document] {
+        var docs = [Document]()
+        
+        let shouldStopAccessing = url.startAccessingSecurityScopedResource()
+        defer {
+            if shouldStopAccessing {
+                url.stopAccessingSecurityScopedResource()
+            }
+        }
+        NSFileCoordinator().coordinate(readingItemAt: url, error: NSErrorPointer.none) { (folderURL) in
+            do {
+                let keys: [URLResourceKey] = [.nameKey, .isDirectoryKey] //isDirectoryKey isRegularFileKey
+                let fileList = FileManager.default.enumerator(at: url, includingPropertiesForKeys: keys)
+
+                for case let fileURL as URL in fileList! {
+                    if !fileURL.isDirectory {
+                        var document = Document(fileURL: fileURL)
+//                        if isFileUnhided(fileURL: fileURL, folderURL: folderURL, sourceType: .folder) {
+                            if isTextDataOk(values: fileURL.lastPathComponent.split(separator: ".")) {
+                               fillDocument(forUrl: fileURL, document: &document)
+                               docs.append(document)
+                            }
+                            print("File_URL:\(fileURL.absoluteString)")
+//                        }
+                    }
+                }
+
+             }
+        }
+        //NSFileCoordinator().coordinate(readingItemAt: <#T##URL#>, options: <#T##NSFileCoordinator.ReadingOptions#>, error: <#T##NSErrorPointer#>, byAccessor: <#T##(URL) -> Void#>)
+        return docs
     }
     func documentFromZip(pickedURL: URL) -> [Document]{  //pickedURL: URL,
         var documents_tmp = [Document]()
@@ -364,7 +442,7 @@ extension CloudPicker: UIDocumentPickerDelegate {
                                 }
                             }
                             else {
-                                print("NO DIRECTORY: File_Zip_URL:\(fileURL.absoluteString)")
+                                print("ERROR: NO DIRECTORY: File_Zip_URL:\(fileURL.absoluteString)")
                             }
                         }
                     }

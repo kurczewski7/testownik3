@@ -8,7 +8,9 @@
 
 import UIKit
 
-class CloudViewController: UIViewController, CloudPickerDelegate  {  //SSZipArchiveDelegate
+class CloudViewController: UIViewController, CloudPickerDelegate  {
+
+    //SSZipArchiveDelegate
 //    var cloudPicker: CloudPicker!
     var documents  : [CloudPicker.Document] = []
 //    var documentsUnziped : [CloudPicker.Document] = []
@@ -33,6 +35,9 @@ class CloudViewController: UIViewController, CloudPickerDelegate  {  //SSZipArch
         Setup.cloudPicker = CloudPicker(presentationController: self)
         Setup.cloudPicker.delegate = self
         Setup.popUp(context: self, msg: "Pres + and select folder or zip file")
+    }
+    func errorZipStructureMessae(message: String) {
+        Setup.displayToast(forView: self.view, message: message + " !!!", seconds: 5)
     }
     func didPickDocuments(documents: [CloudPicker.Document]?) {
         self.documents.removeAll()
