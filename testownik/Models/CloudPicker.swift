@@ -165,7 +165,8 @@ class CloudPicker: NSObject, UINavigationControllerDelegate, SSZipArchiveDelegat
         }
         return  (encoding, data)
     }
-    func unzip(document: CloudPicker.Document, tmpFolder: String = "Testownik_tmp") -> String {
+    func unzip(document: CloudPicker.Document, tmpFolder: String = "Testownik_tmp") -> [Document] {
+        let emptyDocs = [Document]()
         let sourcePath = document.fileURL.relativePath
         let pathTmp = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         
@@ -187,17 +188,17 @@ class CloudPicker: NSObject, UINavigationControllerDelegate, SSZipArchiveDelegat
         let msg = success ? "Rozpakowanie poprawne \(zipName)" : "Błąd rozpakowania"
         print("=====\nmsg=\(msg)")
         print("ZipArchive - Success: \(success)")
-        
-        if let urlPath =  URL(string: destPath) {
-            let xxxx = documentsFromLocalURL(pickedURL: urlPath)
-            print("xxxx=\(xxxx.count)")
+        if  !success {
+            return emptyDocs
         }
-        
-        
-        
-        let fullDestPath = zipFileNames.isEmpty ? "" : "\(destPath)/\(zipName)"
-
-        return success ? getPathDestSubdir(fullDestPath: fullDestPath) : ""
+        if let tmpPath =  URL(string: destPath) {
+            let subDirDocs = documentsFromLocalURL(pickedURL: tmpPath)
+            print("subDirDocs=\(subDirDocs.count)")
+            return subDirDocs.count > 0 ? subDirDocs : emptyDocs
+        }
+        else {  return emptyDocs        }
+        //let fullDestPath = zipFileNames.isEmpty ? "" : "\(destPath)/\(zipName)"
+        //return success ? getPathDestSubdir(fullDestPath: fullDestPath) : ""
     }
     private func getPathDestSubdir(fullDestPath path: String) -> String {
         let subPath = ""
@@ -361,18 +362,23 @@ extension CloudPicker: UIDocumentPickerDelegate {
                                //fillDocument(forUrl: pickedURL, document: &document)
                                 document.myTexts = "DUPA"
                                 //====>
-                                // TODO: pętla
-                                unzipedPathDir = unzip(document: document)
-
-                                if let url = URL(string: unzipedPathDir) {
-                                    documentsUnziped = documentFromZip(pickedURL: url)
-                                }
-                                else    {
-                                    //Setup.displayToast(forView: self, message: "ERROOOOR", seconds: 3)
+                                 self.documentsUnziped = unzip(document: document)
+                                documents.append(document)
+                                guard URL(string: self.unzipedPathDir) != nil  else {
                                     delegate?.errorZipStructureMessae(message: "Invalid zip")
+                                    return
                                 }
-                                
-                               documents.append(document)
+
+                                // TODO: pętla
+                                //unzipedPathDir = unzip(document: document)
+//                                if let url = URL(string: unzipedPathDir) {
+//                                    documentsUnziped = documentFromZip(pickedURL: url)
+//                                }
+//                                else    {
+//                                    //Setup.displayToast(forView: self, message: "ERROOOOR", seconds: 3)
+//                                    delegate?.errorZipStructureMessae(message: "Invalid zip")
+//                                }
+
                             }
                             else {
                               print("Not append document")
@@ -403,7 +409,10 @@ extension CloudPicker: UIDocumentPickerDelegate {
                         var document = Document(fileURL: fileURL)
 //                        if isFileUnhided(fileURL: fileURL, folderURL: folderURL, sourceType: .folder) {
                             if isTextDataOk(values: fileURL.lastPathComponent.split(separator: ".")) {
-                               fillDocument(forUrl: fileURL, document: &document)
+                                fillDocument(forUrl: fileURL, document: &document)
+                                let subfolderPath = document.fileURL.deletingLastPathComponent()
+                                self.unzipedPathDir = subfolderPath.absoluteString
+                                print("subfolderPath=\(subfolderPath)")
                                docs.append(document)
                             }
                             print("File_URL:\(fileURL.absoluteString)")
@@ -413,7 +422,9 @@ extension CloudPicker: UIDocumentPickerDelegate {
 
              }
         }
-        //NSFileCoordinator().coordinate(readingItemAt: <#T##URL#>, options: <#T##NSFileCoordinator.ReadingOptions#>, error: <#T##NSErrorPointer#>, byAccessor: <#T##(URL) -> Void#>)
+        docs.sort {
+            $0.fileURL.lastPathComponent < $1.fileURL.lastPathComponent
+        }
         return docs
     }
     func documentFromZip(pickedURL: URL) -> [Document]{  //pickedURL: URL,

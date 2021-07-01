@@ -12,13 +12,14 @@ class ZipViewController: UIViewController, UICollectionViewDelegate, UICollectio
     var zipFileNameValue = ""
     var urlValue = ""
     
- //   var cloudPicker: CloudPicker!
+    var cloudPicker: CloudPicker!
     var documentsUnziped : [CloudPicker.Document] = []
     var indexpath = IndexPath(row: 0, section: 0)
     //var tmpDoc = [CloudPicker.Document]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.cloudPicker = Setup.cloudPicker
         
         print("--------------------\nZipViewController,urlValue=\(urlValue)")
 //        let urlStr1 = "File_Zip_URL:file:///Users/slawek/Library/Developer/CoreSimulator/Devices/FFB0AE7E-10D1-4A00-829A-6F1A7969B397/data/Containers/Data/Application/BCF38805-F45C-4522-9ADC-2004CBB2C913/Documents/Testownik_tmp/baza_slawek/001.txt"
@@ -40,6 +41,8 @@ class ZipViewController: UIViewController, UICollectionViewDelegate, UICollectio
             let url = URL(fileURLWithPath: urlStr, isDirectory: true)
             print("--------\nurlStr:=:=  \(urlStr)")
             print("--------\nFolder URL=  \(url)")
+            documentsUnziped = cloudPicker.documentsUnziped
+            print("documentsUnziped.count=\(documentsUnziped.count)")
 //            documentsUnziped = cloudPicker.documentFromZip(pickedURL: url)
 //            print("++++++\n\(documentsUnziped.count)")
         }
@@ -50,7 +53,8 @@ class ZipViewController: UIViewController, UICollectionViewDelegate, UICollectio
         // Do any additional setup after loading the view.
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return Setup.cloudPicker.documentsUnziped.count //3 //documentsUnziped.count
+        return self.cloudPicker.documentsUnziped.count
+        //Setup.cloudPicker.documentsUnziped.count //3 //documentsUnziped.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         print("cellForItemAt:\(indexPath.row),\(indexPath.section)")
@@ -58,7 +62,8 @@ class ZipViewController: UIViewController, UICollectionViewDelegate, UICollectio
         print("url1:\(Setup.cloudPicker.documentsUnziped[1].fileURL.absoluteString)")
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "zipCell", for: indexPath) as! ZipCollectionViewCell
         cell.backgroundColor = .brown
-        cell.titleLabel.text =  "\(Setup.cloudPicker.documentsUnziped[indexPath.row].fileURL.lastPathComponent)"   //tmpDoc[indexPath.item].fileURL.lastPathComponent    // "\(indexPath.item)"
+        cell.titleLabel.text =  "\(self.cloudPicker.documentsUnziped[indexPath.row].fileURL.lastPathComponent)"
+        //cell.titleLabel.text =  "\(Setup.cloudPicker.documentsUnziped[indexPath.row].fileURL.lastPathComponent)"   //tmpDoc[indexPath.item].fileURL.lastPathComponent    // "\(indexPath.item)"
         // cell.configure(document: documentsUnziped[indexPath.row])
         return cell
     }
@@ -98,8 +103,8 @@ class ZipViewController: UIViewController, UICollectionViewDelegate, UICollectio
         print("showZipDetail")
         if segue.identifier == "showZipDetail" {
             if let nextViewController = segue.destination as? DetailViewController {
-                nextViewController.cloudPickerValue = Setup.cloudPicker
-                nextViewController.documentsValue = Setup.cloudPicker.documentsUnziped
+                nextViewController.cloudPickerValue =  self.cloudPicker                 //Setup.cloudPicker
+                nextViewController.documentsValue = self.cloudPicker.documentsUnziped   //Setup.cloudPicker.documentsUnziped
                 nextViewController.indexpathRow = indexpath.row
             }
          print("showArchiveDetail")
