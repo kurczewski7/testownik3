@@ -1305,6 +1305,7 @@
 			baseConfigurationReference = ADF2A3D54AB483DB0E3D1447 /* Pods-testownik-testownikUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 667E7NU7M9;
 				INFOPLIST_FILE = testownikUITests/Info.plist;
@@ -1326,6 +1327,7 @@
 			baseConfigurationReference = 5793B275A7533EE8EB96AD6F /* Pods-testownik-testownikUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 667E7NU7M9;
 				INFOPLIST_FILE = testownikUITests/Info.plist;

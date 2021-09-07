@@ -86,8 +86,8 @@ class CloudPicker: NSObject, UINavigationControllerDelegate, SSZipArchiveDelegat
         return action
     }
     public func fileAction(for type: SourceType, title: String, keysOption keys: [CFString]) -> UIAlertAction? {
-         let action = UIAlertAction(title: title, style: .default) { [unowned self] _ in
-            if self.sourceType == .folder  || self.sourceType == .filesZip {                self.cleadData()            }
+         let action = UIAlertAction(title: title, style: .default) { [unowned self] _ in    
+            if type == .filesZip { self.cleadData() }
             self.pickerController = UIDocumentPickerViewController(documentTypes: keys as [String], in: .open)
             self.pickerController!.delegate = self
             self.pickerController!.allowsMultipleSelection = true
@@ -99,16 +99,16 @@ class CloudPicker: NSObject, UINavigationControllerDelegate, SSZipArchiveDelegat
     public func present(from sourceView: UIView) {
         //let xx = [kUTTypeText, kUTTypeFolder, kUTTypeArchive, kUTTypeFileURL,kUTTypePlainText, kUTTypeZipArchive, kUTTypeGNUZipArchive, kUTTypeUTF8PlainText, kUTTypeUTF16ExternalPlainText, kUTTypeUTF8TabSeparatedText, kUTTypeUTF16PlainText]
         let alertController = UIAlertController(title: "Select From", message: nil, preferredStyle: .actionSheet)
-        if let action = self.folderAction(for: .folder, title: "Folder") {
-            alertController.addAction(action)
+        if let action1 = self.folderAction(for: .folder, title: "Folder") {
+            alertController.addAction(action1)
         }
         let keys1 =  [kUTTypeText , kUTTypePlainText, kUTTypeUTF8PlainText, kUTTypeUTF8TabSeparatedText, kUTTypeUTF16PlainText, kUTTypeUTF16ExternalPlainText]
-        if let action = self.fileAction(for: .filesTxt, title: "Files text", keysOption: keys1) {
-            alertController.addAction(action)
+        if let action2 = self.fileAction(for: .filesTxt, title: "Files text", keysOption: keys1) {
+            alertController.addAction(action2)
         }
         let keys2 = [kUTTypeArchive, kUTTypeZipArchive,kUTTypeGNUZipArchive]
-        if let action = self.fileAction(for: .filesZip, title: "Files archive", keysOption: keys2) {
-            alertController.addAction(action)
+        if let action3 = self.fileAction(for: .filesZip, title: "Files archive", keysOption: keys2) {
+            alertController.addAction(action3)
         }
         
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))

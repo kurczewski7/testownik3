@@ -12,7 +12,7 @@ class CloudViewController: UIViewController, CloudPickerDelegate  {
 
     //SSZipArchiveDelegate
 //    var cloudPicker: CloudPicker!
-    var documents  : [CloudPicker.Document] = []
+    var documents  : [CloudPicker.Document] = [CloudPicker.Document]()
 //    var documentsUnziped : [CloudPicker.Document] = []
 //    var unzipedPathDir: String = ""
 //    documentsUnziped = cloudPicker.documentFromZip(pickedURL: url)
@@ -31,7 +31,7 @@ class CloudViewController: UIViewController, CloudPickerDelegate  {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("CloudViewController")
-        self.documents =  []
+        self.documents.removeAll()
         Setup.cloudPicker = CloudPicker(presentationController: self)
         Setup.cloudPicker.delegate = self
         Setup.popUp(context: self, msg: "Pres + and select folder or zip file")
@@ -112,6 +112,7 @@ class CloudViewController: UIViewController, CloudPickerDelegate  {
 
 extension CloudViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print("ERROR HIRE")
         return documents.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

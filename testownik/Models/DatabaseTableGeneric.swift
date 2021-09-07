@@ -15,6 +15,7 @@ class DatabaseTableGeneric <P: NSFetchRequestResult> {
     
     private var  genericArray = [P]()
     private var  genericArrayFiltered: [P] = []
+    private var  genericArrayDelete: [P] = []
     private var  currentRow = 0
     
     var featchResultCtrl: NSFetchedResultsController<P> = NSFetchedResultsController<P>()
@@ -107,6 +108,25 @@ class DatabaseTableGeneric <P: NSFetchRequestResult> {
         let DelAllReqVar = NSBatchDeleteRequest(fetchRequest: feachRequest)
         do { try context.execute(DelAllReqVar) }
         catch { print(error) }
+    }
+    func deleteGroup(uuidDeleteField fieldName : String, forValue fieldValue: UUID) {
+        let request = self.feachRequest
+        request.predicate = NSPredicate(format: "%K = %@", fieldName, fieldValue as CVarArg)
+        do {
+            let delArray     = try context.fetch(request)
+            for delElem in delArray as! [NSManagedObject]  {
+                context.delete(delElem)
+            }
+            print("OK:\(delArray.count)")
+           // self.genericArray = newArray as! [P]
+        } catch  {
+            print("Error fetching data from context \(error.localizedDescription)")
+        }
+        save()
+    }
+    func deleteNewGroup<T>(forDeleteField fieldName: String, fieldValue: T) {
+        
+         
     }
     func next() -> P? {
         if currentRow+1 < count {

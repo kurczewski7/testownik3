@@ -119,8 +119,14 @@ class FavoriteTestsViewController: UIViewController, UITableViewDataSource, UITa
                let action = UIContextualAction(style: .normal, title: message) { (act, view, exec) in
                 print("leadingSwipeActionsConfigurationForRowAt")
                 let selectedTest = database.fetch[0].getObj(at: indexPath) as! AllTestEntity
-                database.fetch[0].context.delete(selectedTest)
-                database.fetch[0].save()
+                let xxx = database.testDescriptionTable[0].uuId
+                if let selectUuid = selectedTest.uuId {
+                    print("xxx=\(String(describing: xxx)),yyy=\(String(describing: selectUuid))")
+                    database.testDescriptionTable.deleteGroup(uuidDeleteField: "uuid_parent", forValue: selectUuid)
+                    //selectedDescryption[0]."uuid_parent"
+                    database.fetch[0].context.delete(selectedTest)
+                    database.fetch[0].save()
+                }
                 exec(true)
         }
         action.backgroundColor = .red
