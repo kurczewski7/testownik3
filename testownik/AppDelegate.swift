@@ -21,6 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //database.allTestsTable.loadData(fieldName: "user_name", fieldValue: "trzeci")
         database.allTestsTable.loadData()
         database.selectedTestTable.loadData()
+        database.testDescriptionTable.loadData()
+        print("allTestsTable.count:\(database.allTestsTable.count)\n")
+        print("selectedTestTable.count:\(database.selectedTestTable.count)\n")
+        print("testDescriptionTable.count:\(database.testDescriptionTable.count)\n")
         if database.selectedTestTable.count == 0 {
             let selTest = SelectedTestEntity(context: database.context)
             selTest.uuId = UUID()

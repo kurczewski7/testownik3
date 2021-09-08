@@ -28,6 +28,13 @@ class FavoriteTestsViewController: UIViewController, UITableViewDataSource, UITa
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        //print("database.testDescriptionTable.count:\(database.testDescriptionTable.count)")
+        print("allTestsTable.count 2:\(database.allTestsTable.count)\n")
+        print("selectedTestTable.count 2:\(database.selectedTestTable.count)\n")
+        print("testDescriptionTable.count 2:\(database.testDescriptionTable.count)\n")
+        database.testDescriptionTable.loadData()
+        print("testDescriptionTable.count 3:\(database.testDescriptionTable.count)\n")
+        
         database.fetch[0].configFetch(entityName: "AllTestEntity", context: database.context, key: "is_favorite", ascending: false)
         database.fetch[0].fetchedResultsController.delegate = self
         allTests = database.allTestsTable.array
@@ -116,9 +123,16 @@ class FavoriteTestsViewController: UIViewController, UITableViewDataSource, UITa
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let message = Setup.currentLanguage == .polish ? "Kasuj" : "Delete"  // static var currentLanguage: LanguaesList = .polish
+               print("database.testDescriptionTable.count:\(database.testDescriptionTable.count)")
                let action = UIContextualAction(style: .normal, title: message) { (act, view, exec) in
                 print("leadingSwipeActionsConfigurationForRowAt")
                 let selectedTest = database.fetch[0].getObj(at: indexPath) as! AllTestEntity
+                // TODO: Error index out of rane
+                let aa = database.testDescriptionTable.notEmpty
+                database.testDescriptionTable.loadData()
+                let bb = database.allTestsTable.notEmpty
+                print("aa=\(aa),bb=\(bb)")
+                print("database.testDescriptionTable.count:\(database.testDescriptionTable.count)")
                 let xxx = database.testDescriptionTable[0].uuId
                 if let selectUuid = selectedTest.uuId {
                     print("xxx=\(String(describing: xxx)),yyy=\(String(describing: selectUuid))")
