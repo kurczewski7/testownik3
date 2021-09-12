@@ -17,9 +17,13 @@ class DataOperations {
     var count: Int {
         get {   return genericArray.count   }
     }
+    var isEmpty: Bool {
+        get { genericArray.count == 0 } }
+    var notEmpty: Bool {
+        get { genericArray.count > 0 } }
     var currentTest: Int = 0
-    subscript(index: Int) -> T {
     
+    subscript(index: Int) -> T {
         get {  //_ = isIndexInRange(index: index)
             let isValid = isIndexValid(index: index)
             assert(isValid, "ERROR!!: Index \(index) is bigger then count \(count). Give correct index!")
@@ -29,6 +33,10 @@ class DataOperations {
             assert(isIndexValid(index: index), "ERROR!!: Index \(index) is bigger then count \(count). Give correct index!")
             genericArray[index] = newValue
         }
+    }
+    func clearData() {
+        currentTest = 0
+        genericArray.removeAll()
     }
     func isIndexValid(index: Int) -> Bool  {
         return index >= 0 && index < count

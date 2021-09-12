@@ -19,8 +19,34 @@ class Setup {
         case french     = "fr_FR"
         case spanish    = "es_ES"
     }
+    static var tempStr: String  = ""
+    static var currentLanguage: LanguaesList = .german
+    static var placeHolderButtons: String { get {
+        switch currentLanguage {
+            case .enlish     : tempStr = "Question"
+            case .english_US : tempStr = "Question"
+            case .english_GB : tempStr = "Question"
+            case .polish     : tempStr = "Pytanie"
+            case .german     : tempStr = "Frage"
+            case .french     : tempStr = "Question"
+            case .spanish    : tempStr = "Pregunta"
+        }
+        return tempStr }
+    }
+    static var placeHolderTitle: String  { get {
+        switch currentLanguage {
+            case .enlish     : tempStr = "You don't have selected test. Add new test in search option."
+            case .english_US : tempStr = "You don't have selected test. Add new test in search option."
+            case .english_GB : tempStr = "You don't have selected test. Add new test in search option."
+            case .polish     : tempStr = "Nie wybrałeś testu. Dodaj nowy test w opcji wyszukiwania."
+            case .german     : tempStr = "Sie haben keinen Test ausgewählt. Neuen Test in Suchoption hinzufügen."
+            case .french     : tempStr = "Vous n'avez pas sélectionné de test. Ajouter un nouveau test dans l'option de recherche."
+            case .spanish    : tempStr = "No ha seleccionado la prueba. Agregue una nueva prueba en la opción de búsqueda."
+        }
+        return tempStr }
+    }
+
     
-    static var currentLanguage: LanguaesList = .polish
     static var cloudPicker: CloudPicker!
     
 //   class func getText(fromCloudFilePath filePath: URL) -> [String] {

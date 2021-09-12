@@ -78,6 +78,7 @@ class Testownik: DataOperations {
     func fillDataDb() {
         var titles = [String]()
         var textLines = [String]()
+        print("database.testDescriptionTable.count fillDataDb:\(database.testDescriptionTable.count)")
         database.testDescriptionTable.forEach { (index, testRecord) in
             if let txt = testRecord?.text, !txt.isEmpty {
                 titles.removeAll()
@@ -209,8 +210,19 @@ class Testownik: DataOperations {
         if  let selectedUuid = database.selectedTestTable[0].toAllRelationship?.uuId {
             database.testDescriptionTable.loadData(forUuid: "uuid_parent", fieldValue: selectedUuid)
             if database.testDescriptionTable.count > 0 {
-                print("TXT:\(String(describing: database.testDescriptionTable[0].file_name))")
-                print("TXT:\(String(describing: database.testDescriptionTable[0].text))")
+                print("file_name:\(String(describing: database.testDescriptionTable[0].file_name))")
+                print("TEXT:\(String(describing: database.testDescriptionTable[0].text))")
+                
+                // TODO: clear data
+                let txtVal = getTextDb(txt: database.testDescriptionTable[0].text ?? " ")
+                if  txtVal.count < 3 {
+                    print("Pusty rekord")
+                    self.clearData()  }
+                else    {
+                    print("Pełny rekord")
+                    fillDataDb()
+                    
+                }
             }
         }
     }

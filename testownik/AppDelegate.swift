@@ -18,6 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         print("S T A R T\n")
+        let fullHomePath = NSHomeDirectory()
+        print("fullHomePath = file:///\(fullHomePath)")
         //database.allTestsTable.loadData(fieldName: "user_name", fieldValue: "trzeci")
         database.allTestsTable.loadData()
         database.selectedTestTable.loadData()
@@ -25,6 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("allTestsTable.count:\(database.allTestsTable.count)\n")
         print("selectedTestTable.count:\(database.selectedTestTable.count)\n")
         print("testDescriptionTable.count:\(database.testDescriptionTable.count)\n")
+        print("Test name:\(database.selectedTestTable[0].toAllRelationship?.user_name)")
         if database.selectedTestTable.count == 0 {
             let selTest = SelectedTestEntity(context: database.context)
             selTest.uuId = UUID()

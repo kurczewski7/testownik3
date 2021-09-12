@@ -89,6 +89,7 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
     // MARK: viewDidLoad - initial method
     override func viewDidLoad() {
         print("TestownikViewController viewDidLoad")
+        print("Test name 2:\(database.selectedTestTable[0].toAllRelationship?.user_name)")
         super.viewDidLoad()
         var i = 0
         self.title = "Test (001)"
@@ -135,14 +136,18 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
     }
     override func viewWillAppear(_ animated: Bool) {
         print("viewWillAppear viewWillAppear")
-
-        if database.testToUpgrade {
-            print("testToUpgrade")
+        print("Test name 3:\(database.selectedTestTable[0].toAllRelationship?.user_name)")
+        print("Testownik count: \(testownik.count)")
+//        if database.testToUpgrade {
+            print("testToUpgrade NOW")
             testownik.loadTestFromDatabase()
             testownik.currentTest = 0
+        
+            clearView()
             refreshView()
-            database.testToUpgrade.toggle()
-        }
+//            database.testToUpgrade.toggle()
+//        }
+        super.viewWillAppear(animated)
        
     }
     //--------------------------------
@@ -294,9 +299,24 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
             button.isHidden = isHide
         }
     }
+    func clearView() {
+        var i = 1
+        //let totalQuest = 7
+        askLabel.text = "\(Setup.placeHolderTitle)"
+        for curButt in stackView.arrangedSubviews     {
+            if let butt = curButt as? UIButton {
+                butt.isHidden =  false
+                butt.setTitle("\(Setup.placeHolderButtons) \(i)", for: .normal)
+                i += 1
+            }
+        }
+    }
     func refreshView() {
         var i = 0
-        guard testownik.currentTest < testownik.count else {    return    }
+        guard testownik.currentTest < testownik.count else {
+            print("JEST \(testownik.count)  TESTOW")
+            return            
+        }
         let txtFile = testownik[testownik.currentTest].fileName
         self.title = "Test \(txtFile)"
         testownik[testownik.currentTest].youAnswer2 = []

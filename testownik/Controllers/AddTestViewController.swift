@@ -38,9 +38,9 @@ class AddTestViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         //groups.sorted()
 
         label.text =  getCurrentDate()
-        if documentsValue.count > 0 {
-            textField2.text = "\(documentsValue[0].myTexts)"
-        }
+//        if documentsValue.count > 0 {
+//            textField2.text = "\(documentsValue[0].myTexts)"
+//        }
         //database.testDescriptionTable[0].file_name
         // Do any additional setup after loading the view.
     }
