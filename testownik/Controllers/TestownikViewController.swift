@@ -96,7 +96,8 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
         gestures.setView(forView: view)
         gestures.delegate  = self
         testownik.delegate = self
-        testownik.loadTestFromDatabase()
+        // MARKT: MAYBY ERROR
+        //testownik.loadTestFromDatabase()
         print("Stack count: \(actionsButtonStackView.arrangedSubviews.count)")
         stackView.arrangedSubviews.forEach { (button) in
             if let butt = button as? UIButton {

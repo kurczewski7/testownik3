@@ -63,6 +63,16 @@ class CloudPicker: NSObject, UINavigationControllerDelegate, SSZipArchiveDelegat
             return (sourceType == .folder ? folderURL : zipFileUrl)?.absoluteString
         }
     }
+    var currentDocuments: [Document] {
+        get {
+            if sourceType == .filesZip {
+                return documentsUnziped
+            }
+            else  {
+                return documents
+            }
+        }
+    }
     //private var lastSourceTypeData: SourceType = .folder
 
     // MARK: Metods
@@ -360,13 +370,8 @@ extension CloudPicker: UIDocumentPickerDelegate {
                             if isFileUnhided(fileURL: pickedURL, folderURL: folderURL, sourceType: .filesZip) {
                                 print("Befor append document")
                                //fillDocument(forUrl: pickedURL, document: &document)
-                                document.myTexts = """
-                                X001
-                                Po≥Ļczenie szeregowe dwůch bloczkůw stabilnych da uk≥ad:
-                                stabilny
-                                niestabilny
-                                nie wiadomo
-                                """
+                                document.myTexts = ""
+                           
                                 //====>
                                  self.documentsUnziped = unzip(document: document)
                                 documents.append(document)

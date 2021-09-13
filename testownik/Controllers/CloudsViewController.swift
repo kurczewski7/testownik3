@@ -68,7 +68,9 @@ class CloudViewController: UIViewController, CloudPickerDelegate  {
         print("------\nsegue: \(String(describing: segue.identifier))")
          if segue.identifier == "showSave" {
             if let nextViewController = segue.destination as? AddTestViewController {
-                nextViewController.documentsValue = self.documents
+                // TODO: ERROR
+                //nextViewController.documentsValue = self.documents
+                nextViewController.documentsValue = Setup.cloudPicker.currentDocuments
                 nextViewController.folderUrlValue = Setup.cloudPicker.sourceUrl ?? "no url"
             }
         }

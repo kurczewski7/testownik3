@@ -89,7 +89,10 @@ class AddTestViewController: UIViewController, UIPickerViewDataSource, UIPickerV
             let record = TestDescriptionEntity(context: context)
             record.file_url = documentsValue[i].fileURL.absoluteString
             record.file_name = documentsValue[i].fileURL.lastPathComponent
-            record.text = documentsValue[i].myTexts
+            record.text =  documentsValue[i].myTexts
+            print("documentsValue[\(i)].myTexts: \(documentsValue[i].myTexts)")
+
+            // TODO: Maybe error
             record.picture = documentsValue[i].myPictureData
             record.uuid_parent = uuid
             record.uuId = UUID()
