@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>StringsTable</key>
+	<string>Root</string>
+	<key>Title</key>
+	<string>Page title</string>
+	<key>PreferenceSpecifiers</key>
+	<array>
+		<dict>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>Title</key>
+			<string>Dark thema</string>
+			<key>Key</key>
+			<string>dark_themazzzzz</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+			<key>Title</key>
+			<string>VER</string>
+			<key>Key</key>
+			<string>V</string>
+			<key>DefaultValue</key>
+			<string>1.01</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Speaking (reading text)</string>
+			<key>Key</key>
+			<string>speaking_key</string>
+			<key>DefaultValue</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Listening (voice command)</string>
+			<key>Key</key>
+			<string>listening_key</string>
+			<key>DefaultValue</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Dark thema</string>
+			<key>Key</key>
+			<string>dark_thema_key</string>
+			<key>DefaultValue</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Charset code of text</string>
+			<key>Key</key>
+			<string>code_page_key</string>
+			<key>DefaultValue</key>
+			<string>utf8</string>
+			<key>Values</key>
+			<array>
+				<string>utf8</string>
+				<string>iso9</string>
+				<string>win1250</string>
+			</array>
+			<key>Titles</key>
+			<array>
+				<string>UTF 8</string>
+				<string>ISO 9</string>
+				<string>Windows 1250</string>
+			</array>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Current lanuage</string>
+			<key>Key</key>
+			<string>language_key</string>
+			<key>DefaultValue</key>
+			<string>automatic</string>
+			<key>Titles</key>
+			<array>
+				<string>Automatic (from system)</string>
+				<string>English</string>
+				<string>German</string>
+				<string>French</string>
+				<string>Spanish</string>
+			</array>
+			<key>Values</key>
+			<array>
+				<string>automatic</string>
+				<string>english</string>
+				<string>german</string>
+				<string>french</string>
+				<string>spanish</string>
+			</array>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>Reset to  default</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Delete all tests    (Attention  !!!)</string>
+			<key>Key</key>
+			<string>delete_tests_key</string>
+			<key>DefaultValue</key>
+			<false/>
+		</dict>
+	</array>
+</dict>
+</plist>
