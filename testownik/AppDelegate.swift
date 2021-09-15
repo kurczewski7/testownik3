@@ -28,6 +28,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("selectedTestTable.count:\(database.selectedTestTable.count)\n")
         print("testDescriptionTable.count:\(database.testDescriptionTable.count)\n")
         print("Test name:\(database.selectedTestTable[0].toAllRelationship?.user_name)")
+  
+        let newVal = Settings.CodePageEnum.iso9
+        let listen = Settings.getValue(boolForKey: .listening_key)
+        let _ = Settings.getValue(boolForKey: .dark_thema_key)
+        let _ = Settings.getValue(boolForKey:  .listening_key)
+        let _ = Settings.getValue(stringForKey: .language_key)
+        
+        Settings.setValue(forKey: .listening_key, newBoolValue:  !listen)
+        Settings.setValue(forKey: .code_page_key, newStringValue: newVal.rawValue)
+        Settings.setValue(forKey: .dark_thema_key, newBoolValue: true)
+        Settings.setValue(forKey: .repeating_key, newStringValue: Settings.RepeatingEnum.repeating_c.rawValue)
         if database.selectedTestTable.count == 0 {
             let selTest = SelectedTestEntity(context: database.context)
             selTest.uuId = UUID()

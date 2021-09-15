@@ -10,21 +10,13 @@
 	<array>
 		<dict>
 			<key>Type</key>
-			<string>PSTextFieldSpecifier</string>
+			<string>PSTitleValueSpecifier</string>
 			<key>Title</key>
-			<string>Version 1.01</string>
+			<string>Version</string>
 			<key>Key</key>
-			<string>dark_themazzzzz</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSChildPaneSpecifier</string>
-			<key>Title</key>
-			<string>VER</string>
-			<key>Key</key>
-			<string>V</string>
+			<string>version_key</string>
 			<key>DefaultValue</key>
-			<string>1.01</string>
+			<string>1.0 Build 1963</string>
 		</dict>
 		<dict>
 			<key>Type</key>
@@ -94,6 +86,7 @@
 				<string>German</string>
 				<string>French</string>
 				<string>Spanish</string>
+				<string>Polish</string>
 			</array>
 			<key>Values</key>
 			<array>
@@ -102,6 +95,7 @@
 				<string>german</string>
 				<string>french</string>
 				<string>spanish</string>
+				<string>polish</string>
 			</array>
 		</dict>
 		<dict>
