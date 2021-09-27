@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0A231207E20459815F65BE7C /* Pods_testownik.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3CD960258B27FF97A8FBA0C /* Pods_testownik.framework */; };
 		2C1409BC240EDA6D001611F0 /* XXDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1409BB240EDA6D001611F0 /* XXDocument.swift */; };
+		2C2FD3BC270270B300434C03 /* Speaking.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2C2FD3BB270270B300434C03 /* Speaking.bundle */; };
 		2C625DF524435FD000EE29A0 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C625DF424435FD000EE29A0 /* CoreDataStack.swift */; };
 		2C625DF72443710D00EE29A0 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C625DF62443710D00EE29A0 /* Database.swift */; };
 		2C625DF9244372FA00EE29A0 /* DatabaseTableGeneric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C625DF8244372FA00EE29A0 /* DatabaseTableGeneric.swift */; };
@@ -200,6 +201,7 @@
 		2C2FD3B427024B1300434C03 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		2C2FD3B527024B3000434C03 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Main.strings; sourceTree = "<group>"; };
 		2C2FD3B627024B3100434C03 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		2C2FD3BB270270B300434C03 /* Speaking.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Speaking.bundle; sourceTree = "<group>"; };
 		2C625DF424435FD000EE29A0 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		2C625DF62443710D00EE29A0 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		2C625DF8244372FA00EE29A0 /* DatabaseTableGeneric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseTableGeneric.swift; sourceTree = "<group>"; };
@@ -609,6 +611,7 @@
 		2CE1476C23F6901800C834F4 = {
 			isa = PBXGroup;
 			children = (
+				2C2FD3BB270270B300434C03 /* Speaking.bundle */,
 				2CE2F38B242A4CE800D1B731 /* Default-568h@2x.png */,
 				2CE1477723F6901800C834F4 /* testownik */,
 				2CE1479123F6901C00C834F4 /* testownikTests */,
@@ -893,6 +896,7 @@
 				2C7ACB2D23F9EF6D00AE4E42 /* 092.txt in Resources */,
 				2C7ACAFE23F9EF6D00AE4E42 /* 034.txt in Resources */,
 				2C7ACABA23F9EF6D00AE4E42 /* 074.txt in Resources */,
+				2C2FD3BC270270B300434C03 /* Speaking.bundle in Resources */,
 				2C7ACAD823F9EF6D00AE4E42 /* 065.txt in Resources */,
 				2C7ACACE23F9EF6D00AE4E42 /* 072.txt in Resources */,
 				2C7ACAEA23F9EF6D00AE4E42 /* 015.txt in Resources */,

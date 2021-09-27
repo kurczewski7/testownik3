@@ -20,13 +20,13 @@
 		</dict>
 		<dict>
 			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
+			<string>PSChildPaneSpecifier</string>
+			<key>File</key>
+			<string>Repeat</string>
 			<key>Title</key>
-			<string>Speaking (reading text)</string>
+			<string>Repeat option</string>
 			<key>Key</key>
-			<string>speaking_key</string>
-			<key>DefaultValue</key>
-			<false/>
+			<string>repeat_key</string>
 		</dict>
 		<dict>
 			<key>Type</key>
@@ -37,6 +37,26 @@
 			<string>listening_key</string>
 			<key>DefaultValue</key>
 			<false/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Speaking (reading text)</string>
+			<key>Key</key>
+			<string>speaking_key</string>
+			<key>DefaultValue</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+			<key>Title</key>
+			<string>Speaking level </string>
+			<key>Key</key>
+			<string>speaking_level</string>
+			<key>File</key>
+			<string>Speaking</string>
 		</dict>
 		<dict>
 			<key>Type</key>
