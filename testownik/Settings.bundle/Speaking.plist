@@ -56,6 +56,14 @@
 			<key>MaximumValueImage</key>
 			<string></string>
 		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>Version2</string>
+			<key>Key</key>
+			<string>version_key2</string>
+		</dict>
 	</array>
 </dict>
 </plist>
