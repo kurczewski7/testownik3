@@ -45,6 +45,18 @@ class Setup {
         }
         return tempStr }
     }
+    static var placeHolderDeleteTest: String { get {
+        switch currentLanguage {
+            case .enlish     : tempStr = "Do you want to delete all the tests ?"
+            case .english_US : tempStr = "Do you want to delete all the tests ?"
+            case .english_GB : tempStr = "Do you want to delete all the tests ?"
+            case .polish     : tempStr = "Czy chcesz usunąć wszystkie testy ?"
+            case .german     : tempStr = "Möchten Sie alle Tests löschen ?"
+            case .french     : tempStr = "Voulez-vous supprimer tous les tests ?"
+            case .spanish    : tempStr = "Quieres borrar todas las pruebas ?"
+        }
+        return tempStr
+    }}
 
     
     static var cloudPicker: CloudPicker!

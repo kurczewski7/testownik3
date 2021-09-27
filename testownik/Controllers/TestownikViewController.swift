@@ -88,8 +88,11 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
     }
     // MARK: viewDidLoad - initial method
     override func viewDidLoad() {
-        print("TestownikViewController viewDidLoad")
-        print("Test name 2:\(database.selectedTestTable[0].toAllRelationship?.user_name)")
+        print("TestownikViewController viewDidLoad")        
+        Settings.checkResetRequest(forUIViewController: self)
+//        Settings.readCurrentLanguae()
+        
+        print("Test name 2:\(database.selectedTestTable[0]?.toAllRelationship?.user_name)")
         super.viewDidLoad()
         var i = 0
         self.title = "Test (001)"
@@ -137,7 +140,9 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
     }
     override func viewWillAppear(_ animated: Bool) {
         print("viewWillAppear viewWillAppear")
-        print("Test name 3:\(database.selectedTestTable[0].toAllRelationship?.user_name)")
+        Settings.readCurrentLanguae()
+        
+        print("Test name 3:\(database.selectedTestTable[0]?.toAllRelationship?.user_name)")
         print("Testownik count: \(testownik.count)")
 //        if database.testToUpgrade {
             print("testToUpgrade NOW")

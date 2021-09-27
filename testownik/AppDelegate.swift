@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("allTestsTable.count:\(database.allTestsTable.count)\n")
         print("selectedTestTable.count:\(database.selectedTestTable.count)\n")
         print("testDescriptionTable.count:\(database.testDescriptionTable.count)\n")
-        print("Test name:\(database.selectedTestTable[0].toAllRelationship?.user_name)")
+        print("Test name:\(database.selectedTestTable[0]?.toAllRelationship?.user_name)")
   
         let newVal = Settings.CodePageEnum.iso9
         let listen = Settings.getValue(boolForKey: .listening_key)

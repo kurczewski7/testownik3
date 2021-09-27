@@ -155,6 +155,8 @@ class Testownik: DataOperations {
     func getTextDb(txt: String, encodingSystem encoding: String.Encoding = .utf8) -> [String]  {
         var texts: [String] = ["brak danych"]
         
+//        let xxx = String.Encoding.windowsCP1250
+        
         do {
             //let data = try String(contentsOfFile: txt ,encoding: encoding)
             let myStrings = txt.components(separatedBy: .newlines)
@@ -207,14 +209,14 @@ class Testownik: DataOperations {
         database.selectedTestTable.loadData()
         //print("\nselectedTestTable.coun = \(database.selectedTestTable.count)")
         guard database.selectedTestTable.count > 0 else {   return     }
-        if  let selectedUuid = database.selectedTestTable[0].toAllRelationship?.uuId {
+        if  let selectedUuid = database.selectedTestTable[0]?.toAllRelationship?.uuId {
             database.testDescriptionTable.loadData(forUuid: "uuid_parent", fieldValue: selectedUuid)
             if database.testDescriptionTable.count > 0 {
-                print("file_name:\(String(describing: database.testDescriptionTable[0].file_name))")
-                print("TEXT:\(String(describing: database.testDescriptionTable[0].text))")
+                print("file_name:\(String(describing: database.testDescriptionTable[0]?.file_name))")
+                print("TEXT:\(String(describing: database.testDescriptionTable[0]?.text))")
                 
                 // TODO: clear data
-                let txtVal = getTextDb(txt: database.testDescriptionTable[0].text ?? " ")
+                let txtVal = getTextDb(txt: database.testDescriptionTable[0]?.text ?? " ")
                 if  txtVal.count < 3 {
                     print("Pusty rekord")
                     self.clearData()  }

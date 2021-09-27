@@ -38,11 +38,11 @@ class DatabaseTableGeneric <P: NSFetchRequestResult> {
         get {   return genericArrayFiltered   }
         set {   genericArrayFiltered = newValue  }
     }
-    subscript(index: Int) -> P {
-        get {  _ = isIndexInRange(index: index)
-            return genericArray[index]      }
-        set {   _ = isIndexInRange(index: index)
-            genericArray[index] = newValue  }
+    subscript(index: Int) -> P? {
+        get {  if isIndexInRange(index: index) {  return genericArray[index]  }
+            else { return nil}
+        }
+        set {   if  isIndexInRange(index: index)  {     genericArray[index] = newValue!  } }           
     }
     // you can override this class name in inheritance class
     class func className() -> String {

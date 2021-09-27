@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 
 class Settings {
@@ -46,6 +47,11 @@ class Settings {
         case repeating_e = "repeating_e"
         case repeating_f = "repeating_f"
     }
+    
+// let xxx = String.Encoding.windowsCP1250
+    
+    
+    
 //    class func checkAndExecuteSettings() {
 //        if UserDefaults.standard.bool(forKey: SettingBundleEnum.dark_thema_key.rawValue) {
 //            UserDefaults.standard.set(false, forKey: SettingBundleEnum.dark_thema_key.rawValue)
@@ -89,7 +95,59 @@ class Settings {
         let tmp = getValue(boolForKey: key)
         setValue(forKey: key, newBoolValue: !tmp)
     }
+    class func checkResetRequest(forUIViewController controller: UIViewController)  {
+        let isReset = getValue(boolForKey: .delete_tests_key)
+        setValue(forKey: .delete_tests_key, newBoolValue: false)
+        guard isReset else {  return   }
+        let message: String = Setup.placeHolderDeleteTest
+        let alert = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default) { action in    DeleteAllTests()      }
+        alert.addAction(ok)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        controller.present(alert, animated: true, completion: nil)
+    }
+//    case automatic = "automatic"
+//    case english   = "english"
+//    case german    = "german"
+//    case french    = "french"
+//    case spanish   = "spanish"
+//    case polish    = "polish"
 
+    class func readCurrentLanguae() {
+        let currLang = getValue(stringForKey: .language_key)
+        switch currLang {
+        case LanguageEnum.automatic.rawValue : Setup.currentLanguage = .enlish
+            print("automatic")
+        case LanguageEnum.english.rawValue   : Setup.currentLanguage = .enlish
+            print("english")
+        case LanguageEnum.german.rawValue    : Setup.currentLanguage = .german
+            print("german")
+        case LanguageEnum.french.rawValue    : Setup.currentLanguage = .french
+            print("french")
+        case LanguageEnum.spanish.rawValue   : Setup.currentLanguage = .spanish
+            print("spanish")
+        case LanguageEnum.polish.rawValue    : Setup.currentLanguage = .polish
+            print("polish")
+        default:
+            print("ERROR  LanguageEnum")
+        }
+    }
+    class func DeleteAllTests() {
+        print(">>>>   KASOWANIE TESTÓW   <<<<<<<<<")
+    }
+
+//    class func displayToast(forController controller: UIViewController, message: String, seconds delay: Double)  {
+//        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+//        alert.view.backgroundColor = .systemYellow
+//        alert.view.alpha = 0.3
+//        alert.view.layer.cornerRadius = 10
+//        alert.view.clipsToBounds = true
+//        controller.present(alert, animated: true)
+//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delay) {
+//            alert.dismiss(animated: true)
+//        }
+//    }
+    
 //    class func SetValue<T>(forKey key: SettingBundleEnum, newValue value: T) {
 //        UserDefaults.standard.set(value , forKey: key.rawValue)
 //    }

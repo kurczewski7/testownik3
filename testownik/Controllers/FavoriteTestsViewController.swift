@@ -52,7 +52,7 @@ class FavoriteTestsViewController: UIViewController, UITableViewDataSource, UITa
             cell.label2.text = obj.user_description
             cell.label3.text = obj.category ?? "" + "\((obj.auto_name) ?? "")"
             //cell.accessoryType = obj.is_selected ? .checkmark : .none
-            let selectedUuid = database.selectedTestTable[0].uuId
+            let selectedUuid = database.selectedTestTable[0]?.uuId
             cell.accessoryType = obj.uuId == selectedUuid ? .checkmark : .none
         }
         return cell
@@ -100,8 +100,8 @@ class FavoriteTestsViewController: UIViewController, UITableViewDataSource, UITa
             // ------------------- TODOO
             print("selectedTest:\(selectedTest.auto_name ?? "brak")")
             print("uuid:\(String(describing: selectedTest.uuId))")
-            database.selectedTestTable[0].uuId = selectedTest.uuId
-            database.selectedTestTable[0].toAllRelationship = selectedTest
+            database.selectedTestTable[0]?.uuId = selectedTest.uuId
+            database.selectedTestTable[0]?.toAllRelationship = selectedTest
             database.selectedTestTable.save()
             database.testToUpgrade = true
             //database.testDescriptionTable.loadData()
@@ -133,7 +133,7 @@ class FavoriteTestsViewController: UIViewController, UITableViewDataSource, UITa
                 let bb = database.allTestsTable.notEmpty
                 print("aa=\(aa),bb=\(bb)")
                 print("database.testDescriptionTable.count:\(database.testDescriptionTable.count)")
-                let xxx = database.testDescriptionTable[0].uuId
+                   let xxx = database.testDescriptionTable[0]?.uuId
                 if let selectUuid = selectedTest.uuId {
                     print("xxx=\(String(describing: xxx)),yyy=\(String(describing: selectUuid))")
                     database.testDescriptionTable.deleteGroup(uuidDeleteField: "uuid_parent", forValue: selectUuid)
