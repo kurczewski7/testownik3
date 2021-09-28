@@ -34,15 +34,15 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string>The scope of the tests2</string>
+			<string>Repeat mode</string>
 		</dict>
 		<dict>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>Enabled2</string>
+			<string>Learning</string>
 			<key>Key</key>
-			<string>enabled_preference2</string>
+			<string>repeat_mode_key2</string>
 			<key>DefaultValue</key>
 			<true/>
 		</dict>
@@ -50,9 +50,9 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>Listening (voice command)</string>
+			<string>Repeat</string>
 			<key>Key</key>
-			<string>listening_key2</string>
+			<string>repeating material_key</string>
 			<key>DefaultValue</key>
 			<false/>
 		</dict>
@@ -60,28 +60,82 @@
 			<key>Type</key>
 			<string>PSMultiValueSpecifier</string>
 			<key>Title</key>
-			<string>Repeating the test</string>
+			<string>Repeat range</string>
 			<key>Key</key>
-			<string>repeating_key2</string>
+			<string>ragne_a_key</string>
 			<key>DefaultValue</key>
-			<string>repeating_a</string>
+			<string>ragne_a</string>
 			<key>Titles</key>
 			<array>
 				<string>No repetitions</string>
-				<string>One repetition every 30 questions</string>
-				<string>One repetition every 100 questions</string>
-				<string>Three repetitions every 30 questions</string>
-				<string>Three repetitions every 100 questions</string>
-				<string>Ten repetitions for the whole</string>
+				<string>aaaa</string>
+				<string>bbbb</string>
+				<string>ccccc</string>
+				<string>dddd</string>
 			</array>
 			<key>Values</key>
 			<array>
-				<string>repeating_a</string>
-				<string>repeating_b</string>
-				<string>repeating_c</string>
-				<string>repeating_d</string>
-				<string>repeating_e</string>
-				<string>repeating_f</string>
+				<string>ragne_a</string>
+				<string>ragne_b</string>
+				<string>ragne_c</string>
+				<string>ragne_d</string>
+				<string>ragne_e</string>
+			</array>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Dividing the test into parts</string>
+			<key>Key</key>
+			<string>split_key</string>
+			<key>DefaultValue</key>
+			<string>split_a</string>
+			<key>Titles</key>
+			<array>
+				<string>No split</string>
+				<string>Groups of 10 questions</string>
+				<string>Groups of 30 questions</string>
+				<string>Groups of 100 questions</string>
+				<string>Groups of 300 questions</string>
+				<string>Groups of 900 questions</string>
+			</array>
+			<key>Values</key>
+			<array>
+				<string>split_a</string>
+				<string>split_b</string>
+				<string>split_c</string>
+				<string>split_d</string>
+				<string>split_e</string>
+				<string>split_f</string>
+			</array>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Repetition Percentage</string>
+			<key>Key</key>
+			<string>percen_repeat_key</string>
+			<key>DefaultValue</key>
+			<string>percent_b</string>
+			<key>Titles</key>
+			<array>
+				<string>5 % of all</string>
+				<string>10 % of all</string>
+				<string>15 % of all</string>
+				<string>20 % of all</string>
+				<string>25 % of all</string>
+				<string>30 % of all</string>
+			</array>
+			<key>Values</key>
+			<array>
+				<string>percent_a</string>
+				<string>percent_b</string>
+				<string>percent_c</string>
+				<string>percent_d</string>
+				<string>percent_e</string>
+				<string>percent_f</string>
 			</array>
 		</dict>
 	</array>
