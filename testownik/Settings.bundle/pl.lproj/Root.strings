@@ -24,3 +24,61 @@
 "Repeat" = "Powtarzanie";
 "Dividing the test into parts" = "Podział testu na części";
 
+
+"No split" = "No split";
+"Groups of 10 questions"  = "Grupy po 10 pytań";
+"Groups of 30 questions"  = "Grupy po 30 pytań";
+"Groups of 100 questions" = "Grupy po 100 pytań";
+"Groups of 300 questions" = "Grupy po 300 pytań";
+"Groups of 900 questions" = "Grupy po 900 pytań";
+
+"Repetition Percentage" = "Procent powtórzeń";
+
+"5 % of all"  = "5 % wszystkich";
+"10 % of all" = "10 % wszystkich";
+"15 % of all" = "15 % wszystkich";
+"20 % of all" = "20 % wszystkich";
+"25 % of all" = "25 % wszystkich";
+"30 % of all" = "30 % wszystkich";
+
+"No repetitions" = "Brak powtórzeń";
+"Only wrong answers" = "Tylko błędne odpowiedzi";
+"75% wrong, 25% right" = "75 % błędne, 25 % dobre";
+"50% wrong, 50% right" = "50 % błędne, 50 % dobre";
+"All questions" = "Wszystkie pytania";
+
+
+
+/*
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+*/
+
+
+

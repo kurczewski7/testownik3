@@ -68,10 +68,9 @@
 			<key>Titles</key>
 			<array>
 				<string>No repetitions</string>
-				<string>aaaa</string>
-				<string>bbbb</string>
-				<string>ccccc</string>
-				<string>dddd</string>
+				<string>Only wrong answers</string>
+				<string>75% wrong, 25% right</string>
+				<string>50% wrong, 50% right</string>
 			</array>
 			<key>Values</key>
 			<array>
@@ -79,7 +78,6 @@
 				<string>ragne_b</string>
 				<string>ragne_c</string>
 				<string>ragne_d</string>
-				<string>ragne_e</string>
 			</array>
 		</dict>
 		<dict>
