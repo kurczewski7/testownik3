@@ -10,51 +10,79 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string>Group</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSTextFieldSpecifier</string>
-			<key>Title</key>
-			<string>Name</string>
-			<key>Key</key>
-			<string>name_preference</string>
-			<key>DefaultValue</key>
-			<string></string>
-			<key>IsSecure</key>
-			<false/>
-			<key>KeyboardType</key>
-			<string>Alphabet</string>
-			<key>AutocapitalizationType</key>
-			<string>None</string>
-			<key>AutocorrectionType</key>
-			<string>No</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-			<key>Title</key>
-			<string>Enabled</string>
-			<key>Key</key>
-			<string>enabled_preference</string>
-			<key>DefaultValue</key>
-			<true/>
+			<string>The scope of the tests</string>
 		</dict>
 		<dict>
 			<key>Type</key>
 			<string>PSSliderSpecifier</string>
 			<key>Key</key>
-			<string>slider_preference</string>
+			<string>slider_scope_test</string>
+			<key>Title</key>
+			<string>TYYYtul</string>
 			<key>DefaultValue</key>
-			<real>0.5</real>
+			<integer>2</integer>
 			<key>MinimumValue</key>
 			<integer>0</integer>
 			<key>MaximumValue</key>
-			<integer>1</integer>
+			<integer>10</integer>
 			<key>MinimumValueImage</key>
 			<string></string>
 			<key>MaximumValueImage</key>
 			<string></string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>The scope of the tests2</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Enabled2</string>
+			<key>Key</key>
+			<string>enabled_preference2</string>
+			<key>DefaultValue</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Listening (voice command)</string>
+			<key>Key</key>
+			<string>listening_key2</string>
+			<key>DefaultValue</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Repeating the test</string>
+			<key>Key</key>
+			<string>repeating_key2</string>
+			<key>DefaultValue</key>
+			<string>repeating_a</string>
+			<key>Titles</key>
+			<array>
+				<string>No repetitions</string>
+				<string>One repetition every 30 questions</string>
+				<string>One repetition every 100 questions</string>
+				<string>Three repetitions every 30 questions</string>
+				<string>Three repetitions every 100 questions</string>
+				<string>Ten repetitions for the whole</string>
+			</array>
+			<key>Values</key>
+			<array>
+				<string>repeating_a</string>
+				<string>repeating_b</string>
+				<string>repeating_c</string>
+				<string>repeating_d</string>
+				<string>repeating_e</string>
+				<string>repeating_f</string>
+			</array>
 		</dict>
 	</array>
 </dict>

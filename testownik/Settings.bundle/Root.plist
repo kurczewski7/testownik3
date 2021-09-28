@@ -80,7 +80,7 @@
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 			<key>Title</key>
-			<string>Speaking level </string>
+			<string>Speech range</string>
 			<key>Key</key>
 			<string>speaking_level</string>
 			<key>File</key>

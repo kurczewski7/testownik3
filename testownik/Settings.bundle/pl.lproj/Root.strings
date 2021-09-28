@@ -7,3 +7,14 @@
 "Version" = "Wersja 🇵🇱";
 "Repeat options" = "Powtórzenia materiału";
 "Application language" = "Język aplikacji";
+"Repeat options" = "Opcje powtórek testu";
+"Listening (voice command)" = "Słuchanie (polecenia głosowe)";
+"Speaking (reading text)" = "Mówienie (czytanie tekstu)";
+"Speech range" = "Zakres mówienia";
+"Dark thema (shake iPhone)" = "Ciemny motyw (potrząśnij iPhonem)";
+"Charset code of text" = "Strona kodowa tekstu";
+"Repeating the test" = "Powtórzenia testu";
+"Reset to  default" = "Przywróć ustawienia domyślne";
+"Delete all tests    (Attention  !!!)" = "Usuń wszystkie testy (Uwaga !!!)";
+"The scope of the tests" = "Zakres testów";
+
