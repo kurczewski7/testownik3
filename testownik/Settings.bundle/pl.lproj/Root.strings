@@ -4,7 +4,10 @@
 "Name" = "Name yyyy";
 "none given" = "none given zzzz";
 "Enabled" = "Enabled ffff 🇵🇱";
+
+
 "Version" = "Wersja 🇵🇱";
+"System language" = "Język systemu iOS";
 "Repeat options" = "Powtórzenia materiału";
 "Application language" = "Język aplikacji";
 "Repeat options" = "Opcje powtórek testu";
@@ -25,7 +28,7 @@
 "Dividing the test into parts" = "Podział testu na części";
 
 
-"No split" = "No split";
+"No split" = "Brak podziału";
 "Groups of 10 questions"  = "Grupy po 10 pytań";
 "Groups of 30 questions"  = "Grupy po 30 pytań";
 "Groups of 100 questions" = "Grupy po 100 pytań";

@@ -92,7 +92,7 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
         Settings.checkResetRequest(forUIViewController: self)
 //        Settings.readCurrentLanguae()
         
-        print("Test name 2:\(database.selectedTestTable[0]?.toAllRelationship?.user_name)")
+        print("Test name 2:\(database.selectedTestTable[0]?.toAllRelationship?.user_name ?? "brak")")
         super.viewDidLoad()
         var i = 0
         self.title = "Test (001)"
@@ -215,13 +215,16 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
             self.navigationController?.isNavigationBarHidden = false
         } else if  visableLevel == 1 {
             buttonLayerToZ(isHide: true)
-            self.tabBarController?.tabBar.isHidden = true
+            self.tabBarController?.tabBar.isHidden = false
             self.navigationController?.isNavigationBarHidden = false
         }
         else {
             buttonLayerToZ(isHide: true)
             self.tabBarController?.tabBar.isHidden = true
             self.navigationController?.isNavigationBarHidden = true
+            //viewWillAppear(true)
+            viewDidLoad()
+            
         }
         print("visableLevel:\(visableLevel)")
     }

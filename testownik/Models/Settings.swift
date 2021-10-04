@@ -59,11 +59,66 @@ class Settings {
 //            UserDefaults.standard.removePersistentDomain(forName: appDomain!)
 //        }
 //    }
+    //-------------------
+    class func startObserver() {
+//        UserDefaults.standard.addObserver(self, forKeyPath: colorPreference,  options: .new,   context: nil)
+    }
+    class func xxxxx() {
+//        override func observeValue(forKeyPath keyPath: String?,
+//                                   of object: Any?,
+//                                   change: [NSKeyValueChangeKey : Any]?,
+//                                   context: UnsafeMutableRawPointer?) {
+//          if keyPath == colorPreference {
+//            updateEntryCellColor()
+//          }
+//        }
+//
+//        private func updateEntryCellColor() {
+//          let overrideColorPreference = UserDefaults
+//            .standard.bool(forKey: colorPreference)
+//          let overrideColor = UIColor.white
+//          if overrideColorPreference {
+//            entryCell.contentView.backgroundColor = overrideColor
+//            textView.textColor = UIColor.black
+//          } else {
+//            entryCell.contentView.backgroundColor = nil
+//            textView.textColor = UIColor.label
+//          }
+//        }
+
+    }
+    class func yyyy() {
+//        @IBAction private func share(_ sender: Any?) {
+//          guard var textToShare = textView.text,
+//            !textToShare.isEmpty else { return }
+//          if let namePreference = UserDefaults
+//            .standard.string(forKey: namePreference),
+//            UserDefaults
+//              .standard.bool(forKey: signaturePreference) {
+//            textToShare += "\n -\(namePreference)"
+//          }
+//          let activityController
+//            = UIActivityViewController(activityItems: [textToShare],
+//                                       applicationActivities: nil)
+//          if let popoverController
+//            = activityController.popoverPresentationController {
+//            popoverController.barButtonItem
+//              = navigationItem.rightBarButtonItem
+//          }
+//          present(activityController,
+//                  animated: true,
+//                  completion: nil)
+//        }
+
+    }
+    //-------------------
     class func setVersionAndBuildNumber() {
         let version = Bundle.main.object(forInfoDictionaryKey:  SettingBundleEnum.BundleShortVersion.rawValue)  //CFBundleShortVersionString
         UserDefaults.standard.set(version, forKey:  SettingBundleEnum.AppVersionKey.rawValue)
         let build = Bundle.main.object(forInfoDictionaryKey: SettingBundleEnum.BundleVersion.rawValue)
         UserDefaults.standard.set("\(version ?? 1) build \(build ?? 1)", forKey: SettingBundleEnum.version_key.rawValue )
+//        let lang = Bundle.main.object(forInfoDictionaryKey: "Local")
+//        print("=========\nlang:\(lang)")
     }
 //--------
     class func getValue(boolForKey key: SettingBundleEnum) -> Bool {

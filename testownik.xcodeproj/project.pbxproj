@@ -139,6 +139,7 @@
 		2C7ACB2C23F9EF6D00AE4E42 /* 079.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2C7ACAB623F9EF6D00AE4E42 /* 079.txt */; };
 		2C7ACB2D23F9EF6D00AE4E42 /* 092.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2C7ACAB723F9EF6D00AE4E42 /* 092.txt */; };
 		2C7ACB2E23F9EF6D00AE4E42 /* 086.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2C7ACAB823F9EF6D00AE4E42 /* 086.txt */; };
+		2C80431C27061BE4006D9BAE /* Speech.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C80431B27061BE3006D9BAE /* Speech.swift */; };
 		2C812E1C26F15629004A248D /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2C812E1B26F15629004A248D /* Settings.bundle */; };
 		2C82DE8C24393DA0002CDA10 /* FavoriteTestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C82DE8B24393DA0002CDA10 /* FavoriteTestsViewController.swift */; };
 		2C8B536726F234DA00204774 /* XXSettingsBundleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8B536626F234D900204774 /* XXSettingsBundleHelper.swift */; };
@@ -331,6 +332,7 @@
 		2C7ACAB623F9EF6D00AE4E42 /* 079.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 079.txt; sourceTree = "<group>"; };
 		2C7ACAB723F9EF6D00AE4E42 /* 092.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 092.txt; sourceTree = "<group>"; };
 		2C7ACAB823F9EF6D00AE4E42 /* 086.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 086.txt; sourceTree = "<group>"; };
+		2C80431B27061BE3006D9BAE /* Speech.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speech.swift; sourceTree = "<group>"; };
 		2C812E1B26F15629004A248D /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		2C82DE8B24393DA0002CDA10 /* FavoriteTestsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FavoriteTestsViewController.swift; path = testownik/Controllers/FavoriteTestsViewController.swift; sourceTree = SOURCE_ROOT; };
 		2C8B536626F234D900204774 /* XXSettingsBundleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XXSettingsBundleHelper.swift; sourceTree = "<group>"; };
@@ -593,6 +595,7 @@
 				2CDB1DF72407C98500361884 /* Test.swift */,
 				2C1409BB240EDA6D001611F0 /* XXDocument.swift */,
 				2C8B536826F2889B00204774 /* Settings.swift */,
+				2C80431B27061BE3006D9BAE /* Speech.swift */,
 				2CF509B726F7398400841DA2 /* Messaes.swift */,
 				2C8B536626F234D900204774 /* XXSettingsBundleHelper.swift */,
 			);
@@ -1067,6 +1070,7 @@
 				2C6864C0244A05D700C159C7 /* DatabaseFetch.swift in Sources */,
 				2C625DF524435FD000EE29A0 /* CoreDataStack.swift in Sources */,
 				2CDB1DF82407C98500361884 /* Test.swift in Sources */,
+				2C80431C27061BE4006D9BAE /* Speech.swift in Sources */,
 				2C9A0975242C1F2900A1DC4E /* DetailSectionHeaderView.swift in Sources */,
 				2CE1477B23F6901900C834F4 /* SceneDelegate.swift in Sources */,
 				2CE2F396242A5AA000D1B731 /* DocumentCell.swift in Sources */,

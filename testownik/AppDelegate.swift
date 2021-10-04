@@ -18,6 +18,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         print("S T A R T\n")
+        for i in 0..<Locale.preferredLanguages.count {
+            print("System lang \(i):\(Locale.preferredLanguages[i])")
+        }
+        
+        Locale.autoupdatingCurrent.languageCode
+        print("App languae, Locale.autoupdatingCurrent.languageCode: \(Locale.autoupdatingCurrent.languageCode ?? "brak")")
+        print("Settins dev, Locale.current:\(Locale.current.languageCode)")
+        print("(Bundle.main.preferredLocalizations: \(Bundle.main.preferredLocalizations.first)")
+        print("Locale.current.identifier: \(Locale.current.identifier)")
+
+        
+//        extension Locale {
+//            static var preferredLanguageCode: String {
+//                let defaultLanguage = "en"
+//                let preferredLanguage = preferredLanguages.first ?? defaultLanguage
+//                return Locale(identifier: preferredLanguage).languageCode ?? defaultLanguage
+//            }
+//
+//            static var preferredLanguageCodes: [String] {
+//                return Locale.preferredLanguages.compactMap({Locale(identifier: $0).languageCode})
+//            }
+//        }
+        
+        let speech = Speech()
+        speech.setLanguae(selectedLanguage: 3)
+        speech.startSpeak()
+        
         let fullHomePath = NSHomeDirectory()
         print("fullHomePath = file:///\(fullHomePath)")
         //database.allTestsTable.loadData(fieldName: "user_name", fieldValue: "trzeci")
