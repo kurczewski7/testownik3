@@ -47,7 +47,7 @@ class Testownik: DataOperations {
 //            else  {  filePosition = .other      }
 //        }
 //    }
-    var visableLevel: Int = 2 {
+    var visableLevel: Int = 4 {
         didSet {     delegate?.refreshTabbarUI(visableLevel: visableLevel)    }
     }
     // method depreciated ===> to deleted

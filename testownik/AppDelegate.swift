@@ -18,6 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         print("S T A R T\n")
+        
+        
+        
         for i in 0..<Locale.preferredLanguages.count {
             print("System lang \(i):\(Locale.preferredLanguages[i])")
         }
@@ -27,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("Settins dev, Locale.current:\(Locale.current.languageCode)")
         print("(Bundle.main.preferredLocalizations: \(Bundle.main.preferredLocalizations.first)")
         print("Locale.current.identifier: \(Locale.current.identifier)")
-
+       
         
 //        extension Locale {
 //            static var preferredLanguageCode: String {

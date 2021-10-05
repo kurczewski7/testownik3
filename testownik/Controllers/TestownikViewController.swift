@@ -183,7 +183,7 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
                 print("Swipe  & left ")
             case .up:
                 print("Swipe up")
-                testownik.visableLevel +=  testownik.visableLevel < 2 ? 1 : 0
+                testownik.visableLevel +=  testownik.visableLevel < 4 ? 1 : 0
             case .down:
                 print("Swipe down")
                 testownik.visableLevel -= testownik.visableLevel > 0 ? 1 : 0
@@ -209,24 +209,31 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
         refreshView()
     }
     func refreshTabbarUI(visableLevel: Int) {
-        if visableLevel == 2 {
-            buttonLayerToZ(isHide: false)
+        print("visableLevel: \(visableLevel)")
+        if visableLevel == 4 {
+            buttonNaviHide(isHide: false)
             self.tabBarController?.tabBar.isHidden = false
             self.navigationController?.isNavigationBarHidden = false
-        } else if  visableLevel == 1 {
-            buttonLayerToZ(isHide: true)
-            self.tabBarController?.tabBar.isHidden = false
+        } else if  visableLevel == 3 {
+            buttonNaviHide(isHide: false)
+            self.tabBarController?.tabBar.isHidden = true
             self.navigationController?.isNavigationBarHidden = false
         }
-        else {
-            buttonLayerToZ(isHide: true)
+        else if visableLevel == 2 {
+            buttonNaviHide(isHide: true)
             self.tabBarController?.tabBar.isHidden = true
             self.navigationController?.isNavigationBarHidden = true
             //viewWillAppear(true)
-            viewDidLoad()
-            
+            //viewDidLoad()
         }
-        print("visableLevel:\(visableLevel)")
+        else if visableLevel == 1 {
+            buttonNaviHide(isHide: true)
+            self.tabBarController?.tabBar.isHidden = true
+            self.navigationController?.isNavigationBarHidden = true
+            //viewWillAppear(true)
+            //viewDidLoad()
+        }
+        print("-----\nvisableLevel:\(visableLevel)")
     }
     // MARK: Shake event method
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
@@ -236,9 +243,10 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
             print("Shake")
         }
     }
-    func buttonLayerToZ(isHide: Bool) {
+    func buttonNaviHide(isHide: Bool) {
         for elem in actionsButtonStackView.arrangedSubviews {
-            elem.layer.zPosition = isHide ? -1 : 0
+            //elem.layer.zPosition = isHide ? -1 : 0
+            elem.isHidden = isHide
         }
     }
     func resizeView(toMaximalize: Bool? = nil) {
