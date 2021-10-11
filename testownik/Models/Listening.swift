@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 import Speech
 
 class Listening  {
@@ -23,8 +24,11 @@ class Listening  {
         var memoText: String
     }
     
+    var recordingView: UIView?
+    var recordIsEnabled = false
+    var recordingViewHidden = false
     
-    var memoData: [Memo]!
+    var memoData: [Memo] = [Memo]()
     var currentLanguage = 0
     let languaeList = ["pl","en_GB","de","fr_FR","es_ES"]
     var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
@@ -80,12 +84,15 @@ class Listening  {
                 DispatchQueue.main.async {
                     switch authStatus {
                     case .authorized:
+                        self.recordIsEnabled = true
                         print("authorized")
                         //self.recordButton.isEnabled = true
                     case .denied, .notDetermined, .restricted:
+                        self.recordIsEnabled = false
                         print("other")
                         //self.recordButton.isEnabled = false
-                    
+                    @unknown default:
+                        fatalError()
                     }
                 }
             }
@@ -97,14 +104,25 @@ class Listening  {
                 audioEngine.stop()
                 recognitionRequest?.endAudio()
             }
-            else {   self.startRecording()   }
+            else {
+                self.startRecording()
+                self.recordingViewHidden = false
+               
+//                self.recordingView.isHidden = false
+//                self.fadedView.alpha = 0.0
+//                self.fadedView.isHidden = false
+//                UIView.animate(withDuration: 1.0) {
+//                    self.fadedView.alpha = 1.0
+//                }
+            }
         }
         func stopRecording() {
             if audioEngine.isRunning {
                 audioEngine.stop()
                 recognitionRequest?.endAudio()
                 audioEngine.inputNode.removeTap(onBus: 0)
-                self.memoData.append(Memo(memoTitle: "Nowe nagranie", memoDate: Date(), memoText: self.recordedMessage))
+                let memoTmp = Memo(memoTitle: "Nowe nagranie", memoDate: Date(), memoText: self.recordedMessage)
+                self.memoData.append(memoTmp)
                 
 //                UIView.animate(withDuration: 0.5, animations: {
 //                    self.fadedView.alpha = 0.0
@@ -156,6 +174,7 @@ class Listening  {
                     self.audioEngine.inputNode.removeTap(onBus: 0)
                     self.recognitionRequest = nil
                     self.recognitionTask = nil
+                    self.recordIsEnabled = true
                     //self.recordButton.isEnabled = true
                 }
                 

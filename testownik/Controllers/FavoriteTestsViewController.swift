@@ -16,8 +16,9 @@ class FavoriteTestsViewController: UIViewController, UITableViewDataSource, UITa
     let colorOther =  Colors().kindaBlue[1]
     var indexpath = IndexPath(row: 0, section: 0)
     
+    let listening = Listening()
+    
     @IBOutlet weak var tableView: UITableView!
-        
     @IBAction func luckNavigatorButtonPress(_ sender: UIBarButtonItem) {
         var ikonName: String = ""
         let statusOn = self.tableView.isEditing
@@ -28,6 +29,10 @@ class FavoriteTestsViewController: UIViewController, UITableViewDataSource, UITa
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        listening.requestAuth()
+        
+        
         //print("database.testDescriptionTable.count:\(database.testDescriptionTable.count)")
         print("allTestsTable.count 2:\(database.allTestsTable.count)\n")
         print("selectedTestTable.count 2:\(database.selectedTestTable.count)\n")
@@ -38,6 +43,17 @@ class FavoriteTestsViewController: UIViewController, UITableViewDataSource, UITa
         database.fetch[0].configFetch(entityName: "AllTestEntity", context: database.context, key: "is_favorite", ascending: false)
         database.fetch[0].fetchedResultsController.delegate = self
         allTests = database.allTestsTable.array
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        listening.didTapRecordButton()
+        Timer.scheduledTimer(timeInterval: 20.0, target: self, selector: #selector(showMe), userInfo: nil, repeats: false)        
+    }
+    @objc func showMe() {
+        print("showMe:XXXXXXXXX")
+        listening.stopRecording()
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        listening.stopRecording()
     }
     func numberOfSections(in tableView: UITableView) -> Int {
         return  database.fetch[0].sectionCount
