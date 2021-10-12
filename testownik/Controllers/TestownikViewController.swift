@@ -87,6 +87,7 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
         }
     }
     // MARK: viewDidLoad - initial method
+
     override func viewDidLoad() {
         print("TestownikViewController viewDidLoad")        
         Settings.checkResetRequest(forUIViewController: self)
@@ -153,6 +154,7 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
             refreshView()
 //            database.testToUpgrade.toggle()
 //        }
+        self.view.setNeedsUpdateConstraints()
         super.viewWillAppear(animated)
        
     }
@@ -208,23 +210,37 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
         }
         refreshView()
     }
+    func resizeView() {
+        //self.view.setNeedsUpdateConstraints()
+        //self.view.layoutIfNeeded()
+        viewWillAppear(true)
+        //self.view.setNeedsDisplay()
+        //delegateView.setNeedsDisplay()
+        //delegateView.layoutIfNeeded()
+        //delegate.setNeedsUpdateConstraints()
+
+    }
     func refreshTabbarUI(visableLevel: Int) {
         print("visableLevel: \(visableLevel)")
         if visableLevel == 4 {
             buttonNaviHide(isHide: false)
             self.tabBarController?.tabBar.isHidden = false
             self.navigationController?.isNavigationBarHidden = false
+            resizeView()
+            // setNeedsUpdateConstraints
         } else if  visableLevel == 3 {
             buttonNaviHide(isHide: false)
-            self.tabBarController?.tabBar.isHidden = true
-            self.navigationController?.isNavigationBarHidden = false
-        }
-        else if visableLevel == 2 {
-            buttonNaviHide(isHide: true)
-            self.tabBarController?.tabBar.isHidden = true
+            self.tabBarController?.tabBar.isHidden = false
             self.navigationController?.isNavigationBarHidden = true
+            resizeView()
             //viewWillAppear(true)
             //viewDidLoad()
+         }
+        else if visableLevel == 2 {
+            buttonNaviHide(isHide: true)
+            self.tabBarController?.tabBar.isHidden = false
+            self.navigationController?.isNavigationBarHidden = true
+            resizeView()
         }
         else if visableLevel == 1 {
             buttonNaviHide(isHide: true)

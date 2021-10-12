@@ -10,6 +10,9 @@ import Foundation
 import UIKit
 import Speech
 
+protocol ListeningDelegate {
+    func updateGUI()
+}
 class Listening  {
 //        @IBOutlet weak var recordButton: UIButton!
 //        @IBOutlet weak var tableView: UITableView!
@@ -24,7 +27,9 @@ class Listening  {
         var memoText: String
     }
     
+    var delegateView: UIView?
     var recordingView: UIView?
+    
     var recordIsEnabled = false
     var recordingViewHidden = false
     
@@ -48,6 +53,13 @@ class Listening  {
     //        }
     //        return nil
     //    }()
+    func setNeedsDisplay() {
+        if let delegateView = delegateView {
+            delegateView.setNeedsDisplay()
+            //delegateView.layoutIfNeeded()
+            //delegate.setNeedsUpdateConstraints()
+        }
+    }
         func setupSpeechRecognizer() ->  SFSpeechRecognizer? {
             if let recognizer = SFSpeechRecognizer(locale: Locale(identifier: languaeList[currentLanguage])) {
                 //recognizer.delegate = self
