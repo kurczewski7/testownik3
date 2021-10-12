@@ -249,6 +249,10 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
             //viewWillAppear(true)
             //viewDidLoad()
         } else if visableLevel == 1 {
+            let xx = UILabel()
+            xx.font = UIFont(name: "Helvetica Neue", size: 20)
+            xx.textColor = .red
+            xx.tintColor = .blue
             
             
         }
