@@ -213,7 +213,7 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
     func resizeView() {
         //self.view.setNeedsUpdateConstraints()
         //self.view.layoutIfNeeded()
-        viewWillAppear(true)
+        //viewWillAppear(true)
         //self.view.setNeedsDisplay()
         //delegateView.setNeedsDisplay()
         //delegateView.layoutIfNeeded()
@@ -248,6 +248,9 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
             self.navigationController?.isNavigationBarHidden = true
             //viewWillAppear(true)
             //viewDidLoad()
+        } else if visableLevel == 1 {
+            
+            
         }
         print("-----\nvisableLevel:\(visableLevel)")
     }

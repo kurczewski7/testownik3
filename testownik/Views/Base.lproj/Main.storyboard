@@ -181,19 +181,45 @@
                                     <constraint firstAttribute="height" constant="40" id="a7i-fg-Xe3"/>
                                 </constraints>
                             </stackView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="gfD-vX-2q6">
+                                <rect key="frame" x="10" y="144" width="394" height="24"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="WTV-gB-VbN"/>
+                                </constraints>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Left Right" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lGr-4b-1er">
+                                <rect key="frame" x="10" y="731" width="394" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="lTl-VQ-Lun"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="sUd-SH-WPt" firstAttribute="top" secondItem="lGr-4b-1er" secondAttribute="bottom" constant="8" id="3Pq-gp-Fqo"/>
+                            <constraint firstItem="lGr-4b-1er" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="4Nx-aj-XAN"/>
                             <constraint firstItem="xuO-fW-0nf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="8O6-rB-4sW"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="xuO-fW-0nf" secondAttribute="trailing" constant="10" id="FUm-Dc-QpK"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="sUd-SH-WPt" secondAttribute="bottom" constant="10" id="Li3-kr-xoC"/>
                             <constraint firstItem="xuO-fW-0nf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="TcO-8k-akQ"/>
+                            <constraint firstItem="gfD-vX-2q6" firstAttribute="leading" secondItem="tFz-9g-NIy" secondAttribute="leading" id="XYU-6l-G4v"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="tFz-9g-NIy" secondAttribute="trailing" constant="10" id="dHA-LA-jih"/>
                             <constraint firstItem="tFz-9g-NIy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="fKa-B3-rqG"/>
+                            <constraint firstItem="gfD-vX-2q6" firstAttribute="trailing" secondItem="tFz-9g-NIy" secondAttribute="trailing" id="fne-Yz-ls4"/>
                             <constraint firstItem="sUd-SH-WPt" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="geI-jh-TCY"/>
                             <constraint firstItem="tFz-9g-NIy" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="gmc-U4-U8V"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="sUd-SH-WPt" secondAttribute="bottom" constant="10" id="i9j-aM-9y9"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="lGr-4b-1er" secondAttribute="trailing" constant="10" id="rdT-RX-FoT"/>
+                            <constraint firstItem="gfD-vX-2q6" firstAttribute="top" secondItem="tFz-9g-NIy" secondAttribute="bottom" constant="8" symbolic="YES" id="tk9-w2-7sc"/>
                             <constraint firstItem="xuO-fW-0nf" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="zyS-sh-kcU"/>
                         </constraints>
                     </view>
@@ -241,7 +267,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2577" y="-115"/>
+            <point key="canvasLocation" x="2576.811594202899" y="-115.17857142857142"/>
         </scene>
         <!--Add test-->
         <scene sceneID="zEA-IP-qh1">
