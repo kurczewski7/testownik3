@@ -38,6 +38,7 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var actionsButtonStackView: UIStackView!
     @IBOutlet weak var labelLeading: NSLayoutConstraint!
+    @IBOutlet weak var microphoneButt: UIBarButtonItem!
     
     @IBOutlet weak var highButton1: NSLayoutConstraint!
     @IBOutlet weak var highButton2: NSLayoutConstraint!
@@ -47,6 +48,9 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
     @IBOutlet weak var highButton6: NSLayoutConstraint!
     @IBOutlet weak var highButton7: NSLayoutConstraint!
     @IBOutlet weak var highButton8: NSLayoutConstraint!
+    @IBOutlet weak var highButton9: NSLayoutConstraint!
+    @IBOutlet weak var highButton10: NSLayoutConstraint!
+    
     // MARK: IBAction
     @IBAction func navButtSpaseAddPress(_ sender: UIBarButtonItem) {
         stackView.spacing += 5
@@ -55,6 +59,10 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
 //            newView.hidden = false
 //            scroll.contentOffset = offset
 //        }
+    }
+    @IBAction func microphonePress(_ sender: UIBarButtonItem) {
+        microphoneButt.image = (microphoneButt.image == UIImage(systemName: "mic") ? UIImage(systemName: "mic.fill") : UIImage(systemName: "mic"))
+      
     }
     @IBAction func nevButtonSpaceSubPress(_ sender: UIBarButtonItem) {
         stackView.spacing -= 5
@@ -98,7 +106,7 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
     }
     @objc func startMe() {
         listening.didTapRecordButton()
-        listeningText.text = "⏺ 🔴  Start listening  🎤 👄1️⃣ 2️⃣"
+        listeningText.text = "🔴  Start listening  🎤 👄"
     }
     // MARK: viewDidLoad - initial method
     override func viewDidLoad() {

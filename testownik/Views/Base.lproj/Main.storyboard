@@ -253,13 +253,18 @@
                                     <action selector="ResizeButtonMinusPress:" destination="BYZ-38-t0r" id="vbu-he-ngW"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="Item" image="mic" catalog="system" id="1fC-HZ-FvY"/>
+                            <barButtonItem title="Item" image="mic.fill" catalog="system" id="1fC-HZ-FvY">
+                                <connections>
+                                    <action selector="microphonePress:" destination="BYZ-38-t0r" id="Qco-EQ-9zS"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="actionsButtonStackView" destination="sUd-SH-WPt" id="FTP-n3-1rv"/>
                         <outlet property="askLabel" destination="tFz-9g-NIy" id="EzE-iT-6mZ"/>
                         <outlet property="highButton1" destination="tII-1g-dSj" id="zDY-WD-ufV"/>
+                        <outlet property="highButton10" destination="3xA-m9-I4w" id="7nc-6v-4BI"/>
                         <outlet property="highButton2" destination="xWU-I0-R7A" id="X6F-nt-wnL"/>
                         <outlet property="highButton3" destination="Vnh-DB-DLe" id="IWt-vv-oGW"/>
                         <outlet property="highButton4" destination="ers-QY-lPS" id="yKd-ya-53R"/>
@@ -267,8 +272,10 @@
                         <outlet property="highButton6" destination="Mhg-gn-89Z" id="eXG-yk-Uxe"/>
                         <outlet property="highButton7" destination="d58-cv-xCi" id="smw-d1-aLU"/>
                         <outlet property="highButton8" destination="lwd-KG-EW0" id="EmD-bw-A3V"/>
+                        <outlet property="highButton9" destination="edV-Jq-DoQ" id="CKx-1p-h3P"/>
                         <outlet property="labelLeading" destination="fKa-B3-rqG" id="s8h-VN-kGN"/>
                         <outlet property="listeningText" destination="i14-m7-5cl" id="YfH-JV-J8q"/>
+                        <outlet property="microphoneButt" destination="1fC-HZ-FvY" id="Wl1-P9-znE"/>
                         <outlet property="stackView" destination="xuO-fW-0nf" id="bzH-2R-PHv"/>
                     </connections>
                 </viewController>
@@ -961,7 +968,7 @@
         <image name="cancel_filled" width="25" height="25"/>
         <image name="eye" catalog="system" width="128" height="81"/>
         <image name="gradient" width="375" height="31.5"/>
-        <image name="mic" catalog="system" width="108" height="128"/>
+        <image name="mic.fill" catalog="system" width="108" height="128"/>
         <image name="minus.magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="plus.magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="rectangle.compress.vertical" catalog="system" width="122" height="128"/>
