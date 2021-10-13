@@ -7,13 +7,17 @@
 //
 
 import UIKit
-class TestownikViewController: UIViewController, GesturesDelegate, TestownikDelegate {
+class TestownikViewController: UIViewController, GesturesDelegate, TestownikDelegate, ListeningDelegate {
+    
     //  MARK: variable
     var gestures:  Gestures  = Gestures()
     var testownik: Testownik = Testownik()
     var cornerRadius: CGFloat = 10
     let initalStackSpacing: CGFloat = 30.0
     var tabHigh: [NSLayoutConstraint] = [NSLayoutConstraint]()
+  
+    let alphaLabel =  0.9
+    let listening = Listening()
     
     var isLightStyle = true
     let selectedColor: UIColor   = #colorLiteral(red: 0.9999151826, green: 0.9882825017, blue: 0.4744609594, alpha: 1)
@@ -22,6 +26,10 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
     let borderColor: UIColor     = #colorLiteral(red: 0.7254344821, green: 0.6902328134, blue: 0.5528755784, alpha: 1)
     let otherColor: UIColor      = #colorLiteral(red: 0.8469454646, green: 0.9804453254, blue: 0.9018514752, alpha: 1)
     
+    // MARK: ListeningDelegate method
+    func updateGUI() {
+        print("updateGUI started")
+    }
     // "testList" declared in super of Testownik
     //  MARK: IBOutlets
     @IBOutlet weak var askLabel: UILabel!
@@ -88,11 +96,20 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
             testownik.next()
         }
     }
+    @objc func startMe() {
+        listening.didTapRecordButton()
+        listeningText.text = "⏺ 🔴  Start listening  🎤 👄1️⃣ 2️⃣"
+    }
     // MARK: viewDidLoad - initial method
-
     override func viewDidLoad() {
         print("TestownikViewController viewDidLoad")        
         Settings.checkResetRequest(forUIViewController: self)
+        
+        listening.delegateView = listeningText.self
+        listening.delegateSpeaking = speech.self
+        listeningText.alpha = alphaLabel
+        listening.requestAuth()
+        
 //        Settings.readCurrentLanguae()
         
         print("Test name 2:\(database.selectedTestTable[0]?.toAllRelationship?.user_name ?? "brak")")
@@ -158,7 +175,7 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
 //        }
         self.view.setNeedsUpdateConstraints()
         super.viewWillAppear(animated)
-       
+        Timer.scheduledTimer(timeInterval: 30.0, target: self, selector: #selector(startMe), userInfo: nil, repeats: false)
     }
     //--------------------------------
     // MARK: GesturesDelegate  protocol metods
@@ -222,51 +239,66 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
         //delegate.setNeedsUpdateConstraints()
 
     }
+    @objc func restart() {
+        listeningText.alpha = alphaLabel
+    }
     func refreshTabbarUI(visableLevel: Int) {
         print("visableLevel: \(visableLevel)")
-        if visableLevel == 4 {
-            listeningText.isHidden = false
-            buttonNaviHide(isHide: false)
-            self.tabBarController?.tabBar.isHidden = false
-            self.navigationController?.isNavigationBarHidden = false
-            resizeView()
-            // setNeedsUpdateConstraints
-        } else if  visableLevel == 3 {
-            listeningText.isHidden = false
-            buttonNaviHide(isHide: false)
-            self.tabBarController?.tabBar.isHidden = false
-            self.navigationController?.isNavigationBarHidden = true
-            resizeView()
-            //viewWillAppear(true)
-            //viewDidLoad()
-         }
-        else if visableLevel == 2 {
-            listeningText.isHidden = false
-            buttonNaviHide(isHide: true)
-            self.tabBarController?.tabBar.isHidden = false
-            self.navigationController?.isNavigationBarHidden = true
-            resizeView()
+        switch visableLevel
+            {
+            case 4:
+                listeningText.isHidden = false
+                self.listeningText.alpha = alphaLabel
+                buttonNaviHide(isHide: false)
+                self.tabBarController?.tabBar.isHidden = false
+                self.navigationController?.isNavigationBarHidden = false
+                resizeView()
+                // setNeedsUpdateConstraints
+
+                
+                
+            case 3:
+                self.listeningText.alpha = alphaLabel
+                listeningText.isHidden = false
+                buttonNaviHide(isHide: false)
+                self.tabBarController?.tabBar.isHidden = false
+                self.navigationController?.isNavigationBarHidden = true
+                resizeView()
+                //viewWillAppear(true)
+                //viewDidLoad()
+            case 2:
+                self.listeningText.alpha = alphaLabel
+                listeningText.isHidden = false
+                buttonNaviHide(isHide: true)
+                self.tabBarController?.tabBar.isHidden = false
+                self.navigationController?.isNavigationBarHidden = true
+                resizeView()
+            case 1:
+                listeningText.isHidden = false
+                //listeningText.layer.animation(forKey: <#T##String#>)
+                
+                UIView.animate(withDuration: 10.0, delay: 0.2,
+                    options: .curveEaseOut, animations: {
+                    self.listeningText.alpha = 0.0
+                    }, completion: {(isCompleted) in   print("Animation finished")})
+                Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(restart), userInfo: nil, repeats: true)
+                
+                //listeningText.layer.removeAllAnimations()
+                //self.listeningText.alpha = 1.0
+                
+                buttonNaviHide(isHide: true)
+                self.tabBarController?.tabBar.isHidden = true
+                self.navigationController?.isNavigationBarHidden = true
+            case 0:
+                listeningText.isHidden = true
+                self.listeningText.alpha = alphaLabel
+                let xx = UILabel()
+                xx.font = UIFont(name: "Helvetica Neue", size: 20)
+                xx.textColor = .red
+                xx.tintColor = .blue
+            default: print("ERROR")
+
         }
-        else if visableLevel == 1 {
-            listeningText.isHidden = false
-            //listeningText.layer.animation(forKey: <#T##String#>)
-            
-            
-            buttonNaviHide(isHide: true)
-            self.tabBarController?.tabBar.isHidden = true
-            self.navigationController?.isNavigationBarHidden = true
-            //viewWillAppear(true)
-            //viewDidLoad()
-        } else if visableLevel == 0 {
-            listeningText.isHidden = true
-            let xx = UILabel()
-            xx.font = UIFont(name: "Helvetica Neue", size: 20)
-            xx.textColor = .red
-            xx.tintColor = .blue
-            
-            
-        }
-        print("-----\nvisableLevel:\(visableLevel)")
     }
     // MARK: Shake event method
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
@@ -375,8 +407,9 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
         askLabel.text = testownik[testownik.currentTest].ask
         for curButt in stackView.arrangedSubviews     {
             if let butt = curButt as? UIButton {
+                butt.contentHorizontalAlignment =  (Setup.isNumericQuestions ? .left : .center)
                 butt.isHidden = (i < totalQuest) ? false : true
-                butt.setTitle((i < totalQuest) ? testownik[testownik.currentTest].answerOptions[i].answerOption : "", for: .normal)
+                butt.setTitle((i < totalQuest) ? Setup.getNumericPict(number: i) + testownik[testownik.currentTest].answerOptions[i].answerOption : "", for: .normal)
                 butt.layer.borderWidth = 1
                 butt.layer.borderColor = UIColor.brown.cgColor
                 let isSelect = testownik[testownik.currentTest].youAnswer2.contains(i)

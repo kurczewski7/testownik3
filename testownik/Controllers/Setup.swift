@@ -19,6 +19,8 @@ class Setup {
         case french     = "fr_FR"
         case spanish    = "es_ES"
     }
+    static var isNumericQuestions = false
+    static let askNumber = ["1️⃣","2️⃣","3️⃣","4️⃣","5️⃣","6️⃣","7️⃣","8️⃣","9️⃣","🔟"]
     static var tempStr: String  = ""
     static var currentLanguage: LanguaesList = .german
     static var placeHolderButtons: String { get {
@@ -57,6 +59,7 @@ class Setup {
         }
         return tempStr
     }}
+
 
     
     static var cloudPicker: CloudPicker!
@@ -114,8 +117,10 @@ class Setup {
 //    }
     
     
- 
-    
+    class func getNumericPict(number: Int) -> String {
+        guard number < 10 else { return ""}
+        return (isNumericQuestions ? " "+askNumber[number]+" " : "")
+    }
     class func findValue<T: Comparable>(currentList: [T], valueToFind: T, handler: (_ currElem: T) -> Bool) -> Bool {
         var found = false
         // TODO: Finalize method

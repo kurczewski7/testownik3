@@ -28,6 +28,7 @@ class Listening  {
     }
     
     var delegateView: UIView?
+    var delegateSpeaking: Speech?
     var recordingView: UIView?
     
     var recordIsEnabled = false
@@ -40,12 +41,41 @@ class Listening  {
     var recognitionTask: SFSpeechRecognitionTask?
     lazy var speechRecognizer: SFSpeechRecognizer? = nil
     var recordedMessage = "" {
-        didSet {    print("\(recordedMessage)")    }
+        didSet {
+            print("\(recordedMessage)")
+            (self.delegateView as? UITextView)?.text = recordedMessage
+        }
     }
     lazy var audioEngine: AVAudioEngine = {  let audioEngine = AVAudioEngine()
         return audioEngine
     }()
+    var count: Int {
+        get {   return memoData.count   }
+    }
+    func isIndexInRange(index: Int, isPrintToConsol: Bool = true) -> Bool {
+            if index >= count {
+                if isPrintToConsol {
+                   print("Index \(index) is bigger then count \(count). Give correct index!")
+                }
+                return false
+            }
+            else {
+                return true
+            }
+        }
+    subscript(index: Int) -> Memo? {
+        get {  if isIndexInRange(index: index) {  return memoData[index]  }
+            else { return nil}
+        }
+        set {   if  isIndexInRange(index: index)  {     memoData[index] = newValue!  } }
+    }
+    func last() -> Memo {
+        let lastVal = count-1
+        _ = isIndexInRange(index: lastVal)
+        return memoData[lastVal]
+    }
 
+    
     //    lazy var speechRecognizer: SFSpeechRecognizer? = {
     //        if let recognizer = SFSpeechRecognizer(locale: Locale(identifier: languaeList[currentLanguage])) {
     //            recognizer.delegate = self
@@ -111,6 +141,7 @@ class Listening  {
         }
         
         func didTapRecordButton() {
+            self.delegateSpeaking?.pauseSpeak()
             self.speechRecognizer = setupSpeechRecognizer()
             if audioEngine.isRunning {
                 audioEngine.stop()

@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 
+let speech = Speech()
 
 //let coreData = CoreDataStack()
 //let database = Database(context: coreData.persistentContainer.viewContext)
@@ -45,7 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            }
 //        }
         
-        let speech = Speech()
+
         speech.setLanguae(selectedLanguage: 3)
         speech.startSpeak()
         
