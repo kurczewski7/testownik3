@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="xuO-fW-0nf">
-                                <rect key="frame" x="10" y="223" width="394" height="450"/>
+                                <rect key="frame" x="10" y="163" width="394" height="570"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8lw-GS-xyB">
                                         <rect key="frame" x="0.0" y="0.0" width="394" height="30"/>
@@ -84,6 +84,22 @@
                                             <constraint firstAttribute="height" constant="30" id="lwd-KG-EW0"/>
                                         </constraints>
                                         <state key="normal" title="Pytanie 8"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VSr-Qb-s4c" userLabel="Pytanie 9">
+                                        <rect key="frame" x="0.0" y="480" width="394" height="30"/>
+                                        <color key="backgroundColor" red="0.0" green="0.99143940210000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="edV-Jq-DoQ"/>
+                                        </constraints>
+                                        <state key="normal" title="Pytanie 9"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OSW-LU-NFZ">
+                                        <rect key="frame" x="0.0" y="540" width="394" height="30"/>
+                                        <color key="backgroundColor" red="0.0" green="0.99143940210000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="3xA-m9-I4w"/>
+                                        </constraints>
+                                        <state key="normal" title="Pytanie 10"/>
                                     </button>
                                 </subviews>
                                 <constraints>
