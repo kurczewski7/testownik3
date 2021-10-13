@@ -25,6 +25,8 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
     // "testList" declared in super of Testownik
     //  MARK: IBOutlets
     @IBOutlet weak var askLabel: UILabel!
+    
+    @IBOutlet weak var listeningText: UILabel!
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var actionsButtonStackView: UIStackView!
     @IBOutlet weak var labelLeading: NSLayoutConstraint!
@@ -223,12 +225,14 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
     func refreshTabbarUI(visableLevel: Int) {
         print("visableLevel: \(visableLevel)")
         if visableLevel == 4 {
+            listeningText.isHidden = false
             buttonNaviHide(isHide: false)
             self.tabBarController?.tabBar.isHidden = false
             self.navigationController?.isNavigationBarHidden = false
             resizeView()
             // setNeedsUpdateConstraints
         } else if  visableLevel == 3 {
+            listeningText.isHidden = false
             buttonNaviHide(isHide: false)
             self.tabBarController?.tabBar.isHidden = false
             self.navigationController?.isNavigationBarHidden = true
@@ -237,18 +241,24 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
             //viewDidLoad()
          }
         else if visableLevel == 2 {
+            listeningText.isHidden = false
             buttonNaviHide(isHide: true)
             self.tabBarController?.tabBar.isHidden = false
             self.navigationController?.isNavigationBarHidden = true
             resizeView()
         }
         else if visableLevel == 1 {
+            listeningText.isHidden = false
+            //listeningText.layer.animation(forKey: <#T##String#>)
+            
+            
             buttonNaviHide(isHide: true)
             self.tabBarController?.tabBar.isHidden = true
             self.navigationController?.isNavigationBarHidden = true
             //viewWillAppear(true)
             //viewDidLoad()
-        } else if visableLevel == 1 {
+        } else if visableLevel == 0 {
+            listeningText.isHidden = true
             let xx = UILabel()
             xx.font = UIFont(name: "Helvetica Neue", size: 20)
             xx.textColor = .red
