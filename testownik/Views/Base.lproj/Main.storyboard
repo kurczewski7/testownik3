@@ -253,7 +253,7 @@
                                     <action selector="ResizeButtonMinusPress:" destination="BYZ-38-t0r" id="vbu-he-ngW"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="Item" image="mic.fill" catalog="system" id="1fC-HZ-FvY">
+                            <barButtonItem title="Item" image="mic" catalog="system" id="1fC-HZ-FvY">
                                 <connections>
                                     <action selector="microphonePress:" destination="BYZ-38-t0r" id="Qco-EQ-9zS"/>
                                 </connections>
@@ -968,7 +968,7 @@
         <image name="cancel_filled" width="25" height="25"/>
         <image name="eye" catalog="system" width="128" height="81"/>
         <image name="gradient" width="375" height="31.5"/>
-        <image name="mic.fill" catalog="system" width="108" height="128"/>
+        <image name="mic" catalog="system" width="108" height="128"/>
         <image name="minus.magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="plus.magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="rectangle.compress.vertical" catalog="system" width="122" height="128"/>

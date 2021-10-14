@@ -8,7 +8,7 @@
 
 import UIKit
 class TestownikViewController: UIViewController, GesturesDelegate, TestownikDelegate, ListeningDelegate {
-    
+                
     //  MARK: variable
     var gestures:  Gestures  = Gestures()
     var testownik: Testownik = Testownik()
@@ -26,11 +26,6 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
     let borderColor: UIColor     = #colorLiteral(red: 0.7254344821, green: 0.6902328134, blue: 0.5528755784, alpha: 1)
     let otherColor: UIColor      = #colorLiteral(red: 0.8469454646, green: 0.9804453254, blue: 0.9018514752, alpha: 1)
     
-    // MARK: ListeningDelegate method
-    func updateGUI() {
-        print("updateGUI started")
-    }
-    // "testList" declared in super of Testownik
     //  MARK: IBOutlets
     @IBOutlet weak var askLabel: UILabel!
     
@@ -50,6 +45,14 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
     @IBOutlet weak var highButton8: NSLayoutConstraint!
     @IBOutlet weak var highButton9: NSLayoutConstraint!
     @IBOutlet weak var highButton10: NSLayoutConstraint!
+    
+    // MARK: ListeningDelegate method
+    func updateGUI(messae recordedMessage: String) {
+        listeningText.text = recordedMessage
+    }
+    func listenigStartStop(statusOn: Bool) {
+        microphoneButt.image = (statusOn ?  UIImage(systemName: "mic.fill") : UIImage(systemName: "mic") )
+    }
     
     // MARK: IBAction
     @IBAction func navButtSpaseAddPress(_ sender: UIBarButtonItem) {
@@ -112,9 +115,10 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
     override func viewDidLoad() {
         print("TestownikViewController viewDidLoad")        
         Settings.checkResetRequest(forUIViewController: self)
+        listening.linkSpeaking = speech.self
+        listening.delegate = self
+
         
-        listening.delegateView = listeningText.self
-        listening.delegateSpeaking = speech.self
         listeningText.alpha = alphaLabel
         listening.requestAuth()
         

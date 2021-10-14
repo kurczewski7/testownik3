@@ -11,24 +11,20 @@ import UIKit
 import Speech
 
 protocol ListeningDelegate {
-    func updateGUI()
+    func updateGUI(messae recordedMessage: String)
+    func listenigStartStop(statusOn : Bool)
 }
 class Listening  {
-//        @IBOutlet weak var recordButton: UIButton!
-//        @IBOutlet weak var tableView: UITableView!
-//
-//        @IBOutlet weak var fadedView: UIView!
-//        @IBOutlet weak var recordingView: UIView!
-//        @IBOutlet weak var recordedMessage: UITextView!
-//        @IBOutlet weak var languaeSegmentedControl: UISegmentedControl!
     struct Memo {
         var memoTitle: String
         var memoDate: Date
         var memoText: String
     }
     
-    var delegateView: UIView?
-    var delegateSpeaking: Speech?
+//    var linkView: UIView?
+    var linkSpeaking: Speech?
+    var delegate: ListeningDelegate?
+    
     var recordingView: UIView?
     
     var recordIsEnabled = false
@@ -43,7 +39,8 @@ class Listening  {
     var recordedMessage = "" {
         didSet {
             print("\(recordedMessage)")
-            (self.delegateView as? UITextView)?.text = recordedMessage
+            //  (self.linkView as? UITextView)?.text = recordedMessage
+            delegate?.updateGUI(messae: recordedMessage)
         }
     }
     lazy var audioEngine: AVAudioEngine = {  let audioEngine = AVAudioEngine()
@@ -74,6 +71,11 @@ class Listening  {
         _ = isIndexInRange(index: lastVal)
         return memoData[lastVal]
     }
+    func preLast() -> Memo {
+        let preLastVal = count-2
+        _  = isIndexInRange(index: preLastVal)
+        return memoData[preLastVal]
+    }
 
     
     //    lazy var speechRecognizer: SFSpeechRecognizer? = {
@@ -83,13 +85,13 @@ class Listening  {
     //        }
     //        return nil
     //    }()
-    func setNeedsDisplay() {
-        if let delegateView = delegateView {
-            delegateView.setNeedsDisplay()
-            //delegateView.layoutIfNeeded()
-            //delegate.setNeedsUpdateConstraints()
-        }
-    }
+//    func setNeedsDisplay() {
+//        if let delegateView = linkView {
+//            delegateView.setNeedsDisplay()
+//            //delegateView.layoutIfNeeded()
+//            //delegate.setNeedsUpdateConstraints()
+//        }
+//    }
         func setupSpeechRecognizer() ->  SFSpeechRecognizer? {
             if let recognizer = SFSpeechRecognizer(locale: Locale(identifier: languaeList[currentLanguage])) {
                 //recognizer.delegate = self
@@ -141,16 +143,22 @@ class Listening  {
         }
         
         func didTapRecordButton() {
-            self.delegateSpeaking?.pauseSpeak()
+            self.linkSpeaking?.pauseSpeak()
             self.speechRecognizer = setupSpeechRecognizer()
             if audioEngine.isRunning {
                 audioEngine.stop()
                 recognitionRequest?.endAudio()
+
+                delegate?.listenigStartStop(statusOn: false)
+//                func updateGUI()
+//                func listenigStartStop(statusOn: Bool)
+//                self.deleateViewCtrl?.listenigStartStop()
+//                self.listenigStartStop()
             }
             else {
                 self.startRecording()
                 self.recordingViewHidden = false
-               
+                delegate?.listenigStartStop(statusOn: true)
 //                self.recordingView.isHidden = false
 //                self.fadedView.alpha = 0.0
 //                self.fadedView.isHidden = false

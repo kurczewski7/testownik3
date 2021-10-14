@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 
 class FavoriteTestsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate {
+    
     //let docum = [[1,2,3,4,5,6],[7,8,9,10,11]]
     var allTests: [AllTestEntity]!
     let colorFavorite = Colors().green[1]
@@ -29,6 +30,7 @@ class FavoriteTestsViewController: UIViewController, UITableViewDataSource, UITa
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        //listening.delegateSpeaking
 
         listening.requestAuth()
         
