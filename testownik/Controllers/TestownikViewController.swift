@@ -7,17 +7,21 @@
 //
 
 import UIKit
-class TestownikViewController: UIViewController, GesturesDelegate, TestownikDelegate, ListeningDelegate {
-                
+class TestownikViewController: UIViewController, GesturesDelegate, TestownikDelegate, ListeningDelegate, CommandDelegate    {
+    
+    
+    // MARK: other classes
+    let listening = Listening()
+    let command   = Command()
+    var gestures  = Gestures()
+    var testownik = Testownik()
+
     //  MARK: variable
-    var gestures:  Gestures  = Gestures()
-    var testownik: Testownik = Testownik()
     var cornerRadius: CGFloat = 10
     let initalStackSpacing: CGFloat = 30.0
     var tabHigh: [NSLayoutConstraint] = [NSLayoutConstraint]()
   
     let alphaLabel =  0.9
-    let listening = Listening()
     
     var isLightStyle = true
     let selectedColor: UIColor   = #colorLiteral(red: 0.9999151826, green: 0.9882825017, blue: 0.4744609594, alpha: 1)
@@ -53,6 +57,75 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
     func listenigStartStop(statusOn: Bool) {
         microphoneButt.image = (statusOn ?  UIImage(systemName: "mic.fill") : UIImage(systemName: "mic") )
     }
+    @objc func startMe() {
+        listening.didTapRecordButton()
+        listeningText.text = "🔴  Start listening  🎤 👄"
+        let text = " to jest zakończenie ekran końca"
+        let yy = command.findCommand(forText: text)
+        //findText(forText: text, patern: "lewo")
+    }
+
+    func executeCommand(forCommand cmd: Command.CommandList) {
+        print("COMMAND executeCommand:\(cmd.rawValue):\(command.vocabularyEn[cmd.rawValue][0])")
+        switch cmd {
+        case .start:    firstButtonPress(UIButton())
+        case .previous: previousButtonPress(UIButton())
+        case .check:    checkButtonPress(UIButton())
+        case .next:     nextButtonPress(UIButton())
+        case .reduceScr: testownik.visableLevel +=  (testownik.visableLevel < 4 ? 1 : 0)
+        case .incScreen: testownik.visableLevel -= (testownik.visableLevel > 0 ? 1 : 0)
+//        case .left:
+//        case .left:
+//        case .left:
+//        case .left:
+//        case .left:
+//        case .left:
+//        case .left:
+//        case .up:
+
+//        case .fullScreen:
+//
+//        case .one:
+//
+//        case .two:
+//
+//        case .three:
+//
+//        case .four:
+//
+//        case .five:
+//
+//        case .six:
+//
+//        case .seven:
+//
+//        case .eight:
+//
+//        case .nine:
+//
+//        case .ten:
+//
+//        case .left:
+//
+//        case .righi:
+//
+//        case .end:
+//
+//        case .exit:
+//
+//        case .listen:
+//
+//        case .readOn:
+//
+//        case .showResult:
+//
+//        case .empty:
+        default:
+            print("Other command")
+            
+        }
+    }
+
     
     // MARK: IBAction
     @IBAction func navButtSpaseAddPress(_ sender: UIBarButtonItem) {
@@ -107,16 +180,13 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
             testownik.next()
         }
     }
-    @objc func startMe() {
-        listening.didTapRecordButton()
-        listeningText.text = "🔴  Start listening  🎤 👄"
-    }
     // MARK: viewDidLoad - initial method
     override func viewDidLoad() {
         print("TestownikViewController viewDidLoad")        
         Settings.checkResetRequest(forUIViewController: self)
         listening.linkSpeaking = speech.self
         listening.delegate = self
+        command.delegate = self
 
         
         listeningText.alpha = alphaLabel

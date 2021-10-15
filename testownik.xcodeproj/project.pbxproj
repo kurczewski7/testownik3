@@ -172,6 +172,7 @@
 		2CE2F39A242A5B9200D1B731 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE2F399242A5B9200D1B731 /* Colors.swift */; };
 		2CE2F39C242A5BEF00D1B731 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE2F39B242A5BEF00D1B731 /* Extensions.swift */; };
 		2CF509B826F7398400841DA2 /* Messaes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF509B726F7398400841DA2 /* Messaes.swift */; };
+		2CF7F4152719846A00016384 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF7F4142719846A00016384 /* Command.swift */; };
 		8FDFB571752A124E526A2156 /* Pods_testownikTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79A1BC69F8F7A649280F9893 /* Pods_testownikTests.framework */; };
 		DAF4FDB17B76593DB8940522 /* Pods_testownik_testownikUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9955B276027483A867FC29B2 /* Pods_testownik_testownikUITests.framework */; };
 /* End PBXBuildFile section */
@@ -372,6 +373,7 @@
 		2CE2F399242A5B9200D1B731 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		2CE2F39B242A5BEF00D1B731 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		2CF509B726F7398400841DA2 /* Messaes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Messaes.swift; sourceTree = "<group>"; };
+		2CF7F4142719846A00016384 /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Command.swift; path = testownik/Models/Command.swift; sourceTree = SOURCE_ROOT; };
 		5793B275A7533EE8EB96AD6F /* Pods-testownik-testownikUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-testownik-testownikUITests.release.xcconfig"; path = "Target Support Files/Pods-testownik-testownikUITests/Pods-testownik-testownikUITests.release.xcconfig"; sourceTree = "<group>"; };
 		58223D6906B99452B1445D68 /* Pods-testownikTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-testownikTests.release.xcconfig"; path = "Target Support Files/Pods-testownikTests/Pods-testownikTests.release.xcconfig"; sourceTree = "<group>"; };
 		5B958BDE30598B7BC950CFD0 /* Pods-testownikTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-testownikTests.debug.xcconfig"; path = "Target Support Files/Pods-testownikTests/Pods-testownikTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -563,6 +565,7 @@
 			isa = PBXGroup;
 			children = (
 				2CE1477C23F6901900C834F4 /* TestownikViewController.swift */,
+				2CF7F4142719846A00016384 /* Command.swift */,
 				2C625DFA2443A68800EE29A0 /* AddTestViewController.swift */,
 				2C82DE8B24393DA0002CDA10 /* FavoriteTestsViewController.swift */,
 				2C652D1B243A3F260071A9ED /* FavoriteTestsTableViewCell.swift */,
@@ -1070,6 +1073,7 @@
 				2C652AFD2408805100284ADF /* CloudsViewController.swift in Sources */,
 				2C6538DB2406FA8D004B1FC8 /* Gestures.swift in Sources */,
 				2C66ADB9244F100D00670330 /* TestDescriptionViewController.swift in Sources */,
+				2CF7F4152719846A00016384 /* Command.swift in Sources */,
 				2CE1477923F6901800C834F4 /* AppDelegate.swift in Sources */,
 				2C6864C0244A05D700C159C7 /* DatabaseFetch.swift in Sources */,
 				2C625DF524435FD000EE29A0 /* CoreDataStack.swift in Sources */,
