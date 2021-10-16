@@ -119,6 +119,7 @@ class Command {
         // MARK: French vocabulary
         // MARK: Spanish vocabulary
     }
+    
     func findCommand(forText searchText: String) -> CommandList? {
         var returnVal: CommandList? = nil
         
@@ -132,13 +133,12 @@ class Command {
             }
         }
         if let cmd = returnVal {
-            delegate?.executeCommand(forCommand: cmd)
+            //delegate?.executeCommand(forCommand: cmd)
+            delegate?.executeCommand(forCommand: .five)
         }
         return returnVal
     }
     func findText(forText searchText: String, patern: String)  -> Bool {
-         //let value = searchText.contains(where: patern)
-        
         return (searchText.range(of: patern) == nil ? false : true)
     }
         

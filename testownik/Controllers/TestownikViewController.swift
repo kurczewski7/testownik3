@@ -64,69 +64,60 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
         let yy = command.findCommand(forText: text)
         //findText(forText: text, patern: "lewo")
     }
-
+    func tapNumberButton(forCommand cmd: Command.CommandList) {
+        let butt = UIButton()
+        butt.tag = cmd.rawValue
+        buttonAnswerPress(sender: UIButton())
+        print("TAG:\(butt.tag)")
+    }
     func executeCommand(forCommand cmd: Command.CommandList) {
         print("COMMAND executeCommand:\(cmd.rawValue):\(command.vocabularyEn[cmd.rawValue][0])")
-        switch cmd {
-        case .start:    firstButtonPress(UIButton())
-        case .previous: previousButtonPress(UIButton())
-        case .check:    checkButtonPress(UIButton())
-        case .next:     nextButtonPress(UIButton())
-        case .reduceScr: testownik.visableLevel +=  (testownik.visableLevel < 4 ? 1 : 0)
-        case .incScreen: testownik.visableLevel -= (testownik.visableLevel > 0 ? 1 : 0)
-//        case .left:
-//        case .left:
-//        case .left:
-//        case .left:
-//        case .left:
-//        case .left:
-//        case .left:
-//        case .up:
-
-//        case .fullScreen:
-//
-//        case .one:
-//
-//        case .two:
-//
-//        case .three:
-//
-//        case .four:
-//
-//        case .five:
-//
-//        case .six:
-//
-//        case .seven:
-//
-//        case .eight:
-//
-//        case .nine:
-//
-//        case .ten:
-//
-//        case .left:
-//
-//        case .righi:
-//
-//        case .end:
-//
-//        case .exit:
-//
-//        case .listen:
-//
-//        case .readOn:
-//
-//        case .showResult:
-//
-//        case .empty:
-        default:
-            print("Other command")
-            
-        }
-    }
-
+        print("stackView.arrangedSubviews.coun:\(stackView.arrangedSubviews.count)")
     
+        print("One:\((stackView.arrangedSubviews[0] as! UIButton).titleLabel?.text)")
+        switch cmd {
+            case .start:        firstButtonPress(UIButton())
+            case .previous:     previousButtonPress(UIButton())
+            case .check:        checkButtonPress(UIButton())
+            case .next:         nextButtonPress(UIButton())
+            case .reduceScr:    testownik.visableLevel +=  (testownik.visableLevel < 4 ? 1 : 0)
+            case .incScreen:    testownik.visableLevel -= (testownik.visableLevel > 0 ? 1 : 0)
+            case .left:         firstButtonPress(UIButton())
+            case .fullScreen:   print("CMD")
+                               
+            case  .one,
+                  .two,
+                  .three,
+                  .four,
+                  .five,
+                  .six,
+                  .seven,
+                  .eight,
+                  .nine,
+                  .ten:         tapNumberButton(forCommand: cmd)
+            
+                let butt = UIButton()
+                butt.tag = cmd.rawValue
+                buttonAnswerPress(sender: UIButton())
+
+                
+            case .left:         print("CMD")
+            case .righi:        print("CMD")
+            case .end:          print("CMD")
+            case .exit:         print("CMD")
+            case .listen:       print("CMD")
+            case .readOn:       print("CMD")
+            case .showResult:   print("CMD")
+            case .empty:        print("CMD")
+        }
+//        for curButt in stackView.arrangedSubviews     {
+//            if let butt = curButt as? UIButton {
+//                butt.isHidden =  false
+//                butt.setTitle("\(Setup.placeHolderButtons) \(i)", for: .normal)
+//                i += 1
+//            }
+//        }
+    }
     // MARK: IBAction
     @IBAction func navButtSpaseAddPress(_ sender: UIBarButtonItem) {
         stackView.spacing += 5
