@@ -179,8 +179,8 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
         listening.delegate = self
         command.delegate = self
 
-        
-        listeningText.alpha = alphaLabel
+        listeningText.userAnimation(2.8, type: .push, subType: .fromLeft, timing: .defaultTiming)
+        //listeningText.alpha = alphaLabel
         listening.requestAuth()
         
 //        Settings.readCurrentLanguae()
