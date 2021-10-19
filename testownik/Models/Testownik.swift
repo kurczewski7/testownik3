@@ -161,7 +161,7 @@ class Testownik: DataOperations {
             //let data = try String(contentsOfFile: txt ,encoding: encoding)
             let myStrings = txt.components(separatedBy: .newlines)
             texts = myStrings
-            print("texts:\(texts)")
+            //print("texts:\(texts)")
         }
 //        catch {
 //            print(error.localizedDescription)
@@ -183,11 +183,11 @@ class Testownik: DataOperations {
     func getAnswer(_ codeAnswer: String) -> [Bool] {
         var answer = [Bool]()
         let myLenght=codeAnswer.count
-        print("myLenght:\(myLenght)")
+        //print("myLenght:\(myLenght)")
         for i in 1..<myLenght {
             answer.append(codeAnswer.suffix(codeAnswer.count)[i]=="1" ? true : false)
         }
-        print("answer,\(answer)")
+        //print("answer,\(answer)")
         return answer
     }
     func frstRandom(repeat: Bool) -> Test?   {

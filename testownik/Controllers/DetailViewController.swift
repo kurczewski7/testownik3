@@ -9,6 +9,10 @@
 import UIKit
 
 class DetailViewController: UIViewController, GesturesDelegate {
+    func forcePressRefreshUI(sender: ForcePressGestureRecognizer) {
+    
+    }
+    
     // MARK: Parameters for segue value
     var gestures = Gestures()
     var cloudPickerValue: CloudPicker!
@@ -45,6 +49,9 @@ class DetailViewController: UIViewController, GesturesDelegate {
         imageOffSwitch.toggle()
         refreshView()
     }
+    func longPressRefreshUI(sender: UILongPressGestureRecognizer) {
+    }
+
     func pinchRefreshUI(sender: UIPinchGestureRecognizer) {
         print("pinchRefreshUI")
     }

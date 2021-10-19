@@ -8,7 +8,9 @@
 
 import UIKit
 class TestownikViewController: UIViewController, GesturesDelegate, TestownikDelegate, ListeningDelegate, CommandDelegate    {
-    
+    func forcePressRefreshUI(sender: ForcePressGestureRecognizer) {
+        print("forcePressRefreshUI,\(sender.numberOfTouches)")
+    }
     
     // MARK: other classes
     let listening = Listening()
@@ -50,6 +52,64 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
     @IBOutlet weak var highButton9: NSLayoutConstraint!
     @IBOutlet weak var highButton10: NSLayoutConstraint!
     
+    // MARK: GesturesDelegate  protocol metods
+    func pinchRefreshUI(sender: UIPinchGestureRecognizer) {
+        print("Pinch touches:\(sender.numberOfTouches),\(sender.scale) ")
+        stackView.spacing = initalStackSpacing * sender.scale
+        //view.transform = CGAffineTransform(scaleX: sender.scale, y: sender.scale)
+    }
+    func eadgePanRefreshUI() {
+        print("Edge gesture")
+    }
+    func longPressRefreshUI(sender: UILongPressGestureRecognizer) {
+        if sender.state == .ended {
+            print("longPressRefreshUI End")
+        }
+    }
+    func swipeRefreshUI(direction: UISwipeGestureRecognizer.Direction) {
+        print("=====\nA currentTest: \(testownik.currentTest)")
+        switch direction {
+            case .right:
+                //if testownik.count > 1 {
+                    testownik.previous()
+                    //testownik.currentTest -=  testownik.filePosition != .first  ? 1 : 0
+                //}
+                print("Swipe to right")
+            case .left:
+                //if testownik.count > 0 {
+                    testownik.next()
+                    //testownik.currentTest +=  testownik.filePosition != .last  ? 1 : 0
+                //}
+                print("Swipe  & left ")
+            case .up:
+                print("Swipe up")
+                testownik.visableLevel +=  testownik.visableLevel < 4 ? 1 : 0
+            case .down:
+                print("Swipe down")
+                testownik.visableLevel -= testownik.visableLevel > 0 ? 1 : 0
+            default:
+                print("Swipe unrecognized")
+            }
+         print("Y pos: \(testownik.currentTest)")
+    }
+    
+    // MARK: TestownikDelegate protocol "refreshUI" metods
+    func refreshButtonUI(forFilePosition filePosition: Testownik.FilePosition) {
+        if filePosition == .first {
+            hideButton(forButtonNumber: 0)
+            hideButton(forButtonNumber: 1)
+        }
+        else if filePosition == .last {
+            hideButton(forButtonNumber: 3)
+        }
+        else {
+            hideButton(forButtonNumber: 0, isHide: false)
+            hideButton(forButtonNumber: 1, isHide: false)
+            hideButton(forButtonNumber: 3, isHide: false)
+        }
+        refreshView()
+    }
+
     // MARK: ListeningDelegate method
     func updateGUI(messae recordedMessage: String) {
         listeningText.text = recordedMessage
@@ -61,7 +121,7 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
         listening.didTapRecordButton()
         listeningText.text = "🔴  Start listening  🎤 👄"
         let text = " to jest zakończenie ekran końca"
-        let yy = command.findCommand(forText: text)
+        //let yy = command.findCommand(forText: text)
         //findText(forText: text, patern: "lewo")
     }
     func tapNumberButton(forCommand cmd: Command.CommandList) {
@@ -83,8 +143,8 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
             case .reduceScr:    testownik.visableLevel +=  (testownik.visableLevel < 4 ? 1 : 0)
             case .incScreen:    testownik.visableLevel -= (testownik.visableLevel > 0 ? 1 : 0)
             case .left:         firstButtonPress(UIButton())
+            case .righi:        print("CMD")
             case .fullScreen:   print("CMD")
-                               
             case  .one,
                   .two,
                   .three,
@@ -94,15 +154,10 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
                   .seven,
                   .eight,
                   .nine,
-                  .ten:         tapNumberButton(forCommand: cmd)
-            
-                let butt = UIButton()
-                butt.tag = cmd.rawValue
-                buttonAnswerPress(sender: UIButton())
-
-                
-            case .left:         print("CMD")
-            case .righi:        print("CMD")
+                  .ten: tapNumberButton(forCommand: cmd)
+                        let butt = UIButton()
+                        butt.tag = cmd.rawValue
+                        buttonAnswerPress(sender: UIButton())
             case .end:          print("CMD")
             case .exit:         print("CMD")
             case .listen:       print("CMD")
@@ -176,9 +231,12 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
         print("TestownikViewController viewDidLoad")        
         Settings.checkResetRequest(forUIViewController: self)
         listening.linkSpeaking = speech.self
-        listening.delegate = self
-        command.delegate = self
-
+        listening.delegate     = self
+        command.delegate       = self
+        testownik.delegate     = self
+        gestures.delegate      = self
+        gestures.setView(forView: view)
+        
         listeningText.userAnimation(2.8, type: .push, subType: .fromLeft, timing: .defaultTiming)
         //listeningText.alpha = alphaLabel
         listening.requestAuth()
@@ -189,9 +247,6 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
         super.viewDidLoad()
         var i = 0
         self.title = "Test (001)"
-        gestures.setView(forView: view)
-        gestures.delegate  = self
-        testownik.delegate = self
         // MARKT: MAYBY ERROR
         //testownik.loadTestFromDatabase()
         print("Stack count: \(actionsButtonStackView.arrangedSubviews.count)")
@@ -201,7 +256,7 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
                 butt.layer.cornerRadius = self.cornerRadius
                 butt.layer.borderWidth = 1
                 butt.layer.borderColor = UIColor.brown.cgColor
-                butt.addTarget(self, action: #selector(buttonAnswerPress), for: .touchUpInside)
+                butt.addTarget(self, action: #selector(buttonAnswerPress), for: .touchUpInside) //touchUpInside
                 butt.tag = i
                 i += 1
             }
@@ -221,6 +276,9 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
         gestures.addSwipeGestureToView(direction: .down)
         gestures.addPinchGestureToView()
         gestures.addScreenEdgeGesture()
+        gestures.addLongPressGesture()
+        gestures.addForcePressGesture()
+        
         
         askLabel.layer.cornerRadius = self.cornerRadius
         
@@ -251,57 +309,6 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
         Timer.scheduledTimer(timeInterval: 30.0, target: self, selector: #selector(startMe), userInfo: nil, repeats: false)
     }
     //--------------------------------
-    // MARK: GesturesDelegate  protocol metods
-    func pinchRefreshUI(sender: UIPinchGestureRecognizer) {
-        print("Pinch touches:\(sender.numberOfTouches),\(sender.scale) ")
-        stackView.spacing = initalStackSpacing * sender.scale
-        //view.transform = CGAffineTransform(scaleX: sender.scale, y: sender.scale)
-    }
-    func eadgePanRefreshUI() {
-        print("Edge gesture")
-    }
-    func swipeRefreshUI(direction: UISwipeGestureRecognizer.Direction) {
-        print("=====\nA currentTest: \(testownik.currentTest)")
-        switch direction {
-            case .right:
-                //if testownik.count > 1 {
-                    testownik.previous()
-                    //testownik.currentTest -=  testownik.filePosition != .first  ? 1 : 0
-                //}
-                print("Swipe to right")
-            case .left:
-                //if testownik.count > 0 {
-                    testownik.next()
-                    //testownik.currentTest +=  testownik.filePosition != .last  ? 1 : 0
-                //}
-                print("Swipe  & left ")
-            case .up:
-                print("Swipe up")
-                testownik.visableLevel +=  testownik.visableLevel < 4 ? 1 : 0
-            case .down:
-                print("Swipe down")
-                testownik.visableLevel -= testownik.visableLevel > 0 ? 1 : 0
-            default:
-                print("Swipe unrecognized")
-            }
-         print("Y pos: \(testownik.currentTest)")
-    }
-    // MARK: TestownikDelegate protocol "refreshUI" metods
-    func refreshButtonUI(forFilePosition filePosition: Testownik.FilePosition) {
-        if filePosition == .first {
-            hideButton(forButtonNumber: 0)
-            hideButton(forButtonNumber: 1)
-        }
-        else if filePosition == .last {
-            hideButton(forButtonNumber: 3)
-        }
-        else {
-            hideButton(forButtonNumber: 0, isHide: false)
-            hideButton(forButtonNumber: 1, isHide: false)
-            hideButton(forButtonNumber: 3, isHide: false)
-        }
-        refreshView()
-    }
     func resizeView() {
         //self.view.setNeedsUpdateConstraints()
         //self.view.layoutIfNeeded()
@@ -327,9 +334,6 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
                 self.navigationController?.isNavigationBarHidden = false
                 resizeView()
                 // setNeedsUpdateConstraints
-
-                
-                
             case 3:
                 self.listeningText.alpha = alphaLabel
                 listeningText.isHidden = false
@@ -397,8 +401,8 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
         let bgColorSelelect:   UIColor =  selectedColor
         let bgColorUnSelelect: UIColor =  unSelectedColor
         let youSelectedNumber: Int = sender.tag
-        
         var isChecked:Bool = false
+        
         print("buttonAnswerPress:\(youSelectedNumber)")
         guard testownik.currentTest < testownik.count else {  return   }
         isChecked = testownik[testownik.currentTest].youAnswer2.contains(youSelectedNumber)
@@ -515,11 +519,11 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
     func getAnswer(_ codeAnswer: String) -> [Bool] {
         var answer = [Bool]()
         let myLenght=codeAnswer.count
-        print("myLenght:\(myLenght)")
+        //print("myLenght:\(myLenght)")
         for i in 1..<myLenght {
             answer.append(codeAnswer.suffix(codeAnswer.count)[i]=="1" ? true : false)
         }
-        print("answer,\(answer)")
+        //print("answer,\(answer)")
         return answer
     }
         //    let button = UIButton(frame: CGRect(x: 100, y: 100, width: 100, height: 50))
