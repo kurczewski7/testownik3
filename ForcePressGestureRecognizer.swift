@@ -8,12 +8,11 @@
 
 import Foundation
 import UIKit.UIGestureRecognizerSubclass
-import UIKit
 
 @available(iOS 9.0, *)
 final class ForcePressGestureRecognizer: UIGestureRecognizer {
-    private let forceLevel: CGFloat!  = 0.7
-
+    var forceLevel: CGFloat  = 0.7
+    
     override public init(target: Any?, action: Selector?) {
         super.init(target: target, action: action)
     }

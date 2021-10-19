@@ -8,9 +8,10 @@
 
 import UIKit
 class TestownikViewController: UIViewController, GesturesDelegate, TestownikDelegate, ListeningDelegate, CommandDelegate    {
-    func forcePressRefreshUI(sender: ForcePressGestureRecognizer) {
-        print("forcePressRefreshUI,\(sender.numberOfTouches)")
+    func tapRefreshUI(sender: UITapGestureRecognizer) {
+        print("tapRefreshUI NOWY:\(sender.view?.tag)")
     }
+    
     
     // MARK: other classes
     let listening = Listening()
@@ -62,9 +63,10 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
         print("Edge gesture")
     }
     func longPressRefreshUI(sender: UILongPressGestureRecognizer) {
-        if sender.state == .ended {
-            print("longPressRefreshUI End")
-        }
+        print("longPressRefreshUI End:\(sender.view?.tag)")
+    }
+    func forcePressRefreshUI(sender: ForcePressGestureRecognizer) {
+        print("forcePressRefreshUI,\(sender.numberOfTouches),\(sender.view?.tag)")
     }
     func swipeRefreshUI(direction: UISwipeGestureRecognizer.Direction) {
         print("=====\nA currentTest: \(testownik.currentTest)")
@@ -230,6 +232,7 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
     override func viewDidLoad() {
         print("TestownikViewController viewDidLoad")        
         Settings.checkResetRequest(forUIViewController: self)
+        
         listening.linkSpeaking = speech.self
         listening.delegate     = self
         command.delegate       = self
@@ -256,7 +259,12 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
                 butt.layer.cornerRadius = self.cornerRadius
                 butt.layer.borderWidth = 1
                 butt.layer.borderColor = UIColor.brown.cgColor
-                butt.addTarget(self, action: #selector(buttonAnswerPress), for: .touchUpInside) //touchUpInside
+                //butt.addTarget(self, action: #selector(buttonAnswerPress), for: .touchUpInside) //touchUpInside
+                gestures.addTapGestureToView(forView: butt)
+                gestures.addForcePressGesture(forView: butt)
+                gestures.addLongPressGesture(forView: butt)
+                //let gestureLong = gesture.addGestureRecognizer(<#T##UIGestureRecognizer#>)
+                //butt.addGestureRecognizer(gestures.addLongPressGesture())
                 butt.tag = i
                 i += 1
             }
@@ -269,6 +277,8 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
         tabHigh.append(highButton6)
         tabHigh.append(highButton7)
         tabHigh.append(highButton8)
+        tabHigh.append(highButton9)
+        tabHigh.append(highButton10)
         
         gestures.addSwipeGestureToView(direction: .right)
         gestures.addSwipeGestureToView(direction: .left)
@@ -276,8 +286,8 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
         gestures.addSwipeGestureToView(direction: .down)
         gestures.addPinchGestureToView()
         gestures.addScreenEdgeGesture()
-        gestures.addLongPressGesture()
-        gestures.addForcePressGesture()
+        //gestures.addLongPressGesture()
+        //gestures.addForcePressGesture()
         
         
         askLabel.layer.cornerRadius = self.cornerRadius

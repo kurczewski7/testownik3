@@ -9,63 +9,90 @@
 import UIKit
 
 protocol GesturesDelegate {
+    func eadgePanRefreshUI()
+    func tapRefreshUI(sender: UITapGestureRecognizer)
     func pinchRefreshUI(sender: UIPinchGestureRecognizer)
     func longPressRefreshUI(sender: UILongPressGestureRecognizer)
     func forcePressRefreshUI(sender: ForcePressGestureRecognizer)
-    func eadgePanRefreshUI()
     func swipeRefreshUI(direction: UISwipeGestureRecognizer.Direction)
 }
 class Gestures {
-    var view: UIView? = nil
+    var view: UIView?  = nil
     let xx = UITouch()
     func yy() {
         xx.force
-        //xx.maximumPossibleForce = 2
-        
+        let zz = xx.maximumPossibleForce
+        let cc = xx.gestureRecognizers?[0]
+        print("maximumPossibleForce:\(zz),\(cc)")
     }
     var delegate: GesturesDelegate?
-         func setView(forView view: UIView) {
-                self.view = view
+    var minimumPressDuration = 0.9      // default 0.9
+    var numberOfTouchesRequired = 1     // default 1
+    
+     func setView(forView view: UIView) {
+            self.view = view
+     }
+    func addTapGestureToView(forView aView: UIView? = nil, numberOfTouchesRequired touchNumber: Int = 1) {
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(tapAction))
+        //gesture.minimumPressDuration = self.minimumPressDuration
+        gesture.numberOfTouchesRequired = touchNumber
+        if let aView = aView {
+            aView.addGestureRecognizer(gesture)
+            print("EEEE:  addLongPressGesture:\(aView.tag)")
+            return
+        }
+        if let view = view {
+            view.addGestureRecognizer(gesture)
+            print("FFFF:  addLongPressGesture")
+        }
+    }
+     func addSwipeGestureToView(direction: UISwipeGestureRecognizer.Direction) {
+        if let view = view {
+            let swipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeAction))
+            swipe.direction = direction
+            view.addGestureRecognizer(swipe)
+        }
+     }
+     func addPinchGestureToView() {
+         if let view = view {
+            let pinch = UIPinchGestureRecognizer(target: self, action: #selector(pichAction))
+            view.addGestureRecognizer(pinch)
          }
-         func addSwipeGestureToView(direction: UISwipeGestureRecognizer.Direction) {
-            if view != nil {
-                let swipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeAction))
-                swipe.direction = direction
-                view!.addGestureRecognizer(swipe)
-
-            }
+     }
+    func addScreenEdgeGesture(edge: UIRectEdge = .left) {
+         if let view = view {
+            let gesture = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(eadgeAction))
+            gesture.edges = edge
+            view.addGestureRecognizer(gesture)
          }
-         func addPinchGestureToView() {
-             if view != nil {
-                let pinch = UIPinchGestureRecognizer(target: self, action: #selector(pichAction))
-                view!.addGestureRecognizer(pinch)
-             }
+     }
+    func addLongPressGesture(forView aView: UIView? = nil) {
+        let gesture = UILongPressGestureRecognizer(target: self, action: #selector(longPressAction))
+        gesture.minimumPressDuration = self.minimumPressDuration
+        gesture.numberOfTouchesRequired = self.numberOfTouchesRequired
+        if let aView = aView {
+            aView.addGestureRecognizer(gesture)
+            print("CCCC:  addLongPressGesture:\(aView.tag)")
+            return
+        }
+        if let view = view {
+            view.addGestureRecognizer(gesture)
+            print("AAAA:  addLongPressGesture")
+        }
+     }
+     func addForcePressGesture(forView aView: UIView? = nil) {
+         let gesture = ForcePressGestureRecognizer(target: self, action: #selector(forcePressAction))
+         if let aView = aView {
+             self.view = aView
+             view?.addGestureRecognizer(gesture)
+             print("DDDD:  addForcePressGesture:\(aView.tag)")
+             return
          }
-        func addScreenEdgeGesture(edge: UIRectEdge = .left) {
-             if view != nil {
-                let gesture = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(eadgeAction))
-                gesture.edges = edge
-                view!.addGestureRecognizer(gesture)
-             }
-         }
-         func addLongPressGesture() {
-            if view != nil {
-                let gesture = UILongPressGestureRecognizer(target: self, action: #selector(longPressAction))
-                gesture.minimumPressDuration = 1.0
-                gesture.numberOfTouchesRequired = 1
-                view!.addGestureRecognizer(gesture)
-                print("AAAA:  addLongPressGesture")
-            }
-         }
-         func addForcePressGesture() {
-            if view != nil {
-                let gesture = ForcePressGestureRecognizer(target: self, action: #selector(forcePressAction))
-                //gesture.minimumPressDuration = 1.0
-                //gesture.numberOfTouchesRequired = 1
-                view!.addGestureRecognizer(gesture)
-                print("BBB:  addForcePressGesture")
-            }
-         }
+        if let view = view {
+            view.addGestureRecognizer(gesture)
+            print("BBB:  addForcePressGesture")
+        }
+     }
 //func ForcePressGesture() {
 //            if view != nil {
 //                let gesture = ForcePressGestureRecognizer(target: self, action: #selector(forcePressAction))
@@ -81,6 +108,11 @@ class Gestures {
 
     //UILongPressGestureRecognizer
         //----------------------
+        @objc func tapAction(sender: UITapGestureRecognizer) {
+            if sender.state == .ended {
+                delegate?.tapRefreshUI(sender: sender)
+            }
+        }
          @objc func swipeAction(sender: UISwipeGestureRecognizer) {
              delegate?.swipeRefreshUI(direction: sender.direction)
              //swipeRefreshUI(direction: sender.direction)
@@ -94,9 +126,13 @@ class Gestures {
              //pinchRefreshUI(sender: sender)
          }
          @objc func longPressAction(sender: UILongPressGestureRecognizer) {
-            delegate?.longPressRefreshUI(sender: sender)
+             if sender.state == .ended {
+                 delegate?.longPressRefreshUI(sender: sender)
+             }
          }
          @objc func  forcePressAction(sender: ForcePressGestureRecognizer) {
-             delegate?.forcePressRefreshUI(sender: sender)
+             if let tag = sender.view?.tag {
+                 delegate?.forcePressRefreshUI(sender: sender)
+             }             
          }
 }

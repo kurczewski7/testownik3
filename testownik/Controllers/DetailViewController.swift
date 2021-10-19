@@ -9,6 +9,10 @@
 import UIKit
 
 class DetailViewController: UIViewController, GesturesDelegate {
+    func tapRefreshUI(sender: UITapGestureRecognizer) {
+      
+    }
+    
     func forcePressRefreshUI(sender: ForcePressGestureRecognizer) {
     
     }
