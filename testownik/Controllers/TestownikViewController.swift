@@ -52,6 +52,18 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
     @IBOutlet weak var highButton8: NSLayoutConstraint!
     @IBOutlet weak var highButton9: NSLayoutConstraint!
     @IBOutlet weak var highButton10: NSLayoutConstraint!
+   
+    // MARK: addAllRequiredestures
+    func addAllRequiredestures() {
+        gestures.addSwipeGestureToView(direction: .right)
+        gestures.addSwipeGestureToView(direction: .left)
+        gestures.addSwipeGestureToView(direction: .up)
+        gestures.addSwipeGestureToView(direction: .down)
+        gestures.addPinchGestureToView()
+        gestures.addScreenEdgeGesture()
+        //gestures.addLongPressGesture()
+        //gestures.addForcePressGesture()
+    }
     
     // MARK: GesturesDelegate  protocol metods
     func pinchRefreshUI(sender: UIPinchGestureRecognizer) {
@@ -279,15 +291,8 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
         tabHigh.append(highButton8)
         tabHigh.append(highButton9)
         tabHigh.append(highButton10)
-        
-        gestures.addSwipeGestureToView(direction: .right)
-        gestures.addSwipeGestureToView(direction: .left)
-        gestures.addSwipeGestureToView(direction: .up)
-        gestures.addSwipeGestureToView(direction: .down)
-        gestures.addPinchGestureToView()
-        gestures.addScreenEdgeGesture()
-        //gestures.addLongPressGesture()
-        //gestures.addForcePressGesture()
+        addAllRequiredestures()
+
         
         
         askLabel.layer.cornerRadius = self.cornerRadius
