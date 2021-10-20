@@ -70,29 +70,35 @@ class Gestures {
         let gesture = UILongPressGestureRecognizer(target: self, action: #selector(longPressAction))
         gesture.minimumPressDuration = self.minimumPressDuration
         gesture.numberOfTouchesRequired = self.numberOfTouchesRequired
-        if let aView = aView {
-            aView.addGestureRecognizer(gesture)
-            print("CCCC:  addLongPressGesture:\(aView.tag)")
-            return
-        }
-        if let view = view {
-            view.addGestureRecognizer(gesture)
-            print("AAAA:  addLongPressGesture")
-        }
-     }
+        addOneGesture(gesture, forView: aView)
+    }
+    
+//        if let view = view {
+//            view.addGestureRecognizer(gesture)
+//            print("AAAA:  addLongPressGesture")
+//        }
+//     }
      func addForcePressGesture(forView aView: UIView? = nil) {
          let gesture = ForcePressGestureRecognizer(target: self, action: #selector(forcePressAction))
-         if let aView = aView {
-             self.view = aView
-             view?.addGestureRecognizer(gesture)
-             print("DDDD:  addForcePressGesture:\(aView.tag)")
-             return
-         }
-        if let view = view {
-            view.addGestureRecognizer(gesture)
-            print("BBB:  addForcePressGesture")
-        }
+         addOneGesture(gesture, forView: aView)
      }
+//         if let aView = aView {
+//             self.view = aView
+//             view?.addGestureRecognizer(gesture)
+//             print("DDDD:  addForcePressGesture:\(aView.tag)")
+//             return
+//         }
+//        if let view = view {
+//            view.addGestureRecognizer(gesture)
+//            print("BBB:  addForcePressGesture")
+//        }
+
+    private func addOneGesture(_ gesture: UIGestureRecognizer, forView aView: UIView?)   {
+        guard let v = (aView == nil ? self.view : aView) else {     return        }
+        v.addGestureRecognizer(gesture)
+        print("CCCC:  addLongPressGesture:\(v.tag)")
+    }
+
 //func ForcePressGesture() {
 //            if view != nil {
 //                let gesture = ForcePressGestureRecognizer(target: self, action: #selector(forcePressAction))
