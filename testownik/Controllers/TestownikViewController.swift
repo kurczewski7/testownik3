@@ -8,11 +8,18 @@
 
 import UIKit
 class TestownikViewController: UIViewController, GesturesDelegate, TestownikDelegate, ListeningDelegate, CommandDelegate    {
+//    func addAllRequiredGestures(sender: Gestures) {
+//
+//    }
+    
+    func addCustomGesture(_ gestureType: Gestures.GesteresList, forView aView: UIView?, _ touchNumber: Int) {
+        
+    }
+    
     func tapRefreshUI(sender: UITapGestureRecognizer) {
         print("tapRefreshUI NOWY:\(sender.view?.tag)")
     }
-    
-    
+        
     // MARK: other classes
     let listening = Listening()
     let command   = Command()
@@ -23,6 +30,9 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
     var cornerRadius: CGFloat = 10
     let initalStackSpacing: CGFloat = 30.0
     var tabHigh: [NSLayoutConstraint] = [NSLayoutConstraint]()
+    var loremIpsum = """
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+"""
   
     let alphaLabel =  0.9
     
@@ -54,13 +64,14 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
     @IBOutlet weak var highButton10: NSLayoutConstraint!
    
     // MARK: addAllRequiredestures
-    func addAllRequiredestures() {
-        gestures.addSwipeGestureToView(direction: .right)
-        gestures.addSwipeGestureToView(direction: .left)
-        gestures.addSwipeGestureToView(direction: .up)
-        gestures.addSwipeGestureToView(direction: .down)
-        gestures.addPinchGestureToView()
-        gestures.addScreenEdgeGesture()
+    func addAllRequiredGestures(sender: Gestures) {
+        guard  gestures.view != nil  else { return   }
+        sender.addSwipeGestureToView(direction: .right)
+        sender.addSwipeGestureToView(direction: .left)
+        sender.addSwipeGestureToView(direction: .up)
+        sender.addSwipeGestureToView(direction: .down)
+        sender.addPinchGestureToView()
+        sender .addScreenEdgeGesture()
         //gestures.addLongPressGesture()
         //gestures.addForcePressGesture()
     }
@@ -73,11 +84,25 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
     }
     func eadgePanRefreshUI() {
         print("Edge gesture")
+//        let xx = UILabel()
+//        let yy = xx.intrinsicContentSize.width
     }
+    //======================
     func longPressRefreshUI(sender: UILongPressGestureRecognizer) {
-        print("longPressRefreshUI End:\(sender.view?.tag)")
+        let buttons = stackView.arrangedSubviews as! [UIButton]
+        if let nr = sender.view?.tag {
+            print("BUTTON \(nr):\(buttons[nr].fillLevel)")
+            //buttons[nr].userAnimation(2.8, type: .push, subType: .fromLeft, timing: .defaultTiming)
+            //buttons[nr].titleLabel?.userAnimation(2.8, type: .push, subType: .fromLeft, timing: .defaultTiming)
+            buttons[nr].titleLabel?.scrollLeft()
+        }
+        print("longPressRefreshUI End:\(sender.view?.tag),")
     }
+    //==================
     func forcePressRefreshUI(sender: ForcePressGestureRecognizer) {
+        //Setup.displayToast(forView: self.view, message: loremIpsum, seconds: 10)
+        let label = Setup.popUpStrong(context: self, msg: loremIpsum, numberLines: 8, height: 250)
+        gestures.addTapGestureToView(forView: label, touchNumber: 1)
         print("forcePressRefreshUI,\(sender.numberOfTouches),\(sender.view?.tag)")
     }
     func swipeRefreshUI(direction: UISwipeGestureRecognizer.Direction) {
@@ -132,9 +157,11 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
         microphoneButt.image = (statusOn ?  UIImage(systemName: "mic.fill") : UIImage(systemName: "mic") )
     }
     @objc func startMe() {
-        listening.didTapRecordButton()
+        //listening.didTapRecordButton()
         listeningText.text = "🔴  Start listening  🎤 👄"
-        let text = " to jest zakończenie ekran końca"
+        //listeningText.text =
+        
+
         //let yy = command.findCommand(forText: text)
         //findText(forText: text, patern: "lewo")
     }
@@ -197,31 +224,23 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
 //        }
     }
     @IBAction func microphonePress(_ sender: UIBarButtonItem) {
-        microphoneButt.image = (microphoneButt.image == UIImage(systemName: "mic") ? UIImage(systemName: "mic.fill") : UIImage(systemName: "mic"))
-      
+        microphoneButt.image = (microphoneButt.image == UIImage(systemName: "mic") ? UIImage(systemName: "mic.fill") : UIImage(systemName: "mic"))      
     }
     @IBAction func nevButtonSpaceSubPress(_ sender: UIBarButtonItem) {
         stackView.spacing -= 5
     }
     @IBAction func ResizeButtonPlusPress(_ sender: UIBarButtonItem) {
-        for buttHight in tabHigh {
-            buttHight.constant += 2
-        }
+        for buttHight in tabHigh {  buttHight.constant += 2        }
     }
     @IBAction func ResizeButtonMinusPress(_ sender: UIBarButtonItem) {
          askLabel.layer.cornerRadius = 10
-        for buttHight in tabHigh {
-            buttHight.constant -= 2
-        }
+        for buttHight in tabHigh {       buttHight.constant -= 2        }
     }
     @IBAction func firstButtonPress(_ sender: UIButton) {
         testownik.currentTest = 0
     }
     @IBAction func previousButtonPress(_ sender: UIButton) {
-        if testownik.currentTest > 0 {
-            //testownik.currentTest -= 1
-            testownik.previous()
-        }
+        if testownik.currentTest > 0 {       testownik.previous()  }
     }
     @IBAction func checkButtonPress(_ sender: UIButton) {
         guard testownik.currentTest < testownik.count else {    return        }
@@ -235,14 +254,25 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
         }
     }
     @IBAction func nextButtonPress(_ sender: UIButton) {
-        if testownik.currentTest < testownik.count-1 {
-            //testownik.currentTest += 1
-            testownik.next()
-        }
+        if testownik.currentTest < testownik.count-1 {      testownik.next()        }
+    }
+    @objc func tapAction(sender :UITapGestureRecognizer) {
+        print("TAP AAAAAAAA")
     }
     // MARK: viewDidLoad - initial method
     override func viewDidLoad() {
-        print("TestownikViewController viewDidLoad")        
+        print("TestownikViewController viewDidLoad")
+        
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(tapAction))
+        gesture.numberOfTouchesRequired = 1
+        askLabel.addGestureRecognizer(gesture)
+        askLabel.isUserInteractionEnabled = true
+        
+        //let gesture = UITapGestureRecognizer(target: self, action: #selector(tapAction))
+        //gesture.numberOfTouchesRequired = touchNumber
+        //addOneGesture(gesture, forView: aView)
+        
+        
         Settings.checkResetRequest(forUIViewController: self)
         
         listening.linkSpeaking = speech.self
@@ -252,7 +282,8 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
         gestures.delegate      = self
         gestures.setView(forView: view)
         
-        listeningText.userAnimation(2.8, type: .push, subType: .fromLeft, timing: .defaultTiming)
+        listeningText.text = loremIpsum
+        listeningText.userAnimation(12.8, type: .push, subType: .fromLeft, timing: .defaultTiming)
         //listeningText.alpha = alphaLabel
         listening.requestAuth()
         
@@ -281,6 +312,7 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
                 i += 1
             }
         }
+        
         tabHigh.append(highButton1)
         tabHigh.append(highButton2)
         tabHigh.append(highButton3)
@@ -291,9 +323,8 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
         tabHigh.append(highButton8)
         tabHigh.append(highButton9)
         tabHigh.append(highButton10)
-        addAllRequiredestures()
-
         
+        addAllRequiredGestures(sender: gestures)
         
         askLabel.layer.cornerRadius = self.cornerRadius
         

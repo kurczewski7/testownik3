@@ -201,8 +201,7 @@ class Testownik: DataOperations {
     }
     func lastRandom(repeat: Bool) -> Test?  {
         return nil
-    }
-    
+    }    
     
     // MARK: Methods for Testownik database
     func loadTestFromDatabase() {
@@ -223,7 +222,6 @@ class Testownik: DataOperations {
                 else    {
                     print("Pełny rekord")
                     fillDataDb()
-                    
                 }
             }
         }

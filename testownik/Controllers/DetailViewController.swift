@@ -9,12 +9,12 @@
 import UIKit
 
 class DetailViewController: UIViewController, GesturesDelegate {
-    func tapRefreshUI(sender: UITapGestureRecognizer) {
-      
+    func addAllRequiredGestures(sender: Gestures) {
+        sender.addCustomGesture(.tap, forView: self.view)
     }
-    
-    func forcePressRefreshUI(sender: ForcePressGestureRecognizer) {
-    
+    func tapRefreshUI(sender: UITapGestureRecognizer) {
+    }
+    func forcePressRefreshUI(sender: ForcePressGestureRecognizer) {    
     }
     
     // MARK: Parameters for segue value

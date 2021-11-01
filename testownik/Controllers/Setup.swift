@@ -157,11 +157,10 @@ class Setup {
             toastLabel.removeFromSuperview()
         })
     }
-    class func popUp(context ctx: UIViewController, msg: String) {
-
+    class func popUp(context ctx: UIViewController, msg: String, height: CGFloat = 100) {
         let toast = UILabel(frame:
             CGRect(x: 16, y: ctx.view.frame.size.height / 2,
-                   width: ctx.view.frame.size.width - 32, height: 100))
+                   width: ctx.view.frame.size.width - 32, height: height))
 
         toast.backgroundColor = UIColor.lightGray
         toast.textColor = UIColor.white
@@ -170,31 +169,48 @@ class Setup {
         toast.font = UIFont.systemFont(ofSize: 20)
         toast.layer.cornerRadius = 12;
         toast.clipsToBounds  =  true
-
         toast.text = msg
 
         ctx.view.addSubview(toast)
-
         UIView.animate(withDuration: 15.0, delay: 0.2,
-            options: .curveEaseOut, animations: {
+            options: .curveEaseOut,  animations: {
             toast.alpha = 0.0
             }, completion: {(isCompleted) in
                 toast.removeFromSuperview()
         })
     }
-    
-    //----
-  
+    @objc
+    class func cancelPress() {
+        print("END VIEW")
+    }
+    class func popUpStrong(context ctx: UIViewController, msg: String, numberLines lines: Int = 6, height: CGFloat = 200)  -> UILabel   {
+        let toast = UILabel(frame:
+            CGRect(x: 16, y: ctx.view.frame.size.height / 2,
+                   width: ctx.view.frame.size.width - 32, height: height))
 
-//    class func unzipFile(atPath path: String, delegate: SSZipArchiveDelegate) {
-//        let documentsURL: URL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-//        let destFolder = "/Testownik_tmp"
-//        let destPath = documentsURL.appendingPathComponent(destFolder, isDirectory: true)
-//        let destString = destPath.absoluteString
-//        if ( !FileManager.default.fileExists(atPath: destString) )
-//        {
-//            try! FileManager.default.createDirectory(at: destPath, withIntermediateDirectories: true, attributes: nil)
-//        }
-//        SSZipArchive.unzipFile(atPath: path, toDestination: destString, delegate: delegate)
-//    }
+        toast.backgroundColor = UIColor.systemBlue
+        toast.textColor = UIColor.white
+        toast.textAlignment = .center;
+        toast.numberOfLines = lines
+        toast.font = UIFont.systemFont(ofSize: 20)
+        toast.layer.cornerRadius = 12;
+        toast.clipsToBounds  =  true
+        toast.isUserInteractionEnabled = true
+        //toast.addGestureRecognizer = esture
+        //gestures.addTapGestureToView(forView: toast)
+        //gestures.addTapGestureToView()
+        //toast.userAnimation(<#T##duration: CFTimeInterval##CFTimeInterval#>, type: .push, subType: ., timing: <#T##UIView.TimingAnim#>)
+        //toast.addTarget(self, action: #selector(cancelPress), for: .touchUpInside)
+        toast.text = msg
+        
+        
+        ctx.view.addSubview(toast)
+//        UIView.animate(withDuration: 0.9 , delay: 15.0,
+//            options: .curveEaseOut,  animations: {
+//            toast.alpha = 0.0
+//            }, completion: {(isCompleted) in
+//                toast.removeFromSuperview()
+//        })
+      return toast
+    }
 }

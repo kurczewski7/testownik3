@@ -28,6 +28,7 @@ extension UIView {
         case easeInEaseOut
         case defaultTiming
     }
+    
     func userAnimation(_ duration: CFTimeInterval, type: TypeAnim, subType: SubTypeAnim, timing: TimingAnim = TimingAnim.defaultTiming)  {
         var aType    = CATransitionType.push
         var aSubType = CATransitionSubtype.fromLeft
@@ -51,6 +52,7 @@ extension UIView {
             case .easeInEaseOut: aTiming = CAMediaTimingFunctionName.easeInEaseOut
             case .defaultTiming: aTiming = CAMediaTimingFunctionName.default
         }
+
         let animation: CATransition = CATransition()
         animation.timingFunction = CAMediaTimingFunction(name: aTiming)
         animation.type = aType
@@ -59,4 +61,12 @@ extension UIView {
         //layer.add(animation, forKey: CATransitionType.push)
         layer.add(animation, forKey: "CATransitionType.push")
     }
+    //                UIView.animate(withDuration: 0.5, animations: {
+    //                    self.fadedView.alpha = 0.0
+    //                }) { (finished) in
+    //                    self.fadedView.isHidden = true
+    //                    self.recordingView.isHidden = true
+    //                    self.tableView.reloadData()
+    //                }
+
 }
