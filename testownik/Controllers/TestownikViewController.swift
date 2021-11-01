@@ -16,14 +16,6 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
         
     }
     
-    func tapRefreshUI(sender: UITapGestureRecognizer) {
-        if sender.view?.tag == 2021 {
-            view.window?.rootViewController?.dismiss(animated: true, completion: {
-                print("TO JUZ JEST KONIEC")
-            })
-        }
-        print("tapRefreshUI NOWY:\(sender.view?.tag)")
-    }
         
     // MARK: other classes
     let listening = Listening()
@@ -82,6 +74,15 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
     }
     
     // MARK: GesturesDelegate  protocol metods
+    func tapRefreshUI(sender: UITapGestureRecognizer) {
+        if sender.view?.tag == 2021 {
+            sender.view?.window?.rootViewController?.dismiss(animated: true, completion: {
+                sender.view?.removeFromSuperview()
+                print("TO JUZ JEST KONIEC")
+            })
+        }
+        print("tapRefreshUI NOWY:\(sender.view?.tag)")
+    }
     func pinchRefreshUI(sender: UIPinchGestureRecognizer) {
         print("Pinch touches:\(sender.numberOfTouches),\(sender.scale) ")
         stackView.spacing = initalStackSpacing * sender.scale
@@ -263,11 +264,13 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
     }
     @objc func tapAction(sender :UITapGestureRecognizer) {
         print("TAP AAAAAAAA")
-        sender.view?.window?.rootViewController?.dismiss(animated: true, completion: {
+        sender.view?.removeFromSuperview()
+        //self.view.removeFromSuperview(sender.view)
+        //sender.view?.window?.rootViewController?.dismiss(animated: true, completion: {
             print("KONIEC")
-        })
-        //window?.rootViewController?.dismiss(animated: <#T##Bool#>, completion: <#T##(() -> Void)?##(() -> Void)?##() -> Void#>)
     }
+        //window?.rootViewController?.dismiss(animated: <#T##Bool#>, completion: <#T##(() -> Void)?##(() -> Void)?##() -> Void#>)
+    //}
     // MARK: viewDidLoad - initial method
     override func viewDidLoad() {
         print("TestownikViewController viewDidLoad")

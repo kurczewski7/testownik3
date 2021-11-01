@@ -129,8 +129,8 @@ class Gestures {
         print("Wykonano gest:\(self.cuurentGestureType.rawValue)")
     }
     @objc func tapAction(sender: UITapGestureRecognizer) {
-        print("TAP PRESSET")
-        sender.view?.alpha = 0.2
+//        print("TAP PRESSET")
+//        sender.view?.alpha = 0.2
         if sender.state == .ended {
             delegate?.tapRefreshUI(sender: sender)
         }

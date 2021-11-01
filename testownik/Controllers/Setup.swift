@@ -197,6 +197,7 @@ class Setup {
         toast.clipsToBounds  =  true
         toast.isUserInteractionEnabled = true
         toast.tag = 2021
+        ctx.view.addSubview(toast)
         //toast.addGestureRecognizer = esture
         //gestures.addTapGestureToView(forView: toast)
         //gestures.addTapGestureToView()
