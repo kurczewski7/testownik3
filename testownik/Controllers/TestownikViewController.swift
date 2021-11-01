@@ -17,6 +17,11 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
     }
     
     func tapRefreshUI(sender: UITapGestureRecognizer) {
+        if sender.view?.tag == 2021 {
+            view.window?.rootViewController?.dismiss(animated: true, completion: {
+                print("TO JUZ JEST KONIEC")
+            })
+        }
         print("tapRefreshUI NOWY:\(sender.view?.tag)")
     }
         
@@ -258,6 +263,10 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
     }
     @objc func tapAction(sender :UITapGestureRecognizer) {
         print("TAP AAAAAAAA")
+        sender.view?.window?.rootViewController?.dismiss(animated: true, completion: {
+            print("KONIEC")
+        })
+        //window?.rootViewController?.dismiss(animated: <#T##Bool#>, completion: <#T##(() -> Void)?##(() -> Void)?##() -> Void#>)
     }
     // MARK: viewDidLoad - initial method
     override func viewDidLoad() {
@@ -265,8 +274,9 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
         
         let gesture = UITapGestureRecognizer(target: self, action: #selector(tapAction))
         gesture.numberOfTouchesRequired = 1
-        askLabel.addGestureRecognizer(gesture)
         askLabel.isUserInteractionEnabled = true
+        askLabel.addGestureRecognizer(gesture)
+        //askLabel.window?.rootViewController?.dismiss(animated: <#T##Bool#>, completion: <#T##(() -> Void)?##(() -> Void)?##() -> Void#>)
         
         //let gesture = UITapGestureRecognizer(target: self, action: #selector(tapAction))
         //gesture.numberOfTouchesRequired = touchNumber

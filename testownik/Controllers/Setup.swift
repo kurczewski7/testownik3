@@ -196,6 +196,7 @@ class Setup {
         toast.layer.cornerRadius = 12;
         toast.clipsToBounds  =  true
         toast.isUserInteractionEnabled = true
+        toast.tag = 2021
         //toast.addGestureRecognizer = esture
         //gestures.addTapGestureToView(forView: toast)
         //gestures.addTapGestureToView()
