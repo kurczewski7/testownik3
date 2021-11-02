@@ -88,6 +88,13 @@ class Settings {
 
     }
     class func yyyy() {
+        //var appDefault: NSDictionary = NSDictionary.decodeDictionaryWithKeys(of: AnyClass, objectsOf: AnyObject, forKey: "you_key")
+        var appDefault: Dictionary = NSDictionary.dictionaryWithValues(forKeys: ["you_key"])
+        UserDefaults.standard.register(defaults: appDefault as! [String : Any])
+        UserDefaults.standard.synchronize()
+        
+        UserDefaults.standard.integer(forKey: "you_key")
+        
 //        @IBAction private func share(_ sender: Any?) {
 //          guard var textToShare = textView.text,
 //            !textToShare.isEmpty else { return }
