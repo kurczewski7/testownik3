@@ -30,6 +30,7 @@ class FavoriteTestsViewController: UIViewController, UITableViewDataSource, UITa
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view?.tag = 333
         //listening.delegateSpeaking
 
         listening.requestAuth()

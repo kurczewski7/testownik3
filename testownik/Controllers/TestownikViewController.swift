@@ -15,7 +15,6 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
     func addCustomGesture(_ gestureType: Gestures.GesteresList, forView aView: UIView?, _ touchNumber: Int) {
         
     }
-    
         
     // MARK: other classes
     let listening = Listening()
@@ -68,15 +67,21 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
         sender.addSwipeGestureToView(direction: .up)
         sender.addSwipeGestureToView(direction: .down)
         sender.addPinchGestureToView()
-        sender .addScreenEdgeGesture()
+        sender.addScreenEdgeGesture()
+        sender.addTapGestureToView()
         //gestures.addLongPressGesture()
         //gestures.addForcePressGesture()
     }
     
     // MARK: GesturesDelegate  protocol metods
     func tapRefreshUI(sender: UITapGestureRecognizer) {
+        if Setup.animationEnded {
+            gestures.disabledOtherGestures = false
+        } 
         if sender.view?.tag == 2021 {
             sender.view?.window?.rootViewController?.dismiss(animated: true, completion: {
+                Setup.animationEnded = true
+                self.gestures.disabledOtherGestures = false
                 sender.view?.removeFromSuperview()
                 print("TO JUZ JEST KONIEC")
                 //Setup.setTextColor(forToastType: .toast, backgroundColor: UIColor.brown)
@@ -99,16 +104,27 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
         let buttons = stackView.arrangedSubviews as! [UIButton]
         if let nr = sender.view?.tag {
             print("BUTTON \(nr):\(buttons[nr].fillLevel)")
-            //buttons[nr].userAnimation(2.8, type: .push, subType: .fromLeft, timing: .defaultTiming)
-            //buttons[nr].titleLabel?.userAnimation(2.8, type: .push, subType: .fromLeft, timing: .defaultTiming)
-            buttons[nr].titleLabel?.scrollLeft()
+            if nr == 2021 {
+                print("TAG:\(nr)")
+            }
+            if nr>=0 && nr < 10 {
+                print("Tag:\(nr)")
+                gestures.disabledOtherGestures = true
+                Setup.popUpBlink(context: self, msg: loremIpsum, numberLines: 8, height: 250)
+               
+            }
+            //buttons[nr].titleLabel?.scrollLeft()
         }
         print("longPressRefreshUI End:\(sender.view?.tag),")
     }
     //==================
     func forcePressRefreshUI(sender: ForcePressGestureRecognizer) {
         //Setup.displayToast(forView: self.view, message: loremIpsum, seconds: 10)
+        gestures.disabledOtherGestures = true
         let label = Setup.popUpStrong(context: self, msg: loremIpsum, numberLines: 8, height: 250)
+        //Setup.animationEnded = false
+        
+        
         gestures.addTapGestureToView(forView: label, touchNumber: 1)
         print("forcePressRefreshUI,\(sender.numberOfTouches),\(sender.view?.tag)")
     }
@@ -173,10 +189,16 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
         //findText(forText: text, patern: "lewo")
     }
     func tapNumberButton(forCommand cmd: Command.CommandList) {
-        let butt = UIButton()
-        butt.tag = cmd.rawValue
-        buttonAnswerPress(sender: UIButton())
-        print("TAG:\(butt.tag)")
+        if Setup.animationEnded {
+            gestures.disabledOtherGestures = false
+            let butt = UIButton()
+            butt.tag = cmd.rawValue
+            buttonAnswerPress(sender: UIButton())
+            print("TAG:\(butt.tag)")
+        }
+        else {
+           print("Gestures disabled")
+        }
     }
     func executeCommand(forCommand cmd: Command.CommandList) {
         print("COMMAND executeCommand:\(cmd.rawValue):\(command.vocabularyEn[cmd.rawValue][0])")
@@ -275,7 +297,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
     // MARK: viewDidLoad - initial method
     override func viewDidLoad() {
         print("TestownikViewController viewDidLoad")
-        
+        self.view?.tag = 111
         let gesture = UITapGestureRecognizer(target: self, action: #selector(tapAction))
         gesture.numberOfTouchesRequired = 1
         askLabel.isUserInteractionEnabled = true

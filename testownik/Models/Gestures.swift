@@ -36,6 +36,7 @@ class Gestures {
     var cuurentGestureType : GesteresList = .tap
     var direction :  UISwipeGestureRecognizer.Direction = .left
     var edge: UIRectEdge = .left
+    var disabledOtherGestures = false
     
     var view: UIView?  = nil
     let xx = UITouch()
@@ -131,29 +132,39 @@ class Gestures {
     @objc func tapAction(sender: UITapGestureRecognizer) {
 //        print("TAP PRESSET")
 //        sender.view?.alpha = 0.2
-        if sender.state == .ended {
+        if sender.state == .ended  {
             delegate?.tapRefreshUI(sender: sender)
         }
     }
      @objc func swipeAction(sender: UISwipeGestureRecognizer) {
-         delegate?.swipeRefreshUI(direction: sender.direction)
+         if  !self.disabledOtherGestures {
+             delegate?.swipeRefreshUI(direction: sender.direction)
+         }
+        
          //swipeRefreshUI(direction: sender.direction)
      }
      @objc func eadgeAction() {
-         delegate?.eadgePanRefreshUI()
+         if  !self.disabledOtherGestures {
+             delegate?.eadgePanRefreshUI()
+         }
+             
+         
          //eadgePanRefreshUI()
      }
      @objc func pichAction(sender: UIPinchGestureRecognizer) {
-         delegate?.pinchRefreshUI(sender: sender)
+         if  !self.disabledOtherGestures {
+             delegate?.pinchRefreshUI(sender: sender)
+         }
+         
          //pinchRefreshUI(sender: sender)
      }
      @objc func longPressAction(sender: UILongPressGestureRecognizer) {
-         if sender.state == .ended {
+         if sender.state == .ended  && !self.disabledOtherGestures {
              delegate?.longPressRefreshUI(sender: sender)
          }
      }
      @objc func  forcePressAction(sender: ForcePressGestureRecognizer) {
-         if let tag = sender.view?.tag {
+         if let tag = sender.view?.tag ,  !self.disabledOtherGestures {
              delegate?.forcePressRefreshUI(sender: sender)
          }
      }

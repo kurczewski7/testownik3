@@ -31,6 +31,7 @@ class CloudViewController: UIViewController, CloudPickerDelegate  {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("CloudViewController")
+        self.view?.tag = 222
         self.documents.removeAll()
         Setup.cloudPicker = CloudPicker(presentationController: self)
         Setup.cloudPicker.delegate = self
