@@ -19,6 +19,18 @@ class Setup {
         case french     = "fr_FR"
         case spanish    = "es_ES"
     }
+    enum PopViewType: Int {
+        case toast       = 0
+        case popUp       = 1
+        case popUpStrong = 2
+        case popUpBlink  = 3
+    }
+    static var backgroundColorList = [UIColor.systemBlue] //popUpStrong
+    static var textColorList = [UIColor.white]
+
+    static var backgroundColor = UIColor.systemBlue //popUpStrong
+    static var textColor = UIColor.white
+    
     static var isNumericQuestions = false
     static let askNumber = ["1️⃣","2️⃣","3️⃣","4️⃣","5️⃣","6️⃣","7️⃣","8️⃣","9️⃣","🔟"]
     static var tempStr: String  = ""
@@ -128,6 +140,12 @@ class Setup {
             if currentList[i] == valueToFind { found = true}
         }
         return found
+    }
+    class func setTextColor(forToastType type: Setup.PopViewType, backgroundColor: UIColor?, textColor: UIColor = UIColor.white) {
+        
+    }
+    class func setBackgroundColor(forToastType type: Setup.PopViewType, backgroundColor: UIColor?, textColor: UIColor = UIColor.systemGray) {
+        
     }
     class func displayToast(forController controller: UIViewController, message: String, seconds delay: Double)  {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)

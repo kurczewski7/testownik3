@@ -79,6 +79,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
             sender.view?.window?.rootViewController?.dismiss(animated: true, completion: {
                 sender.view?.removeFromSuperview()
                 print("TO JUZ JEST KONIEC")
+                //Setup.setTextColor(forToastType: .toast, backgroundColor: UIColor.brown)
             })
         }
         print("tapRefreshUI NOWY:\(sender.view?.tag)")
