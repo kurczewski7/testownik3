@@ -5,7 +5,6 @@
 "none given" = "none given zzzz";
 "Enabled" = "Enabled ffff 🇵🇱";
 
-
 "Version" = "Wersja 🇵🇱";
 "System language" = "Język systemu iOS";
 "Repeat options" = "Powtórzenia materiału";
@@ -22,7 +21,7 @@
 "The scope of the tests" = "Zakres testów";
 
 "Repeat mode" = "Tryb powtórzeń";
-//"Repeat" = "Powtarzanie";
+"Repeat" = "Powtarzanie";
 "Dividing the test into parts" = "Podział testu na części";
 
 
@@ -42,10 +41,10 @@
 "25 % of all" = "25 % wszystkich";
 "30 % of all" = "30 % wszystkich";
 
-"Number of test repetitions" = "Liczba powtórzeń testu"
-"No repetitions" = "Brak powtórzeń"
-"Number of repetitions after wrong answer" = "Liczba powtórzeń po błędnej odpowiedzi"
-"No repetitions after error" = "Brak powtórzeń po błędzie"
+"Number of test repetitions" = "Liczba powtórzeń testu";
+"No repetitions" = "Brak powtórzeń";
+"Number of repetitions after wrong answer" = "Liczba powtórzeń po błędnej odpowiedzi";
+"No repetitions after error" = "Brak powtórzeń po błędzie";
 
 
 /*
