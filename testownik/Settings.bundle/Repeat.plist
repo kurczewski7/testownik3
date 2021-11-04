@@ -38,74 +38,50 @@
 		</dict>
 		<dict>
 			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-			<key>Title</key>
-			<string>Learning</string>
-			<key>Key</key>
-			<string>repeat_mode_key2</string>
-			<key>DefaultValue</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-			<key>Title</key>
-			<string>Repeat</string>
-			<key>Key</key>
-			<string>repeating material_key</string>
-			<key>DefaultValue</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>Type</key>
 			<string>PSMultiValueSpecifier</string>
 			<key>Title</key>
-			<string>Repeat range</string>
+			<string>Number of test repetitions</string>
 			<key>Key</key>
-			<string>ragne_a_key</string>
+			<string>no_repetitions_key</string>
 			<key>DefaultValue</key>
-			<string>ragne_a</string>
+			<string>repetition_0</string>
 			<key>Titles</key>
 			<array>
 				<string>No repetitions</string>
-				<string>Only wrong answers</string>
-				<string>75% wrong, 25% right</string>
-				<string>50% wrong, 50% right</string>
+				<string>1</string>
+				<string>2</string>
+				<string>3</string>
 			</array>
 			<key>Values</key>
 			<array>
-				<string>ragne_a</string>
-				<string>ragne_b</string>
-				<string>ragne_c</string>
-				<string>ragne_d</string>
+				<string>repetition_0</string>
+				<string>repetition_1</string>
+				<string>repetition_2</string>
+				<string>repetition_3</string>
 			</array>
 		</dict>
 		<dict>
 			<key>Type</key>
 			<string>PSMultiValueSpecifier</string>
 			<key>Title</key>
-			<string>Dividing the test into parts</string>
+			<string>Number of repetitions after wrong answer</string>
 			<key>Key</key>
-			<string>split_key</string>
+			<string>no_repetitions_wrong_key</string>
 			<key>DefaultValue</key>
-			<string>split_a</string>
+			<string>repetition_wrong_0</string>
 			<key>Titles</key>
 			<array>
-				<string>No split</string>
-				<string>Groups of 10 questions</string>
-				<string>Groups of 30 questions</string>
-				<string>Groups of 100 questions</string>
-				<string>Groups of 300 questions</string>
-				<string>Groups of 900 questions</string>
+				<string>No repetitions after error</string>
+				<string>1</string>
+				<string>2</string>
+				<string>3</string>
 			</array>
 			<key>Values</key>
 			<array>
-				<string>split_a</string>
-				<string>split_b</string>
-				<string>split_c</string>
-				<string>split_d</string>
-				<string>split_e</string>
-				<string>split_f</string>
+				<string>repetition_wrong_0</string>
+				<string>repetition_wrong_1</string>
+				<string>repetition_wrong_2</string>
+				<string>repetition_wrong_3</string>
 			</array>
 		</dict>
 		<dict>
@@ -134,6 +110,34 @@
 				<string>percent_d</string>
 				<string>percent_e</string>
 				<string>percent_f</string>
+			</array>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Dividing the test into parts</string>
+			<key>Key</key>
+			<string>split_key</string>
+			<key>DefaultValue</key>
+			<string>split_a</string>
+			<key>Titles</key>
+			<array>
+				<string>No split</string>
+				<string>Groups of 10 questions</string>
+				<string>Groups of 30 questions</string>
+				<string>Groups of 100 questions</string>
+				<string>Groups of 300 questions</string>
+				<string>Groups of 900 questions</string>
+			</array>
+			<key>Values</key>
+			<array>
+				<string>split_a</string>
+				<string>split_b</string>
+				<string>split_c</string>
+				<string>split_d</string>
+				<string>split_e</string>
+				<string>split_f</string>
 			</array>
 		</dict>
 	</array>
