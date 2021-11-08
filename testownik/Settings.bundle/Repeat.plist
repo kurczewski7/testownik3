@@ -16,15 +16,15 @@
 			<key>Type</key>
 			<string>PSSliderSpecifier</string>
 			<key>Key</key>
-			<string>slider_scope_test</string>
+			<string>test_scope_key</string>
 			<key>Title</key>
 			<string>TYYYtul</string>
 			<key>DefaultValue</key>
-			<integer>2</integer>
+			<integer>20</integer>
 			<key>MinimumValue</key>
 			<integer>0</integer>
 			<key>MaximumValue</key>
-			<integer>10</integer>
+			<integer>100</integer>
 			<key>MinimumValueImage</key>
 			<string></string>
 			<key>MaximumValueImage</key>
@@ -42,9 +42,9 @@
 			<key>Title</key>
 			<string>Number of test repetitions</string>
 			<key>Key</key>
-			<string>no_repetitions_key</string>
+			<string>nr_retesting_key</string>
 			<key>DefaultValue</key>
-			<string>repetition_0</string>
+			<integer>1</integer>
 			<key>Titles</key>
 			<array>
 				<string>No repetitions</string>
@@ -54,10 +54,10 @@
 			</array>
 			<key>Values</key>
 			<array>
-				<string>repetition_0</string>
-				<string>repetition_1</string>
-				<string>repetition_2</string>
-				<string>repetition_3</string>
+				<real>0</real>
+				<integer>1</integer>
+				<integer>2</integer>
+				<integer>3</integer>
 			</array>
 		</dict>
 		<dict>
@@ -66,9 +66,9 @@
 			<key>Title</key>
 			<string>Number of repetitions after wrong answer</string>
 			<key>Key</key>
-			<string>no_repetitions_wrong_key</string>
+			<string>nr_wrong_testing_key</string>
 			<key>DefaultValue</key>
-			<string>repetition_wrong_0</string>
+			<real>0</real>
 			<key>Titles</key>
 			<array>
 				<string>No repetitions after error</string>
@@ -78,10 +78,10 @@
 			</array>
 			<key>Values</key>
 			<array>
-				<string>repetition_wrong_0</string>
-				<string>repetition_wrong_1</string>
-				<string>repetition_wrong_2</string>
-				<string>repetition_wrong_3</string>
+				<real>0</real>
+				<integer>1</integer>
+				<integer>2</integer>
+				<integer>3</integer>
 			</array>
 		</dict>
 		<dict>
@@ -90,9 +90,9 @@
 			<key>Title</key>
 			<string>Repetition Percentage</string>
 			<key>Key</key>
-			<string>percen_repeat_key</string>
+			<string>percent_repeat_key</string>
 			<key>DefaultValue</key>
-			<string>percent_b</string>
+			<integer>10</integer>
 			<key>Titles</key>
 			<array>
 				<string>5 % of all</string>
@@ -104,12 +104,12 @@
 			</array>
 			<key>Values</key>
 			<array>
-				<string>percent_a</string>
-				<string>percent_b</string>
-				<string>percent_c</string>
-				<string>percent_d</string>
-				<string>percent_e</string>
-				<string>percent_f</string>
+				<integer>5</integer>
+				<integer>10</integer>
+				<integer>15</integer>
+				<integer>20</integer>
+				<integer>25</integer>
+				<integer>30</integer>
 			</array>
 		</dict>
 		<dict>
@@ -118,9 +118,9 @@
 			<key>Title</key>
 			<string>Dividing the test into parts</string>
 			<key>Key</key>
-			<string>split_key</string>
+			<string>part_size_key</string>
 			<key>DefaultValue</key>
-			<string>split_a</string>
+			<integer>300</integer>
 			<key>Titles</key>
 			<array>
 				<string>No split</string>
@@ -132,12 +132,12 @@
 			</array>
 			<key>Values</key>
 			<array>
-				<string>split_a</string>
-				<string>split_b</string>
-				<string>split_c</string>
-				<string>split_d</string>
-				<string>split_e</string>
-				<string>split_f</string>
+				<integer>0</integer>
+				<integer>10</integer>
+				<integer>30</integer>
+				<integer>100</integer>
+				<integer>300</integer>
+				<integer>900</integer>
 			</array>
 		</dict>
 	</array>

@@ -296,7 +296,9 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
     //}
     // MARK: viewDidLoad - initial method
     override func viewDidLoad() {
-        print("TestownikViewController viewDidLoad")
+        print("TestownikViewController viewDidLoad")        
+        Settings.shared.saveTestPreferences()
+        
         self.view?.tag = 111
         let gesture = UITapGestureRecognizer(target: self, action: #selector(tapAction))
         gesture.numberOfTouchesRequired = 1
@@ -309,7 +311,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
         //addOneGesture(gesture, forView: aView)
         
         
-        Settings.checkResetRequest(forUIViewController: self)
+        Settings.shared.checkResetRequest(forUIViewController: self)
         
         listening.linkSpeaking = speech.self
         listening.delegate     = self
@@ -373,7 +375,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
     }
     override func viewWillAppear(_ animated: Bool) {
         print("viewWillAppear viewWillAppear")
-        Settings.readCurrentLanguae()
+        Settings.shared.readCurrentLanguae()
         
         print("Test name 3:\(database.selectedTestTable[0]?.toAllRelationship?.user_name)")
         print("Testownik count: \(testownik.count)")

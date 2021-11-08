@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19E287" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19461" systemVersion="21A559" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
     <entity name="AllTestEntity" representedClassName="AllTestEntity" syncable="YES" codeGenerationType="class">
         <attribute name="auto_name" optional="YES" attributeType="String"/>
         <attribute name="category" optional="YES" attributeType="String"/>
         <attribute name="create_date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="folder_url" optional="YES" attributeType="String"/>
         <attribute name="is_favorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="nr_retesting" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="nr_wrong_testing" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="part_size" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="percent_repeat" optional="YES" attributeType="Integer 16" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="test_scope" optional="YES" attributeType="Integer 16" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="user_description" optional="YES" attributeType="String"/>
         <attribute name="user_name" optional="YES" attributeType="String"/>
         <attribute name="uuId" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
@@ -19,6 +24,11 @@
         <relationship name="toAllTestRelationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AllTestEntity" inverseName="toCateoryRelationship" inverseEntity="AllTestEntity"/>
     </entity>
     <entity name="SelectedTestEntity" representedClassName="SelectedTestEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="nr_retesting" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="nr_wrong_testing" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="part_size" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="percent_repeat" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="test_scope" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="uuId" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <relationship name="toAllRelationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AllTestEntity" inverseName="toSelectedRelationship" inverseEntity="AllTestEntity"/>
     </entity>
@@ -32,9 +42,9 @@
         <relationship name="toAllTestRelationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AllTestEntity" inverseName="toDescriptionRelationship" inverseEntity="AllTestEntity"/>
     </entity>
     <elements>
-        <element name="AllTestEntity" positionX="58.984375" positionY="-10917.7265625" width="163.9453125" height="208"/>
+        <element name="AllTestEntity" positionX="58.984375" positionY="-10917.7265625" width="163.9453125" height="269"/>
         <element name="CategoriesEntity" positionX="431.65625" positionY="-10905.859375" width="128" height="88"/>
-        <element name="SelectedTestEntity" positionX="-154.8046875" positionY="-11101.62890625" width="128" height="73"/>
+        <element name="SelectedTestEntity" positionX="-154.8046875" positionY="-11101.62890625" width="128" height="134"/>
         <element name="TestDescriptionEntity" positionX="430.66015625" positionY="-10795.6171875" width="128" height="148"/>
     </elements>
 </model>
