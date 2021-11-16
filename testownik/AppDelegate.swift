@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import CoreMedia
 
 let speech = Speech()
 
@@ -19,6 +20,14 @@ let speech = Speech()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         print("S T A R T\n")
+        let ratings = Ratings()
+        ratings.xxxxxx()
+        let rr = ratings[2]?.fileNumber
+        print("rr:\(rr)")
+        ratings.printf()
+        ratings[2] = TestResult(9, lastAnswer: true)
+        print("rr2:\(ratings[2]?.fileNumber)")
+        ratings.printf()
         
         for i in 0..<Locale.preferredLanguages.count {
             print("System lang \(i):\(Locale.preferredLanguages[i])")

@@ -10,6 +10,7 @@
 		0A231207E20459815F65BE7C /* Pods_testownik.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3CD960258B27FF97A8FBA0C /* Pods_testownik.framework */; };
 		2C1409BC240EDA6D001611F0 /* XXDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1409BB240EDA6D001611F0 /* XXDocument.swift */; };
 		2C2FD3BC270270B300434C03 /* Speaking.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2C2FD3BB270270B300434C03 /* Speaking.bundle */; };
+		2C58BF4727400B8800FE833C /* Ratings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C58BF4627400B8800FE833C /* Ratings.swift */; };
 		2C625DF524435FD000EE29A0 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C625DF424435FD000EE29A0 /* CoreDataStack.swift */; };
 		2C625DF72443710D00EE29A0 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C625DF62443710D00EE29A0 /* Database.swift */; };
 		2C625DF9244372FA00EE29A0 /* DatabaseTableGeneric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C625DF8244372FA00EE29A0 /* DatabaseTableGeneric.swift */; };
@@ -207,6 +208,7 @@
 		2C2FD3B527024B3000434C03 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Main.strings; sourceTree = "<group>"; };
 		2C2FD3B627024B3100434C03 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		2C2FD3BB270270B300434C03 /* Speaking.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Speaking.bundle; sourceTree = "<group>"; };
+		2C58BF4627400B8800FE833C /* Ratings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ratings.swift; sourceTree = "<group>"; };
 		2C625DF424435FD000EE29A0 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		2C625DF62443710D00EE29A0 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		2C625DF8244372FA00EE29A0 /* DatabaseTableGeneric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseTableGeneric.swift; sourceTree = "<group>"; };
@@ -625,6 +627,7 @@
 		2CE1476C23F6901800C834F4 = {
 			isa = PBXGroup;
 			children = (
+				2C58BF4627400B8800FE833C /* Ratings.swift */,
 				2CEB3FF4271F08E8003011F3 /* ForcePressGestureRecognizer.swift */,
 				2C2FD3BB270270B300434C03 /* Speaking.bundle */,
 				2CE2F38B242A4CE800D1B731 /* Default-568h@2x.png */,
@@ -1085,6 +1088,7 @@
 				2C6864C0244A05D700C159C7 /* DatabaseFetch.swift in Sources */,
 				2C625DF524435FD000EE29A0 /* CoreDataStack.swift in Sources */,
 				2CDB1DF82407C98500361884 /* Test.swift in Sources */,
+				2C58BF4727400B8800FE833C /* Ratings.swift in Sources */,
 				2C80431C27061BE4006D9BAE /* Speech.swift in Sources */,
 				2C9A0975242C1F2900A1DC4E /* DetailSectionHeaderView.swift in Sources */,
 				2CE1477B23F6901900C834F4 /* SceneDelegate.swift in Sources */,
