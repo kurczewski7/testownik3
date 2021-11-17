@@ -22,11 +22,32 @@ let speech = Speech()
         print("S T A R T\n")
         let ratings = Ratings()
         ratings.xxxxxx()
-        let rr = ratings[2]?.fileNumber
+        let rr = ratings[2]
+        rr?.correctionsToDo = 1963
+        
         print("rr:\(rr)")
         ratings.printf()
-        ratings[2] = TestResult(9, lastAnswer: true)
-        print("rr2:\(ratings[2]?.fileNumber)")
+        ratings[1] = rr
+        ratings[2] = rr
+        ratings.editRating(forIndex: 0) {
+            $0.repetitionsToDo = 2021
+            $0.lastAnswer = false
+            $0.correctionsToDo = 1410
+            return $0
+        }
+        
+//        ratings.editRating(forIndex: 3) {
+//            let nrFile = ratings
+//        }
+//        ratings.editRating(forIndex: 3) {
+//            let tmp = self.
+//            //tstResult.errorMultiple = 7
+//            //return tstResult
+//        }
+      
+        
+        print("rr2:\(ratings[2]?.fileNumber),\(ratings[2]?.correctionsToDo)")
+        //ratings.editRating(forIndex: 3, editValue: &<#T##TestResult#>)
         ratings.printf()
         
         for i in 0..<Locale.preferredLanguages.count {

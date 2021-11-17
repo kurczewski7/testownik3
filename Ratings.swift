@@ -10,7 +10,7 @@ import Foundation
 
 class TestResult{
     var errorMultiple = 2
-    var fileNumber: Int
+    private(set) var fileNumber: Int  // Not to modyfy
     var lastAnswer: Bool {
         didSet {
             if lastAnswer {
@@ -47,23 +47,29 @@ class TestResult{
         self.correctionsToDo = 0
         self.repetitionsToDo = 0
     }
+    func setFileNumber(_ fileNumber: Int ) {
+        self.fileNumber = fileNumber
+        
+    }
 }
+//----------------
 class Ratings {
+    var testList: [Int] = [4,2,4,2,1,7]
+    //                     2,1,2,1,0,3
     var results = [ TestResult(1, lastAnswer: false),
                     TestResult(2, lastAnswer: false),
-                    TestResult(3, lastAnswer: true),
-                    TestResult(4, lastAnswer: true)]    //[TestResult]()
+                    TestResult(4, lastAnswer: true),
+                    TestResult(7, lastAnswer: true)]    //[TestResult]()
     
-    var testList: [Int] = [4,2,4,2,1,3]
+    
     var currentTest = 0
     var count: Int {
-        get {
-            return testList.count
-        }
+        get {    return testList.count    }
     }
     subscript(index: Int) -> TestResult? {
         get {
             guard index < self.testList.count  else {   return nil  }
+            self.currentTest = index
             return  find(testForValue: self.testList[index])
         }
         set(newValue) {
@@ -72,15 +78,17 @@ class Ratings {
             guard self.testList.first(where: {  $0 == newValue.fileNumber   }) != nil else { return }
             if let posInResults = find(posForValue: self.testList[index]) {
                 if self.results[posInResults].fileNumber == newValue.fileNumber {
+                    self.currentTest = index
                     self.results[posInResults] = newValue
                 }
                 
             }
         }
     }
-    func editRating(forIndex: Int, editValue value: inout TestResult) {
-        value.fileNumber = 999
-        value.lastAnswer = false
+    func editRating(forIndex index: Int, completion:  (_ result: TestResult) -> TestResult       ) {
+        guard  index < self.testList.count   else {   return   }
+        guard let testPos = find(posForValue: self.testList[index]) else { return  }
+        self.results[testPos] = completion(self.results[testPos])
     }
     func addRating(_ fileNumber: Int, lastAnswer answer: Bool) {
         if let position = find(posForValue: fileNumber) {
