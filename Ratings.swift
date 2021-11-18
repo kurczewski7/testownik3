@@ -11,6 +11,10 @@ import Foundation
 class TestResult {
     var errorMultiple = 2
     private(set) var fileNumber: Int  // Not to modyfy
+    private(set) var goodAnswers = 777
+    private(set) var wrongAnswers = 666
+    var correctionsToDo = 0
+    var repetitionsToDo = 0
     var lastAnswer: Bool {
         didSet {
             if lastAnswer {
@@ -28,11 +32,7 @@ class TestResult {
             }
         }
     }
-    private(set) var goodAnswers = 0
-    private(set) var wrongAnswers = 0
-    
-    var correctionsToDo = 0
-    var repetitionsToDo = 0
+
     init(_ fileNumber: Int, lastAnswer: Bool) {
         self.fileNumber = fileNumber
         self.lastAnswer = lastAnswer
@@ -149,16 +149,14 @@ class Ratings {
         return nil
     }
     func saveRatings() {
-        
         database.ratingsTable.deleteAll()
-        
         for (index, value) in self.results.enumerated() {
             let rec = RatingsEntity(context: database.context)
             let uuId = database.selectedTestTable[0]?.uuId
             rec.lp = Int16(index)
-            print("index:\(index)")
+            print("index:\(index).\(uuId)")
             rec.uuId = UUID()
-            rec.uuId_parent = UUID() //uuId
+            rec.uuId_parent = uuId
             rec.file_number = Int16(value.fileNumber)
             rec.good_answers = Int16(value.goodAnswers)
             rec.wrong_answers = Int16(value.wrongAnswers)
@@ -167,20 +165,31 @@ class Ratings {
             rec.repetitions_to_do = Int16(value.repetitionsToDo)
             _ = database.ratingsTable?.add(value: rec)
         }
-//        results.forEach { testResult in
-//            //let rec = RatingsEntity(context: database.context)
-//            let rec = RatingsEntity(context: database.context)
-//            let uuId = database.selectedTestTable[0]?.uuId
-//            rec.lp = 99
+        database.ratingsTable?.save()
+    }
+    func saveTestList() {
+        database.testListTable.deleteAll()
+        for (index, value) in self.testList.enumerated() {
+            let rec = TestListEntity(context: database.context)
+            let uuId = database.selectedTestTable[0]?.uuId
+            rec.lp = Int16(index)
+            rec.uuId = UUID()
+            rec.uuid_parent = UUID()
+            rec.rating_index = Int16(value)
+            rec.done = true
+            
+//            rec.lp = Int16(index)
+//            print("index:\(index).\(uuId)")
+//            rec.uuId = UUID()
 //            rec.uuId_parent = uuId
-//            rec.file_number = Int16(testResult.fileNumber)
-//            rec.good_answers = 888
-//            rec.wrong_answers 2222
-//            rec.last_answer = testResult.lastAnswer
-//            rec.corrections_to_do = Int16(testResult.correctionsToDo)
-//            rec.repetitions_to_do = Int16(testResult.repetitionsToDo)
-//            _ = database.ratingsTable?.add(value: rec)
-//        }
+//            rec.file_number = Int16(value.fileNumber)
+//            rec.good_answers = Int16(value.goodAnswers)
+//            rec.wrong_answers = Int16(value.wrongAnswers)
+//            rec.last_answer = value.lastAnswer
+//            rec.corrections_to_do = Int16(value.correctionsToDo)
+//            rec.repetitions_to_do = Int16(value.repetitionsToDo)
+            _ = database.testListTable?.add(value: rec)
+        }
         database.ratingsTable?.save()
     }
     func restoreRatings() {
