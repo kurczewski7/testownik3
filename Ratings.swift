@@ -28,8 +28,8 @@ class TestResult {
             }
         }
     }
-    private var goodAnswers = 0
-    private var wrongAnswers = 0
+    private(set) var goodAnswers = 0
+    private(set) var wrongAnswers = 0
     
     var correctionsToDo = 0
     var repetitionsToDo = 0
@@ -149,15 +149,38 @@ class Ratings {
         return nil
     }
     func saveRatings() {
-        results.forEach { testResult in
-            //let rec = RatingsEntity(context: database.context)
+        
+        database.ratingsTable.deleteAll()
+        
+        for (index, value) in self.results.enumerated() {
             let rec = RatingsEntity(context: database.context)
-            rec.file_number = Int16(testResult.fileNumber)
-            rec.last_answer = testResult.lastAnswer
-            rec.corrections_to_do = Int16(testResult.correctionsToDo)
-            rec.repetitions_to_do = Int16(testResult.repetitionsToDo)
+            let uuId = database.selectedTestTable[0]?.uuId
+            rec.lp = Int16(index)
+            print("index:\(index)")
+            rec.uuId = UUID()
+            rec.uuId_parent = UUID() //uuId
+            rec.file_number = Int16(value.fileNumber)
+            rec.good_answers = Int16(value.goodAnswers)
+            rec.wrong_answers = Int16(value.wrongAnswers)
+            rec.last_answer = value.lastAnswer
+            rec.corrections_to_do = Int16(value.correctionsToDo)
+            rec.repetitions_to_do = Int16(value.repetitionsToDo)
             _ = database.ratingsTable?.add(value: rec)
         }
+//        results.forEach { testResult in
+//            //let rec = RatingsEntity(context: database.context)
+//            let rec = RatingsEntity(context: database.context)
+//            let uuId = database.selectedTestTable[0]?.uuId
+//            rec.lp = 99
+//            rec.uuId_parent = uuId
+//            rec.file_number = Int16(testResult.fileNumber)
+//            rec.good_answers = 888
+//            rec.wrong_answers 2222
+//            rec.last_answer = testResult.lastAnswer
+//            rec.corrections_to_do = Int16(testResult.correctionsToDo)
+//            rec.repetitions_to_do = Int16(testResult.repetitionsToDo)
+//            _ = database.ratingsTable?.add(value: rec)
+//        }
         database.ratingsTable?.save()
     }
     func restoreRatings() {

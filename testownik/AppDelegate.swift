@@ -58,6 +58,7 @@ let speech = Speech()
         print("rr2:\(ratings[2]?.fileNumber),\(ratings[2]?.correctionsToDo)")
         //ratings.editRating(forIndex: 3, editValue: &<#T##TestResult#>)
         ratings.printf()
+        //database.ratingsTable?.deleteAll()
         ratings.saveRatings()
         
         for i in 0..<Locale.preferredLanguages.count {
@@ -93,8 +94,8 @@ let speech = Speech()
         database.allTestsTable.loadData()
         database.selectedTestTable.loadData()
         database.testDescriptionTable.loadData()
-        database.ratingsTable?.loadData()
-        database.testListTable?.loadData()
+//        database.ratingsTable.loadData()
+//        database.testListTable.loadData()
         
         print("allTestsTable.count:\(database.allTestsTable.count)\n")
         print("selectedTestTable.count:\(database.selectedTestTable.count)\n")
