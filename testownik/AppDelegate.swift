@@ -61,6 +61,7 @@ let speech = Speech()
         //database.ratingsTable?.deleteAll()
         ratings.saveRatings()
         ratings.saveTestList()
+        ratings.restoreRatings()
         
         for i in 0..<Locale.preferredLanguages.count {
             print("System lang \(i):\(Locale.preferredLanguages[i])")

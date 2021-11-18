@@ -51,6 +51,13 @@ class TestResult {
         self.fileNumber = fileNumber
         
     }
+    func setWrongAnswers(_ wrongAnswers: Int ) {
+        self.wrongAnswers = wrongAnswers
+    }
+    func setGoodAnswers(_ goodAnswers: Int ) {
+        self.goodAnswers = goodAnswers
+    }
+
 }
 //----------------
 class Ratings {
@@ -193,9 +200,26 @@ class Ratings {
         database.ratingsTable?.save()
     }
     func restoreRatings() {
+        var newRatings = [TestResult]()
         database.ratingsTable.forEach { index, oneElement in
+            let fileNumber: Int = Int(oneElement?.file_number ?? 9999)
+            let lastAnswer: Bool = oneElement?.last_answer ?? false
+            let tmp = TestResult(fileNumber, lastAnswer: lastAnswer)
+            
+            let correctionsToDo = oneElement?.corrections_to_do ?? Int16(0)
+            let repetitionsToDo = oneElement?.repetitions_to_do ?? Int16(0)
+            let wrongAnswers = oneElement?.wrong_answers ?? Int16(0)
+            let goodAnswers  = oneElement?.good_answers ?? Int16(0)
+
+            tmp.correctionsToDo = Int(correctionsToDo)
+            tmp.repetitionsToDo = Int(repetitionsToDo)
+            tmp.setWrongAnswers(Int(wrongAnswers))
+            tmp.setGoodAnswers(Int(goodAnswers))
+            tmp.errorMultiple = 2
             print("index:\(index)")
+            newRatings.append(tmp)
         }
+        print("RRRRR:\(newRatings)")
     }
 
 }
