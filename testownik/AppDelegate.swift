@@ -35,6 +35,15 @@ let speech = Speech()
             $0.correctionsToDo = 1410
             return $0
         }
+        ratings.editRating(forIndex: 3) { result in
+            result.repetitionsToDo = 5555
+            return result
+        }
+
+        ratings.editRating(forIndex: 11) { result in
+            result.repetitionsToDo = 6666
+            return result
+        }
         
 //        ratings.editRating(forIndex: 3) {
 //            let nrFile = ratings
@@ -49,6 +58,7 @@ let speech = Speech()
         print("rr2:\(ratings[2]?.fileNumber),\(ratings[2]?.correctionsToDo)")
         //ratings.editRating(forIndex: 3, editValue: &<#T##TestResult#>)
         ratings.printf()
+        ratings.saveRatings()
         
         for i in 0..<Locale.preferredLanguages.count {
             print("System lang \(i):\(Locale.preferredLanguages[i])")
@@ -83,6 +93,9 @@ let speech = Speech()
         database.allTestsTable.loadData()
         database.selectedTestTable.loadData()
         database.testDescriptionTable.loadData()
+        database.ratingsTable?.loadData()
+        database.testListTable?.loadData()
+        
         print("allTestsTable.count:\(database.allTestsTable.count)\n")
         print("selectedTestTable.count:\(database.selectedTestTable.count)\n")
         print("testDescriptionTable.count:\(database.testDescriptionTable.count)\n")

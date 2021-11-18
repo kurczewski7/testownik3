@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TestResult{
+class TestResult {
     var errorMultiple = 2
     private(set) var fileNumber: Int  // Not to modyfy
     var lastAnswer: Bool {
@@ -111,6 +111,7 @@ class Ratings {
         return  find(testForValue: self.testList[nr])
     }
     func setCurrTest() {
+
         
     }
     func xxxxxx() {
@@ -146,6 +147,23 @@ class Ratings {
             }
         }
         return nil
+    }
+    func saveRatings() {
+        results.forEach { testResult in
+            //let rec = RatingsEntity(context: database.context)
+            let rec = RatingsEntity(context: database.context)
+            rec.file_number = Int16(testResult.fileNumber)
+            rec.last_answer = testResult.lastAnswer
+            rec.corrections_to_do = Int16(testResult.correctionsToDo)
+            rec.repetitions_to_do = Int16(testResult.repetitionsToDo)
+            _ = database.ratingsTable?.add(value: rec)
+        }
+        database.ratingsTable?.save()
+    }
+    func restoreRatings() {
+        database.ratingsTable.forEach { index, oneElement in
+            print("index:\(index)")
+        }
     }
 
 }

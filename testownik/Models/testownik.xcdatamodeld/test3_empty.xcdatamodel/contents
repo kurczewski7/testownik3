@@ -23,6 +23,16 @@
         <attribute name="uuId" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <relationship name="toAllTestRelationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AllTestEntity" inverseName="toCateoryRelationship" inverseEntity="AllTestEntity"/>
     </entity>
+    <entity name="RatingsEntity" representedClassName="RatingsEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="corrections_to_do" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="file_number" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="good_answers" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="last_answer" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="lp" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="repetitions_to_do" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="uuId_parent" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="wrong_answers" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
     <entity name="SelectedTestEntity" representedClassName="SelectedTestEntity" syncable="YES" codeGenerationType="class">
         <attribute name="nr_retesting" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="nr_wrong_testing" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
@@ -41,10 +51,18 @@
         <attribute name="uuid_parent" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <relationship name="toAllTestRelationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AllTestEntity" inverseName="toDescriptionRelationship" inverseEntity="AllTestEntity"/>
     </entity>
+    <entity name="TestListEntity" representedClassName="TestListEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="done" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="lp" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="rating_index" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="uuid_parent" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+    </entity>
     <elements>
         <element name="AllTestEntity" positionX="58.984375" positionY="-10917.7265625" width="163.9453125" height="269"/>
         <element name="CategoriesEntity" positionX="431.65625" positionY="-10905.859375" width="128" height="88"/>
         <element name="SelectedTestEntity" positionX="-154.8046875" positionY="-11101.62890625" width="128" height="134"/>
         <element name="TestDescriptionEntity" positionX="430.66015625" positionY="-10795.6171875" width="128" height="148"/>
+        <element name="RatingsEntity" positionX="45" positionY="-10953" width="128" height="149"/>
+        <element name="TestListEntity" positionX="54" positionY="-10944" width="128" height="89"/>
     </elements>
 </model>
