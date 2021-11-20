@@ -187,21 +187,28 @@ class Listening  {
         }
         
         func startRecording() {
-     
+//            Jak ustawiasz swoją AVAudioSession? Ten błąd jest zwykle spowodowany nieprawidłowym ustawieniem.
+//
+//            Oznacza to, że przed każdym użyciem mikrofonu musisz wywołać poniższy kod (lub podobny w zależności od przypadku użycia),
+//            aby upewnić się, że sesja audio jest prawidłowo skonfigurowana. Jeśli tak nie jest, na przykład używasz kategorii .playback i
+//            próbujesz użyć mikrofonu, otrzymasz awarię IsFormatSampleRateAndChannelCountValid(format).
+ 
             if let recognitionTask = self.recognitionTask {
                 recognitionTask.cancel()
                 self.recognitionTask = nil
             }
-            
             self.recordedMessage = ""
-            
             let audioSession = AVAudioSession.sharedInstance()
             do {
-                try audioSession.setCategory(AVAudioSession.Category.record)
-                try audioSession.setMode(AVAudioSession.Mode.measurement)
-                try audioSession.setActive(true, options: AVAudioSession.SetActiveOptions.notifyOthersOnDeactivation )
-            }catch {
-                print(error)
+//                try audioSession.setCategory(AVAudioSession.Category.record)
+//                try audioSession.setMode(AVAudioSession.Mode.measurement)
+//                try audioSession.setActive(true, options: AVAudioSession.SetActiveOptions.notifyOthersOnDeactivation )
+                try audioSession.setCategory(.playAndRecord, options: .defaultToSpeaker)
+                try audioSession.setMode(.measurement)
+                try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
+                
+            }catch let error as NSError {
+                print("EEEEE, błą∂:\(error)")
             }
             
             recognitionRequest = SFSpeechAudioBufferRecognitionRequest()

@@ -610,6 +610,12 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
         //print("answer,\(answer)")
         return answer
     }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        listening.stopRecording()
+        speech.stopSpeak()
+    }
+    
         //    let button = UIButton(frame: CGRect(x: 100, y: 100, width: 100, height: 50))
         //    button.backgroundColor = .greenColor()
         //    button.setTitle("Test Button", forState: .Normal)

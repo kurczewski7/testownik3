@@ -48,7 +48,7 @@ class FavoriteTestsViewController: UIViewController, UITableViewDataSource, UITa
         allTests = database.allTestsTable.array
     }
     override func viewWillAppear(_ animated: Bool) {
-        listening.didTapRecordButton()
+        //listening.didTapRecordButton()
         Timer.scheduledTimer(timeInterval: 20.0, target: self, selector: #selector(showMe), userInfo: nil, repeats: false)        
     }
     @objc func showMe() {

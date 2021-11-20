@@ -100,7 +100,6 @@ let speech = Speech()
         
         print("rr2:\(ratings[2]?.fileNumber),\(ratings[2]?.correctionsToDo)")
         ratings.printf()
-        //database.ratingsTable?.deleteAll()
         ratings.saveRatings()
         ratings.saveTestList()
         ratings.restoreRatings()
