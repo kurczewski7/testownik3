@@ -55,13 +55,6 @@ let speech = Speech()
 //        }
       
         
-        print("rr2:\(ratings[2]?.fileNumber),\(ratings[2]?.correctionsToDo)")
-        //ratings.editRating(forIndex: 3, editValue: &<#T##TestResult#>)
-        ratings.printf()
-        //database.ratingsTable?.deleteAll()
-        ratings.saveRatings()
-        ratings.saveTestList()
-        ratings.restoreRatings()
         
         for i in 0..<Locale.preferredLanguages.count {
             print("System lang \(i):\(Locale.preferredLanguages[i])")
@@ -96,13 +89,23 @@ let speech = Speech()
         database.allTestsTable.loadData()
         database.selectedTestTable.loadData()
         database.testDescriptionTable.loadData()
-//        database.ratingsTable.loadData()
-//        database.testListTable.loadData()
+        database.ratingsTable.loadData()
+        database.testListTable.loadData()
         
         print("allTestsTable.count:\(database.allTestsTable.count)\n")
         print("selectedTestTable.count:\(database.selectedTestTable.count)\n")
         print("testDescriptionTable.count:\(database.testDescriptionTable.count)\n")
         print("Test name:\(database.selectedTestTable[0]?.toAllRelationship?.user_name)")
+        
+        
+        print("rr2:\(ratings[2]?.fileNumber),\(ratings[2]?.correctionsToDo)")
+        ratings.printf()
+        //database.ratingsTable?.deleteAll()
+        ratings.saveRatings()
+        ratings.saveTestList()
+        ratings.restoreRatings()
+        ratings.restoreTestList()
+
   
         let newVal = Settings.CodePageEnum.iso9
         let listen = Settings.shared.getValue(boolForKey: .listening_key)

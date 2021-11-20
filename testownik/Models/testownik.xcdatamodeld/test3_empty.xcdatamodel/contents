@@ -31,7 +31,7 @@
         <attribute name="lp" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="repetitions_to_do" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="uuId" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="uuId_parent" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="uuid_parent" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="wrong_answers" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <entity name="SelectedTestEntity" representedClassName="SelectedTestEntity" syncable="YES" codeGenerationType="class">

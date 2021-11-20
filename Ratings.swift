@@ -156,14 +156,21 @@ class Ratings {
         return nil
     }
     func saveRatings() {
-        database.ratingsTable.deleteAll()
+        guard let uuId = database.selectedTestTable[0]?.uuId, self.results.count > 0 else {   return    }
+        
+        print("saveRatings, befor del:\(database.ratingsTable.count)")
+        //database.ratingsTable[0]?.uuId_parent
+        database.ratingsTable.deleteGroup(uuidDeleteField: "uuid_parent", forValue: uuId)
+        database.ratingsTable.save()
+        print("saveRatings,ratingsTable after del:\(database.ratingsTable.count)")
+        
+        print("saveRatings,results save:\(self.results.count)")
         for (index, value) in self.results.enumerated() {
             let rec = RatingsEntity(context: database.context)
-            let uuId = database.selectedTestTable[0]?.uuId
             rec.lp = Int16(index)
             print("index:\(index).\(uuId)")
             rec.uuId = UUID()
-            rec.uuId_parent = uuId
+            rec.uuid_parent = uuId
             rec.file_number = Int16(value.fileNumber)
             rec.good_answers = Int16(value.goodAnswers)
             rec.wrong_answers = Int16(value.wrongAnswers)
@@ -172,54 +179,73 @@ class Ratings {
             rec.repetitions_to_do = Int16(value.repetitionsToDo)
             _ = database.ratingsTable?.add(value: rec)
         }
+        print("restoreRatings, befor save:\(database.ratingsTable.count)")
         database.ratingsTable?.save()
+        print("restoreRatings, after save:\(database.ratingsTable.count)")
     }
     func saveTestList() {
-        database.testListTable.deleteAll()
+        guard let uuId = database.selectedTestTable[0]?.uuId, self.testList.count > 0 else {   return     }
+
+        print("saveTestList, befor save:\(self.testList.count)")
+        database.testListTable.deleteGroup(uuidDeleteField: "uuid_parent", forValue: uuId)
+        //database.testListTable.save()
+        print("saveTestList, after save:\(self.testList.count)")
+        
         for (index, value) in self.testList.enumerated() {
             let rec = TestListEntity(context: database.context)
-            let uuId = database.selectedTestTable[0]?.uuId
             rec.lp = Int16(index)
             rec.uuId = UUID()
-            rec.uuid_parent = UUID()
+            rec.uuid_parent = uuId
             rec.rating_index = Int16(value)
             rec.done = true
-            
-//            rec.lp = Int16(index)
-//            print("index:\(index).\(uuId)")
-//            rec.uuId = UUID()
-//            rec.uuId_parent = uuId
-//            rec.file_number = Int16(value.fileNumber)
-//            rec.good_answers = Int16(value.goodAnswers)
-//            rec.wrong_answers = Int16(value.wrongAnswers)
-//            rec.last_answer = value.lastAnswer
-//            rec.corrections_to_do = Int16(value.correctionsToDo)
-//            rec.repetitions_to_do = Int16(value.repetitionsToDo)
             _ = database.testListTable?.add(value: rec)
         }
-        database.ratingsTable?.save()
+        database.testListTable?.save()
     }
     func restoreRatings() {
         var newRatings = [TestResult]()
+        newRatings.removeAll()
+        print("restoreRatings, restore:\(database.ratingsTable.count)")
         database.ratingsTable.forEach { index, oneElement in
+            guard let elem = oneElement else {    return    }
             let fileNumber: Int = Int(oneElement?.file_number ?? 9999)
             let lastAnswer: Bool = oneElement?.last_answer ?? false
             let tmp = TestResult(fileNumber, lastAnswer: lastAnswer)
             
-            let correctionsToDo = oneElement?.corrections_to_do ?? Int16(0)
-            let repetitionsToDo = oneElement?.repetitions_to_do ?? Int16(0)
-            let wrongAnswers = oneElement?.wrong_answers ?? Int16(0)
-            let goodAnswers  = oneElement?.good_answers ?? Int16(0)
-
-            tmp.correctionsToDo = Int(correctionsToDo)
-            tmp.repetitionsToDo = Int(repetitionsToDo)
-            tmp.setWrongAnswers(Int(wrongAnswers))
-            tmp.setGoodAnswers(Int(goodAnswers))
+            tmp.correctionsToDo = Int(elem.corrections_to_do)
+            tmp.repetitionsToDo = Int(elem.repetitions_to_do)
+            tmp.setWrongAnswers(Int(elem.wrong_answers))
+            tmp.setGoodAnswers(Int(elem.good_answers))
             tmp.errorMultiple = 2
             print("index:\(index)")
             newRatings.append(tmp)
         }
         print("RRRRR:\(newRatings)")
     }
-
+    struct TestListStruct
+    {
+        var lp: Int = 0
+        var ratingIndex: Int = 0
+        
+    }
+    func restoreTestList() {
+        //    var testList: [Int] = [4,2,4,2,1,7]
+        var newTestList = [TestListStruct]()
+        newTestList.removeAll()
+        print("restoreRatings, restore:\(database.ratingsTable.count)")
+        database.testListTable.forEach { index, oneElement in
+            guard let elem = oneElement else {    return    }
+            let lp: Int = Int(elem.lp)
+            let ratingIndex: Int = Int(elem.rating_index)
+            
+            let tmp = TestListStruct(lp: Int(elem.lp), ratingIndex: Int(elem.rating_index))
+             
+            //tmp.correctionsToDo = Int(elem.corrections_to_do)
+            print("index:\(index)")
+            //
+            newTestList.append(tmp)
+        }
+        let xx = newTestList.sorted {    $0.lp < $1.lp    }.map {  $0.ratingIndex      }
+        print("RRRRR:\(newTestList)")
+    }
 }
