@@ -103,14 +103,13 @@ class Testownik: DataOperations {
         var position = 0
         var sortedAnswerOptions = [Answer]()
         var srcAnswerOptions = answerOptions
-        
         for _ in 1...srcAnswerOptions.count {
             position = randomOrder(toMax: srcAnswerOptions.count-1)
-            let elem = srcAnswerOptions[position]
-            sortedAnswerOptions.append(elem)
+            sortedAnswerOptions.append(srcAnswerOptions[position])
             srcAnswerOptions.remove(at: position)
         }
         return sortedAnswerOptions
+        //let elem = srcAnswerOptions[position]
     }
     func randomOrder(toMax: Int) -> Int {
         return Int(arc4random_uniform(UInt32(toMax)))

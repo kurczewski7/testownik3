@@ -220,6 +220,9 @@ class Ratings {
             print("index:\(index)")
             newRatings.append(tmp)
         }
+        if newRatings.count > 0 {
+            self.results = newRatings
+        }
         print("RRRRR:\(newRatings)")
     }
     struct TestListStruct
@@ -235,9 +238,8 @@ class Ratings {
         print("restoreRatings, restore:\(database.ratingsTable.count)")
         database.testListTable.forEach { index, oneElement in
             guard let elem = oneElement else {    return    }
-            let lp: Int = Int(elem.lp)
-            let ratingIndex: Int = Int(elem.rating_index)
-            
+//            let lp: Int = Int(elem.lp)
+//            let ratingIndex: Int = Int(elem.rating_index)
             let tmp = TestListStruct(lp: Int(elem.lp), ratingIndex: Int(elem.rating_index))
              
             //tmp.correctionsToDo = Int(elem.corrections_to_do)
@@ -245,7 +247,10 @@ class Ratings {
             //
             newTestList.append(tmp)
         }
-        let xx = newTestList.sorted {    $0.lp < $1.lp    }.map {  $0.ratingIndex      }
+        let aList = newTestList.sorted {    $0.lp < $1.lp  }.map {  $0.ratingIndex  }
+        if aList.count > 0 {
+            self.testList = aList
+        }
         print("RRRRR:\(newTestList)")
     }
 }
