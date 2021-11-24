@@ -7,6 +7,7 @@
 //
 
 import Foundation
+
 class DataOperations {
     typealias T = Test
     private var  genericArray = [T]()

@@ -21,7 +21,7 @@ let speech = Speech()
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         print("S T A R T\n")
         let ratings = Ratings()
-        ratings.xxxxxx()
+       ratings.xxxxxx()
         let rr = ratings[2]
         rr?.correctionsToDo = 1963
         

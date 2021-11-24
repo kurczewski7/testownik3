@@ -7,12 +7,15 @@
 //
 
 import UIKit
-
+struct Answer {
+        let isOK: Bool
+        let answerOption: String
+}
 struct Test {
     let code: String?
     let ask: String?
     let pict: UIImage?
-    var answerOptions           = [Testownik.Answer]()
+    var answerOptions           = [Answer]()
     var order                   = [Int]()
     var youAnswers5              = [Int]()
     var youAnswer2: Set<Int>    = []
@@ -20,8 +23,3 @@ struct Test {
     var maxRating      = 0
     var fileName: String 
 }
-// var favoriteGenres: Set<String> = ["Rock", "Classical", "Hip hop"]
-// letters.insert("a")
-//for genre in favoriteGenres.sorted() {
-//    print("\(genre)")
-//}

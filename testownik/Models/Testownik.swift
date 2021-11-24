@@ -19,14 +19,9 @@ class Testownik: DataOperations {
         case last
         case other
     }
-    struct Answer {
-            let isOK: Bool
-            let answerOption: String
-    }
     var delegate: TestownikDelegate?
     var filePosition = FilePosition.first
     
-    //override public var text: String? = "text"
     override var currentTest: Int  {
         didSet {
             print("currentTest:\(oldValue),\(currentTest)")
@@ -37,25 +32,15 @@ class Testownik: DataOperations {
             else  {  filePosition = .other      }
         }
     }
-        
-//    var currentTest: Int = 0 {
-//        didSet {
-//            delegate?.refreshButtonUI(forFilePosition: filePosition)
-//            currentRow = currentTest < count ? currentTest : count-1
-//            if  currentTest == 0 {    filePosition = .first     }
-//            else if  currentTest == count-1 {   filePosition = .last     }
-//            else  {  filePosition = .other      }
-//        }
-//    }
     var visableLevel: Int = 4 {
         didSet {     delegate?.refreshTabbarUI(visableLevel: visableLevel)    }
     }
-    // method depreciated ===> to deleted
+    //  MARK: method depreciated ===> to deleted
     func fillData(totallQuestionsCount: Int) {
         var titles = [String]()
         var textLines = [String]()
         for i in 201...204 { //117
-            titles = []
+            titles.removeAll()
             let name = String(format: "%03d", i)
             print("name:\(name)")
             textLines=getText(fileName: name)
@@ -115,7 +100,7 @@ class Testownik: DataOperations {
         return Int(arc4random_uniform(UInt32(toMax)))
     }
     func fillOneTestAnswers(isOk: [Bool], titles: [String]) -> [Answer] {
-        var answerOptions: [Answer] = []
+        var answerOptions: [Answer] = [Answer]()
         let lenght = isOk.count < titles.count ? isOk.count : titles.count
         for i in 0..<lenght {
             answerOptions.append(Answer(isOK: isOk[i], answerOption: titles[i]))

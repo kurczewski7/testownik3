@@ -21,6 +21,7 @@ class TestownikViewController: UIViewController, GesturesDelegate, TestownikDele
     let command   = Command()
     var gestures  = Gestures()
     var testownik = Testownik()
+    let testPlan  = TestPlan()
 
     //  MARK: variable
     var cornerRadius: CGFloat = 10
@@ -298,6 +299,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
     override func viewDidLoad() {
         print("TestownikViewController viewDidLoad")        
         Settings.shared.saveTestPreferences()
+        testPlan.start()
         
         self.view?.tag = 111
         let gesture = UITapGestureRecognizer(target: self, action: #selector(tapAction))
