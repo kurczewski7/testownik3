@@ -29,6 +29,8 @@ class FavoriteTestsViewController: UIViewController, UITableViewDataSource, UITa
         navigationItem.rightBarButtonItem?.image = image
     }
     override func viewDidLoad() {
+        // new data
+        print("viewDidLoad:FavoriteTestViewCtrl")
         super.viewDidLoad()
         self.view?.tag = 333
         //listening.delegateSpeaking
